@@ -73,3 +73,6 @@ crashlytics-build.properties
 Assets/UI SFX Free Pack/Content_for_Demo_Scene/Read_Me.txt
 /Assets/UI SFX Free Pack
 /Assets/StarterAssets
+
+# Rider related files
+/.idea/*
