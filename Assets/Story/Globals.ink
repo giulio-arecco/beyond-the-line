@@ -1,1 +1,2 @@
-VAR mole_hit_count = 0
+VAR moleHitCount = 0
+VAR playerHealth = 100

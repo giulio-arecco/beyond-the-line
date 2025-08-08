@@ -1,6 +1,9 @@
+using System;
 using TMPro;
 using UnityEngine;
 using Ink.Runtime;
+using Ink.UnityIntegration;
+using UnityEngine.Serialization;
 
 public class StoryManager : Singleton<StoryManager> {
     [Header("Story UI")]
@@ -8,7 +11,7 @@ public class StoryManager : Singleton<StoryManager> {
     [SerializeField] private TextMeshProUGUI storyText;
     
     [Header("Story Global Variables")]
-    [SerializeField] private TextAsset globalsInkJson;
+    [SerializeField] private InkFile globalsInkFile;
     
     [Header("Choice UI")]
     [SerializeField] private GameObject[] choices;
@@ -21,7 +24,7 @@ public class StoryManager : Singleton<StoryManager> {
 
     protected override void Awake() {
         base.Awake();
-        _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkJson);
+        _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkFile.filePath);
     }
     
     private void Start() {
@@ -99,10 +102,42 @@ public class StoryManager : Singleton<StoryManager> {
     }
 
     public Ink.Runtime.Object GetVariableState(string variableName) {
-        _storyVariablesRegistry.variables.TryGetValue(variableName, out var variableValue);
-        if (variableValue == null) {
+        _storyVariablesRegistry.variables.TryGetValue(variableName, out var registryVariable);
+        if (registryVariable.VariableValue == null) {
             Debug.LogWarning("Ink Variable was found to be null: " + variableName);
         }
-        return variableValue;
+        return registryVariable.VariableValue;
     }
+
+    public void SubscribeToVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged, object currentValue) {
+        var type = currentValue.GetType();
+        var inkValue = _storyVariablesRegistry.variables[variableName].VariableValue;
+        
+        // Run some sanity checks before subscribing to the variable change action
+        // Extract the primitive value based on the real type of the Ink.Runtime.Object
+        object unboxedInkValue = inkValue switch {
+            IntValue intVal => intVal.value,
+            FloatValue floatVal => floatVal.value,
+            StringValue strVal => strVal.value,
+            BoolValue boolVal => boolVal.value,
+            _ => throw new InvalidOperationException($"Tipo Ink non gestito: {inkValue.GetType().Name}")
+        };
+
+        // Check whether the passed in value and the unboxed ink value match
+        if (unboxedInkValue != null && unboxedInkValue.GetType() == type) {
+            if (!unboxedInkValue.Equals(currentValue)) {
+                Debug.LogError($"The {variableName}'s global ink variable value ({unboxedInkValue}) is not equal to the provided variable" +
+                               $" value ({currentValue})");
+            }
+        }
+        else {
+            Debug.LogError($"The {variableName}'s global ink variable type ({unboxedInkValue?.GetType()}) is not equal to the provided variable" +
+                           $" value ({type})");
+        }
+        
+        _storyVariablesRegistry.variables[variableName].OnValueChanged += onValueChanged;
+    }
+
+    public void UnsubscribeFromVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged) => 
+        _storyVariablesRegistry.variables[variableName].OnValueChanged -= onValueChanged;
 }

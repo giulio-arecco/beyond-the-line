@@ -16,6 +16,7 @@ INCLUDE globals.ink
             -> END
             
 === win ===
-~ mole_hit_count += 1
-{mole_hit_count}
+~ moleHitCount += 1
+~ playerHealth -= 25
+{moleHitCount} {playerHealth}
 -> END
