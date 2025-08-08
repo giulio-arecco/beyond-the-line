@@ -7,15 +7,25 @@ public class StoryManager : Singleton<StoryManager> {
     [SerializeField] private GameObject storyPanel;
     [SerializeField] private TextMeshProUGUI storyText;
     
+    [Header("Story Global Variables")]
+    [SerializeField] private TextAsset globalsInkJson;
+    
     [Header("Choice UI")]
     [SerializeField] private GameObject[] choices;
+    
     private TextMeshProUGUI[] _choicesText;
-
     private Story _currentStory;
+    private StoryVariablesRegistry _storyVariablesRegistry; 
+    
     public bool StoryIsProgressing { get; private set; }
 
+    protected override void Awake() {
+        base.Awake();
+        _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkJson);
+    }
+    
     private void Start() {
-        storyPanel.SetActive(false);
+        // storyPanel.SetActive(false);
         
         // Get all the choices text
         _choicesText = new TextMeshProUGUI[choices.Length];
@@ -37,6 +47,8 @@ public class StoryManager : Singleton<StoryManager> {
         StoryIsProgressing = true;
         storyPanel.SetActive(true);
         
+        _storyVariablesRegistry.StartListening(_currentStory);
+        
         ContinueStory();
     }
 
@@ -44,6 +56,7 @@ public class StoryManager : Singleton<StoryManager> {
         StoryIsProgressing = false;
         storyPanel.SetActive(false);
         storyText.text = "";
+        _storyVariablesRegistry.StopListening(_currentStory);
     }
 
     private void ContinueStory() {
@@ -83,5 +96,13 @@ public class StoryManager : Singleton<StoryManager> {
         Debug.Log("Chosen choice with index: " + choiceIndex);
         _currentStory.ChooseChoiceIndex(choiceIndex);
         ContinueStory();
+    }
+
+    public Ink.Runtime.Object GetVariableState(string variableName) {
+        _storyVariablesRegistry.variables.TryGetValue(variableName, out var variableValue);
+        if (variableValue == null) {
+            Debug.LogWarning("Ink Variable was found to be null: " + variableName);
+        }
+        return variableValue;
     }
 }

@@ -1,0 +1,1 @@
+VAR mole_hit_count = 0

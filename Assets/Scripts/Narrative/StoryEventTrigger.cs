@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class StoryEventTrigger : MonoBehaviour {
     [SerializeField] private TextAsset inkJson;
