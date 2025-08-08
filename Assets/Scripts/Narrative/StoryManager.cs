@@ -120,7 +120,7 @@ public class StoryManager : Singleton<StoryManager> {
             FloatValue floatVal => floatVal.value,
             StringValue strVal => strVal.value,
             BoolValue boolVal => boolVal.value,
-            _ => throw new InvalidOperationException($"Tipo Ink non gestito: {inkValue.GetType().Name}")
+            _ => throw new InvalidOperationException($"Unhandled Ink type: {inkValue.GetType().Name}")
         };
 
         // Check whether the passed in value and the unboxed ink value match
