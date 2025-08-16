@@ -1,0 +1,76 @@
+using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.UI;
+using static InputSystem_Actions;
+
+public interface IInputReader { 
+    void EnableInputActions();
+    void DisableInputActions();
+}
+
+[CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
+public class InputReader : ScriptableObject, IInputReader, IGameplayActions, IUIActions {
+    public event Action<bool> ContinueStory;
+    
+    public InputSystem_Actions inputActions;
+
+    public bool IsContinueStoryKeyPressed => inputActions.Gameplay.ContinueStory.IsPressed();
+
+    public void EnableInputActions() {
+        if (inputActions == null) {
+            inputActions = new InputSystem_Actions();
+            inputActions.Gameplay.SetCallbacks(this);
+            inputActions.UI.SetCallbacks(this);
+        }
+        
+        inputActions.Enable();
+        
+        // Make the InputSystemUIInputModule (in the EventSystem) reference the same input actions asset we're using here
+        var eventSystem = EventSystem.current;
+        if (eventSystem == null) {
+            Debug.LogWarning("No EventSystem found in scene.");
+            return;
+        }
+
+        var uiModule = eventSystem.GetComponent<InputSystemUIInputModule>();
+        if (uiModule == null) {
+            Debug.LogWarning("No InputSystemUIInputModule found in scene.");
+            return;
+        }
+
+        if (uiModule.actionsAsset != inputActions.asset) {
+            uiModule.actionsAsset = inputActions.asset;
+            Debug.Log("Successfully assigned inputActions.asset to InputSystemUIInputModule.");
+        }
+    }
+
+    public void DisableInputActions() {
+        inputActions.Disable();
+    }
+
+    // --- IGameplayActions ---
+    public void OnContinueStory(InputAction.CallbackContext context) {
+        switch (context.phase) {
+            case InputActionPhase.Performed:
+                ContinueStory?.Invoke(true);
+                break;
+            case InputActionPhase.Canceled:
+                ContinueStory?.Invoke(false);
+                break;
+        }
+    }
+    
+    // --- IUIActions ---
+    public void OnNavigate(InputAction.CallbackContext context) { }
+    public void OnSubmit(InputAction.CallbackContext context) { }
+    public void OnCancel(InputAction.CallbackContext context) { }
+    public void OnPoint(InputAction.CallbackContext context) { }
+    public void OnClick(InputAction.CallbackContext context) { }
+    public void OnRightClick(InputAction.CallbackContext context) { }
+    public void OnMiddleClick(InputAction.CallbackContext context) { }
+    public void OnScrollWheel(InputAction.CallbackContext context) { }
+    public void OnTrackedDevicePosition(InputAction.CallbackContext context) { }
+    public void OnTrackedDeviceOrientation(InputAction.CallbackContext context) { }
+}

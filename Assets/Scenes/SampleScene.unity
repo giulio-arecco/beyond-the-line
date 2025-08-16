@@ -2270,6 +2270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bc4b985362a1d48918e820250c44bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  input: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
   storyPanel: {fileID: 1979099060}
   storyText: {fileID: 1174747762}
   globalsInkFile:

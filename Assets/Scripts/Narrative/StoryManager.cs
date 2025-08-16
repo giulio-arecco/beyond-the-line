@@ -3,9 +3,11 @@ using TMPro;
 using UnityEngine;
 using Ink.Runtime;
 using Ink.UnityIntegration;
-using UnityEngine.Serialization;
 
 public class StoryManager : Singleton<StoryManager> {
+    [Header("Input Reader")]
+    [SerializeField] private InputReader input;
+    
     [Header("Story UI")]
     [SerializeField] private GameObject storyPanel;
     [SerializeField] private TextMeshProUGUI storyText;
@@ -30,18 +32,22 @@ public class StoryManager : Singleton<StoryManager> {
     private void Start() {
         // storyPanel.SetActive(false);
         
+        // Subscribe to input events and enable input actions
+        input.ContinueStory += isPressed => {
+            if (!isPressed) {
+                // Input action phase is "canceled"
+                if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
+                    ContinueStory();
+                }
+            }
+        };
+        
+        input.EnableInputActions();
+        
         // Get all the choices text
         _choicesText = new TextMeshProUGUI[choices.Length];
         for (var i = 0; i < choices.Length; i++) {
             _choicesText[i] = choices[i].GetComponentInChildren<TextMeshProUGUI>();
-        }
-    }
-
-    private void Update() {
-        if (!StoryIsProgressing) return;
-
-        if (_currentStory.currentChoices.Count == 0 && Input.GetKeyDown(KeyCode.Space)) {
-            ContinueStory();
         }
     }
 
