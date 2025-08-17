@@ -10,7 +10,10 @@ public class Singleton<T> : MonoBehaviour where T : Component {
     
     protected static T instance;
     public static bool HasInstance => instance != null;
-    public static T TryGetInstance() => HasInstance ? instance : null;
+    public static bool TryGetInstance(out T currentInstance) {
+        currentInstance = instance;
+        return HasInstance;
+    }
     
     /// <summary>
     /// Remember to always perform a null check if you are accessing the singleton instance in OnDisable, OnDestroy or
