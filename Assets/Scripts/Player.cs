@@ -1,13 +1,14 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Inventory))]
 public class Player : Singleton<Player> {
-    [SerializeField] private Inventory inventory;
     [SerializeField] private Item TestItem;
     [SerializeField] private Item TestItem1;
     
-    public Inventory Inventory => inventory;
+    public Inventory Inventory => _inventory;
 
     private int _playerHealth = 100;
+    private Inventory _inventory;
 
     public void Update() {
         if (Input.GetKeyDown(KeyCode.U)) {
@@ -27,6 +28,11 @@ public class Player : Singleton<Player> {
         }
     }
 
+     protected override void Awake() {
+        base.Awake();
+        _inventory = GetComponent<Inventory>();
+    }
+    
     private void Start() {
         StoryManager.Instance.SubscribeToVariableChange("playerHealth", OnPlayerHealthChange, _playerHealth);
     }

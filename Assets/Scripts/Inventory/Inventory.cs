@@ -8,8 +8,7 @@ public class Item {
     public ItemData itemData;
 }
 
-[Serializable]
-public class Inventory {
+public class Inventory : MonoBehaviour {
     [SerializeField] private List<Item> items = new();
     
     public event Action<Item> OnItemAdded;

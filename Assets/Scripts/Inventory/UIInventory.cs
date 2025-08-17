@@ -2,19 +2,21 @@ using System;
 using UnityEngine;
 
 public class UIInventory : MonoBehaviour {
+    [SerializeField] private Inventory inventory;
     [SerializeField] private UIInventorySlot[] inventorySlots;
     private int _nextAvailableSlot;
     
     private void Start() {
         InitItemsUI();
-        Player.Instance.Inventory.OnItemAdded += Inventory_OnItemAdded;
-        Player.Instance.Inventory.OnItemRemoved += Inventory_OnItemRemoved;
+        inventory.OnItemAdded += Inventory_OnItemAdded;
+        inventory.OnItemRemoved += Inventory_OnItemRemoved;
     }
 
     private void OnDisable() {
-        // TODO investigate null ref here 
-        Player.TryGetInstance().Inventory.OnItemAdded -= Inventory_OnItemAdded;
-        Player.TryGetInstance().Inventory.OnItemRemoved -= Inventory_OnItemRemoved;
+        if (inventory != null) {
+            inventory.OnItemAdded -= Inventory_OnItemAdded;
+            inventory.OnItemRemoved -= Inventory_OnItemRemoved;
+        }
     }
 
     private void InitItemsUI() {
@@ -51,7 +53,7 @@ public class UIInventory : MonoBehaviour {
     
     private void NewInventoryItem(Item item) {
         if (_nextAvailableSlot >= inventorySlots.Length) {
-            Debug.LogError("Inventory UI is full. The item won't be added to the inventory UI");
+            Debug.LogWarning("Inventory UI is full. The item won't be added to the inventory UI");
             return;
         }
         
