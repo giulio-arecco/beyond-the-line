@@ -28,21 +28,19 @@ public class StoryManager : Singleton<StoryManager> {
         base.Awake();
         _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkFile.filePath);
     }
-    
+
+    private void OnEnable() {
+        // Subscribe to input events and enable input actions
+        input.ContinueStory += Input_ContinueStory;
+        input.EnableInputActions();
+    }
+
+    private void OnDisable() {
+        input.ContinueStory -= Input_ContinueStory;
+    }
+
     private void Start() {
         // storyPanel.SetActive(false);
-        
-        // Subscribe to input events and enable input actions
-        input.ContinueStory += isPressed => {
-            if (!isPressed) {
-                // Input action phase is "canceled"
-                if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
-                    ContinueStory();
-                }
-            }
-        };
-        
-        input.EnableInputActions();
         
         // Get all the choices text
         _choicesText = new TextMeshProUGUI[choices.Length];
@@ -146,4 +144,13 @@ public class StoryManager : Singleton<StoryManager> {
 
     public void UnsubscribeFromVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged) => 
         _storyVariablesRegistry.variables[variableName].OnValueChanged -= onValueChanged;
+
+    private void Input_ContinueStory(bool isPressed) {
+        if (!isPressed) {
+            // Input action phase is "canceled"
+            if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
+                ContinueStory();
+            }
+        }
+    }
 }
