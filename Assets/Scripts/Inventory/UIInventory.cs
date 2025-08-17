@@ -12,19 +12,12 @@ public class UIInventory : MonoBehaviour {
         inventory.OnItemRemoved += Inventory_OnItemRemoved;
     }
 
-    private void OnDisable() {
-        if (inventory != null) {
-            inventory.OnItemAdded -= Inventory_OnItemAdded;
-            inventory.OnItemRemoved -= Inventory_OnItemRemoved;
-        }
-    }
-
     private void InitItemsUI() {
         if (_nextAvailableSlot > 0)
             Debug.LogWarning("Initializing the inventory UI when it's not empty. " +
                              "This method should only be called once to add the inventory items to the inventory UI");
         
-        var items = Player.Instance.Inventory.GetItems();
+        var items = inventory.GetItems();
         if (items == null) return;
 
         foreach (var item in items) {

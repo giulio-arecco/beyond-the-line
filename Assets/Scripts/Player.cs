@@ -1,40 +1,51 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Inventory))]
-public class Player : Singleton<Player> {
+public class Player : Singleton<Player>, IUpdateObserver {
     [SerializeField] private Item TestItem;
     [SerializeField] private Item TestItem1;
     
-    public Inventory Inventory => _inventory;
+    public int UpdatePriority { get; set; }
 
     private int _playerHealth = 100;
     private Inventory _inventory;
-
-    public void Update() {
-        if (Input.GetKeyDown(KeyCode.U)) {
-            Inventory.RemoveItem("TestItem");
-        }
-        
-        if (Input.GetKeyDown(KeyCode.O)) {
-            Inventory.RemoveItem("TestItem1");
-        }
-
-        if (Input.GetKeyDown(KeyCode.A)) {
-            Inventory.AddItem(TestItem);
-        }
-        
-        if (Input.GetKeyDown(KeyCode.D)) {
-            Inventory.AddItem(TestItem1);
-        }
-    }
 
      protected override void Awake() {
         base.Awake();
         _inventory = GetComponent<Inventory>();
     }
+     
+    private void OnEnable() {
+        UpdateManager.Instance.Register(this);
+    }
+
+    private void OnDisable() {
+        if (UpdateManager.TryGetInstance(out var updateManager)) {
+            updateManager.Unregister(this);
+        }
+    }
     
     private void Start() {
         StoryManager.Instance.SubscribeToVariableChange("playerHealth", OnPlayerHealthChange, _playerHealth);
+    }
+
+
+    public void ObservedUpdate() {
+        if (Input.GetKeyDown(KeyCode.U)) {
+            _inventory.RemoveItem("TestItem");
+        }
+        
+        if (Input.GetKeyDown(KeyCode.O)) {
+            _inventory.RemoveItem("TestItem1");
+        }
+
+        if (Input.GetKeyDown(KeyCode.A)) {
+            _inventory.AddItem(TestItem);
+        }
+        
+        if (Input.GetKeyDown(KeyCode.D)) {
+            _inventory.AddItem(TestItem1);
+        }
     }
 
     private void OnPlayerHealthChange(Ink.Runtime.Object health) {
