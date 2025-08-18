@@ -153,12 +153,9 @@ public class StoryManager : Singleton<StoryManager> {
     public void UnsubscribeFromVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged) => 
         _storyVariablesRegistry.variables[variableName].OnValueChanged -= onValueChanged;
 
-    private void Input_ContinueStory(bool isPressed) {
-        if (!isPressed) {
-            // Input action phase is "canceled"
-            if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
-                ContinueStory();
-            }
+    private void Input_ContinueStory() {
+        if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
+            ContinueStory();
         }
     }
 }

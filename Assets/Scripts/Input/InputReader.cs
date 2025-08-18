@@ -12,7 +12,8 @@ public interface IInputReader {
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
 public class InputReader : ScriptableObject, IInputReader, IGameplayActions, IUIActions {
-    public event Action<bool> ContinueStory;
+    public event Action ContinueStory;
+    public event Action OpenCloseInventory;
     
     public InputSystem_Actions inputActions;
 
@@ -52,14 +53,11 @@ public class InputReader : ScriptableObject, IInputReader, IGameplayActions, IUI
 
     // --- IGameplayActions ---
     public void OnContinueStory(InputAction.CallbackContext context) {
-        switch (context.phase) {
-            case InputActionPhase.Performed:
-                ContinueStory?.Invoke(true);
-                break;
-            case InputActionPhase.Canceled:
-                ContinueStory?.Invoke(false);
-                break;
-        }
+        if (context.phase == InputActionPhase.Canceled) ContinueStory?.Invoke();
+    }
+
+    public void OnOpenCloseInventory(InputAction.CallbackContext context) {
+        if (context.phase == InputActionPhase.Canceled) OpenCloseInventory?.Invoke();
     }
     
     // --- IUIActions ---
