@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -22,6 +23,11 @@ public class Inventory : MonoBehaviour {
     public void RemoveItem(string id) {
         items.RemoveAll(x => id == x.itemData.id);
         OnItemRemoved?.Invoke(id);
+    }
+    
+    public bool HasItem(string id) {
+        var item = items.Find(x => x.itemData.id == id);
+        return item != null;
     }
 
     [CanBeNull]

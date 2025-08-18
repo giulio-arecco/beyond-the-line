@@ -17,16 +17,21 @@ public class StoryManager : Singleton<StoryManager> {
     
     [Header("Choice UI")]
     [SerializeField] private GameObject[] choices;
+
+    [Header("External Dependencies")] 
+    [SerializeField] private Inventory playerInventory;
     
     private TextMeshProUGUI[] _choicesText;
     private Story _currentStory;
     private StoryVariablesRegistry _storyVariablesRegistry; 
+    private StoryFunctionsBinder _storyFunctionsBinder;
     
     public bool StoryIsProgressing { get; private set; }
 
     protected override void Awake() {
         base.Awake();
         _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkFile.filePath);
+        _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory);
     }
 
     private void OnEnable() {
@@ -55,6 +60,7 @@ public class StoryManager : Singleton<StoryManager> {
         storyPanel.SetActive(true);
         
         _storyVariablesRegistry.StartListening(_currentStory);
+        _storyFunctionsBinder.BindGlobalFunctions(_currentStory);
         
         ContinueStory();
     }
@@ -63,7 +69,9 @@ public class StoryManager : Singleton<StoryManager> {
         StoryIsProgressing = false;
         storyPanel.SetActive(false);
         storyText.text = "";
+        
         _storyVariablesRegistry.StopListening(_currentStory);
+        _storyFunctionsBinder.UnbindGlobalFunctions(_currentStory);
     }
 
     private void ContinueStory() {
