@@ -15,7 +15,7 @@ public class StoryVariablesRegistry {
         }
     }
     
-    public Dictionary<string, RegistryVariable> variables { get; private set; }
+    public Dictionary<string, RegistryVariable> Variables { get; private set; }
     
     public StoryVariablesRegistry(string globalsFilePath) {
         // compile the story (since the globals.ink file is considered an include file, it will not compile automatically in the editor)
@@ -24,10 +24,10 @@ public class StoryVariablesRegistry {
         var globalVariablesStory = compiler.Compile();
         
         // initialize the dictionary
-        variables = new Dictionary<string, RegistryVariable>();
+        Variables = new Dictionary<string, RegistryVariable>();
         foreach (var name in globalVariablesStory.variablesState) {
             var value = globalVariablesStory.variablesState.GetVariableWithName(name);
-            variables.Add(name, new RegistryVariable(value));
+            Variables.Add(name, new RegistryVariable(value));
             Debug.Log("Initialized global story variable: " + name + " = " + value);
         }
     }
@@ -43,15 +43,15 @@ public class StoryVariablesRegistry {
     }
     
     private void OnVariableChanged(string name, Ink.Runtime.Object value) {
-        // only maintain variables what were initialized fom the globals ink file
-        if (variables.ContainsKey(name)) {
-            variables[name].VariableValue = value;
-            variables[name].OnValueChanged?.Invoke(value);
+        // only maintain variables what were initialized from the globals ink file
+        if (Variables.ContainsKey(name)) {
+            Variables[name].VariableValue = value;
+            Variables[name].OnValueChanged?.Invoke(value);
         }
     }
 
     private void VariablesToStory(Story story) {
-        foreach (var variable in variables) {
+        foreach (var variable in Variables) {
             story.variablesState.SetGlobal(variable.Key, variable.Value.VariableValue);
         }
     }

@@ -50,6 +50,26 @@ public class InputReader : ScriptableObject, IInputReader, IGameplayActions, IUI
     public void DisableInputActions() {
         inputActions.Disable();
     }
+    
+    public void EnableInputAction(string actionMapName, string actionName) {
+        inputActions.asset.FindActionMap(actionMapName, true).FindAction(actionName, true).Enable();
+        Debug.Log("Successfully enabled the " + actionName + " action in the " + actionMapName + " action map.");
+    }
+
+    public void DisableInputAction(string actionMapName, string actionName) {
+        inputActions.asset.FindActionMap(actionMapName, true).FindAction(actionName, true).Disable();
+        Debug.Log("Successfully disabled the " + actionName + " action in the " + actionMapName + " action map.");
+    }
+    
+    public void EnableInputActionMap(string actionMapName) {
+        inputActions.asset.FindActionMap(actionMapName, true).Enable();
+        Debug.Log("Successfully enabled the " + actionMapName + " action map.");
+    }
+
+    public void DisableInputActionMap(string actionMapName) {
+        inputActions.asset.FindActionMap(actionMapName, true).Disable();
+        Debug.Log("Successfully disabled the " + actionMapName + " action map.");
+    }
 
     // --- IGameplayActions ---
     public void OnContinueStory(InputAction.CallbackContext context) {

@@ -10,12 +10,12 @@ public class StoryFunctionsBinder {
 
     public void BindGlobalFunctions(Story story) {
         story.BindExternalFunction("HasItem", (string itemId) => HasItem(itemId));
-        Debug.Log("Function HasItem bound correctly to the Ink Story");
+        Debug.Log("Successfully bound the HasItem function to the Ink Story");
     }
 
     public void UnbindGlobalFunctions(Story story) {
         story.UnbindExternalFunction("HasItem");
-        Debug.Log("Function HasItem unbound correctly to the Ink Story");
+        Debug.Log("Successfully unbound the HasItem function to the Ink Story");
     }
 
     private bool HasItem(string itemId) {

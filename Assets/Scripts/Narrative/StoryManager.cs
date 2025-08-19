@@ -114,7 +114,7 @@ public class StoryManager : Singleton<StoryManager> {
     }
 
     public Ink.Runtime.Object GetVariableState(string variableName) {
-        _storyVariablesRegistry.variables.TryGetValue(variableName, out var registryVariable);
+        _storyVariablesRegistry.Variables.TryGetValue(variableName, out var registryVariable);
         if (registryVariable.VariableValue == null) {
             Debug.LogWarning("Ink Variable was found to be null: " + variableName);
         }
@@ -123,7 +123,7 @@ public class StoryManager : Singleton<StoryManager> {
 
     public void SubscribeToVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged, object currentValue) {
         var type = currentValue.GetType();
-        var inkValue = _storyVariablesRegistry.variables[variableName].VariableValue;
+        var inkValue = _storyVariablesRegistry.Variables[variableName].VariableValue;
         
         // Run some sanity checks before subscribing to the variable change action
         // Extract the primitive value based on the real type of the Ink.Runtime.Object
@@ -147,11 +147,11 @@ public class StoryManager : Singleton<StoryManager> {
                            $" value ({type})");
         }
         
-        _storyVariablesRegistry.variables[variableName].OnValueChanged += onValueChanged;
+        _storyVariablesRegistry.Variables[variableName].OnValueChanged += onValueChanged;
     }
 
     public void UnsubscribeFromVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged) => 
-        _storyVariablesRegistry.variables[variableName].OnValueChanged -= onValueChanged;
+        _storyVariablesRegistry.Variables[variableName].OnValueChanged -= onValueChanged;
 
     private void Input_ContinueStory() {
         if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
