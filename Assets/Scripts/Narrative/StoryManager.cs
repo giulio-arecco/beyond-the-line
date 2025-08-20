@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using Ink.Runtime;
 using Ink.UnityIntegration;
+using UnityEngine.UI;
 
 public class StoryManager : Singleton<StoryManager> {
     [Header("Input Reader")]
@@ -45,7 +46,7 @@ public class StoryManager : Singleton<StoryManager> {
     }
 
     private void Start() {
-        // storyPanel.SetActive(false);
+        storyPanel.SetActive(false);
         
         // Get all the choices text
         _choicesText = new TextMeshProUGUI[choices.Length];
@@ -104,6 +105,11 @@ public class StoryManager : Singleton<StoryManager> {
         // go through the remaining choices the UI supports and make sure they're hidden
         for (; i < choices.Length; i++) {
             choices[i].gameObject.SetActive(false);
+        }
+        
+        // automatically select the first choice button
+        if (choices[0].TryGetComponent<Button>(out var choiceButton)) {
+            choiceButton.Select();
         }
     }
 

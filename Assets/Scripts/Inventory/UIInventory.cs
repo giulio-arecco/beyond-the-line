@@ -5,17 +5,27 @@ public class UIInventory : MonoBehaviour {
     [SerializeField] private Inventory inventory;
     [SerializeField] private UIInventorySlot[] inventorySlots;
     private int _nextAvailableSlot;
-    
-    private void Start() {
-        InitItemsUI();
+
+    private void Awake() {
+        gameObject.SetActive(false);
+    }
+
+    private void OnEnable() {
+        RefreshUI();
         inventory.OnItemAdded += Inventory_OnItemAdded;
         inventory.OnItemRemoved += Inventory_OnItemRemoved;
     }
+    
+    private void OnDisable() {
+        ClearUI();
+        inventory.OnItemAdded -= Inventory_OnItemAdded;
+        inventory.OnItemRemoved -= Inventory_OnItemRemoved;
+    }
 
-    private void InitItemsUI() {
-        if (_nextAvailableSlot > 0)
-            Debug.LogWarning("Initializing the inventory UI when it's not empty. " +
-                             "This method should only be called once to add the inventory items to the inventory UI");
+    private void RefreshUI() {
+        if (_nextAvailableSlot > 0) {
+            Debug.LogError("Next available slot should be 0 when refreshing UI");
+        }
         
         var items = inventory.GetItems();
         if (items == null) return;
@@ -25,23 +35,15 @@ public class UIInventory : MonoBehaviour {
         }
     }
 
-    private void Inventory_OnItemAdded(Item item) {
-        NewInventoryItem(item);
-    }
-    
-    private void Inventory_OnItemRemoved(string itemId) {
-        var hasRemoved = false;
+    private void ClearUI() {
         foreach (var slot in inventorySlots) {
-            if (slot.ChildItem && slot.ChildItem.Item.itemData.id == itemId) {
-                hasRemoved = true;
+            if (slot.ChildItem != null) {
                 Destroy(slot.ChildItem.gameObject);
                 slot.ChildItem = null;
             }
         }
-
-        if (hasRemoved) {
-            ShiftInventoryItems();
-        }
+        
+        _nextAvailableSlot = 0;
     }
     
     private void NewInventoryItem(Item item) {
@@ -81,6 +83,25 @@ public class UIInventory : MonoBehaviour {
             inventorySlots[i].ChildItem = inventorySlots[j].ChildItem;
             inventorySlots[j].ChildItem = null;
             _nextAvailableSlot = i + 1;
+        }
+    }
+
+    private void Inventory_OnItemAdded(Item item) {
+        NewInventoryItem(item);
+    }
+    
+    private void Inventory_OnItemRemoved(string itemId) {
+        var hasRemoved = false;
+        foreach (var slot in inventorySlots) {
+            if (slot.ChildItem && slot.ChildItem.Item.itemData.id == itemId) {
+                hasRemoved = true;
+                Destroy(slot.ChildItem.gameObject);
+                slot.ChildItem = null;
+            }
+        }
+
+        if (hasRemoved) {
+            ShiftInventoryItems();
         }
     }
 }

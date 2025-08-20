@@ -4,7 +4,7 @@ public class UIInputHandler : MonoBehaviour {
     [SerializeField] private InputReader input;
     
     [Header("Canvas Elements")]
-    [SerializeField] CanvasGroup inventoryCanvasGroup;
+    [SerializeField] GameObject inventoryPanel;
 
     private void OnEnable() {
         input.OpenCloseInventory += Input_OpenCloseInventory;
@@ -15,16 +15,5 @@ public class UIInputHandler : MonoBehaviour {
         input.OpenCloseInventory -= Input_OpenCloseInventory;
     }
 
-    private void Input_OpenCloseInventory() {
-        if (Mathf.Approximately(inventoryCanvasGroup.alpha, 1f)) {
-            inventoryCanvasGroup.alpha = 0;
-            inventoryCanvasGroup.interactable = false;
-            inventoryCanvasGroup.blocksRaycasts = false;
-        }
-        else if (Mathf.Approximately(inventoryCanvasGroup.alpha, 0f)) {
-            inventoryCanvasGroup.alpha = 1;
-            inventoryCanvasGroup.interactable = true;
-            inventoryCanvasGroup.blocksRaycasts = true;
-        }
-    }
+    private void Input_OpenCloseInventory() => inventoryPanel.SetActive(!inventoryPanel.activeInHierarchy);
 }

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4921213204346159669}
   - component: {fileID: 7678368500821167400}
   - component: {fileID: 6405954045659837952}
-  - component: {fileID: 3593098582807633432}
   - component: {fileID: 4161885514051596558}
   m_Layer: 5
   m_Name: Inventory
@@ -112,18 +111,6 @@ MonoBehaviour:
   m_Spacing: {x: 20, y: 20}
   m_Constraint: 0
   m_ConstraintCount: 2
---- !u!225 &3593098582807633432
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1840453840276740715}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!114 &4161885514051596558
 MonoBehaviour:
   m_ObjectHideFlags: 0
