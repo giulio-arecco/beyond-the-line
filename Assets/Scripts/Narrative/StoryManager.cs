@@ -8,17 +8,18 @@ using UnityEngine.UI;
 public class StoryManager : Singleton<StoryManager> {
     [Header("Input Reader")]
     [SerializeField] private InputReader input;
-    
-    [Header("Story UI")]
+
+    [Header("Story UI")] 
+    [SerializeField] private GameObject gameUI;
     [SerializeField] private GameObject storyPanel;
     [SerializeField] private TextMeshProUGUI storyText;
+    
+    [Header("Choice UI")]
+    [SerializeField] private GameObject[] choices;
     
     [Header("Story Global Variables")]
     [SerializeField] private InkFile globalsInkFile;
     
-    [Header("Choice UI")]
-    [SerializeField] private GameObject[] choices;
-
     [Header("External Dependencies")] 
     [SerializeField] private Inventory playerInventory;
     
@@ -58,6 +59,8 @@ public class StoryManager : Singleton<StoryManager> {
     public void EnterStoryEvent(TextAsset inkJson) {
         _currentStory = new Story(inkJson.text);
         StoryIsProgressing = true;
+        
+        gameUI.SetActive(false);
         storyPanel.SetActive(true);
         
         _storyVariablesRegistry.StartListening(_currentStory);
@@ -69,6 +72,7 @@ public class StoryManager : Singleton<StoryManager> {
     private void ExitStoryEvent() {
         StoryIsProgressing = false;
         storyPanel.SetActive(false);
+        gameUI.SetActive(true);
         storyText.text = "";
         
         _storyVariablesRegistry.StopListening(_currentStory);
