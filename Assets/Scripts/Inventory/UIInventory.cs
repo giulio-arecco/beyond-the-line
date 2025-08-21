@@ -6,10 +6,6 @@ public class UIInventory : MonoBehaviour {
     [SerializeField] private UIInventorySlot[] inventorySlots;
     private int _nextAvailableSlot;
 
-    private void Awake() {
-        gameObject.SetActive(false);
-    }
-
     private void OnEnable() {
         RefreshUI();
         inventory.OnItemAdded += Inventory_OnItemAdded;

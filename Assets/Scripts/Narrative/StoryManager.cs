@@ -10,7 +10,6 @@ public class StoryManager : Singleton<StoryManager> {
     [SerializeField] private InputReader input;
 
     [Header("Story UI")] 
-    [SerializeField] private GameObject gameUI;
     [SerializeField] private GameObject storyPanel;
     [SerializeField] private TextMeshProUGUI storyText;
     
@@ -47,7 +46,7 @@ public class StoryManager : Singleton<StoryManager> {
     }
 
     private void Start() {
-        storyPanel.SetActive(false);
+        UINavigator.Instance.HideUIElement(storyPanel);
         
         // Get all the choices text
         _choicesText = new TextMeshProUGUI[choices.Length];
@@ -60,8 +59,7 @@ public class StoryManager : Singleton<StoryManager> {
         _currentStory = new Story(inkJson.text);
         StoryIsProgressing = true;
         
-        gameUI.SetActive(false);
-        storyPanel.SetActive(true);
+        UINavigator.Instance.PushUILayer(storyPanel, true);
         
         _storyVariablesRegistry.StartListening(_currentStory);
         _storyFunctionsBinder.BindGlobalFunctions(_currentStory);
@@ -71,8 +69,7 @@ public class StoryManager : Singleton<StoryManager> {
 
     private void ExitStoryEvent() {
         StoryIsProgressing = false;
-        storyPanel.SetActive(false);
-        gameUI.SetActive(true);
+        UINavigator.Instance.PopUILayer();
         storyText.text = "";
         
         _storyVariablesRegistry.StopListening(_currentStory);

@@ -15,5 +15,12 @@ public class UIInputHandler : MonoBehaviour {
         input.OpenCloseInventory -= Input_OpenCloseInventory;
     }
 
-    private void Input_OpenCloseInventory() => inventoryPanel.SetActive(!inventoryPanel.activeInHierarchy);
+    private void Input_OpenCloseInventory() {
+        if (inventoryPanel.activeInHierarchy) {
+            UINavigator.Instance.PopUILayer();
+        }
+        else {
+            UINavigator.Instance.PushUILayer(inventoryPanel, true);
+        }
+    }
 }
