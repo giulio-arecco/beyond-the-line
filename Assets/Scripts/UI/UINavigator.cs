@@ -15,30 +15,30 @@ public class UINavigator : Singleton<UINavigator> {
         }
     }
 
-    private Stack<List<NavigationNode>> _uiElementsStack;
+    private Stack<List<NavigationNode>> _uiLayers;
 
     protected override void Awake() {
         base.Awake();
-        _uiElementsStack = new Stack<List<NavigationNode>>();
+        _uiLayers = new Stack<List<NavigationNode>>();
     }
 
     private void Start() {
-        _uiElementsStack.Push(new List<NavigationNode>()); // root layer, not to be popped
+        _uiLayers.Push(new List<NavigationNode>()); // root layer, not to be popped
         foreach (var element in defaultLayer) {
-            _uiElementsStack.Peek().Add(new NavigationNode(element, true));
+            _uiLayers.Peek().Add(new NavigationNode(element, true));
             element.SetActive(true);
         }
     }
     
     private void LogStack() {
         Debug.Log("Current UI Stack:");
-        foreach (var layer in _uiElementsStack) {
+        foreach (var layer in _uiLayers) {
             Debug.Log($"Layer: {string.Join(", ", layer.Select(n => $"{n.UiElement.name} ({n.IsActiveInLayer})"))}");
         }
     }
 
     public void ShowUIElement(GameObject uiElement, bool hideLayer) {
-        var currentLayer = _uiElementsStack.Peek();
+        var currentLayer = _uiLayers.Peek();
         
         if (hideLayer) {
             foreach (var node in currentLayer.Where(node => node.UiElement != uiElement)) {
@@ -62,8 +62,8 @@ public class UINavigator : Singleton<UINavigator> {
     public void PushUILayer(GameObject uiElement, bool hidePreviousLayer) {
         var newLayer = new List<NavigationNode>();
 
-        if (hidePreviousLayer && _uiElementsStack.Count > 0) {
-            var previousLayer = _uiElementsStack.Peek();
+        if (hidePreviousLayer && _uiLayers.Count > 0) {
+            var previousLayer = _uiLayers.Peek();
             foreach (var node in previousLayer) {
                 node.UiElement.SetActive(false);
                 // We don't set IsActiveInLayer to false to restore the previous layer when this will be popped
@@ -74,27 +74,34 @@ public class UINavigator : Singleton<UINavigator> {
         newLayer.Add(newNode);
         uiElement.SetActive(true);
 
-        _uiElementsStack.Push(newLayer);
+        _uiLayers.Push(newLayer);
     }
 
     public void HideUIElement(GameObject uiElement) {
-        var elementInLayer = _uiElementsStack.Peek().Find(x => x.UiElement == uiElement);
+        var elementInLayer = _uiLayers.Peek().Find(x => x.UiElement == uiElement);
         if (elementInLayer != null) {
             elementInLayer.IsActiveInLayer = false;
             uiElement.SetActive(false);
         }
     }
 
-    public void PopUILayer() {
-        if (_uiElementsStack.Count == 1) return;
+    public void PopUILayer(GameObject elementInLayer = null) {
+        if (_uiLayers.Count == 1) return;
         
-        var hiddenLayer = _uiElementsStack.Pop();
+        if (elementInLayer != null) {
+            // return if the passed elementInLayer is not found in the layer to hide
+            var layerToHide = _uiLayers.Peek();
+            var node = layerToHide.Find(x => x.UiElement == elementInLayer);
+            if (node == null) return;
+        }
+        
+        var hiddenLayer = _uiLayers.Pop();
         foreach (var node in hiddenLayer) {
             node.UiElement.SetActive(false);
         }
         
         // Reactivate the elements marked as IsActiveInLayer in the (now) current layer
-        var currentLayer = _uiElementsStack.Peek();
+        var currentLayer = _uiLayers.Peek();
         foreach (var node in currentLayer.Where(node => node.IsActiveInLayer)) {
             node.UiElement.SetActive(true);
         }

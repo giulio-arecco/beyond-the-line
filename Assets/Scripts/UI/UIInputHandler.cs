@@ -17,7 +17,7 @@ public class UIInputHandler : MonoBehaviour {
 
     private void Input_OpenCloseInventory() {
         if (inventoryPanel.activeInHierarchy) {
-            UINavigator.Instance.PopUILayer();
+            UINavigator.Instance.PopUILayer(inventoryPanel);
         }
         else {
             UINavigator.Instance.PushUILayer(inventoryPanel, true);
