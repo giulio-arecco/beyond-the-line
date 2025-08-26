@@ -4,6 +4,7 @@ using UnityEngine;
 using Ink.Runtime;
 using Ink.UnityIntegration;
 using UnityEngine.UI;
+using Enums;
 
 public class StoryManager : Singleton<StoryManager> {
     [Header("Input Reader")]
@@ -120,12 +121,16 @@ public class StoryManager : Singleton<StoryManager> {
         ContinueStory();
     }
 
-    public Ink.Runtime.Object GetVariableState(string variableName) {
+    public Ink.Runtime.Object GetRegistryVariable(string variableName) {
         _storyVariablesRegistry.Variables.TryGetValue(variableName, out var registryVariable);
         if (registryVariable.VariableValue == null) {
             Debug.LogWarning("Ink Variable was found to be null: " + variableName);
         }
         return registryVariable.VariableValue;
+    }
+    
+    public bool EvaluateConditionOnStoryVariable<T>(string variableName, T value, ComparisonType comparisonType) where T : IComparable {
+        return _storyVariablesRegistry.CompareVariableTo(variableName, value, comparisonType);
     }
 
     public void SubscribeToVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged, object currentValue) {

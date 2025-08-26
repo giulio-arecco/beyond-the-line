@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Ink.Runtime;
 using UnityEngine;
 using System.IO;
+using Enums;
 
 public class StoryVariablesRegistry {
     public class RegistryVariable {
@@ -40,6 +41,32 @@ public class StoryVariablesRegistry {
     
     public void StopListening(Story story) {
         story.variablesState.variableChangedEvent -= OnVariableChanged;
+    }
+
+    public bool CompareVariableTo<T>(string variableName, T value, ComparisonType comparisonType) where T : IComparable { 
+        var inkValue = Variables[variableName].VariableValue;
+        
+        var inkTypedValue = inkValue switch {
+            IntValue iv    when typeof(T) == typeof(int)    => (T)(object)iv.value,
+            FloatValue fv  when typeof(T) == typeof(float)  => (T)(object)fv.value,
+            StringValue sv when typeof(T) == typeof(string) => (T)(object)sv.value,
+            BoolValue bv   when typeof(T) == typeof(bool)   => (T)(object)bv.value,
+            _ => throw new InvalidCastException(
+                $"Cannot convert Ink value of type {inkValue.GetType()} to {typeof(T)}"
+            )
+        };
+
+        var result = inkTypedValue.CompareTo(value);
+        
+        return comparisonType switch {
+            ComparisonType.Equal          => result == 0,
+            ComparisonType.NotEqual       => result != 0,
+            ComparisonType.Greater        => result > 0,
+            ComparisonType.GreaterOrEqual => result >= 0,
+            ComparisonType.Less           => result < 0,
+            ComparisonType.LessOrEqual    => result <= 0,
+            _ => throw new ArgumentOutOfRangeException(nameof(comparisonType), comparisonType, null)
+        };
     }
     
     private void OnVariableChanged(string name, Ink.Runtime.Object value) {
