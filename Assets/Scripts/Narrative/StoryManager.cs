@@ -60,6 +60,8 @@ public class StoryManager : Singleton<StoryManager> {
         _currentStory = new Story(inkJson.text);
         StoryIsProgressing = true;
         
+        input.DisableInputAction("Gameplay", "PrevUILayer");
+        input.DisableInputAction("Gameplay", "OpenCloseInventory");
         UINavigator.Instance.PushUILayer(storyPanel, true);
         
         _storyVariablesRegistry.StartListening(_currentStory);
@@ -75,6 +77,9 @@ public class StoryManager : Singleton<StoryManager> {
         
         _storyVariablesRegistry.StopListening(_currentStory);
         _storyFunctionsBinder.UnbindGlobalFunctions(_currentStory);
+        
+        input.EnableInputAction("Gameplay", "PrevUILayer");
+        input.EnableInputAction("Gameplay", "OpenCloseInventory");
     }
 
     private void ContinueStory() {

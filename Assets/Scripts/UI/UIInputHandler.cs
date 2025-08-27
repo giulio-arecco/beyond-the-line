@@ -8,11 +8,13 @@ public class UIInputHandler : MonoBehaviour {
 
     private void OnEnable() {
         input.OpenCloseInventory += Input_OpenCloseInventory;
+        input.PrevUILayer += Input_PrevUILayer;
         input.EnableInputActions();
     }   
 
     private void OnDisable() {
         input.OpenCloseInventory -= Input_OpenCloseInventory;
+        input.PrevUILayer -= Input_PrevUILayer;
     }
 
     private void Input_OpenCloseInventory() {
@@ -23,4 +25,6 @@ public class UIInputHandler : MonoBehaviour {
             UINavigator.Instance.PushUILayer(inventoryPanel, true);
         }
     }
+    
+    private void Input_PrevUILayer() => UINavigator.Instance.PopUILayer();
 }

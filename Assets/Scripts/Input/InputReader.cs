@@ -14,6 +14,7 @@ public interface IInputReader {
 public class InputReader : ScriptableObject, IInputReader, IGameplayActions, IUIActions {
     public event Action ContinueStory;
     public event Action OpenCloseInventory;
+    public event Action PrevUILayer;
     
     public InputSystem_Actions inputActions;
 
@@ -79,7 +80,11 @@ public class InputReader : ScriptableObject, IInputReader, IGameplayActions, IUI
     public void OnOpenCloseInventory(InputAction.CallbackContext context) {
         if (context.phase == InputActionPhase.Canceled) OpenCloseInventory?.Invoke();
     }
-    
+
+    public void OnPrevUILayer(InputAction.CallbackContext context) {
+        if (context.phase == InputActionPhase.Canceled) PrevUILayer?.Invoke();
+    }
+
     // --- IUIActions ---
     public void OnNavigate(InputAction.CallbackContext context) { }
     public void OnSubmit(InputAction.CallbackContext context) { }
