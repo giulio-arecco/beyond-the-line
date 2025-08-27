@@ -6,7 +6,7 @@ using UnityEngine;
 
 [Serializable]
 public class Item {
-    public ItemData itemData;
+    public ItemDataSO itemData;
 }
 
 public class Inventory : MonoBehaviour {

@@ -11,7 +11,7 @@ public interface IInputReader {
 }
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
-public class InputReader : ScriptableObject, IInputReader, IGameplayActions, IUIActions {
+public class InputReaderSO : ScriptableObject, IInputReader, IGameplayActions, IUIActions {
     public event Action ContinueStory;
     public event Action OpenCloseInventory;
     public event Action PrevUILayer;

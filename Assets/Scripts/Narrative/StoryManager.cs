@@ -8,7 +8,7 @@ using Enums;
 
 public class StoryManager : Singleton<StoryManager> {
     [Header("Input Reader")]
-    [SerializeField] private InputReader input;
+    [SerializeField] private InputReaderSO input;
 
     [Header("Story UI")] 
     [SerializeField] private GameObject storyPanel;

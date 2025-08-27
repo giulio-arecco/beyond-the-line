@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class UIInputHandler : MonoBehaviour {
-    [SerializeField] private InputReader input;
+    [SerializeField] private InputReaderSO input;
     
     [Header("Canvas Elements")]
     [SerializeField] GameObject inventoryPanel;
