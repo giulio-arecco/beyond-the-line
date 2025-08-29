@@ -16,20 +16,20 @@ INCLUDE globals.ink
             -> END
             
 === win ===
-~ temp hasItem = HasItem("TestItem")
-~ temp hasItem1 = HasItem("TestItem1")
 ~ moleHitCount += 1
 ~ playerHealth -= 25
 
+~ AddItemToInventory("TestItem")
+
 {moleHitCount} {playerHealth} <>
 
-{hasItem:
-    You have TestItem,  
+{HasItem("TestItem"):
+    You have TestItem,   
 - else:
-    You don't have TestItem, 
+    You don't have TestItem,  
 } <>
 
-{hasItem1:
+{HasItem("TestItem1"):
     and you have TestItem1
 - else:
     and you don't have TestItem1

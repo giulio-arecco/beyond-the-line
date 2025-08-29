@@ -5,6 +5,7 @@ using Ink.Runtime;
 using Ink.UnityIntegration;
 using UnityEngine.UI;
 using Enums;
+using UnityEngine.Serialization;
 
 public class StoryManager : Singleton<StoryManager> {
     [Header("Input Reader")]
@@ -22,6 +23,7 @@ public class StoryManager : Singleton<StoryManager> {
     
     [Header("External Dependencies")] 
     [SerializeField] private Inventory playerInventory;
+    [SerializeField] private ItemDataDatabaseSO itemDataDatabase;
     
     private TextMeshProUGUI[] _choicesText;
     private Story _currentStory;
@@ -33,7 +35,7 @@ public class StoryManager : Singleton<StoryManager> {
     protected override void Awake() {
         base.Awake();
         _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkFile.filePath);
-        _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory);
+        _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory, itemDataDatabase);
     }
 
     private void OnEnable() {

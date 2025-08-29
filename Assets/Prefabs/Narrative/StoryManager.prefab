@@ -47,6 +47,12 @@ MonoBehaviour:
   input: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
   storyPanel: {fileID: 0}
   storyText: {fileID: 0}
+  choices:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   globalsInkFile:
     inkAsset: {fileID: 102900000, guid: c3cdb5e7dd54afa4fbe3c48bddd7c84c, type: 3}
     jsonAssetDirectory: {fileID: 0}
@@ -59,9 +65,5 @@ MonoBehaviour:
     masterInkAssets: []
     localIncludePaths: []
     includes: []
-  choices:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  playerInventory: {fileID: 0}
+  itemDataDatabase: {fileID: 11400000, guid: 5c5f2331f6cbb2a4c9cfb31370179886, type: 2}

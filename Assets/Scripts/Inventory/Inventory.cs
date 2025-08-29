@@ -7,6 +7,10 @@ using UnityEngine;
 [Serializable]
 public class Item {
     public ItemDataSO itemData;
+
+    public Item(ItemDataSO itemData) {
+        this.itemData = itemData;
+    }
 }
 
 public class Inventory : MonoBehaviour {
