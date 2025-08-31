@@ -1,7 +1,9 @@
-using System;
+using Inventory.Interfaces;
+using Inventory.Storables;
+using Storage;
 using UnityEngine;
 
-[RequireComponent(typeof(Inventory))]
+[RequireComponent(typeof(StorageBase<Item>))]
 public class Player : Singleton<Player>, IUpdateObserver {
     [SerializeField] private Item TestItem;
     [SerializeField] private Item TestItem1;
@@ -9,11 +11,11 @@ public class Player : Singleton<Player>, IUpdateObserver {
     public int UpdatePriority { get; set; }
 
     private int _playerHealth = 100;
-    private Inventory _inventory;
+    private IStorage<Item> _inventory;
 
     protected override void Awake() {
         base.Awake();
-        _inventory = GetComponent<Inventory>();
+        _inventory = GetComponent<StorageBase<Item>>();
     }
 
     private void OnEnable() {
@@ -38,19 +40,19 @@ public class Player : Singleton<Player>, IUpdateObserver {
 
     public void ObservedUpdate() {
         if (Input.GetKeyDown(KeyCode.U)) {
-            _inventory.RemoveItem("TestItem");
+            _inventory.Remove("TestItem");
         }
         
         if (Input.GetKeyDown(KeyCode.O)) {
-            _inventory.RemoveItem("TestItem1");
+            _inventory.Remove("TestItem1");
         }
 
         if (Input.GetKeyDown(KeyCode.A)) {
-            _inventory.AddItem(TestItem);
+            _inventory.Add(TestItem);
         }
         
         if (Input.GetKeyDown(KeyCode.D)) {
-            _inventory.AddItem(TestItem1);
+            _inventory.Add(TestItem1);
         }
     }
 

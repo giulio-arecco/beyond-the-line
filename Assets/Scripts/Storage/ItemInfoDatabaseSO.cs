@@ -1,20 +1,21 @@
 using System.Collections.Generic;
+using Inventory.StorableInfo;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemDataDatabase", menuName = "Scriptable Objects/ItemDataDatabase")]
-public class ItemDataDatabaseSO : ScriptableObject {
-    [SerializeField] private List<ItemDataSO> items;
+public class ItemInfoDatabaseSO : ScriptableObject {
+    [SerializeField] private List<ItemInfoSO> items;
 
-    private Dictionary<string, ItemDataSO> _lookup;
+    private Dictionary<string, ItemInfoSO> _lookup;
 
     private void Init() {
-        _lookup = new Dictionary<string, ItemDataSO>();
+        _lookup = new Dictionary<string, ItemInfoSO>();
         foreach (var item in items) {
             _lookup[item.id] = item;
         }
     }
 
-    public ItemDataSO GetItemById(string id) {
+    public ItemInfoSO GetItemById(string id) {
         if (_lookup == null) Init();
         
         if (_lookup.TryGetValue(id, out var itemData)) {

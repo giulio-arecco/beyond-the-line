@@ -1,13 +1,15 @@
 using Ink.Runtime;
+using Inventory.Interfaces;
+using Inventory.Storables;
 using UnityEngine;
 
 public class StoryFunctionsBinder {
-    private readonly Inventory _playerInventory;
-    private readonly ItemDataDatabaseSO _itemDataDatabase;
+    private readonly IStorage<Item>  _playerInventory;
+    private readonly ItemInfoDatabaseSO _itemInfoDatabase;
 
-    public StoryFunctionsBinder(Inventory playerInventory, ItemDataDatabaseSO itemDataDatabase) {
+    public StoryFunctionsBinder(IStorage<Item> playerInventory, ItemInfoDatabaseSO itemInfoDatabase) {
         _playerInventory = playerInventory;
-        _itemDataDatabase = itemDataDatabase;
+        _itemInfoDatabase = itemInfoDatabase;
     }
 
     public void BindGlobalFunctions(Story story) {
@@ -25,12 +27,12 @@ public class StoryFunctionsBinder {
     }
 
     private bool HasItem(string itemId) {
-        return _playerInventory.HasItem(itemId);
+        return _playerInventory.Has(itemId);
     }
 
     private void AddItemToInventory(string itemId) {
-        var itemData = _itemDataDatabase.GetItemById(itemId);
+        var itemData = _itemInfoDatabase.GetItemById(itemId);
         var item = new Item(itemData);
-        _playerInventory.AddItem(item);
+        _playerInventory.Add(item);
     }
 }
