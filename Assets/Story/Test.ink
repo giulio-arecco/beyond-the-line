@@ -24,9 +24,9 @@ INCLUDE globals.ink
 {moleHitCount} {playerHealth} <>
 
 {HasItem("TestItem"):
-    You have TestItem,   
+    You have TestItem, <>   
 - else:
-    You don't have TestItem,  
+    You don't have TestItem, <>
 } <>
 
 {HasItem("TestItem1"):

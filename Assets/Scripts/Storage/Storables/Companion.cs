@@ -5,7 +5,7 @@ namespace Inventory.Storables {
         public int Health { get; private set; } = 100;
         public int Hunger { get; private set; } = 0;
 
-        public Companion(StorableInfoSO info) {
+        public Companion(CompanionInfoSO info) {
             this.info = info;
         }
     }

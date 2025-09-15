@@ -732,6 +732,7 @@ GameObject:
   - component: {fileID: 798737110}
   - component: {fileID: 798737109}
   - component: {fileID: 798737111}
+  - component: {fileID: 798737112}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -778,6 +779,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb05cf6489a27904ea26cde6aefbe43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemInventory
+--- !u!114 &798737112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 798737108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 281e348a96dd0524f8a0821b1bc42c32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Storage.CompanionStorage
 --- !u!1 &818494558
 GameObject:
   m_ObjectHideFlags: 0
@@ -3323,6 +3336,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8667906572790481400, guid: 39f5f767b1ba1fb4eb4eb95b6f6363a5, type: 3}
+      propertyPath: itemInfoDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 9eac3fb19276f334ea1dcc5de391feb0, type: 2}
+    - target: {fileID: 8667906572790481400, guid: 39f5f767b1ba1fb4eb4eb95b6f6363a5, type: 3}
       propertyPath: 'choices.Array.data[0]'
       value: 
       objectReference: {fileID: 382590719}
@@ -3343,9 +3360,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 142987758}
     - target: {fileID: 8667906572790481400, guid: 39f5f767b1ba1fb4eb4eb95b6f6363a5, type: 3}
+      propertyPath: companionInfoDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 80dbc6ff721cbf04e915b8257d60f614, type: 2}
+    - target: {fileID: 8667906572790481400, guid: 39f5f767b1ba1fb4eb4eb95b6f6363a5, type: 3}
       propertyPath: playerInventory.underlyingValue
       value: 
       objectReference: {fileID: 798737111}
+    - target: {fileID: 8667906572790481400, guid: 39f5f767b1ba1fb4eb4eb95b6f6363a5, type: 3}
+      propertyPath: playerCompanions.underlyingValue
+      value: 
+      objectReference: {fileID: 798737112}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

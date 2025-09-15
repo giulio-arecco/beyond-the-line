@@ -2,7 +2,7 @@ using Inventory.StorableInfo;
 
 namespace Inventory.Storables {
     public class Item : Storable {
-        public Item(StorableInfoSO info) {
+        public Item(ItemInfoSO info) {
             this.info = info;
         }
     }

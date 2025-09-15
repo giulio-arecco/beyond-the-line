@@ -19,6 +19,8 @@ public class InputReaderSO : ScriptableObject, IInputReader, IGameplayActions, I
     public InputSystem_Actions inputActions;
 
     public bool IsContinueStoryKeyPressed => inputActions.Gameplay.ContinueStory.IsPressed();
+    public bool IsOpenCloseInventoryKeyPressed => inputActions.Gameplay.OpenCloseInventory.IsPressed();
+    public bool IsPrevUILayerKeyPressed => inputActions.Gameplay.PrevUILayer.IsPressed();
 
     public void EnableInputActions() {
         if (inputActions == null) {
