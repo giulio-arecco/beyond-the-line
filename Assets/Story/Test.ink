@@ -20,6 +20,7 @@ INCLUDE globals.ink
 ~ playerHealth -= 25
 
 ~ AddItemToInventory("TestItem")
+~ AddCompanionToParty("TestCompanion")
 
 {moleHitCount} {playerHealth} <>
 

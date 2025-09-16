@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sprite: {fileID: -4948644927685383766, guid: 66c6cfc0ba2aeb248bb4ba07fbc59c37, type: 3}
   id: TestItem
-  itemName: Test Item
+  entityName: Test Item
   description: A test item
