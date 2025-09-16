@@ -1,12 +1,12 @@
-using Inventory.StorableInfo;
+using Storage.StorableInfo;
 
-namespace Inventory.Storables {
+namespace Storage.Storables {
     public class Companion : Storable {
         public int Health { get; private set; } = 100;
         public int Hunger { get; private set; } = 0;
 
         public Companion(CompanionInfoSO info) {
-            this.info = info;
+            Info = info;
         }
     }
 }

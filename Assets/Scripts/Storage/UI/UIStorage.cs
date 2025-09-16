@@ -1,6 +1,6 @@
 using System;
 using Inventory.Interfaces;
-using Inventory.Storables;
+using Storage.Storables;
 using UnityEngine;
 using Utils.SerializeInterface;
 

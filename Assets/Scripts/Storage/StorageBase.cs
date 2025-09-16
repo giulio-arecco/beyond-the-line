@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Inventory.Interfaces;
-using Inventory.Storables;
+using Storage.Storables;
 using UnityEngine;
 
 namespace Storage {

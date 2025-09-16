@@ -1,5 +1,4 @@
 using Inventory.Interfaces;
-using Inventory.Storables;
 using Storage;
 using UnityEngine;
 

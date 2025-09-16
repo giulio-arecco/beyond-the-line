@@ -1,9 +1,9 @@
-using Inventory.StorableInfo;
+using Storage.StorableInfo;
 
-namespace Inventory.Storables {
+namespace Storage.Storables {
     public class Item : Storable {
         public Item(ItemInfoSO info) {
-            this.info = info;
+            Info = info;
         }
     }
 }

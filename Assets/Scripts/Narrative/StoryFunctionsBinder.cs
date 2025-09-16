@@ -1,8 +1,8 @@
 using System;
 using Ink.Runtime;
 using Inventory.Interfaces;
-using Inventory.Storables;
 using Storage.StorableInfoDatabase;
+using Storage.Storables;
 using UnityEngine;
 
 public class StoryFunctionsBinder {

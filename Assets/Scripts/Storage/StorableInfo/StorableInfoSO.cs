@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Inventory.StorableInfo {
+namespace Storage.StorableInfo {
     public abstract class StorableInfoSO : ScriptableObject {
         public Sprite sprite;
         public string id;

@@ -1,4 +1,4 @@
-using Inventory.Storables;
+using Storage.Storables;
 using UnityEngine;
 using UnityEngine.UI;
 

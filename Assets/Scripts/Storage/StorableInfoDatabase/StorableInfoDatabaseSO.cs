@@ -1,7 +1,6 @@
 using System.Collections.Generic;
-using Inventory.StorableInfo;
+using Storage.StorableInfo;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Storage.StorableInfoDatabase {
     public abstract class StorableInfoDatabaseSO<T> : ScriptableObject where T : StorableInfoSO {

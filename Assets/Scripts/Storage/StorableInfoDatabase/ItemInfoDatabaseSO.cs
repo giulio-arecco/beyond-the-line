@@ -1,4 +1,4 @@
-using Inventory.StorableInfo;
+using Storage.StorableInfo;
 using UnityEngine;
 
 namespace Storage.StorableInfoDatabase {
