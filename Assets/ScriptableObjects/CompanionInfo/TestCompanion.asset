@@ -16,3 +16,5 @@ MonoBehaviour:
   id: TestCompanion
   entityName: Test Companion
   description: A test companion
+  <Items>k__BackingField:
+  - <TypedInfo>k__BackingField: {fileID: 11400000, guid: 618af64d9e8c03047a9708a956da1ff5, type: 2}

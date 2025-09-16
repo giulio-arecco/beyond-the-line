@@ -1,9 +1,11 @@
+using System;
 using Storage.StorableInfo;
 
 namespace Storage.Storables {
-    public class Item : Storable {
+    [Serializable]
+    public class Item : Storable<ItemInfoSO> {
         public Item(ItemInfoSO info) {
-            Info = info;
+            TypedInfo = info;
         }
     }
 }

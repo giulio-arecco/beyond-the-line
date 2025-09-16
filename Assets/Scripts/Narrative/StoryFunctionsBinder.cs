@@ -57,6 +57,8 @@ public class StoryFunctionsBinder {
     private void AddCompanionToParty(string companionId) {
         var companionInfo = _companionInfoDatabase.GetItemById(companionId);
         var companion = new Companion(companionInfo);
+        
+        companion.CopyItemsTo(_playerInventory);
         _playerCompanions.Add(companion);
     }
 }
