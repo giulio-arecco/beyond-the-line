@@ -1,13 +1,34 @@
+using System;
 using Inventory.Interfaces;
 using Storage.StorableInfo;
 
 namespace Storage.Storables {
     public class Companion : Storable<CompanionInfoSO> {
-        public int Health { get; private set; } = 100;
-        public int Hunger { get; private set; } = 0;
+        private int _health;
+        public int Health {
+            get => _health;
+            set {
+                _health = value;
+                OnHealthChanged?.Invoke(this, _health);
+            }
+        }
 
+        private int _hunger;
+        public int Hunger {
+            get => _hunger;
+            set {
+                _hunger = value;
+                OnHungerChanged?.Invoke(this, _hunger);
+            }
+        }
+
+        public event Action<Companion, int> OnHealthChanged;
+        public event Action<Companion, int> OnHungerChanged;
+        
         public Companion(CompanionInfoSO info) {
             TypedInfo = info;
+            _health = 100;
+            _hunger = 0;
         }
 
         public void CopyItemsTo(IStorage<Item> storage) {

@@ -15,11 +15,11 @@ namespace Storage.StorableInfoDatabase {
             }
         }
 
-        public T GetItemById(string id) {
+        public T GetEntryById(string id) {
             if (_lookup == null) Init();
 
-            if (_lookup.TryGetValue(id, out var itemData)) {
-                return itemData;
+            if (_lookup.TryGetValue(id, out var entryInfo)) {
+                return entryInfo;
             }
 
             Debug.LogError($"StorableInfoSO with id {id} not found");

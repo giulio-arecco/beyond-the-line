@@ -21,6 +21,7 @@ INCLUDE globals.ink
 
 ~ AddItemToInventory("TestItem")
 ~ AddCompanionToParty("TestCompanion")
+~ SetCompanionStat("TestCompanion", "Hunger", 50)
 
 {moleHitCount} {playerHealth} <>
 
@@ -31,9 +32,17 @@ INCLUDE globals.ink
 } <>
 
 {HasItem("TestItem1"):
-    and you have TestItem1
+    you have TestItem1 <>
 - else:
-    and you don't have TestItem1
+    you don't have TestItem1 <>
 }
+
+and TestCompanion <>
+{GetCompanionStat("TestCompanion", "Hunger") > 0:
+    is <>
+- else:
+    is not <>
+}
+hungry.
 
 -> END

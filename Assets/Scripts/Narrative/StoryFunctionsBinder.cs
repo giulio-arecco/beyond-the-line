@@ -4,6 +4,7 @@ using Inventory.Interfaces;
 using Storage.StorableInfoDatabase;
 using Storage.Storables;
 using UnityEngine;
+using static Utils.TypeUtils;
 
 public class StoryFunctionsBinder {
     private readonly IStorage<Item>  _playerInventory;
@@ -20,24 +21,22 @@ public class StoryFunctionsBinder {
 
     public void BindGlobalFunctions(Story story) {
         story.BindExternalFunction("HasItem", (string itemId) => HasItem(itemId));
-        Debug.Log("Successfully bound the HasItem function to the Ink Story");
         story.BindExternalFunction("HasCompanion", (string companionId) => HasCompanion(companionId));
-        Debug.Log("Successfully bound the HasCompanion function to the Ink Story");
         story.BindExternalFunction("AddItemToInventory", (string itemId) => AddItemToInventory(itemId));
-        Debug.Log("Successfully bound the AddItemToInventory function to the Ink Story");
         story.BindExternalFunction("AddCompanionToParty", (string companionId) => AddCompanionToParty(companionId));
-        Debug.Log("Successfully bound the AddCompanionToParty function to the Ink Story");
+        story.BindExternalFunction("SetCompanionStat", (string companionId, string statName, object statValue) => SetCompanionStat(companionId, statName, statValue));
+        story.BindExternalFunction("GetCompanionStat", (string companionId, string statName) => GetCompanionStat(companionId, statName));
+        Debug.Log("Successfully bound external global functions to the Ink Story");
     }
 
     public void UnbindGlobalFunctions(Story story) {
         story.UnbindExternalFunction("HasItem");
-        Debug.Log("Successfully unbound the HasItem function to the Ink Story");
         story.UnbindExternalFunction("HasCompanion");
-        Debug.Log("Successfully unbound the HasCompanion function to the Ink Story");
         story.UnbindExternalFunction("AddItemToInventory");
-        Debug.Log("Successfully unbound the AddItemToInventory function to the Ink Story");
         story.UnbindExternalFunction("AddCompanionToParty");
-        Debug.Log("Successfully unbound the AddCompanionToParty function to the Ink Story");
+        story.UnbindExternalFunction("SetCompanionStat");
+        story.UnbindExternalFunction("GetCompanionStat");
+        Debug.Log("Successfully unbound external global functions from the Ink Story");
     }
 
     private bool HasItem(string itemId) {
@@ -49,16 +48,53 @@ public class StoryFunctionsBinder {
     }
 
     private void AddItemToInventory(string itemId) {
-        var itemInfo = _itemInfoDatabase.GetItemById(itemId);
+        var itemInfo = _itemInfoDatabase.GetEntryById(itemId);
         var item = new Item(itemInfo);
         _playerInventory.Add(item);
     }
     
     private void AddCompanionToParty(string companionId) {
-        var companionInfo = _companionInfoDatabase.GetItemById(companionId);
+        var companionInfo = _companionInfoDatabase.GetEntryById(companionId);
         var companion = new Companion(companionInfo);
         
         companion.CopyItemsTo(_playerInventory);
         _playerCompanions.Add(companion);
     }
+    
+    private object GetCompanionStat(string companionId, string statName) {
+        var companion = _playerCompanions.GetTypedElement(companionId);
+        if (companion == null) {
+            Debug.LogError($"Companion {companionId} not found among current companions");
+            return null;
+        }
+
+        return statName switch {
+            "Health" => companion.Health,
+            "Hunger" => companion.Hunger,
+            _ => throw new ArgumentException($"{statName} stat not found")
+        };
+    }
+    
+    private void SetCompanionStat(string companionId, string statName, object statValue) {
+        var companion = _playerCompanions.GetTypedElement(companionId);
+        if (companion == null) {
+            Debug.LogError($"Companion {companionId} not found among current companions");
+            return;
+        }
+
+        switch (statName) {
+            case "Health":
+                companion.Health = ConvertTo<int>(statValue);
+                Debug.Log($"{companion.Info.name}'s health set to {companion.Health}");
+                break;
+            case "Hunger":
+                companion.Hunger = ConvertTo<int>(statValue);
+                Debug.Log($"{companion.Info.name}'s hunger set to {companion.Hunger}");
+                break;
+            default:
+                throw new ArgumentException($"{statName} stat not found");
+        }
+    }
 }
+
+
