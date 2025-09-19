@@ -1,18 +1,21 @@
 using Storage.Storables;
+using Storage.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace Inventory.UI {
     public class UIStorageElement : MonoBehaviour {
-        public Storable Element { get; private set; }
+        public Storable Storable { get; private set; }
 
         public void InitAndAddToSlot(Storable newElement, UIStorageSlot slot) {
-            Element = newElement;
+            Storable = newElement;
         
             var image = gameObject.AddComponent<Image>();
             var fitter = gameObject.AddComponent<AspectRatioFitter>();
-            var sprite = Element.Info.sprite;
+            var sprite = Storable.Info.sprite;
+            
             transform.SetParent(slot.transform);
+            transform.SetSiblingIndex(slot.ChildButton.transform.GetSiblingIndex());
         
             image.sprite = sprite;
             image.rectTransform.localScale = slot.ElementSpriteLocalScale;

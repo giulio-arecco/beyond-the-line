@@ -60,6 +60,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storage:
     underlyingValue: {fileID: 0}
+  storageText: {fileID: 0}
   storageSlots:
   - {fileID: 2026042423319696047}
 --- !u!1 &3654260797300240489

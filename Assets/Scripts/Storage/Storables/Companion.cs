@@ -4,6 +4,9 @@ using Storage.StorableInfo;
 
 namespace Storage.Storables {
     public class Companion : Storable<CompanionInfoSO> {
+        public static readonly int MaxHealth = 100;
+        public static readonly int MaxHunger = 100;
+        
         private int _health;
         public int Health {
             get => _health;
