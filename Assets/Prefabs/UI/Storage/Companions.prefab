@@ -432,6 +432,10 @@ PrefabInstance:
       value: Companions
       objectReference: {fileID: 0}
     - target: {fileID: 4161885514051596558, guid: 5fb47da8f26afca43bbf65c2e69ff9a6, type: 3}
+      propertyPath: storageElementPrefab
+      value: 
+      objectReference: {fileID: 8582402942215670400, guid: c9368a34a219bc345897f0d3de6c1286, type: 3}
+    - target: {fileID: 4161885514051596558, guid: 5fb47da8f26afca43bbf65c2e69ff9a6, type: 3}
       propertyPath: storageSlots.Array.size
       value: 4
       objectReference: {fileID: 0}

@@ -11,6 +11,7 @@ namespace Inventory.UI {
         [SerializeField] private InterfaceReference<IStorage> storage;
         [SerializeField] private UIStorageText storageText;
         [SerializeField] private UIStorageSlot[] storageSlots;
+        [SerializeField] private UIStorageElement storageElementPrefab;
     
         private int _nextAvailableSlot;
 
@@ -66,8 +67,7 @@ namespace Inventory.UI {
         
             var slot = storageSlots[_nextAvailableSlot++];
 
-            var elementGo = new GameObject(element.Info.id);
-            var elementComponent = elementGo.AddComponent<UIStorageElement>();
+            var elementComponent = Instantiate(storageElementPrefab);
             elementComponent.InitAndAddToSlot(element, slot);
             
             if (storageText) {
