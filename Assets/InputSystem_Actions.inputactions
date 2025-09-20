@@ -16,6 +16,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "PrevUILayer",
+                    "type": "Button",
+                    "id": "695ec7ee-c5fe-4df0-ad75-094364bb969c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "OpenCloseInventory",
                     "type": "Button",
                     "id": "54d85a99-cf68-4ef5-91ef-c4eea0f75221",
@@ -25,9 +34,9 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PrevUILayer",
+                    "name": "OpenCloseCompanions",
                     "type": "Button",
-                    "id": "695ec7ee-c5fe-4df0-ad75-094364bb969c",
+                    "id": "5db70d62-2caf-420c-8d46-24242de22313",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -65,6 +74,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "PrevUILayer",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "98765c35-ce0e-48f5-bc94-525e3bb20bba",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "OpenCloseCompanions",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

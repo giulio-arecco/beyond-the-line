@@ -71,7 +71,7 @@ public class StoryManager : Singleton<StoryManager> {
         
         input.DisableInputAction("Gameplay", "PrevUILayer");
         input.DisableInputAction("Gameplay", "OpenCloseInventory");
-        UINavigator.Instance.PushUILayer(storyPanel, true);
+        UINavigator.Instance.PushUILayer(storyPanel);
         
         _storyVariablesRegistry.StartListening(_currentStory);
         _storyFunctionsBinder.BindGlobalFunctions(_currentStory);
