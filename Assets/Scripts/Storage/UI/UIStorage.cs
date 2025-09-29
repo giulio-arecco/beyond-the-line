@@ -1,13 +1,17 @@
 using System;
 using Inventory.Interfaces;
-using Inventory.Storables;
+using Storage.Storables;
+using Storage.UI;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Utils.SerializeInterface;
 
 namespace Inventory.UI {
     public class UIStorage : MonoBehaviour {
         [SerializeField] private InterfaceReference<IStorage> storage;
+        [SerializeField] private UIStorageText storageText;
         [SerializeField] private UIStorageSlot[] storageSlots;
+        [SerializeField] private UIStorageElement storageElementPrefab;
     
         private int _nextAvailableSlot;
 
@@ -37,8 +41,16 @@ namespace Inventory.UI {
         }
 
         private void ClearUI() {
+            if (EventSystem.current)
+                EventSystem.current.SetSelectedGameObject(null);
+            else
+                Debug.LogWarning("No active EventSystem");
+            
+            if (storageText) storageText.ClearAllText();
+            
             foreach (var slot in storageSlots) {
                 if (slot.ChildElement != null) {
+                    slot.ChildButton.onClick.RemoveAllListeners();
                     Destroy(slot.ChildElement.gameObject);
                     slot.ChildElement = null;
                 }
@@ -55,9 +67,15 @@ namespace Inventory.UI {
         
             var slot = storageSlots[_nextAvailableSlot++];
 
-            var elementGo = new GameObject(element.Info.id);
-            var elementComponent = elementGo.AddComponent<UIStorageElement>();
+            var elementComponent = Instantiate(storageElementPrefab);
             elementComponent.InitAndAddToSlot(element, slot);
+            
+            if (storageText) {
+                slot.ChildButton.onClick.AddListener(() => storageText.SetNameText(elementComponent.Storable));
+                slot.ChildButton.onClick.AddListener(() => storageText.SetDescriptionText(elementComponent.Storable));
+                slot.ChildButton.onClick.AddListener(() => storageText.SetStatsText(elementComponent.Storable));
+                slot.ChildButton.enabled = true;
+            }
         }
 
         private void ShiftStorageElements() {
@@ -94,10 +112,16 @@ namespace Inventory.UI {
         private void Storage_OnRemove(string id) {
             var hasRemoved = false;
             foreach (var slot in storageSlots) {
-                if (slot.ChildElement && slot.ChildElement.Element.Info.id == id) {
+                if (slot.ChildElement && slot.ChildElement.Storable.Info.id == id) {
                     hasRemoved = true;
                     Destroy(slot.ChildElement.gameObject);
                     slot.ChildElement = null;
+                    
+                    if (EventSystem.current.currentSelectedGameObject == slot.ChildButton.gameObject) 
+                        EventSystem.current.SetSelectedGameObject(null);
+                    if (storageText) storageText.ClearAllText();
+                    slot.ChildButton.onClick.RemoveAllListeners();
+                    slot.ChildButton.enabled = false;
                 }
             }
 

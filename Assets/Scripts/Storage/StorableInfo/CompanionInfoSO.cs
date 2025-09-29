@@ -1,6 +1,9 @@
+using Storage.Storables;
 using UnityEngine;
 
-namespace Inventory.StorableInfo {
+namespace Storage.StorableInfo {
     [CreateAssetMenu(fileName = "CompanionInfo", menuName = "Scriptable Objects/CompanionInfo")]
-    public class CompanionInfoSO : StorableInfoSO { }
+    public class CompanionInfoSO : StorableInfoSO {
+        [field: SerializeField] public Item[] Items { get; private set; }
+    }
 }

@@ -102,6 +102,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""PrevUILayer"",
+                    ""type"": ""Button"",
+                    ""id"": ""695ec7ee-c5fe-4df0-ad75-094364bb969c"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""OpenCloseInventory"",
                     ""type"": ""Button"",
                     ""id"": ""54d85a99-cf68-4ef5-91ef-c4eea0f75221"",
@@ -111,9 +120,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PrevUILayer"",
+                    ""name"": ""OpenCloseCompanions"",
                     ""type"": ""Button"",
-                    ""id"": ""695ec7ee-c5fe-4df0-ad75-094364bb969c"",
+                    ""id"": ""5db70d62-2caf-420c-8d46-24242de22313"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -151,6 +160,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""PrevUILayer"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""98765c35-ce0e-48f5-bc94-525e3bb20bba"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""OpenCloseCompanions"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -772,8 +792,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_ContinueStory = m_Gameplay.FindAction("ContinueStory", throwIfNotFound: true);
-        m_Gameplay_OpenCloseInventory = m_Gameplay.FindAction("OpenCloseInventory", throwIfNotFound: true);
         m_Gameplay_PrevUILayer = m_Gameplay.FindAction("PrevUILayer", throwIfNotFound: true);
+        m_Gameplay_OpenCloseInventory = m_Gameplay.FindAction("OpenCloseInventory", throwIfNotFound: true);
+        m_Gameplay_OpenCloseCompanions = m_Gameplay.FindAction("OpenCloseCompanions", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -868,8 +889,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_ContinueStory;
-    private readonly InputAction m_Gameplay_OpenCloseInventory;
     private readonly InputAction m_Gameplay_PrevUILayer;
+    private readonly InputAction m_Gameplay_OpenCloseInventory;
+    private readonly InputAction m_Gameplay_OpenCloseCompanions;
     /// <summary>
     /// Provides access to input actions defined in input action map "Gameplay".
     /// </summary>
@@ -886,13 +908,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @ContinueStory => m_Wrapper.m_Gameplay_ContinueStory;
         /// <summary>
+        /// Provides access to the underlying input action "Gameplay/PrevUILayer".
+        /// </summary>
+        public InputAction @PrevUILayer => m_Wrapper.m_Gameplay_PrevUILayer;
+        /// <summary>
         /// Provides access to the underlying input action "Gameplay/OpenCloseInventory".
         /// </summary>
         public InputAction @OpenCloseInventory => m_Wrapper.m_Gameplay_OpenCloseInventory;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/PrevUILayer".
+        /// Provides access to the underlying input action "Gameplay/OpenCloseCompanions".
         /// </summary>
-        public InputAction @PrevUILayer => m_Wrapper.m_Gameplay_PrevUILayer;
+        public InputAction @OpenCloseCompanions => m_Wrapper.m_Gameplay_OpenCloseCompanions;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -922,12 +948,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ContinueStory.started += instance.OnContinueStory;
             @ContinueStory.performed += instance.OnContinueStory;
             @ContinueStory.canceled += instance.OnContinueStory;
-            @OpenCloseInventory.started += instance.OnOpenCloseInventory;
-            @OpenCloseInventory.performed += instance.OnOpenCloseInventory;
-            @OpenCloseInventory.canceled += instance.OnOpenCloseInventory;
             @PrevUILayer.started += instance.OnPrevUILayer;
             @PrevUILayer.performed += instance.OnPrevUILayer;
             @PrevUILayer.canceled += instance.OnPrevUILayer;
+            @OpenCloseInventory.started += instance.OnOpenCloseInventory;
+            @OpenCloseInventory.performed += instance.OnOpenCloseInventory;
+            @OpenCloseInventory.canceled += instance.OnOpenCloseInventory;
+            @OpenCloseCompanions.started += instance.OnOpenCloseCompanions;
+            @OpenCloseCompanions.performed += instance.OnOpenCloseCompanions;
+            @OpenCloseCompanions.canceled += instance.OnOpenCloseCompanions;
         }
 
         /// <summary>
@@ -942,12 +971,15 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ContinueStory.started -= instance.OnContinueStory;
             @ContinueStory.performed -= instance.OnContinueStory;
             @ContinueStory.canceled -= instance.OnContinueStory;
-            @OpenCloseInventory.started -= instance.OnOpenCloseInventory;
-            @OpenCloseInventory.performed -= instance.OnOpenCloseInventory;
-            @OpenCloseInventory.canceled -= instance.OnOpenCloseInventory;
             @PrevUILayer.started -= instance.OnPrevUILayer;
             @PrevUILayer.performed -= instance.OnPrevUILayer;
             @PrevUILayer.canceled -= instance.OnPrevUILayer;
+            @OpenCloseInventory.started -= instance.OnOpenCloseInventory;
+            @OpenCloseInventory.performed -= instance.OnOpenCloseInventory;
+            @OpenCloseInventory.canceled -= instance.OnOpenCloseInventory;
+            @OpenCloseCompanions.started -= instance.OnOpenCloseCompanions;
+            @OpenCloseCompanions.performed -= instance.OnOpenCloseCompanions;
+            @OpenCloseCompanions.canceled -= instance.OnOpenCloseCompanions;
         }
 
         /// <summary>
@@ -1256,6 +1288,13 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnContinueStory(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "PrevUILayer" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPrevUILayer(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "OpenCloseInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1263,12 +1302,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnOpenCloseInventory(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "PrevUILayer" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "OpenCloseCompanions" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPrevUILayer(InputAction.CallbackContext context);
+        void OnOpenCloseCompanions(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

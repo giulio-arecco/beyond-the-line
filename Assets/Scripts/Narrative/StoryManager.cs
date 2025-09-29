@@ -6,7 +6,8 @@ using Ink.UnityIntegration;
 using UnityEngine.UI;
 using Enums;
 using Inventory.Interfaces;
-using Inventory.Storables;
+using Storage.StorableInfoDatabase;
+using Storage.Storables;
 using UnityEngine.Serialization;
 using Utils;
 using Utils.SerializeInterface;
@@ -27,7 +28,9 @@ public class StoryManager : Singleton<StoryManager> {
     
     [Header("External Dependencies")] 
     [SerializeField] private InterfaceReference<IStorage<Item>> playerInventory;
-    [FormerlySerializedAs("itemDataDatabase")] [SerializeField] private ItemInfoDatabaseSO itemInfoDatabase;
+    [SerializeField] private InterfaceReference<IStorage<Companion>> playerCompanions;
+    [SerializeField] private ItemInfoDatabaseSO itemInfoDatabase;
+    [SerializeField] private CompanionInfoDatabaseSO companionInfoDatabase;
     
     private TextMeshProUGUI[] _choicesText;
     private Story _currentStory;
@@ -39,7 +42,7 @@ public class StoryManager : Singleton<StoryManager> {
     protected override void Awake() {
         base.Awake();
         _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkFile.filePath);
-        _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory.Value, itemInfoDatabase);
+        _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory.Value, playerCompanions.Value, itemInfoDatabase, companionInfoDatabase);
     }
 
     private void OnEnable() {
@@ -68,7 +71,7 @@ public class StoryManager : Singleton<StoryManager> {
         
         input.DisableInputAction("Gameplay", "PrevUILayer");
         input.DisableInputAction("Gameplay", "OpenCloseInventory");
-        UINavigator.Instance.PushUILayer(storyPanel, true);
+        UINavigator.Instance.PushUILayer(storyPanel);
         
         _storyVariablesRegistry.StartListening(_currentStory);
         _storyFunctionsBinder.BindGlobalFunctions(_currentStory);

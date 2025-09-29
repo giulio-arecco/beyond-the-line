@@ -1,11 +1,17 @@
 using System;
-using Inventory.StorableInfo;
+using Storage.StorableInfo;
 using UnityEngine;
 
-namespace Inventory.Storables {
+namespace Storage.Storables {
     [Serializable]
     public abstract class Storable {
-        [SerializeField] protected StorableInfoSO info;
-        public StorableInfoSO Info => info;
+        public abstract StorableInfoSO Info { get; }
+    }
+    
+    [Serializable]
+    public abstract class Storable<TInfo> : Storable where TInfo : StorableInfoSO {
+        [field: SerializeField] public TInfo TypedInfo { get; protected set; }
+        
+        public override StorableInfoSO Info => TypedInfo;
     }
 }

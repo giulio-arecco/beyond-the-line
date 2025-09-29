@@ -1,9 +1,11 @@
-using Inventory.StorableInfo;
+using System;
+using Storage.StorableInfo;
 
-namespace Inventory.Storables {
-    public class Item : Storable {
-        public Item(StorableInfoSO info) {
-            this.info = info;
+namespace Storage.Storables {
+    [Serializable]
+    public class Item : Storable<ItemInfoSO> {
+        public Item(ItemInfoSO info) {
+            TypedInfo = info;
         }
     }
 }

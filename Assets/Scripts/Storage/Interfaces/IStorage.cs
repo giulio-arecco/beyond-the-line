@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Inventory.Storables;
+using Storage.Storables;
 
 namespace Inventory.Interfaces {
     public interface IStorage {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using static Utils.TypeUtils;
 
 public class Player : Singleton<Player> {
     private int _playerHealth = 100;
@@ -14,7 +15,7 @@ public class Player : Singleton<Player> {
     }
 
     private void OnPlayerHealthChange(Ink.Runtime.Object health) {
-        _playerHealth = ((Ink.Runtime.IntValue) health).value;
+        _playerHealth = ConvertTo<Ink.Runtime.IntValue>(health).value;
         Debug.Log("Current Player's health: " + _playerHealth);
     }
 }
