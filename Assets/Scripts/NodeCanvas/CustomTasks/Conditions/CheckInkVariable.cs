@@ -2,6 +2,7 @@ using System;
 using NodeCanvas.Framework;
 using ParadoxNotion.Design;
 using Enums;
+using Narrative;
 using UnityEngine;
 
 namespace NodeCanvas.CustomTasks.Conditions {
