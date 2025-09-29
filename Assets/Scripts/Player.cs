@@ -1,9 +1,5 @@
-using Inventory.Interfaces;
-using Inventory.Storables;
-using Storage;
 using UnityEngine;
 
-[RequireComponent(typeof(StorageBase<Item>))]
 public class Player : Singleton<Player> {
     private int _playerHealth = 100;
 
