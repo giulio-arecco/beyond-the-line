@@ -1378,7 +1378,7 @@ MonoBehaviour:
     underlyingValue: {fileID: 1140280377}
   campButton: {fileID: 1015702370}
   inkJsonCampBase: {fileID: 4900000, guid: 40d502a73ff399a49a561ae3776afef6, type: 3}
-  inkJsonList:
+  optionalInkJsons:
   - <InkJson>k__BackingField: {fileID: 4900000, guid: e4813513bf4a12347816210d34f2260a, type: 3}
     <IsReplayable>k__BackingField: 1
   - <InkJson>k__BackingField: {fileID: 4900000, guid: 4468d592acec6534398b699a38c43380, type: 3}
