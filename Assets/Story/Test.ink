@@ -20,6 +20,7 @@ INCLUDE globals.ink
 ~ playerHealth -= 25
 
 ~ AddItemToInventory("TestItem")
+~ AddItemToInventory("Ration")
 ~ AddCompanionToParty("TestCompanion")
 ~ SetCompanionStat("TestCompanion", "Hunger", 50)
 

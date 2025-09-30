@@ -1374,6 +1374,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b25fb94f785e81547be0be520f6a019d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Narrative.Camp.CampEventTrigger
+  playerInventory:
+    underlyingValue: {fileID: 1140280377}
+  campButton: {fileID: 1015702370}
   inkJsonCampBase: {fileID: 4900000, guid: 40d502a73ff399a49a561ae3776afef6, type: 3}
   inkJsonList:
   - <InkJson>k__BackingField: {fileID: 4900000, guid: e4813513bf4a12347816210d34f2260a, type: 3}

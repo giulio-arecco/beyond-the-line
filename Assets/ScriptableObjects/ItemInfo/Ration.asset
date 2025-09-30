@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
+  m_Name: Ration
+  m_EditorClassIdentifier: Assembly-CSharp::Storage.StorableInfo.ItemInfoSO
+  sprite: {fileID: 4080535063461030837, guid: 8dc8649294f7388428dcf5dfef9ce3b4, type: 3}
+  id: Ration
+  entityName: Ration
+  description: A small bundle of preserved food, packed to endure the road ahead.
+    Not a feast, but enough to keep hunger at bay when the night grows long.
