@@ -4,8 +4,12 @@ using UnityEngine;
 
 namespace Storage.Storables {
     [Serializable]
-    public abstract class Storable {
+    public abstract class Storable: IComparable<Storable> {
         public abstract StorableInfoSO Info { get; }
+
+        public int CompareTo(Storable other) {
+            return string.Compare(Info.id, other.Info.id, StringComparison.Ordinal);
+        }
     }
     
     [Serializable]

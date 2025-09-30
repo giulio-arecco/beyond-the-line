@@ -5,6 +5,6 @@ namespace Storage.StorableInfo {
         public Sprite sprite;
         public string id;
         public string entityName;
-        public string description;
+        [TextArea] public string description;
     }
 }

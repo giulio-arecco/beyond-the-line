@@ -23,6 +23,8 @@ namespace Storage {
             var castedElement = element as T;
         
             _elements.Add(castedElement);
+            _elements.Sort();
+            
             OnAdd?.Invoke(castedElement);
         }
 
@@ -31,6 +33,8 @@ namespace Storage {
 
             if (elementToRemove != null) {
                 _elements.Remove(elementToRemove);
+                _elements.Sort();
+                
                 OnRemove?.Invoke(id);
             }
         }
