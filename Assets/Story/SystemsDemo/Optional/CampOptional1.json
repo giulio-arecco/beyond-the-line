@@ -1,0 +1,1 @@
+﻿{"inkVersion":21,"root":[["\n",{"->":"start"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"start":["^Test optional story 1, which is replayable","\n","end",{"#f":1}],"global decl":["ev",false,{"VAR=":"VISITED_FARMSTEAD"},false,{"VAR=":"VISITED_CITY"},"/ev","end",null],"#f":1}],"listDefs":{}}
