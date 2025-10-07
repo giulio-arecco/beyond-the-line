@@ -86,6 +86,7 @@ namespace Narrative {
             if (_currentStory.canContinue) {
                 var line = _currentStory.Continue();
                 if (!string.IsNullOrWhiteSpace(line)) {
+                    line = ParseCustomMarkers(line);
                     storyText.text = line;
                     DisplayChoices();
                     return;
@@ -99,6 +100,13 @@ namespace Narrative {
             else {
                 ExitStory();
             }
+        }
+
+        private string ParseCustomMarkers(string line) {
+            string parsedLine;
+            parsedLine = line.Replace("<nl>", "\n");
+            
+            return parsedLine;
         }
     
         private OptionalStory FindPlayableOptionalStory() {

@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
-  m_Name: TestItem
+  m_Name: Bandage
   m_EditorClassIdentifier: 
-  sprite: {fileID: -4948644927685383766, guid: 66c6cfc0ba2aeb248bb4ba07fbc59c37, type: 3}
-  id: TestItem
-  entityName: Test Item
-  description: A test item
+  sprite: {fileID: 4480434827562053419, guid: b29fd0256627bf04b80c5b64b2bc715c, type: 3}
+  id: Bandages
+  entityName: Bende
+  description: "Garze vitali. Un rotolo di stoffa pulita, l'unica cosa che pu\xF2
+    interrompere l'emorragia. Non ti guariranno, ma ti daranno il tempo per respirare
+    e rialzarti."

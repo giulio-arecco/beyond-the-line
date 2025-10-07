@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Storage.StorableInfo.ItemInfoSO
   sprite: {fileID: 4080535063461030837, guid: 8dc8649294f7388428dcf5dfef9ce3b4, type: 3}
   id: Ration
-  entityName: Ration
-  description: A small bundle of preserved food, packed to endure the road ahead.
-    Not a feast, but enough to keep hunger at bay when the night grows long.
+  entityName: Razione
+  description: Una piccola razione di cibo conservato, pensata per resistere al viaggio.
+    Non un banchetto, ma abbastanza da placare la fame quando la notte si fa lunga.

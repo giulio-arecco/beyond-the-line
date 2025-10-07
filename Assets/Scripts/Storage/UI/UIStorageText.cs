@@ -17,7 +17,7 @@ namespace Storage.UI {
 
         public void SetNameText(Storable storable) {
             if (nameField) {
-                nameField.text = storable.Info.name;
+                nameField.text = storable.Info.entityName;
             }
         }
 

@@ -3,5 +3,5 @@ INCLUDE ../globals.ink
 -> start
 
 === start === 
-    Test optional story 1, which is replayable
+    Test della storia CampOptional1, che è rigiocabile.
     -> END
