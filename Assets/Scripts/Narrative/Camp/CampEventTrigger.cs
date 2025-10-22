@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Inventory.Interfaces;
 using Storage.Storables;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Utils.SerializeInterface;
 
@@ -36,8 +34,8 @@ namespace Narrative.Camp {
             }
         }
         
-        private void IStorage_OnRemove(string removedId) {
-            if (removedId == "Ration" && !playerInventory.Value.Has("Ration")) {
+        private void IStorage_OnRemove(Storable element) {
+            if (element.Info.id == "Ration" && !playerInventory.Value.Has("Ration")) {
                 campButton.interactable= false;
             }
         }

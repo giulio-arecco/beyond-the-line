@@ -643,6 +643,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46982b35e9702e54596c31961d741251, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GlobalStatsManager
+  inventory:
+    underlyingValue: {fileID: 1140280377}
 --- !u!1 &791444851 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1840453840276740715, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}

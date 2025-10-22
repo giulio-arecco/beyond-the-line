@@ -109,10 +109,10 @@ namespace Inventory.UI {
             NewStorageElement(element);
         }
     
-        private void Storage_OnRemove(string id) {
+        private void Storage_OnRemove(Storable element) {
             var hasRemoved = false;
             foreach (var slot in storageSlots) {
-                if (slot.ChildElement && slot.ChildElement.Storable.Info.id == id) {
+                if (slot.ChildElement && slot.ChildElement.Storable.Info.id == element.Info.id) {
                     hasRemoved = true;
                     Destroy(slot.ChildElement.gameObject);
                     slot.ChildElement = null;

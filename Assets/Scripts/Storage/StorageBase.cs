@@ -13,7 +13,7 @@ namespace Storage {
         public IReadOnlyList<T> TypedElements => _elements;
 
         public event Action<Storable> OnAdd;
-        public event Action<string> OnRemove;
+        public event Action<Storable> OnRemove;
 
         public void Add(Storable element) {
             if (element.GetType() != typeof(T)) {
@@ -35,7 +35,7 @@ namespace Storage {
                 _elements.Remove(elementToRemove);
                 _elements.Sort();
                 
-                OnRemove?.Invoke(id);
+                OnRemove?.Invoke(elementToRemove);
             }
         }
     

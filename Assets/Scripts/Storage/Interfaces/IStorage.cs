@@ -7,7 +7,7 @@ namespace Inventory.Interfaces {
         IReadOnlyList<Storable> Elements { get; }
 
         public event Action<Storable> OnAdd;
-        public event Action<string> OnRemove;
+        public event Action<Storable> OnRemove;
     
         public void Add(Storable element);
         public void Remove(string id);
