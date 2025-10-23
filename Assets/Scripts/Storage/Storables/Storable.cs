@@ -8,7 +8,7 @@ namespace Storage.Storables {
         public abstract StorableInfoSO Info { get; }
 
         public int CompareTo(Storable other) {
-            return string.Compare(Info.id, other.Info.id, StringComparison.Ordinal);
+            return string.Compare(Info.id, other.Info.id, StringComparison.OrdinalIgnoreCase);
         }
     }
     

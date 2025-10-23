@@ -1,15 +1,17 @@
 using System;
 using Inventory.Interfaces;
+using Storage.Interfaces;
 using Storage.Storables;
 using Storage.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using Utils.SerializeInterface;
 
 namespace Inventory.UI {
     public class UIStorage : MonoBehaviour {
         [SerializeField] private InterfaceReference<IStorage> storage;
-        [SerializeField] private UIStorageText storageText;
+        [SerializeField] private InterfaceReference<IStorableTextWriter> storageTextWriter;
         [SerializeField] private UIStorageSlot[] storageSlots;
         [SerializeField] private UIStorageElement storageElementPrefab;
     
@@ -45,9 +47,9 @@ namespace Inventory.UI {
                 EventSystem.current.SetSelectedGameObject(null);
             else
                 Debug.LogWarning("No active EventSystem");
-            
-            if (storageText) storageText.ClearAllText();
-            
+
+            storageTextWriter.Value?.ClearAllText();
+
             foreach (var slot in storageSlots) {
                 if (slot.ChildElement != null) {
                     slot.ChildButton.onClick.RemoveAllListeners();
@@ -70,10 +72,10 @@ namespace Inventory.UI {
             var elementComponent = Instantiate(storageElementPrefab);
             elementComponent.InitAndAddToSlot(element, slot);
             
-            if (storageText) {
-                slot.ChildButton.onClick.AddListener(() => storageText.SetNameText(elementComponent.Storable));
-                slot.ChildButton.onClick.AddListener(() => storageText.SetDescriptionText(elementComponent.Storable));
-                slot.ChildButton.onClick.AddListener(() => storageText.SetStatsText(elementComponent.Storable));
+            if (storageTextWriter.Value != null) {
+                slot.ChildButton.onClick.AddListener(() => storageTextWriter.Value.SetNameText(elementComponent.Storable));
+                slot.ChildButton.onClick.AddListener(() => storageTextWriter.Value.SetDescriptionText(elementComponent.Storable));
+                slot.ChildButton.onClick.AddListener(() => storageTextWriter.Value.SetOtherText(elementComponent.Storable));
                 slot.ChildButton.enabled = true;
             }
         }
@@ -119,7 +121,8 @@ namespace Inventory.UI {
                     
                     if (EventSystem.current.currentSelectedGameObject == slot.ChildButton.gameObject) 
                         EventSystem.current.SetSelectedGameObject(null);
-                    if (storageText) storageText.ClearAllText();
+                    
+                    storageTextWriter.Value?.ClearAllText();
                     slot.ChildButton.onClick.RemoveAllListeners();
                     slot.ChildButton.enabled = false;
                 }
