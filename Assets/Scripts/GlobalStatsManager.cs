@@ -1,5 +1,7 @@
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
+using Ink.UnityIntegration;
 using Inventory.Interfaces;
 using Storage.Storables;
 using UnityEngine;
@@ -42,60 +44,61 @@ public class GlobalStats {
     public IntStat Notoriety { get; private set; } = new();
     public IntStat Intimidation { get; private set; } = new();
 
-    public void IncreaseStat(string statName, object statValue) {
-        switch (statValue) {
-            case int intValue:
-                IncreaseIntStat(statName, intValue);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(statValue), statValue, $"Unsupported stat type: {statValue?.GetType().Name}");
+    private void ChangeStatValue(string statName, object delta, bool isIncrease) {
+        var type = GetType();
+        
+        var prop = type.GetProperty(statName, BindingFlags.Public | BindingFlags.Instance);
+        
+        if (prop == null) {
+            Debug.LogError($"Property '{statName}' not found in {type.Name}");
+            return;
+        }
+        
+        if (!prop.CanRead) {
+            Debug.LogError($"The property '{statName}' is not readable");
+            return;
+        }
+
+        var castedStat = prop.GetValue(this) switch {
+            IntStat intStat => intStat,
+            _ => throw new InvalidOperationException($"Unsupported stat type: {prop.PropertyType.Name}")
+        };
+
+        var castedValue = delta switch {
+            int intValue => intValue,
+            _ => throw new ArgumentOutOfRangeException(nameof(delta), delta,
+                $"Unsupported value type: {delta.GetType().Name}")
+        };
+
+        if (castedStat.Value.GetType() == castedValue.GetType()) {
+            castedStat.Value += isIncrease? castedValue : -castedValue;
+        }
+        else {
+            throw new InvalidOperationException($"The stat {statName} and the value {delta} are of different types");
         }
     }
     
-    public void DecreaseStat(string statName, object statValue) {
-        switch (statValue) {
-            case int intValue:
-                DecreaseIntStat(statName, intValue);
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(statValue), statValue, $"Unsupported stat type: {statValue?.GetType().Name}");
-        }
-    }
-
-    public void IncreaseIntStat(string statName, int valueToAdd) {
+    public object GetStatValue(string statName) {
         var type = GetType();
         
         var prop = type.GetProperty(statName, BindingFlags.Public | BindingFlags.Instance);
         if (prop == null) {
             Debug.LogError($"Property '{statName}' not found in {type.Name}");
-            return;
+            return null;
         }
-        
-        if (prop.PropertyType == typeof(IntStat) && prop.CanRead) {
-            var propValue = (IntStat)prop.GetValue(this);
-            propValue.Value += valueToAdd;
-        }
-        else {
-            Debug.LogError($"The property '{statName}' is either not an integer or not readable");
-        }
+
+        return prop.GetValue(this) switch {
+            IntStat intStat => intStat.Value,
+            _ => throw new InvalidOperationException($"Unsupported stat type: {prop.PropertyType.Name}")
+        };
     }
 
-    public void DecreaseIntStat(string statName, int valueToSubtract) {
-        var type = GetType();
-        
-        var prop = type.GetProperty(statName, BindingFlags.Public | BindingFlags.Instance);
-        if (prop == null) {
-            Debug.LogError($"Property '{statName}' not found in {type.Name}");
-            return;
-        }
-        
-        if (prop.PropertyType == typeof(IntStat) && prop.CanRead) {
-            var propValue = (IntStat)prop.GetValue(this);
-            propValue.Value -= valueToSubtract;
-        }
-        else {
-            Debug.LogError($"The property '{statName}' is either not an integer or not readable");
-        }
+    public void IncreaseStatValue(string statName, object valueToAdd) {
+        ChangeStatValue(statName, valueToAdd, true);
+    }
+
+    public void DecreaseStatValue(string statName, object valueToSubtract) {
+        ChangeStatValue(statName, valueToSubtract, false);
     }
 }
 
@@ -131,7 +134,7 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
         if (modifiers == null || modifiers.Length == 0) return;
 
         foreach (var statMod in modifiers) {
-            GlobalStats.IncreaseIntStat(statMod.statName, statMod.statValue);
+            GlobalStats.IncreaseStatValue(statMod.statName, statMod.statValue);
         }
     }
     
@@ -142,7 +145,7 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
         if (modifiers == null || modifiers.Length == 0) return;
 
         foreach (var statMod in modifiers) {
-            GlobalStats.DecreaseIntStat(statMod.statName, statMod.statValue);
+            GlobalStats.DecreaseStatValue(statMod.statName, statMod.statValue);
         }
     }
 }

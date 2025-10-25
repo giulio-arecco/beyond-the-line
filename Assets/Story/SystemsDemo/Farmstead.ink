@@ -25,6 +25,7 @@ Annuisci. Sai bene che la rovina della fattoria è opera degli stessi uomini che
 
 L'uomo finisce di preparare lo zaino. Prima di chiuderlo, estrae dal fondo un rotolo di garze.
 "Prendi queste," dice, porgendoti le bende. "Se le cose si metteranno male, saranno più utili a te che a me".
+
 ~AddCompanionToParty("OldFarmer")
 ~IncreaseGlobalStat("GroupCohesion", 50)
 -> end_story

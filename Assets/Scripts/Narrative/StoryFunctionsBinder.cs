@@ -28,6 +28,7 @@ namespace Narrative {
             story.BindExternalFunction("AddCompanionToParty", (string companionId) => AddCompanionToParty(companionId));
             story.BindExternalFunction("SetCompanionStat", (string companionId, string statName, object statValue) => SetCompanionStat(companionId, statName, statValue));
             story.BindExternalFunction("GetCompanionStat", (string companionId, string statName) => GetCompanionStat(companionId, statName));
+            story.BindExternalFunction("GetGlobalStat", (string statName) => GetGlobalStat(statName));
             story.BindExternalFunction("IncreaseGlobalStat", (string statName, object statValue) => IncreaseGlobalStat(statName, statValue));
             story.BindExternalFunction("DecreaseGlobalStat", (string statName, object statValue) => DecreaseGlobalStat(statName, statValue));
             Debug.Log("Successfully bound external global functions to the Ink Story");
@@ -40,6 +41,7 @@ namespace Narrative {
             story.UnbindExternalFunction("AddCompanionToParty");
             story.UnbindExternalFunction("SetCompanionStat");
             story.UnbindExternalFunction("GetCompanionStat");
+            story.UnbindExternalFunction("GetGlobalStat");
             story.UnbindExternalFunction("IncreaseGlobalStat");
             story.UnbindExternalFunction("DecreaseGlobalStat");
             Debug.Log("Successfully unbound external global functions from the Ink Story");
@@ -102,15 +104,19 @@ namespace Narrative {
             }
         }
 
+        private object GetGlobalStat(string statName) {
+            return GlobalStatsManager.Instance.GlobalStats.GetStatValue(statName);
+        }
+        
         private void IncreaseGlobalStat(string statName, object statValue) {
-            GlobalStatsManager.Instance.GlobalStats.IncreaseStat(statName, statValue);
+            GlobalStatsManager.Instance.GlobalStats.IncreaseStatValue(statName, statValue);
         }
         
         private void DecreaseGlobalStat(string statName, object statValue) {
-            GlobalStatsManager.Instance.GlobalStats.DecreaseStat(statName, statValue);
+            GlobalStatsManager.Instance.GlobalStats.DecreaseStatValue(statName, statValue);
         }
         
-        // TODO: Write increase and decrease methods for each global stat to avoid reflection boilerplate
+        // TODO: Write getter, increase and decrease methods for each global stat to avoid reflection boilerplate
     }
 }
 
