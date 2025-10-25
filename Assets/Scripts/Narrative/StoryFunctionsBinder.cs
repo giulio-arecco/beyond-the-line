@@ -3,6 +3,7 @@ using Ink.Runtime;
 using Inventory.Interfaces;
 using Storage.StorableInfoDatabase;
 using Storage.Storables;
+using Unity.VisualScripting;
 using UnityEngine;
 using static Utils.TypeUtils;
 
@@ -27,6 +28,8 @@ namespace Narrative {
             story.BindExternalFunction("AddCompanionToParty", (string companionId) => AddCompanionToParty(companionId));
             story.BindExternalFunction("SetCompanionStat", (string companionId, string statName, object statValue) => SetCompanionStat(companionId, statName, statValue));
             story.BindExternalFunction("GetCompanionStat", (string companionId, string statName) => GetCompanionStat(companionId, statName));
+            story.BindExternalFunction("IncreaseGlobalStat", (string statName, object statValue) => IncreaseGlobalStat(statName, statValue));
+            story.BindExternalFunction("DecreaseGlobalStat", (string statName, object statValue) => DecreaseGlobalStat(statName, statValue));
             Debug.Log("Successfully bound external global functions to the Ink Story");
         }
 
@@ -37,6 +40,8 @@ namespace Narrative {
             story.UnbindExternalFunction("AddCompanionToParty");
             story.UnbindExternalFunction("SetCompanionStat");
             story.UnbindExternalFunction("GetCompanionStat");
+            story.UnbindExternalFunction("IncreaseGlobalStat");
+            story.UnbindExternalFunction("DecreaseGlobalStat");
             Debug.Log("Successfully unbound external global functions from the Ink Story");
         }
 
@@ -96,6 +101,16 @@ namespace Narrative {
                     throw new ArgumentException($"{statName} stat not found");
             }
         }
+
+        private void IncreaseGlobalStat(string statName, object statValue) {
+            GlobalStatsManager.Instance.GlobalStats.IncreaseStat(statName, statValue);
+        }
+        
+        private void DecreaseGlobalStat(string statName, object statValue) {
+            GlobalStatsManager.Instance.GlobalStats.DecreaseStat(statName, statValue);
+        }
+        
+        // TODO: Write increase and decrease methods for each global stat to avoid reflection boilerplate
     }
 }
 

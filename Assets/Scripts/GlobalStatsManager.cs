@@ -42,7 +42,27 @@ public class GlobalStats {
     public IntStat Notoriety { get; private set; } = new();
     public IntStat Intimidation { get; private set; } = new();
 
-    public void AddToIntStat(string statName, int valueToAdd) {
+    public void IncreaseStat(string statName, object statValue) {
+        switch (statValue) {
+            case int intValue:
+                IncreaseIntStat(statName, intValue);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(statValue), statValue, $"Unsupported stat type: {statValue?.GetType().Name}");
+        }
+    }
+    
+    public void DecreaseStat(string statName, object statValue) {
+        switch (statValue) {
+            case int intValue:
+                DecreaseIntStat(statName, intValue);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(statValue), statValue, $"Unsupported stat type: {statValue?.GetType().Name}");
+        }
+    }
+
+    public void IncreaseIntStat(string statName, int valueToAdd) {
         var type = GetType();
         
         var prop = type.GetProperty(statName, BindingFlags.Public | BindingFlags.Instance);
@@ -60,7 +80,7 @@ public class GlobalStats {
         }
     }
 
-    public void SubtractFromIntStat(string statName, int valueToSubtract) {
+    public void DecreaseIntStat(string statName, int valueToSubtract) {
         var type = GetType();
         
         var prop = type.GetProperty(statName, BindingFlags.Public | BindingFlags.Instance);
@@ -82,14 +102,18 @@ public class GlobalStats {
 public class GlobalStatsManager: Singleton<GlobalStatsManager> {
     [SerializeField] InterfaceReference<IStorage<Item>> inventory;
     
-    public GlobalStats GlobalStats { get; private set; } = new();
+    public GlobalStats GlobalStats { get; private set; }
+
+    protected override void Awake() {
+        base.Awake();
+        GlobalStats = new GlobalStats();
+    }
 
     private void Start() {
         inventory.Value.OnAdd += Storage_OnAdd;
         inventory.Value.OnRemove += Storage_OnRemove;
         
         GlobalStats.Health.Value = 100;
-        GlobalStats.GroupCohesion.Value = 50;
     }
 
     private void OnDestroy() {
@@ -107,7 +131,7 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
         if (modifiers == null || modifiers.Length == 0) return;
 
         foreach (var statMod in modifiers) {
-            GlobalStats.AddToIntStat(statMod.statName, statMod.statValue);
+            GlobalStats.IncreaseIntStat(statMod.statName, statMod.statValue);
         }
     }
     
@@ -118,7 +142,7 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
         if (modifiers == null || modifiers.Length == 0) return;
 
         foreach (var statMod in modifiers) {
-            GlobalStats.SubtractFromIntStat(statMod.statName, statMod.statValue);
+            GlobalStats.DecreaseIntStat(statMod.statName, statMod.statValue);
         }
     }
 }
