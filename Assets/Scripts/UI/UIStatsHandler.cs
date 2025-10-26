@@ -21,12 +21,23 @@ namespace UI {
             globalStats.Notoriety.OnValueChanged += GlobalStats_OnNotorietyChanged;
             globalStats.Intimidation.OnValueChanged += GlobalStats_OnIntimidationChanged;
             
-            healthValueText.text = globalStats.Health.Value.ToString();
-            fatigueValueText.text = globalStats.Fatigue.Value.ToString();
-            hungerValueText.text = globalStats.Hunger.Value.ToString();
-            groupCohesionValueText.text = globalStats.GroupCohesion.Value.ToString();
-            notorietyValueText.text = globalStats.Notoriety.Value.ToString();
-            intimidationValueText.text = globalStats.Intimidation.Value.ToString();
+            var maxHealth = globalStats.Health.MaxValue;
+            healthValueText.text = $"{globalStats.Health.Value.ToString()} / {maxHealth.ToString()}";
+            
+            var maxFatigue = globalStats.Fatigue.MaxValue;
+            fatigueValueText.text = $"{globalStats.Fatigue.Value.ToString()} / {maxFatigue.ToString()}";
+            
+            var maxHunger = globalStats.Hunger.MaxValue;
+            hungerValueText.text = $"{globalStats.Hunger.Value.ToString()} / {maxHunger.ToString()}";
+            
+            var maxGroupCohesion = globalStats.GroupCohesion.MaxValue;
+            groupCohesionValueText.text = $"{globalStats.GroupCohesion.Value.ToString()} / {maxGroupCohesion.ToString()}";
+            
+            var maxNotoriety = globalStats.Notoriety.MaxValue;
+            notorietyValueText.text = $"{globalStats.Notoriety.Value.ToString()} / {maxNotoriety.ToString()}";
+            
+            var maxIntimidation = globalStats.Intimidation.MaxValue;
+            intimidationValueText.text = $"{globalStats.Intimidation.Value.ToString()} / {maxIntimidation.ToString()}";
         }
 
         private void OnDestroy() {
@@ -43,27 +54,33 @@ namespace UI {
         }
 
         private void GlobalStats_OnHealthChanged(int health) {
-            healthValueText.text = health.ToString();
+            var maxHealth = GlobalStatsManager.Instance.GlobalStats.Health.MaxValue;
+            healthValueText.text = $"{health.ToString()} / {maxHealth.ToString()}";
         }
         
         private void GlobalStats_OnFatigueChanged(int fatigue) {
-            fatigueValueText.text = fatigue.ToString();
+            var maxFatigue = GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue;
+            fatigueValueText.text = $"{fatigue.ToString()} / {maxFatigue.ToString()}";
         }
         
         private void GlobalStats_OnHungerChanged(int hunger) {
-            hungerValueText.text = hunger.ToString();
+            var maxHunger = GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue;
+            hungerValueText.text = $"{hunger.ToString()} / {maxHunger.ToString()}";
         }
         
         private void GlobalStats_OnGroupCohesionChanged(int groupCohesion) {
-            groupCohesionValueText.text = groupCohesion.ToString();
+            var maxGroupCohesion = GlobalStatsManager.Instance.GlobalStats.GroupCohesion.MaxValue;
+            groupCohesionValueText.text = $"{groupCohesion.ToString()} / {maxGroupCohesion.ToString()}";
         }
         
         private void GlobalStats_OnNotorietyChanged(int notoriety) {
-            notorietyValueText.text = notoriety.ToString();
+            var maxNotoriety = GlobalStatsManager.Instance.GlobalStats.Notoriety.MaxValue;
+            notorietyValueText.text = $"{notoriety.ToString()} / {maxNotoriety.ToString()}";
         }
         
         private void GlobalStats_OnIntimidationChanged(int intimidation) {
-            intimidationValueText.text = intimidation.ToString();
+            var maxIntimidation = GlobalStatsManager.Instance.GlobalStats.Intimidation.MaxValue;
+            intimidationValueText.text = $"{intimidation.ToString()} / {maxIntimidation.ToString()}";
         }
     }
 }

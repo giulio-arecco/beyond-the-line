@@ -39,11 +39,11 @@ namespace Storage.UI {
         }
 
         public void SetOtherText(Storable storable) {
-            if (typeof(Companion).IsAssignableFrom(storable.GetType())) {
-                SetCompanionStatsText(ConvertTo<Companion>(storable));
+            if (storable is Companion companion) {
+                SetCompanionStatsText(companion);
             }
             else {
-                Debug.LogError("The Storable concrete type is not Companion");
+                Debug.LogError("The Storable runtime type is not Companion");
             }
         }
         

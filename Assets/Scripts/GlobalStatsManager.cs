@@ -9,13 +9,13 @@ using Utils.SerializeInterface;
 using static Utils.TypeUtils;
 
 public class IntStat {
-    private readonly int minValue, maxValue;
+    public readonly int MinValue, MaxValue;
     
     private int _value;
     public int Value {
         get => _value;
         set {
-            var newValue = Mathf.Clamp(value, minValue, maxValue);
+            var newValue = Mathf.Clamp(value, MinValue, MaxValue);
             
             if (_value == newValue) return;
             _value = newValue;
@@ -24,13 +24,13 @@ public class IntStat {
     }
 
     public IntStat() {
-        minValue = 0;
-        maxValue = 100;
+        MinValue = 0;
+        MaxValue = 100;
     }
 
     public IntStat(int minValue, int maxValue) {
-        this.minValue = minValue;
-        this.maxValue = maxValue;
+        this.MinValue = minValue;
+        this.MaxValue = maxValue;
     }
     
     public event Action<int> OnValueChanged;
