@@ -21,12 +21,12 @@ namespace UI {
             globalStats.Notoriety.OnValueChanged += GlobalStats_OnNotorietyChanged;
             globalStats.Intimidation.OnValueChanged += GlobalStats_OnIntimidationChanged;
 
-            UpdateStatTextAndColor(healthValueText, globalStats.Health.Value, globalStats.Health.MaxValue);
-            UpdateStatTextAndColor(fatigueValueText, globalStats.Fatigue.Value, globalStats.Fatigue.MaxValue, invertLerp: true);
-            UpdateStatTextAndColor(hungerValueText, globalStats.Hunger.Value, globalStats.Hunger.MaxValue, invertLerp: true);
-            UpdateStatTextAndColor(groupCohesionValueText, globalStats.GroupCohesion.Value, globalStats.GroupCohesion.MaxValue);
-            UpdateStatText(notorietyValueText, globalStats.Notoriety.Value, globalStats.Notoriety.MaxValue);
-            UpdateStatText(intimidationValueText, globalStats.Intimidation.Value, globalStats.Intimidation.MaxValue);
+            UpdateStatDisplayedValueAndColor(healthValueText, globalStats.Health.Value, globalStats.Health.MaxValue);
+            UpdateStatDisplayedValueAndColor(fatigueValueText, globalStats.Fatigue.Value, globalStats.Fatigue.MaxValue, invertLerp: true);
+            UpdateStatDisplayedValueAndColor(hungerValueText, globalStats.Hunger.Value, globalStats.Hunger.MaxValue, invertLerp: true);
+            SetStatText(groupCohesionValueText, "-");
+            UpdateStatDisplayedValue(notorietyValueText, globalStats.Notoriety.Value, globalStats.Notoriety.MaxValue);
+            UpdateStatDisplayedValue(intimidationValueText, globalStats.Intimidation.Value, globalStats.Intimidation.MaxValue);
         }
 
         private void OnDestroy() {
@@ -41,36 +41,40 @@ namespace UI {
                 globalStats.Intimidation.OnValueChanged -= GlobalStats_OnIntimidationChanged;
             }
         }
+
+        private void SetStatText(TextMeshProUGUI textField, string text) {
+            textField.text = text;
+        }
         
-        private void UpdateStatText(TextMeshProUGUI text, int value, int maxValue) {
-            text.text = $"{value} / {maxValue}";
+        private void UpdateStatDisplayedValue(TextMeshProUGUI textField, float value, float maxValue) {
+            textField.text = $"{value} / {maxValue}";
         }
 
-        private void UpdateStatTextAndColor(TextMeshProUGUI text, int value, int maxValue, bool invertLerp = false) {
-            text.text = $"{value} / {maxValue}";
+        private void UpdateStatDisplayedValueAndColor(TextMeshProUGUI textField, float value, float maxValue, bool invertLerp = false) {
+            textField.text = $"{value} / {maxValue}";
             
-            var gradientValue = Mathf.Clamp01((float)value / maxValue);
+            var gradientValue = Mathf.Clamp01(value / maxValue);
             if (invertLerp) gradientValue = 1 - gradientValue;
             
-            text.color = statColorGradient.Evaluate(gradientValue);
+            textField.color = statColorGradient.Evaluate(gradientValue);
         }
 
         private void GlobalStats_OnHealthChanged(int health) =>
-            UpdateStatTextAndColor(healthValueText, health, GlobalStatsManager.Instance.GlobalStats.Health.MaxValue);
+            UpdateStatDisplayedValueAndColor(healthValueText, health, GlobalStatsManager.Instance.GlobalStats.Health.MaxValue);
 
         private void GlobalStats_OnFatigueChanged(int fatigue) =>
-            UpdateStatTextAndColor(fatigueValueText, fatigue, GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue);
+            UpdateStatDisplayedValueAndColor(fatigueValueText, fatigue, GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue);
 
         private void GlobalStats_OnHungerChanged(int hunger) =>
-            UpdateStatTextAndColor(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
+            UpdateStatDisplayedValueAndColor(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
 
         private void GlobalStats_OnGroupCohesionChanged(int groupCohesion) =>
-            UpdateStatTextAndColor(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.GroupCohesion.MaxValue);
+            UpdateStatDisplayedValueAndColor(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.GroupCohesion.MaxValue);
 
         private void GlobalStats_OnNotorietyChanged(int notoriety) =>
-            UpdateStatText(notorietyValueText, notoriety, GlobalStatsManager.Instance.GlobalStats.Notoriety.MaxValue);
+            UpdateStatDisplayedValue(notorietyValueText, notoriety, GlobalStatsManager.Instance.GlobalStats.Notoriety.MaxValue);
 
         private void GlobalStats_OnIntimidationChanged(int intimidation) =>
-            UpdateStatText(intimidationValueText, intimidation, GlobalStatsManager.Instance.GlobalStats.Intimidation.MaxValue);
+            UpdateStatDisplayedValue(intimidationValueText, intimidation, GlobalStatsManager.Instance.GlobalStats.Intimidation.MaxValue);
     }
 }

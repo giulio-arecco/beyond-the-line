@@ -43,12 +43,10 @@ namespace Storage {
             var element = _elements.Find(x => x.Info.id == id);
             return element != null;
         }
-
+        
+        public bool IsEmpty() => _elements.Count == 0;
         public Storable GetElement(string id) => _elements.Find(x => id == x.Info.id);
-        public Storable[] GetElements() {
-            return _elements.Cast<Storable>().ToArray();
-        }
-    
+        public Storable[] GetElements() => _elements.Cast<Storable>().ToArray();
         public T GetTypedElement(string id) => _elements.Find(x => x.Info.id == id);
         public T[] GetTypedElements() => _elements.ToArray();
     }
