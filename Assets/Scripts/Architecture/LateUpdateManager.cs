@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class LateUpdateManager : Singleton<LateUpdateManager> {
+public class LateUpdateManager : PersistentSingleton<LateUpdateManager> {
     private readonly List<ILateUpdateObserver> _observers = new();
     private readonly List<ILateUpdateObserver> _pendingObservers = new();
     private int _currentIndex; 

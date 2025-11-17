@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-public class UpdateManager : Singleton<UpdateManager> {
+public class UpdateManager : PersistentSingleton<UpdateManager> {
     private readonly List<IUpdateObserver> _observers = new();
     private readonly List<IUpdateObserver> _pendingObservers = new();
     private int _currentIndex; 
