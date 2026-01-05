@@ -39,10 +39,10 @@ public class IntStat {
 public class GlobalStats {
     public IntStat Health { get; private set; } = new();
     public IntStat Fatigue { get; private set; } = new();
-    public IntStat Hunger { get; private set; } = new();
-    public IntStat GroupCohesion { get; private set; } = new();
-    public IntStat Notoriety { get; private set; } = new();
-    public IntStat Intimidation { get; private set; } = new();
+    // public IntStat Hunger { get; private set; } = new();
+    // public IntStat GroupCohesion { get; private set; } = new();
+    // public IntStat Notoriety { get; private set; } = new();
+    // public IntStat Intimidation { get; private set; } = new();
 
     private void ChangeStatValue(string statName, object delta, bool isIncrease) {
         var type = GetType();
@@ -105,6 +105,10 @@ public class GlobalStats {
 public class GlobalStatsManager: Singleton<GlobalStatsManager> {
     [SerializeField] InterfaceReference<IStorage<Item>> inventory;
     
+    [Header("Global Stats Initial Values")]
+    [SerializeField] private int initialHealth = 70;
+    [SerializeField] private int initialFatigue = 30;
+    
     public GlobalStats GlobalStats { get; private set; }
 
     protected override void Awake() {
@@ -116,7 +120,8 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
         inventory.Value.OnAdd += Storage_OnAdd;
         inventory.Value.OnRemove += Storage_OnRemove;
         
-        GlobalStats.Health.Value = 100;
+        GlobalStats.Health.Value = initialHealth;
+        GlobalStats.Fatigue.Value = initialFatigue;
     }
 
     private void OnDestroy() {

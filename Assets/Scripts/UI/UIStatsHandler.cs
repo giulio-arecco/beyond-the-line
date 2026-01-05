@@ -16,17 +16,17 @@ namespace UI {
             
             globalStats.Health.OnValueChanged += GlobalStats_OnHealthChanged;
             globalStats.Fatigue.OnValueChanged += GlobalStats_OnFatigueChanged;
-            globalStats.Hunger.OnValueChanged += GlobalStats_OnHungerChanged;
-            globalStats.GroupCohesion.OnValueChanged += GlobalStats_OnGroupCohesionChanged;
-            globalStats.Notoriety.OnValueChanged += GlobalStats_OnNotorietyChanged;
-            globalStats.Intimidation.OnValueChanged += GlobalStats_OnIntimidationChanged;
+            // globalStats.Hunger.OnValueChanged += GlobalStats_OnHungerChanged;
+            // globalStats.GroupCohesion.OnValueChanged += GlobalStats_OnGroupCohesionChanged;
+            // globalStats.Notoriety.OnValueChanged += GlobalStats_OnNotorietyChanged;
+            // globalStats.Intimidation.OnValueChanged += GlobalStats_OnIntimidationChanged;
 
             UpdateStatDisplayedValueAndColor(healthValueText, globalStats.Health.Value, globalStats.Health.MaxValue);
             UpdateStatDisplayedValueAndColor(fatigueValueText, globalStats.Fatigue.Value, globalStats.Fatigue.MaxValue, invertLerp: true);
-            UpdateStatDisplayedValueAndColor(hungerValueText, globalStats.Hunger.Value, globalStats.Hunger.MaxValue, invertLerp: true);
-            SetStatText(groupCohesionValueText, "-");
-            UpdateStatDisplayedValue(notorietyValueText, globalStats.Notoriety.Value, globalStats.Notoriety.MaxValue);
-            UpdateStatDisplayedValue(intimidationValueText, globalStats.Intimidation.Value, globalStats.Intimidation.MaxValue);
+            // UpdateStatDisplayedValueAndColor(hungerValueText, globalStats.Hunger.Value, globalStats.Hunger.MaxValue, invertLerp: true);
+            // SetStatText(groupCohesionValueText, "-");
+            // UpdateStatDisplayedValue(notorietyValueText, globalStats.Notoriety.Value, globalStats.Notoriety.MaxValue);
+            // UpdateStatDisplayedValue(intimidationValueText, globalStats.Intimidation.Value, globalStats.Intimidation.MaxValue);
         }
 
         private void OnDestroy() {
@@ -35,10 +35,10 @@ namespace UI {
                 
                 globalStats.Health.OnValueChanged -= GlobalStats_OnHealthChanged;
                 globalStats.Fatigue.OnValueChanged -= GlobalStats_OnFatigueChanged;
-                globalStats.Hunger.OnValueChanged -= GlobalStats_OnHungerChanged;
-                globalStats.GroupCohesion.OnValueChanged -= GlobalStats_OnGroupCohesionChanged;
-                globalStats.Notoriety.OnValueChanged -= GlobalStats_OnNotorietyChanged;
-                globalStats.Intimidation.OnValueChanged -= GlobalStats_OnIntimidationChanged;
+                // globalStats.Hunger.OnValueChanged -= GlobalStats_OnHungerChanged;
+                // globalStats.GroupCohesion.OnValueChanged -= GlobalStats_OnGroupCohesionChanged;
+                // globalStats.Notoriety.OnValueChanged -= GlobalStats_OnNotorietyChanged;
+                // globalStats.Intimidation.OnValueChanged -= GlobalStats_OnIntimidationChanged;
             }
         }
 
@@ -65,16 +65,16 @@ namespace UI {
         private void GlobalStats_OnFatigueChanged(int fatigue) =>
             UpdateStatDisplayedValueAndColor(fatigueValueText, fatigue, GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue);
 
-        private void GlobalStats_OnHungerChanged(int hunger) =>
-            UpdateStatDisplayedValueAndColor(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
-
-        private void GlobalStats_OnGroupCohesionChanged(int groupCohesion) =>
-            UpdateStatDisplayedValueAndColor(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.GroupCohesion.MaxValue);
-
-        private void GlobalStats_OnNotorietyChanged(int notoriety) =>
-            UpdateStatDisplayedValue(notorietyValueText, notoriety, GlobalStatsManager.Instance.GlobalStats.Notoriety.MaxValue);
-
-        private void GlobalStats_OnIntimidationChanged(int intimidation) =>
-            UpdateStatDisplayedValue(intimidationValueText, intimidation, GlobalStatsManager.Instance.GlobalStats.Intimidation.MaxValue);
+        // private void GlobalStats_OnHungerChanged(int hunger) =>
+        //     UpdateStatDisplayedValueAndColor(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
+        //
+        // private void GlobalStats_OnGroupCohesionChanged(int groupCohesion) =>
+        //     UpdateStatDisplayedValueAndColor(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.GroupCohesion.MaxValue);
+        //
+        // private void GlobalStats_OnNotorietyChanged(int notoriety) =>
+        //     UpdateStatDisplayedValue(notorietyValueText, notoriety, GlobalStatsManager.Instance.GlobalStats.Notoriety.MaxValue);
+        //
+        // private void GlobalStats_OnIntimidationChanged(int intimidation) =>
+        //     UpdateStatDisplayedValue(intimidationValueText, intimidation, GlobalStatsManager.Instance.GlobalStats.Intimidation.MaxValue);
     }
 }
