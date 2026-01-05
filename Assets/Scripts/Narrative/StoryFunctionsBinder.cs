@@ -3,7 +3,6 @@ using Ink.Runtime;
 using Inventory.Interfaces;
 using Storage.StorableInfoDatabase;
 using Storage.Storables;
-using Unity.VisualScripting;
 using UnityEngine;
 using static Utils.TypeUtils;
 
@@ -25,7 +24,9 @@ namespace Narrative {
             story.BindExternalFunction("HasItem", (string itemId) => HasItem(itemId));
             story.BindExternalFunction("HasCompanion", (string companionId) => HasCompanion(companionId));
             story.BindExternalFunction("AddItemToInventory", (string itemId) => AddItemToInventory(itemId));
+            story.BindExternalFunction("RemoveItemFromInventory", (string itemId, int count) => RemoveItemFromInventory(itemId, count));
             story.BindExternalFunction("AddCompanionToParty", (string companionId) => AddCompanionToParty(companionId));
+            story.BindExternalFunction("RemoveCompanionFromParty", (string companionId) => RemoveCompanionFromParty(companionId));
             story.BindExternalFunction("SetCompanionStat", (string companionId, string statName, object statValue) => SetCompanionStat(companionId, statName, statValue));
             story.BindExternalFunction("GetCompanionStat", (string companionId, string statName) => GetCompanionStat(companionId, statName));
             story.BindExternalFunction("GetGlobalStat", (string statName) => GetGlobalStat(statName));
@@ -38,7 +39,9 @@ namespace Narrative {
             story.UnbindExternalFunction("HasItem");
             story.UnbindExternalFunction("HasCompanion");
             story.UnbindExternalFunction("AddItemToInventory");
+            story.UnbindExternalFunction("RemoveItemFromInventory");
             story.UnbindExternalFunction("AddCompanionToParty");
+            story.UnbindExternalFunction("RemoveCompanionFromParty");
             story.UnbindExternalFunction("SetCompanionStat");
             story.UnbindExternalFunction("GetCompanionStat");
             story.UnbindExternalFunction("GetGlobalStat");
@@ -60,6 +63,10 @@ namespace Narrative {
             var item = new Item(itemInfo);
             _playerInventory.Add(item);
         }
+
+        private void RemoveItemFromInventory(string itemId, int count) {
+            _playerInventory.RemoveMany(itemId, count);
+        }
     
         private void AddCompanionToParty(string companionId) {
             var companionInfo = _companionInfoDatabase.GetEntryById(companionId);
@@ -67,6 +74,10 @@ namespace Narrative {
         
             companion.CopyItemsTo(_playerInventory);
             _playerCompanions.Add(companion);
+        }
+        
+        private void RemoveCompanionFromParty(string companionId) {
+            _playerCompanions.Remove(companionId);
         }
     
         private object GetCompanionStat(string companionId, string statName) {

@@ -11,6 +11,7 @@ namespace Inventory.Interfaces {
     
         public void Add(Storable element);
         public void Remove(string id);
+        public void RemoveMany(string id, int count);
         public bool Has(string id);
         public bool IsEmpty();
         public Storable GetElement(string id);

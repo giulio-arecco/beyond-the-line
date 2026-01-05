@@ -38,6 +38,33 @@ namespace Storage {
                 OnRemove?.Invoke(elementToRemove);
             }
         }
+
+        public void RemoveMany(string id, int count) {
+            if (count <= 0) return;
+            
+            var itemsRemoved = 0;
+
+            for (var i = _elements.Count - 1; i >= 0; i--) {
+                if (itemsRemoved >= count) break;
+
+                if (_elements[i].Info.id == id) {
+                    var elementToRemove = _elements[i];
+                    
+                    _elements.RemoveAt(i);
+                    OnRemove?.Invoke(elementToRemove);
+                    
+                    itemsRemoved++;
+                }
+            }
+
+            if (itemsRemoved > 0) {
+                if (itemsRemoved < count) Debug.LogWarning($"Requested to remove {count} items of id '{id}', but only {itemsRemoved} were found and removed from {this}.");
+                _elements.Sort();
+            }
+            else {
+                Debug.LogWarning($"No items with id '{id}' were found to remove from {this}.");
+            }
+        }
     
         public bool Has(string id) {
             var element = _elements.Find(x => x.Info.id == id);
