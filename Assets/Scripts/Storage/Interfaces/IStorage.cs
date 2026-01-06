@@ -4,8 +4,6 @@ using Storage.Storables;
 
 namespace Inventory.Interfaces {
     public interface IStorage {
-        IReadOnlyList<Storable> Elements { get; }
-
         public event Action<Storable> OnAdd;
         public event Action<Storable> OnRemove;
     
@@ -15,12 +13,11 @@ namespace Inventory.Interfaces {
         public bool Has(string id);
         public bool IsEmpty();
         public Storable GetElement(string id);
-        public Storable[] GetElements();
+        public IReadOnlyList<Storable> GetElements();
     }
 
     public interface IStorage<out T> : IStorage where T : Storable {
-        public IReadOnlyList<T> TypedElements { get; }
         public T GetTypedElement(string id);
-        public T[] GetTypedElements();
+        public IReadOnlyList<T> GetTypedElements();
     }
 }

@@ -19,8 +19,8 @@ INCLUDE globals.ink
 ~ moleHitCount += 1
 ~ playerHealth -= 25
 
-~ AddItemToInventory("Ammo")
 ~ AddItemToInventory("Ration")
+~ AddItemToInventory("Ammo")
 ~ AddItemToInventory("Ration")
 ~ AddCompanionToParty("OldFarmer")
 ~ SetCompanionStat("OldFarmer", "Hunger", 50)
