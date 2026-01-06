@@ -13,11 +13,11 @@ namespace Inventory.Interfaces {
         public bool Has(string id);
         public bool IsEmpty();
         public Storable GetElement(string id);
-        public IReadOnlyList<Storable> GetElements();
+        public IReadOnlyList<Storable> GetSortedElements();
     }
 
     public interface IStorage<out T> : IStorage where T : Storable {
         public T GetTypedElement(string id);
-        public IReadOnlyList<T> GetTypedElements();
+        public IReadOnlyList<T> GetSortedTypedElements();
     }
 }

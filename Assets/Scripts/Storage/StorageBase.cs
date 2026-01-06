@@ -76,12 +76,12 @@ namespace Storage {
         public Storable GetElement(string id) => _elements.Find(x => id == x.Info.id);
         public T GetTypedElement(string id) => _elements.Find(x => x.Info.id == id);
         
-        public IReadOnlyList<Storable> GetElements() {
+        public IReadOnlyList<Storable> GetSortedElements() {
             EnsureSorted();
             return _elements;
         }
         
-        public IReadOnlyList<T> GetTypedElements() {
+        public IReadOnlyList<T> GetSortedTypedElements() {
             EnsureSorted();
             return _elements;
         }

@@ -34,7 +34,7 @@ namespace Inventory.UI {
                 Debug.LogError("Next available slot should be 0 when refreshing UI");
             }
         
-            var elements = storage.Value.GetElements();
+            var elements = storage.Value.GetSortedElements();
             if (elements == null) return;
 
             foreach (var element in elements) {
