@@ -37,6 +37,9 @@ namespace Storage {
                 
                 OnRemove?.Invoke(elementToRemove);
             }
+            else {
+                Debug.LogWarning($"No storable with id '{id}' was found to remove from {this}");
+            }
         }
 
         public void RemoveMany(string id, int count) {
@@ -58,11 +61,11 @@ namespace Storage {
             }
 
             if (itemsRemoved > 0) {
-                if (itemsRemoved < count) Debug.LogWarning($"Requested to remove {count} items of id '{id}', but only {itemsRemoved} were found and removed from {this}.");
+                if (itemsRemoved < count) Debug.LogWarning($"Requested to remove {count} storables with id '{id}', but only {itemsRemoved} were found and removed from {this}.");
                 _elements.Sort();
             }
             else {
-                Debug.LogWarning($"No items with id '{id}' were found to remove from {this}.");
+                Debug.LogWarning($"No storables with id '{id}' were found to remove from {this}.");
             }
         }
     

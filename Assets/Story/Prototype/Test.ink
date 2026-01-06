@@ -19,31 +19,38 @@ INCLUDE globals.ink
 ~ moleHitCount += 1
 ~ playerHealth -= 25
 
-~ AddItemToInventory("TestItem")
+~ AddItemToInventory("Ammo")
 ~ AddItemToInventory("Ration")
-~ AddCompanionToParty("TestCompanion")
-~ SetCompanionStat("TestCompanion", "Hunger", 50)
+~ AddItemToInventory("Ration")
+~ AddCompanionToParty("OldFarmer")
+~ SetCompanionStat("OldFarmer", "Hunger", 50)
 
 {moleHitCount} {playerHealth} <>
 
-{HasItem("TestItem"):
-    You have TestItem, <>   
+{HasItem("Ammo"):
+    You have Ammo, <>   
 - else:
-    You don't have TestItem, <>
+    You don't have Ammo, <>
 } <>
 
-{HasItem("TestItem1"):
-    you have TestItem1 <>
+{HasItem("Ration"):
+    you have Ration <>
 - else:
-    you don't have TestItem1 <>
+    you don't have Ration <>
 }
 
-and TestCompanion <>
-{GetCompanionStat("TestCompanion", "Hunger") > 0:
+and OldFarmer <>
+{GetCompanionStat("OldFarmer", "Hunger") > 0:
     is <>
 - else:
     is not <>
 }
 hungry.
+
+Removing rations from inventory.
+~RemoveItemFromInventory("Ration", 1)
+
+Removing TestCompanion from party.
+~RemoveCompanionFromParty("OldFarmer")
 
 -> END
