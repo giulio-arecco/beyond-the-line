@@ -19,9 +19,9 @@ INCLUDE globals.ink
 ~ moleHitCount += 1
 ~ playerHealth -= 25
 
-~ AddItemToInventory("Ration")
+~ AddItemToInventory("Crowbar")
 ~ AddItemToInventory("Ammo")
-~ AddItemToInventory("Ration")
+~ AddItemToInventory("Crowbar")
 ~ AddCompanionToParty("OldFarmer")
 ~ SetCompanionStat("OldFarmer", "Hunger", 50)
 
@@ -33,10 +33,10 @@ INCLUDE globals.ink
     You don't have Ammo, <>
 } <>
 
-{HasItem("Ration"):
-    you have Ration <>
+{HasItem("Crowbar"):
+    you have Crowbar <>
 - else:
-    you don't have Ration <>
+    you don't have Crowbar <>
 }
 
 and OldFarmer <>
@@ -47,8 +47,8 @@ and OldFarmer <>
 }
 hungry.
 
-Removing rations from inventory.
-~RemoveItemFromInventory("Ration", 1)
+Removing ammo from inventory.
+~RemoveItemFromInventory("Ammo", 1)
 
 Removing TestCompanion from party.
 ~RemoveCompanionFromParty("OldFarmer")

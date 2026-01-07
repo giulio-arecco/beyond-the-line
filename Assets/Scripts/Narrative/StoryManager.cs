@@ -85,14 +85,25 @@ namespace Narrative {
         private void HandleStoryFlow() {
             if (_currentStory.canContinue) {
                 var line = _currentStory.Continue();
+        
+                // The current line contains visible text
                 if (!string.IsNullOrWhiteSpace(line)) {
                     line = ParseCustomMarkers(line);
                     storyText.text = line;
+            
                     DisplayChoices();
                     return;
                 }
             }
-            
+    
+            // Either canContinue was false (choice selection) or canContinue was true, but the line was empty (internal ink logical checks)
+            // We have to check if there's any available choice before considering the story completed
+            if (_currentStory.currentChoices.Count > 0) {
+                DisplayChoices();
+                return;
+            }
+    
+            // The story is completed
             var optionalStory = FindPlayableOptionalStory();
             if (optionalStory != null) {
                 EnterOptionalStory(optionalStory);
