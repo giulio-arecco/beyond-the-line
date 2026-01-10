@@ -71,7 +71,8 @@ public class GlobalStats {
         };
 
         if (castedStat.Value.GetType() == castedValue.GetType()) {
-            castedStat.Value += isIncrease? castedValue : -castedValue;
+            var newStatValue = isIncrease ? castedStat.Value + castedValue : castedStat.Value - castedValue;
+            castedStat.Value = Mathf.Clamp(newStatValue, 0, castedStat.MaxValue);
         }
         else {
             throw new InvalidOperationException($"The stat {statName} and the value {delta} are of different types");
