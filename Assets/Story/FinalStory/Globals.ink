@@ -6,12 +6,21 @@ VAR Fatigue = 30     // Range: 0-100
 VAR Cohesion = 0     // Range: 0-100
 
 // --- NARRATIVE FLAGS ---
-VAR COMPLETED_FARMSTEAD = false
+VAR COMPLETED_FARMSTREAD = false
 VAR COMPLETED_WOOD = false
 VAR COMPLETED_VILLAGE = false
 VAR COMPLETED_ROAD = false
 VAR COMPLETED_MOUNTAINPASS = false
 VAR COMPLETED_ENDING = false
+
+VAR SET_CAMP_COUNT = 0
+VAR ELIAS_OPTIONAL_DIALOGUE_DONE = false
+VAR LIRA_OPTIONAL_DIALOGUE_DONE = false
+VAR KNOWN_MOUNTAINPASS = false
+VAR LISTENED_TO_RADIO = false // Listened to the radio in The Burnt Village
+VAR KNOWN_MILITARY_ROAD_STATUS = false // Info from radio for the Military Road
+VAR KNOWN_MOUNTAINPASS_STATUS = false // Info from radio for the Mountain Pass
+VAR READ_NOTEBOOK = false
 
 // --- EXTERNAL FUNCTIONS (UNITY API) ---
 // These functions must be mapped to a C# implementation in Unity. Use these functions to interface with the global stats, the inventory and the companions.
@@ -25,6 +34,10 @@ EXTERNAL RemoveCompanionFromParty(companionId)
 EXTERNAL GetGlobalStat(statName)
 EXTERNAL IncreaseGlobalStat(statName, statValue)
 EXTERNAL DecreaseGlobalStat(statName, statValue)
+
+// UTILITY FUNCTIONS
+=== function came_from(-> x) 
+    ~ return TURNS_SINCE(x) == 0
 
 // --- FALLBACK FUNCTIONS FOR TESTING USING INKY ---
 === function HasItem(itemId)

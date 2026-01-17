@@ -4,69 +4,63 @@ INCLUDE Globals.ink
 // SECTION I: THE FARM
 // ============================================================
 
-// DEBUG SETUP ================================================
-
-// ============================================================ 
-
--> setup
-
-=== setup ===
-~AddItemToInventory("Bandages")
 -> introduction
 
 === introduction ===
-Il risveglio non è dolce. È uno strappo violento dal nulla, accompagnato da un dolore che ti trapana la tempia a ritmo col battito cardiaco.
-Apri gli occhi e il mondo è grigio. Travi di legno carbonizzato tagliano il cielo come le costole di una carcassa esposta alle intemperie.
-Ti metti a sedere, la testa che gira. L'aria ha un sapore metallico, di cenere bagnata e pioggia vecchia.
-Ti guardi le mani: sporche di terra, tremano leggermente. Non c'è traccia del tuo plotone. Non ci sono ordini urlati nel vento.
-Solo il silenzio, pesante e innaturale, che segue la fine del mondo.
-Controlli le tue tasche. Niente arma. Solo un rotolo di bende sporche. Sei vulnerabile.
+Il dolore è la prima cosa che torna. Un pulsare sordo alla tempia, il sapore del sangue in bocca.
+Apri gli occhi. Polvere. Travi di legno spezzate che pendono dal soffitto come costole di una carcassa.
+Sei steso sul pavimento di quella che un tempo era una cucina.
+Ti alzi a fatica, controllando il tuo corpo. Sei intero, miracolosamente. Ma sei solo.
 
-+ [Ti guardi attorno per valutare la situazione.]
-    -> farm_exploration
+La fattoria è silenziosa. Fuori, oltre le finestre senza vetri, il cielo è una lastra di piombo. Fumo nero si alza all'orizzonte: la linea del fronte si è spostata, ma la guerra ha lasciato qui i suoi scarti.
 
-=== farm_exploration ===
-Ti alzi a fatica. Le gambe sembrano fatte di piombo fuso e ogni movimento costa uno sforzo di volontà.
-~ IncreaseGlobalStat("Fatigue", 5)
+Devi muoverti. Devi trovare provviste e capire dove sei.
 
-Il cortile della fattoria è un cimitero di fango. Il terreno è scuro, impastato con detriti e bossoli d'ottone che brillano ancora, non ossidati dalle intemperie.
-Volgi lo sguardo a ovest, verso il bosco. Una colonna di fumo nero, sottile come uno spillo, sale dritta verso le nuvole. Non è un incendio vecchio che cova sotto la cenere. Qualcuno ha acceso un fuoco, o fatto saltare un veicolo, molto di recente.
++ [Ti alzi a fatica ed esci dalla cucina.]
+    ~ IncreaseGlobalStat("Fatigue", 5)
+    -> house_hub
+    
+=== house_hub ===
+{ house_hub == 1:
+    Ti trovi nel corridoio principale della casa colonica. L'aria è ferma, pesante di un odore stantio di abbandono e calce.
+    
+    Alla tua sinistra, l'arco di una porta conduce a quella che sembra una dispensa; il soffitto lì dentro è parzialmente crollato, rivelando travi spezzate e macerie che ingombrano il passaggio.
+    Sulla destra, la porta della camera da letto è socchiusa, lasciando intravedere l'interno in disordine e i resti di una vita quotidiana interrotta bruscamente.
+    In fondo al corridoio, la luce grigia del giorno filtra attraverso le assi sconnesse della porta d'ingresso, che dà sul cortile e sulla sagoma scura del fienile poco distante.
+}
 
-Il cortile è un campo di battaglia recente, probabilmente al confine dello scontro a cui sei sopravvissuto. I corpi a terra non sono vecchie vittime: la polvere non li ha ancora coperti. I nemici sono sicuramente ancora in zona. 
-
-Restare qui è impensabile, ma ogni passo allo scoperto è un azzardo.
-
-+ [Esamini la piccola dispensa in pietra sulla destra.]
-    -> pantry_investigation
-+ [Ti dirigi verso il fienile principale.]
+* [Controlli la dispensa semidistrutta.]
+    -> pantry_exploration
+* [Esplori la camera da letto.]
+    -> bedroom_exploration
++ {bedroom_exploration > 0} [Esci verso il fienile.]
     -> barn_approach
 
-=== pantry_investigation ===
-La struttura principale è collassata su se stessa, ridotta a un cumulo di pietre instabili. Tuttavia, una piccola dispensa in pietra resiste ostinatamente su un lato del cortile.
-La porta è scardinata, pende da un unico cardine arrugginito.
+=== pantry_exploration ===
+La porta della dispensa è scardinata, pende da un unico cardine arrugginito.
 Dalla soglia, tra la polvere che danza nei raggi di luce, intravedi qualcosa. Il luccichio opaco di qualche lattina e il manico rosso di un attrezzo pesante.
 
 Ti avvicini di un passo.
 Un crepitio secco, violento come uno sparo, rompe il silenzio.
 Il telaio della porta emette un gemito sinistro. L'architrave di legno è spezzato al centro, una V rovesciata che punta alla tua testa. Ogni volta che il vento spinge, una pioggia di calcinacci cade sulla soglia.
 
-+ [Analizzi la struttura con attenzione.]
+* [Analizzi la struttura con attenzione.]
     La volta è compromessa. C'è un blocco chiave che vibra a ogni folata di vento. Se entri, devi essere veloce come un fulmine, o quella pietra ti schiaccerà. È una trappola mortale in attesa di scattare.
     -> pantry_choices
-+ [Ti sembra rischioso, ma le risorse sono vitali.]
-    Non sai quanto reggerà, ma la fame è una motivazione potente.
+* [Ti sembra rischioso, ma le risorse sono vitali.]
+    Non sai quanto reggerà, ma hai bisogno di provviste se speri di arrivare a casa in vita.
     -> pantry_choices
 
 === pantry_choices ===
 La struttura è un castello di carte. Un movimento brusco, e quel soffitto verrà giù.
 
-+ [Corri dentro e afferri tutto quello che puoi.]
+* [Corri dentro e afferri tutto quello che puoi.]
     -> pantry_fast_risk
-+ [Provi a muoverti molto lentamente per prendere solo il cibo.]
+* [Provi a muoverti molto lentamente per prendere solo il cibo.]
     -> pantry_slow_risk
-+ [Non ne vale la pena. Troppo instabile.]
+* [Non ne vale la pena. Troppo instabile.]
     Indietreggi lentamente. Meglio affamati che schiacciati.
-    -> barn_approach
+    -> house_hub
 
 === pantry_fast_risk ===
 Prendi un respiro profondo e scatti.
@@ -83,7 +77,7 @@ Alle tue spalle, la dispensa crolla in una nuvola di polvere.
 ~ IncreaseGlobalStat("Fatigue", 10)
 
 Stringi il bottino al petto mentre ti rialzi, ansimando. I lividi si faranno sentire, ma hai un po' di cibo e un piede di porco.
--> barn_approach
+-> house_hub
 
 === pantry_slow_risk ===
 Provi a scivolare dentro come un'ombra, evitando di toccare le pareti.
@@ -95,9 +89,43 @@ Afferri la razione e ti butti fuori un istante prima che l'architrave ceda.
 // No Crowbar obtained, but Health preserved.
 
 Il cuore ti martella nel petto. Hai del cibo, ma l'attrezzo che avevi intravisto è andato.
--> barn_approach
+-> house_hub
+
+=== bedroom_exploration ===
+Entri nella camera da letto. Qualche letto a castello disfatto, probabilmente usati dai coloni, un armadio con le ante spalancate e un vecchio casettone in legno scuro aperto.
+Ti avvicini al cassettone.
+Dentro trovi abiti da lavoro, piegati con cura. Camicie di flanella pesante, pantaloni di lana grezza. Roba da contadini.
+
+Alzi lo sguardo, trovando la tua immagine riflessa che ti fissa da un piccolo specchio appeso al muro.
+Il riflesso ti restituisce l'immagine di un soldato logoro. La tua uniforme è coperta di fango e sangue secco. Le mostrine sul colletto brillano debolmente nella penombra.
+
+Un brivido ti corre lungo la schiena.
+Sei un soldato nemico in una terra che hai invaso. Quella divisa non è una protezione; è un bersaglio dipinto sulla tua schiena. Chiunque ti veda - soldati nemici, partigiani, o semplici civili arrabbiati — ti sparerà a vista.
+
+Se vuoi sperare di arrivare al confine, devi smettere di essere un soldato. Devi diventare un fantasma.
+
+* [Ti spogli della divisa. La abbandoni a terra.]
+    Sganci i bottoni con gesti rapidi, quasi con rabbia. La giacca cade a terra con un suono pesante.
+    Indossi la camicia di flanella e i pantaloni scuri. Il tessuto è ruvido sulla pelle e puzza di polvere.
+    -> clothes_changed
+
+* [Ti cambi rapidamente. Nascondi la divisa sotto il letto.]
+    Non puoi permetterti di esitare. Ti togli l'uniforme e la calci sotto il letto, lontano da occhi indiscreti.
+    Inifili i vestiti civili. Ti senti più leggero, ma più anonimo.
+    -> clothes_changed
+
+=== clothes_changed ===
+Tieni gli stivali tattici. Quelli ti servono per camminare e non c'è nulla in questa casa che possa sostituirli.
+Ora sembri un profugo, uno dei tanti disperati che la guerra ha sputato sulle strade.
+È il camuffamento migliore che potessi sperare.
+-> house_hub
 
 === barn_approach ===
+Il cortile della fattoria è un cimitero di fango. Il terreno è scuro, impastato con detriti e bossoli d'ottone che brillano ancora, non ossidati dalle intemperie.
+Volgi lo sguardo a ovest, verso il bosco. Una colonna di fumo nero, sottile come uno spillo, sale dritta verso le nuvole. Non è un incendio vecchio che cova sotto la cenere. Qualcuno ha acceso un fuoco, o fatto saltare un veicolo, molto di recente.
+
+Il cortile è un campo di battaglia recente, probabilmente al confine dello scontro a cui sei sopravvissuto. I corpi a terra non sono vecchie vittime: la polvere non li ha ancora coperti. I nemici sono sicuramente ancora in zona. 
+
 Ti ripulisci il fango di dosso. L'unico altro edificio che offre una parvenza di riparo è il vecchio fienile.
 Le pareti sono crivellate di colpi, ma il tetto sembra reggere.
 Le grandi porte di legno sono chiuse, ma non sbarrate.
@@ -108,7 +136,7 @@ Un suono.
 Dall'interno proviene un rumore soffocato. Un colpo di tosse secco, subito represso, seguito dal fruscio di paglia che viene schiacciata.
 C'è qualcuno lì dentro. E sta cercando di non farsi sentire.
 
-+ [Spingi l'anta lentamente, pronto a tutto.]
+* [Spingi l'anta lentamente, pronto a tutto.]
     -> elias_encounter
 
 === elias_encounter ===
@@ -131,11 +159,11 @@ Sei disarmato di fronte al nemico. Lui è ferito, ma potrebbe nascondere un colt
 Oppure è solo un uomo a cui rimane poco da vivere.
 
 
-+ {HasItem("Bandages")} [Hai delle bende: ti avvicini con le mani in vista e offri aiuto.]
+* {HasItem("Bandages")} [Hai delle bende: ti avvicini con le mani in vista e offri aiuto.]
     -> choice_cooperative
-+ [Ti servono quelle provviste. Gliele sottrai con la forza.]
+* [Ti servono quelle provviste. Gliele sottrai con la forza.]
     -> choice_aggressive
-+ [Non è un tuo problema. Lo ignori e te ne vai.]
+* [Non è un tuo problema. Lo ignori e te ne vai.]
     -> choice_avoidant
 
 === choice_cooperative ===
@@ -152,6 +180,7 @@ Ti guarda e annuisce.
 Spinge la bisaccia verso di te, estraendo una razione e offrendotela.
 Dice qualcosa: "Drah... ziek."
 Non hai idea di cosa significhi, ma lo sguardo è riconoscente. Si appoggia a te per alzarsi. È un peso morto, ma è vivo.
+Dopo di che, porta il pugno sinistro sul petto e pronuncia una sola parola: "Elias". Non hai difficoltà a capire che si tratta del suo nome.
 
 -> patrol_arrival
 
@@ -209,14 +238,14 @@ Invece, ti fa segno di tacere, portandosi un dito alle labbra sporche di sangue.
 
 Con l'altra mano indica una scolina coperta dai rovi, dietro il fienile. È un sentiero per bestiame, invisibile dalla strada principale.
 
-+ [Ti fidi di lui e lo segui nella scolina.]
+* [Ti fidi di lui e lo segui nella scolina.]
     Deglutisci il sospetto e decidi di seguire l'istinto. Lui conosce questo posto.
     Vi muovete bassi, nel fango, strisciando come vermi. I soldati entrano nel cortile urlando ordini che ti fanno accapponare la pelle, ma voi siete già oltre la linea visiva, inghiottiti dalle ombre della vegetazione.
     Arrivate al limitare del bosco illesi. Il frastuono della pattuglia si fa ovattato, distante.
     ~ IncreaseGlobalStat("Fatigue", 5)
     -> end_section_one
 
-+ [Sembra troppo stretto: se vi scoprono sarete bersagli facili. Corri verso il bosco aperto.]
+* [Sembra troppo stretto: se vi scoprono sarete bersagli facili. Corri verso il bosco aperto.]
     Il dubbio è troppo forte. E se ti stesse guidando in una trappola?
     Scuoti la testa e scatti verso gli alberi, ignorando il suo consiglio. Elias è costretto a seguirti zoppicando, imprecando sottovoce.
     Il movimento attira l'attenzione di una guardia.
@@ -231,7 +260,7 @@ Con l'altra mano indica una scolina coperta dai rovi, dietro il fienile. È un s
 Sei solo. Le luci dei fari spazzano il cortile.
 Senti passi pesanti avvicinarsi al fienile. Tra pochi secondi saranno qui.
 
-+ [Ti nascondi dietro una catasta di legna e aspetti che passino.]
+* [Ti nascondi dietro una catasta di legna e aspetti che passino.]
     Ti rannicchi nel buio, trattenendo il respiro.
     Due soldati passano a pochi metri. Uno si ferma. Punta la torcia verso di te.
     Ti vedono!
@@ -242,7 +271,7 @@ Senti passi pesanti avvicinarsi al fienile. Tra pochi secondi saranno qui.
     ~ IncreaseGlobalStat("Fatigue", 20)
     -> end_section_one
 
-+ [Corri subito verso il retro, sfruttando il momento di confusione.]
+* [Corri subito verso il retro, sfruttando il momento di confusione.]
     Non aspetti. Appena le luci si spostano, scatti.
     Il fango rallenta la tua corsa. Inciampi in un filo spinato nascosto nell'erba alta, lacerandoti i vestiti e la pelle.
     Ti rialzi e ti butti nella macchia scura degli alberi prima che possano vederti.
@@ -264,7 +293,8 @@ Il bosco è freddo, umido, indifferente alla guerra.
     -> elias_confrontation
 - else:
     Sei di nuovo solo con i tuoi fantasmi. Il silenzio è rotto solo dal tuo respiro affannoso.
-    ~ COMPLETED_FARMSTEAD = true
+    
+    ~ COMPLETED_FARMSTREAD = true
     -> END
 }
 
@@ -274,7 +304,7 @@ La macchia rossa sulla benda che gli hai applicato non si è allargata ulteriorm
 Siete due sopravvissuti, ma l'uniforme che indossa è ancora quella del nemico.
 Non riesci a toglierti dalla testa quello che è successo. Quegli uomini erano la sua gente. Eppure, ti ha coperto le spalle. Ha scelto la fuga con uno sconosciuto nemico invece della salvezza con i suoi.
 
-+ [Cerchi di chiedergli perché.]
+* [Cerchi di chiedergli perché.]
     Ti avvicini di un passo, indicando col pollice la direzione da cui siete venuti, dove i motori della pattuglia si sono spenti.
     "Perché?" chiedi, la voce roca. "Erano i tuoi."
     Lui alza lo sguardo. Ti fissa, poi scuote la testa lentamente.
@@ -283,14 +313,14 @@ Non riesci a toglierti dalla testa quello che è successo. Quegli uomini erano l
     Mima il gesto di legare una ferita. Poi fa un cenno vago verso il buio, lontano dalla direzione della pattuglia, scuotendo la testa con un'espressione amara. C'è qualcosa nel suo sguardo, un rifiuto che va oltre la paura della cattura. Forse quei soldati non stavano cercando solo un disperso. Forse stavano dando la caccia a qualcuno che non voleva essere trovato.
     -> final_reflection
 
-+ [Lo osservi in silenzio, diffidente.]
+* [Lo osservi in silenzio, diffidente.]
     Resti a distanza, studiando ogni suo movimento. Non sai se ringraziarlo o aspettarti una coltellata alla schiena.
     Lui intercetta il tuo sguardo sospettoso. Non si difende. Non sorride.
     Si limita a indicare il sentiero che si inoltra nel bosco, poi fa un gesto secco con la mano: avanti.
     Capisce che la fiducia è un lusso che non potete permettervi. Ma la sopravvivenza richiede cooperazione.
     -> final_reflection
 
-+ [Gli fai un cenno secco di ringraziamento.]
+* [Gli fai un cenno secco di ringraziamento.]
     Annuisci, un gesto breve, militare. Riconosci l'aiuto tattico, niente di più.
     Lui ricambia con un cenno altrettanto impercettibile.
     Non servono parole. Avete entrambi scelto di vivere.
@@ -300,6 +330,6 @@ Non riesci a toglierti dalla testa quello che è successo. Quegli uomini erano l
 Elias si alza a fatica, facendoti cenno di proseguire.
 Siete due estranei, nemici per giuramento, uniti solo dalla volontà di non morire stanotte.
 Vi incamminate nel buio, l'uno l'ombra dell'altro.
-~ COMPLETED_FARMSTEAD = true
 
+~ COMPLETED_FARMSTREAD = true
 -> END
