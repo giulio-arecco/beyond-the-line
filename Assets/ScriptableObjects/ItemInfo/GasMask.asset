@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
+  m_Name: GasMask
+  m_EditorClassIdentifier: Assembly-CSharp::Storage.StorableInfo.ItemInfoSO
+  sprite: {fileID: -4166580829966953713, guid: 9b82560b6ac19eb47b490bcdd5a10673, type: 3}
+  id: GasMask
+  entityName: Maschera Antigas
+  description: "Gomma vecchia e lenti che tendono ad appannarsi. Quando l'aria stessa
+    diventa un'arma invisibile, questo filtro \xE8 l'unica barriera tra i tuoi polmoni
+    e il soffocamento. Un volto mostruoso necessario per restare vivi."
+  <StatsModifiers>k__BackingField: []

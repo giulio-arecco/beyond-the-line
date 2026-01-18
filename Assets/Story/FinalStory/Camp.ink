@@ -49,15 +49,15 @@ Accendi un piccolo fuoco usando legna secca e corteccia. La fiamma è debole, ma
     -> action_heal_bandages
 * {HasItem("Medikit") && GetGlobalStat("Health") < 100} [Usi il medikit per cure approfondite.]
     -> action_heal_medikit
-* [Controlli Elias.]
-    {HasCompanion("Elias") && COMPLETED_FARMSTREAD && not ELIAS_OPTIONAL_DIALOGUE_DONE:
+* {HasCompanion("Elias")} [Controlli Elias.]
+    {COMPLETED_FARMSTEAD and not ELIAS_OPTIONAL_DIALOGUE_DONE:
         -> elias_optional_dialogue
     - else:
         Elias siede accanto al fuoco, perso nei suoi pensieri.
         -> camp_hub
     } 
-* [Controlli Lira.]
-    {HasCompanion("Lira") && COMPLETED_VILLAGE && not LIRA_OPTIONAL_DIALOGUE_DONE:
+* {HasCompanion("Lira")} [Controlli Lira.]
+    {COMPLETED_VILLAGE and not LIRA_OPTIONAL_DIALOGUE_DONE:
         -> lira_optional_dialogue
     - else:
         Lira si scalda davanti al fuoco, pulendo la sua arma da fianco.

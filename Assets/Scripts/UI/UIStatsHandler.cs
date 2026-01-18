@@ -17,7 +17,7 @@ namespace UI {
             globalStats.Health.OnValueChanged += GlobalStats_OnHealthChanged;
             globalStats.Fatigue.OnValueChanged += GlobalStats_OnFatigueChanged;
             // globalStats.Hunger.OnValueChanged += GlobalStats_OnHungerChanged;
-            // globalStats.GroupCohesion.OnValueChanged += GlobalStats_OnGroupCohesionChanged;
+            // globalStats.Cohesion.OnValueChanged += GlobalStats_OnGroupCohesionChanged;
             // globalStats.Notoriety.OnValueChanged += GlobalStats_OnNotorietyChanged;
             // globalStats.Intimidation.OnValueChanged += GlobalStats_OnIntimidationChanged;
 
@@ -36,7 +36,7 @@ namespace UI {
                 globalStats.Health.OnValueChanged -= GlobalStats_OnHealthChanged;
                 globalStats.Fatigue.OnValueChanged -= GlobalStats_OnFatigueChanged;
                 // globalStats.Hunger.OnValueChanged -= GlobalStats_OnHungerChanged;
-                // globalStats.GroupCohesion.OnValueChanged -= GlobalStats_OnGroupCohesionChanged;
+                // globalStats.Cohesion.OnValueChanged -= GlobalStats_OnGroupCohesionChanged;
                 // globalStats.Notoriety.OnValueChanged -= GlobalStats_OnNotorietyChanged;
                 // globalStats.Intimidation.OnValueChanged -= GlobalStats_OnIntimidationChanged;
             }
@@ -69,7 +69,7 @@ namespace UI {
         //     UpdateStatDisplayedValueAndColor(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
         //
         // private void GlobalStats_OnGroupCohesionChanged(int groupCohesion) =>
-        //     UpdateStatDisplayedValueAndColor(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.GroupCohesion.MaxValue);
+        //     UpdateStatDisplayedValueAndColor(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.Cohesion.MaxValue);
         //
         // private void GlobalStats_OnNotorietyChanged(int notoriety) =>
         //     UpdateStatDisplayedValue(notorietyValueText, notoriety, GlobalStatsManager.Instance.GlobalStats.Notoriety.MaxValue);

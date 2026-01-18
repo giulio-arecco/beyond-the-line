@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
   m_Name: Ammo
   m_EditorClassIdentifier: 
-  sprite: {fileID: 2853566114444752598, guid: f92b6f2d13ca8c943887e47ff48b1340, type: 3}
+  sprite: {fileID: 3921441551649640537, guid: f92b6f2d13ca8c943887e47ff48b1340, type: 3}
   id: Ammo
   entityName: Munizioni
   description: "Proiettili preziosi. Un pugno di metallo e polvere da sparo stipato

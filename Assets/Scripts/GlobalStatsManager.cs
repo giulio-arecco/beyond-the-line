@@ -39,8 +39,8 @@ public class IntStat {
 public class GlobalStats {
     public IntStat Health { get; private set; } = new();
     public IntStat Fatigue { get; private set; } = new();
+    public IntStat Cohesion { get; private set; } = new();
     // public IntStat Hunger { get; private set; } = new();
-    // public IntStat GroupCohesion { get; private set; } = new();
     // public IntStat Notoriety { get; private set; } = new();
     // public IntStat Intimidation { get; private set; } = new();
 
@@ -73,6 +73,7 @@ public class GlobalStats {
         if (castedStat.Value.GetType() == castedValue.GetType()) {
             var newStatValue = isIncrease ? castedStat.Value + castedValue : castedStat.Value - castedValue;
             castedStat.Value = Mathf.Clamp(newStatValue, 0, castedStat.MaxValue);
+            Debug.Log($"New {statName} stat value: {castedStat.Value}");
         }
         else {
             throw new InvalidOperationException($"The stat {statName} and the value {delta} are of different types");
@@ -109,6 +110,7 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
     [Header("Global Stats Initial Values")]
     [SerializeField] private int initialHealth = 70;
     [SerializeField] private int initialFatigue = 30;
+    [SerializeField] private int initialCohesion = 0;
     
     public GlobalStats GlobalStats { get; private set; }
 
@@ -123,6 +125,7 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
         
         GlobalStats.Health.Value = initialHealth;
         GlobalStats.Fatigue.Value = initialFatigue;
+        GlobalStats.Cohesion.Value = initialCohesion;
     }
 
     private void OnDestroy() {

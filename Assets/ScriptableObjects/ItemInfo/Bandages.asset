@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
   m_Name: Bandages
   m_EditorClassIdentifier: 
-  sprite: {fileID: 4480434827562053419, guid: b29fd0256627bf04b80c5b64b2bc715c, type: 3}
+  sprite: {fileID: 4746731493306613343, guid: 22ae971ae723ea542ad1c78d5a4ba064, type: 3}
   id: Bandages
   entityName: Bende
   description: "Garze vitali. Un rotolo di stoffa pulita, l'unica cosa che pu\xF2

@@ -109,10 +109,6 @@ Se vuoi sperare di arrivare al confine, devi smettere di essere un soldato. Devi
     Indossi la camicia di flanella e i pantaloni scuri. Il tessuto è ruvido sulla pelle e puzza di polvere.
     -> clothes_changed
 
-* [Ti cambi rapidamente. Nascondi la divisa sotto il letto.]
-    Non puoi permetterti di esitare. Ti togli l'uniforme e la calci sotto il letto, lontano da occhi indiscreti.
-    Inifili i vestiti civili. Ti senti più leggero, ma più anonimo.
-    -> clothes_changed
 
 === clothes_changed ===
 Tieni gli stivali tattici. Quelli ti servono per camminare e non c'è nulla in questa casa che possa sostituirli.
@@ -149,7 +145,7 @@ Anche lui sembra inerme. Non c'è nessun fucile accanto a lui.
 Le sue mani sono premute sul fianco, le dita intrecciate e sporche di un rosso scuro e lucido che si allarga sulla giacca. Il suo respiro è un rantolo gorgogliante, umido.
 
 Lui alza gli occhi verso di te. Si tende, come se volesse scattare, ma un sussulto di dolore lo inchioda dov'è.
-Accanto a lui c'è una bisaccia aperta, all'interno della quale intravedi una razione militare e un taccuino rilegato in pelle nera.
+Accanto a lui c'è una bisaccia aperta, all'interno della quale intravedi un taccuino rilegato in pelle nera.
 
 Le sue labbra si muovono. Emette una serie di suoni gutturali, aspri.
 "Vrratsk... na... krez..."
@@ -161,7 +157,7 @@ Oppure è solo un uomo a cui rimane poco da vivere.
 
 * {HasItem("Bandages")} [Hai delle bende: ti avvicini con le mani in vista e offri aiuto.]
     -> choice_cooperative
-* [Ti servono quelle provviste. Gliele sottrai con la forza.]
+* [Gli sottrai la bisaccia con la forza.]
     -> choice_aggressive
 * [Non è un tuo problema. Lo ignori e te ne vai.]
     -> choice_avoidant
@@ -190,14 +186,12 @@ Ti avventi su di lui. Lui è troppo debole per reagire. Cerca di proteggere la b
 Lui cade su un fianco, emettendo un grido strozzato.
 Strappi la bisaccia dalla sua presa.
 
-Controlli il bottino. C'è del cibo. E quel taccuino nero.
+Controlli il bottino. C'è solo quel taccuino nero.
 Lo apri un istante. Le pagine sono fitte di una scrittura spigolosa, aliena. È la loro lingua. Non capisci nulla, a parte qualche schizzo di persone e luoghi a te sconosciuti. È carta straccia, per ora.
 Lui ti guarda dal pavimento, ansimante. I suoi occhi ti giudicano in silenzio.
 Ti volti e ti allontani.
 
 ~ AddItemToInventory("Notebook")
-~ AddItemToInventory("Ration")
-~ IncreaseGlobalStat("Notoriety", 35)
 
 -> patrol_arrival
 

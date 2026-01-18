@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
+  m_Name: Pistol
+  m_EditorClassIdentifier: Assembly-CSharp::Storage.StorableInfo.ItemInfoSO
+  sprite: {fileID: 4319395737909131107, guid: 42afaf961b82ea3428e77b0986adce78, type: 3}
+  id: Pistol
+  entityName: Pistola
+  description: "L'ultima difesa. Acciaio freddo, compatto e affidabile a breve distanza.
+    Quando il nemico \xE8 troppo vicino, lei \xE8 la tua assicurazione. Non vincer\xE0
+    una guerra da sola, ma ti garantir\xE0 di non essere una vittima facile."
+  <StatsModifiers>k__BackingField: []

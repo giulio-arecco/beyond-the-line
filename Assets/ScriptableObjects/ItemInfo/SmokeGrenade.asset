@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
+  m_Name: SmokeGrenade
+  m_EditorClassIdentifier: Assembly-CSharp::Storage.StorableInfo.ItemInfoSO
+  sprite: {fileID: -2902295329920402195, guid: ce713e3f54f6b9b41985a2437613e246, type: 3}
+  id: SmokeGrenade
+  entityName: Granata Fumogena
+  description: Un cilindro di metallo pronto a scatenare il caos visivo. Non uccide,
+    ma acceca. Crea un muro grigio dove prima c'era il mirino di un cecchino, regalandoti
+    quei pochi, preziosi metri necessari per svanire nel nulla
+  <StatsModifiers>k__BackingField: []

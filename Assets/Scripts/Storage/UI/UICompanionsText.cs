@@ -6,8 +6,15 @@ using static Utils.TypeUtils;
 
 namespace Storage.UI {
     public class UICompanionsText : MonoBehaviour, IStorableTextWriter {
+        [Header("Text Display Options")]
+        [SerializeField] private bool showName = true;
+        [SerializeField] private bool showDescription = true;
+        [SerializeField] private bool showStats = false;
+        
+        [Header("Name and Description")]
         [SerializeField] private TextMeshProUGUI nameField;
         [SerializeField] private TextMeshProUGUI descriptionField;
+        
         
         [Header("Stats Labels")]
         [SerializeField] private TextMeshProUGUI healthLabelField;
@@ -31,36 +38,41 @@ namespace Storage.UI {
         }
 
         public void SetNameText(Storable storable) {
-                nameField.text = storable.Info.entityName;
+            if (!showName) return;
+            nameField.text = storable.Info.entityName;
         }
 
         public void SetDescriptionText(Storable storable) {
-                descriptionField.text = storable.Info.description;
+            if (!showDescription) return;
+            descriptionField.text = storable.Info.description;
         }
 
         public void SetOtherText(Storable storable) {
-            if (storable is Companion companion) {
-                SetCompanionStatsText(companion);
-            }
-            else {
-                Debug.LogError("The Storable runtime type is not Companion");
+            if (showStats) {
+                if (storable is Companion companion) {
+                    SetCompanionStatsText(companion);
+                }
+                else {
+                    Debug.LogError("The Storable runtime type is not Companion");
+                }
             }
         }
         
         public void ClearAllText() {
-            if (nameField) {
+            if (showName) {
                 nameField.text = "";
             }
             
-            if (descriptionField) {
+            if (showDescription) {
                 descriptionField.text = "";
             }
 
-            healthLabelField.text = "";
-            hungerLabelField.text = "";
-        
-            healthValueField.text = "";
-            hungerValueField.text = "";
+            if (showStats) {
+                healthLabelField.text = "";
+                hungerLabelField.text = "";
+                healthValueField.text = "";
+                hungerValueField.text = "";
+            }
         }
     }
 }

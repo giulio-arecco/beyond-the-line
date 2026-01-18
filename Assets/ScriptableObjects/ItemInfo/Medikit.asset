@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
+  m_Name: Medikit
+  m_EditorClassIdentifier: Assembly-CSharp::Storage.StorableInfo.ItemInfoSO
+  sprite: {fileID: 4298467882910523231, guid: 84bf361e704e8e34988a4faeb54eabf1, type: 3}
+  id: Medikit
+  entityName: Kit Medico
+  description: "Chirurgia da campo. Una scatola rigida che contiene molto pi\xF9
+    di semplici garze: sutura, coagulanti e antibiotici. Mentre le bende tamponano,
+    questo ripara. \xC8 la differenza tra una lenta agonia e la possibilit\xE0 di
+    tornare a combattere un altro giorno."
+  <StatsModifiers>k__BackingField: []

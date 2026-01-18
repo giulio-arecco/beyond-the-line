@@ -8,6 +8,7 @@ using Storage.StorableInfoDatabase;
 using Storage.Storables;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Utils.SerializeInterface;
 
@@ -146,6 +147,8 @@ namespace Narrative {
         }
 
         private void DisplayChoices() {
+            EventSystem.current.SetSelectedGameObject(null);
+            
             var currentChoices = _currentStory.currentChoices;
         
             // check if the UI can support the number of choices coming in
@@ -166,9 +169,9 @@ namespace Narrative {
             }
         
             // automatically select the first choice button
-            if (choices[0].TryGetComponent<Button>(out var choiceButton)) {
-                choiceButton.Select();
-            }
+            // if (choices[0].TryGetComponent<Button>(out var choiceButton)) {
+            //     choiceButton.Select();
+            // }
         }
     
         private void Input_ContinueStory() {
