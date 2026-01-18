@@ -6,7 +6,7 @@ VAR Fatigue = 30     // Range: 0-100
 VAR Cohesion = 0     // Range: 0-100
 
 // --- NARRATIVE FLAGS ---
-VAR COMPLETED_FARMSTREAD = false
+VAR COMPLETED_FARMSTEAD = false
 VAR COMPLETED_WOOD = false
 VAR COMPLETED_VILLAGE = false
 VAR COMPLETED_ROAD = false

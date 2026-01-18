@@ -294,7 +294,7 @@ Il bosco è freddo, umido, indifferente alla guerra.
 - else:
     Sei di nuovo solo con i tuoi fantasmi. Il silenzio è rotto solo dal tuo respiro affannoso.
     
-    ~ COMPLETED_FARMSTREAD = true
+    ~ COMPLETED_FARMSTEAD = true
     -> END
 }
 
@@ -331,5 +331,5 @@ Elias si alza a fatica, facendoti cenno di proseguire.
 Siete due estranei, nemici per giuramento, uniti solo dalla volontà di non morire stanotte.
 Vi incamminate nel buio, l'uno l'ombra dell'altro.
 
-~ COMPLETED_FARMSTREAD = true
+~ COMPLETED_FARMSTEAD = true
 -> END

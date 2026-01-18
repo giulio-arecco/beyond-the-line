@@ -39,19 +39,25 @@ public class UINavigator : Singleton<UINavigator> {
         }
     }
 
-    private void HideLayer(int index) {
+    private void HideLayer(int index, GameObject[] keepActiveNodesList = null) {
         var layerToHide = _uiLayers[index];
-        foreach (var node in layerToHide) {
+        
+        var nodesToHide = layerToHide.Where(node => 
+            keepActiveNodesList == null || !keepActiveNodesList.Contains(node.UiElement)
+        );
+
+        foreach (var node in nodesToHide) {
             node.UiElement.SetActive(false);
-            // We don't set IsActiveInLayer to false to restore the previous layer when this will be popped
         }
     }
 
-    private void HideAllLayers() {
-        for (var i = 0; i < _uiLayers.Count; i++) HideLayer(i);
+    private void HideAllLayers(GameObject[] keepActiveNodesList = null) {
+        for (var i = 0; i < _uiLayers.Count; i++) HideLayer(i, keepActiveNodesList);
     }
 
-    public void ShowUIElement(GameObject uiElement, bool hideLayer) {
+    public void ShowUIElement(GameObject uiElement, bool hideLayer = false) {
+        if (_uiLayers.Count == 0) return;
+        
         var currentLayer = _uiLayers.Last();
         
         if (hideLayer) {
@@ -73,11 +79,14 @@ public class UINavigator : Singleton<UINavigator> {
         uiElement.SetActive(true);
     }
 
-    public void PushUILayer(GameObject uiElement, UILayerPushOptions removePreviousLayer = UILayerPushOptions.None) {
-        var newLayer = new List<NavigationNode>();
+    public void PushUILayer(GameObject[] uiElements, UILayerPushOptions removePreviousLayer = UILayerPushOptions.None) {
+        if (uiElements == null || uiElements.Length == 0) {
+            Debug.LogWarning("UINavigator: tried to push an empty layer");
+            return;
+        }
         
-        /* Hide and remove layers */
-        HideAllLayers();
+        // Hide and remove layers 
+        HideAllLayers(uiElements);
         if (_uiLayers.Count > 1) {
             switch (removePreviousLayer) {
                 case UILayerPushOptions.None:
@@ -93,16 +102,12 @@ public class UINavigator : Singleton<UINavigator> {
             }
         }
         
-        /* If the same layer has already been pushed, remove it from the layers list */
-        var indexToRemove = _uiLayers.FindIndex(layer => layer.Any(node => node.UiElement == uiElement));
-        if (indexToRemove > 0) {
-            _uiLayers.RemoveAt(indexToRemove);
+        var newLayer = new List<NavigationNode>();
+        foreach (var uiElement in uiElements) {
+            newLayer.Add(new NavigationNode(uiElement, true));
+            uiElement.SetActive(true);
         }
-
-        var newNode = new NavigationNode(uiElement, true);
-        newLayer.Add(newNode);
-        uiElement.SetActive(true);
-
+        
         _uiLayers.Add(newLayer);
     }
 
@@ -117,23 +122,29 @@ public class UINavigator : Singleton<UINavigator> {
     public void PopUILayer(GameObject elementInLayer = null) {
         if (_uiLayers.Count == 1) return;
         
+        var layerToHide = _uiLayers.Last();
+        
         if (elementInLayer != null) {
             // return if the passed elementInLayer is not found in the layer to hide
-            var layerToHide = _uiLayers.Last();
             var node = layerToHide.Find(x => x.UiElement == elementInLayer);
             if (node == null) return;
         }
 
-        var hiddenLayer = _uiLayers.Last();
-        foreach (var node in hiddenLayer) {
-            node.UiElement.SetActive(false);
-        }
         _uiLayers.RemoveAt(_uiLayers.Count - 1);
-        
-        // Reactivate the elements marked as IsActiveInLayer in the (now) current layer
-        var currentLayer = _uiLayers.Last();
-        foreach (var node in currentLayer.Where(node => node.IsActiveInLayer)) {
+        var layerToRestore = _uiLayers.Last();
+
+        // Activate all the elements in the layer to restore (the previous layer)
+        foreach (var node in layerToRestore.Where(node => node.IsActiveInLayer)) {
             node.UiElement.SetActive(true);
+        }
+        
+        // Hide all the elements from the layer to hide, provided they are not contained in the layer to restore
+        foreach (var node in layerToHide) {
+            var isSharedAndActive = layerToRestore.Any(n => n.UiElement == node.UiElement && n.IsActiveInLayer);
+        
+            if (!isSharedAndActive) {
+                node.UiElement.SetActive(false);
+            }
         }
     }
 }

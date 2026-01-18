@@ -26,7 +26,7 @@ public class UIInputHandler : MonoBehaviour {
             UINavigator.Instance.PopUILayer(inventoryPanel);
         }
         else {
-            UINavigator.Instance.PushUILayer(inventoryPanel, UILayerPushOptions.RemoveAllPreviousLayers);
+            UINavigator.Instance.PushUILayer(new[] {inventoryPanel}, UILayerPushOptions.RemoveAllPreviousLayers);
         }
     }
     
@@ -35,7 +35,7 @@ public class UIInputHandler : MonoBehaviour {
             UINavigator.Instance.PopUILayer(companionsPanel);
         }
         else {
-            UINavigator.Instance.PushUILayer(companionsPanel, UILayerPushOptions.RemoveAllPreviousLayers);
+            UINavigator.Instance.PushUILayer(new[] {companionsPanel}, UILayerPushOptions.RemoveAllPreviousLayers);
         }
     }
     

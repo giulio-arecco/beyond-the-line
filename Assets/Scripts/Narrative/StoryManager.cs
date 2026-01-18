@@ -69,17 +69,13 @@ namespace Narrative {
 
         private void ExitStory() {
             StoryIsProgressing = false;
-            UINavigator.Instance.PopUILayer();
+            UINavigator.Instance.HideUIElement(storyPanel);
             storyText.text = "";
         
             _storyVariablesRegistry.StopListening(_currentStory);
             _storyFunctionsBinder.UnbindGlobalFunctions(_currentStory);
             
             Debug.Log("Exiting story");
-        
-            input.EnableInputAction("Gameplay", "PrevUILayer");
-            input.EnableInputAction("Gameplay", "OpenCloseInventory");
-            input.EnableInputAction("Gameplay", "OpenCloseCompanions");
         }
 
         private void HandleStoryFlow() {
@@ -185,11 +181,7 @@ namespace Narrative {
             _currentStory = new Story(inkJson.text);
             StoryIsProgressing = true;
         
-            input.DisableInputAction("Gameplay", "PrevUILayer");
-            input.DisableInputAction("Gameplay", "OpenCloseInventory");
-            input.DisableInputAction("Gameplay", "OpenCloseCompanions");
-        
-            UINavigator.Instance.PushUILayer(storyPanel);
+            UINavigator.Instance.ShowUIElement(storyPanel);
             
             Debug.Log($"Entering story '{inkJson.name}'.");
         
