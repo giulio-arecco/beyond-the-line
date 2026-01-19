@@ -4,7 +4,6 @@ using ParadoxNotion.Design;
 using Enums;
 using Narrative;
 using UnityEngine;
-using VHierarchy.Libs;
 
 namespace NodeCanvas.CustomTasks.Conditions {
 	[Category("Custom/Ink")]

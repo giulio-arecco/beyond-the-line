@@ -19,11 +19,8 @@ namespace Narrative {
     
         public Dictionary<string, RegistryVariable> Variables { get; private set; }
     
-        public StoryVariablesRegistry(string globalsFilePath) {
-            // compile the story (since the globals.ink file is considered an include file, it will not compile automatically in the editor)
-            var inkFileContents = File.ReadAllText(globalsFilePath);
-            var compiler = new Ink.Compiler(inkFileContents);
-            var globalVariablesStory = compiler.Compile();
+        public StoryVariablesRegistry(TextAsset globalsInkFile) {
+            var globalVariablesStory = new Story(globalsInkFile.text);
         
             // initialize the dictionary
             Variables = new Dictionary<string, RegistryVariable>();

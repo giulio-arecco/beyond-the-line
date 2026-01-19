@@ -211,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6920034257948650340}
   - component: {fileID: 4718181970350462094}
+  - component: {fileID: 4371582834107009446}
   m_Layer: 5
   m_Name: UIControls
   m_TagString: Untagged
@@ -251,6 +252,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 789598336045863650}
   m_CullTransparentMesh: 1
+--- !u!225 &4371582834107009446
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 789598336045863650}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &1127929707887681064
 GameObject:
   m_ObjectHideFlags: 0

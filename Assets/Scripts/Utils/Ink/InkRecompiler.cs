@@ -3,6 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Utils.Ink {
+    #if UNITY_EDITOR
     public class InkRecompiler {
         [MenuItem("Tools/Ink/Force Recompile All Ink Files")]
         public static void ForceRecompileAllInkFilesSynchronized() {
@@ -46,4 +47,5 @@ namespace Utils.Ink {
             }
         }
     }
+    #endif
 }

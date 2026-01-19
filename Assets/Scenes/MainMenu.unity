@@ -119,28 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &198656573 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5978903236939883637, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
-  m_PrefabInstance: {fileID: 4481709166909479744}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &198656574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 198656573}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 289ff940279d54e4e92f632d7d3823dc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Kybernetik.UltEvents::UltEvents.UltEventHolder
-  _Event:
-    _PersistentCalls:
-    - _Target: {fileID: 548684887}
-      _MemberName: PopUILayer
-      _PersistentArguments: []
 --- !u!1 &245587564
 GameObject:
   m_ObjectHideFlags: 0
@@ -728,55 +706,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594839677}
   m_CullTransparentMesh: 1
---- !u!1 &697552401
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 697552402}
-  - component: {fileID: 697552403}
-  m_Layer: 5
-  m_Name: ControlsPanelLayer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &697552402
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697552401}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1545384700611439642}
-  m_Father: {fileID: 1028880727}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &697552403
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697552401}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 0
-  m_BlocksRaycasts: 0
-  m_IgnoreParentGroups: 0
 --- !u!1001 &893830443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1070,7 +999,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1893349147}
-  - {fileID: 697552402}
+  - {fileID: 1545384700611439642}
   m_Father: {fileID: 277870594}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1519,7 +1448,7 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: 697552403}
+        _Object: {fileID: 4481709166909479745}
       - _Type: 4
         _Int: 2
         _String: Enums.UILayerPushOptions, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -1901,7 +1830,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 697552402}
+    m_TransformParent: {fileID: 1028880727}
     m_Modifications:
     - target: {fileID: 487103075450578382, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2087,6 +2016,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4371582834107009446, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371582834107009446, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4371582834107009446, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+      propertyPath: m_BlocksRaycasts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4834398949060496840, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -2098,18 +2039,18 @@ PrefabInstance:
     - target: {fileID: 4834398949060496840, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 198656574}
+      objectReference: {fileID: 548684887}
     - target: {fileID: 4834398949060496840, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4834398949060496840, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Invoke
+      value: PopUILayer
       objectReference: {fileID: 0}
     - target: {fileID: 4834398949060496840, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: UltEvents.UltEventHolder, Kybernetik.UltEvents
+      value: UINavigator, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4834398949060496840, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
@@ -2308,11 +2249,13 @@ PrefabInstance:
     - {fileID: 2037288553742253342, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
     - {fileID: 748233795183906875, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5978903236939883637, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 198656574}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+--- !u!225 &4481709166909479745 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 4371582834107009446, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+  m_PrefabInstance: {fileID: 4481709166909479744}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5795925361055270414
 PrefabInstance:
   m_ObjectHideFlags: 0

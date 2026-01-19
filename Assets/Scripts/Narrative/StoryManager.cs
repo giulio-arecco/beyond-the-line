@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using Enums;
 using Ink.Runtime;
-using Ink.UnityIntegration;
 using Inventory.Interfaces;
 using Storage.StorableInfoDatabase;
 using Storage.Storables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 using Utils.SerializeInterface;
 
 namespace Narrative {
@@ -25,7 +24,7 @@ namespace Narrative {
         [SerializeField] private GameObject[] choices;
     
         [Header("Story Global Variables")]
-        [SerializeField] private InkFile globalsInkFile;
+        [SerializeField] private TextAsset globalsInkJson;
     
         [Header("External Dependencies")] 
         [SerializeField] private InterfaceReference<IStorage<Item>> playerInventory;
@@ -44,7 +43,7 @@ namespace Narrative {
         protected override void Awake() {
             base.Awake();
             _optionalStories = new Queue<OptionalStory>();
-            _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkFile.filePath);
+            _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkJson);
             _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory.Value, playerCompanions.Value, itemInfoDatabase, companionInfoDatabase);
         }
 
