@@ -18,7 +18,7 @@ namespace Narrative {
         [SerializeField] private InputReaderSO input;
 
         [Header("Story UI")] 
-        [SerializeField] private GameObject storyPanel;
+        [SerializeField] private CanvasGroup storyPanel;
         [SerializeField] private TextMeshProUGUI storyText;
     
         [Header("Choice UI")]
@@ -58,8 +58,6 @@ namespace Narrative {
         }
 
         private void Start() {
-            UINavigator.Instance.HideUIElement(storyPanel);
-        
             // Get all the choices text
             _choicesText = new TextMeshProUGUI[choices.Length];
             for (var i = 0; i < choices.Length; i++) {
@@ -69,7 +67,7 @@ namespace Narrative {
 
         private void ExitStory() {
             StoryIsProgressing = false;
-            UINavigator.Instance.HideUIElement(storyPanel);
+            UINavigator.Instance.RemoveUIElementFromProtectedLayer(storyPanel);
             storyText.text = "";
         
             _storyVariablesRegistry.StopListening(_currentStory);
@@ -183,7 +181,7 @@ namespace Narrative {
             _currentStory = new Story(inkJson.text);
             StoryIsProgressing = true;
         
-            UINavigator.Instance.ShowUIElement(storyPanel);
+            UINavigator.Instance.AddUIElementOnProtectedLayer(storyPanel);
             
             Debug.Log($"Entering story '{inkJson.name}'.");
         

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Enums;
+using Utils.Extensions;
 
 public class UIInputHandler : MonoBehaviour {
     [SerializeField] private InputReaderSO input;
@@ -10,23 +11,23 @@ public class UIInputHandler : MonoBehaviour {
     [SerializeField] private bool bindPrevUILayerAction = true;
     
     [Header("Canvas Elements")]
-    [SerializeField] private GameObject inventoryPanel;
-    [SerializeField] private GameObject companionsPanel;
+    [SerializeField] private CanvasGroup inventoryPanel;
+    [SerializeField] private CanvasGroup companionsPanel;
 
     private void OnEnable() {
         if (bindOpenCloseInventoryAction) input.OpenCloseInventory += Input_OpenCloseInventory;
         if (bindOpenCloseCompanionsAction) input.OpenCloseCompanions += Input_OpenCloseCompanions;
-        if (bindPrevUILayerAction) input.PrevUILayer += Input_PrevUILayer;
+        if (bindPrevUILayerAction) input.ExitUIPanel += Input_ExitUIPanel;
     }   
 
     private void OnDisable() {
         if (bindOpenCloseInventoryAction) input.OpenCloseInventory -= Input_OpenCloseInventory;
         if (bindOpenCloseCompanionsAction) input.OpenCloseCompanions -= Input_OpenCloseCompanions;
-        if (bindPrevUILayerAction) input.PrevUILayer -= Input_PrevUILayer;
+        if (bindPrevUILayerAction) input.ExitUIPanel -= Input_ExitUIPanel;
     }
 
     private void Input_OpenCloseInventory() {
-        if (inventoryPanel.activeInHierarchy) {
+        if (inventoryPanel.IsVisibleAndInteractable()) {
             UINavigator.Instance.PopUILayer(inventoryPanel);
         }
         else {
@@ -35,7 +36,7 @@ public class UIInputHandler : MonoBehaviour {
     }
     
     private void Input_OpenCloseCompanions() {
-        if (companionsPanel.activeInHierarchy) {
+        if (companionsPanel.IsVisibleAndInteractable()) {
             UINavigator.Instance.PopUILayer(companionsPanel);
         }
         else {
@@ -43,5 +44,5 @@ public class UIInputHandler : MonoBehaviour {
         }
     }
     
-    private void Input_PrevUILayer() => UINavigator.Instance.PopUILayer();
+    private void Input_ExitUIPanel() => UINavigator.Instance.PopUILayer();
 }

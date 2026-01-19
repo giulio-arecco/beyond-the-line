@@ -2,19 +2,22 @@ using UnityEngine;
 
 namespace Utils.Extensions {
     public static class CanvasGroupExtensions {
-        public static void SetVisibleAndInteractable(this CanvasGroup group, bool visibleAndInteractable) {
-            if (group == null) return;
+        public static void SetVisibleAndInteractable(this CanvasGroup canvasGroup, bool visibleAndInteractable) {
+            if (canvasGroup == null) return;
 
             if (visibleAndInteractable) {
-                group.alpha = 1f; 
-                group.interactable = true; 
-                group.blocksRaycasts = true;
+                canvasGroup.alpha = 1f; 
+                canvasGroup.interactable = true; 
+                canvasGroup.blocksRaycasts = true;
             }
             else {
-                group.alpha = 0f; 
-                group.interactable = false; 
-                group.blocksRaycasts = false; 
+                canvasGroup.alpha = 0f; 
+                canvasGroup.interactable = false; 
+                canvasGroup.blocksRaycasts = false; 
             }
         }
+
+        public static bool IsVisibleAndInteractable(this CanvasGroup canvasGroup) => canvasGroup.alpha != 0 && canvasGroup.interactable && canvasGroup.blocksRaycasts;
+        
     }
 }

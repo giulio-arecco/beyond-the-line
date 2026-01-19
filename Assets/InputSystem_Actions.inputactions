@@ -16,7 +16,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "PrevUILayer",
+                    "name": "ExitUIPanel",
                     "type": "Button",
                     "id": "695ec7ee-c5fe-4df0-ad75-094364bb969c",
                     "expectedControlType": "",
@@ -73,7 +73,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "PrevUILayer",
+                    "action": "ExitUIPanel",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

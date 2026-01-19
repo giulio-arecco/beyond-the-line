@@ -102,7 +102,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""PrevUILayer"",
+                    ""name"": ""ExitUIPanel"",
                     ""type"": ""Button"",
                     ""id"": ""695ec7ee-c5fe-4df0-ad75-094364bb969c"",
                     ""expectedControlType"": """",
@@ -159,7 +159,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""PrevUILayer"",
+                    ""action"": ""ExitUIPanel"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -792,7 +792,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // Gameplay
         m_Gameplay = asset.FindActionMap("Gameplay", throwIfNotFound: true);
         m_Gameplay_ContinueStory = m_Gameplay.FindAction("ContinueStory", throwIfNotFound: true);
-        m_Gameplay_PrevUILayer = m_Gameplay.FindAction("PrevUILayer", throwIfNotFound: true);
+        m_Gameplay_ExitUIPanel = m_Gameplay.FindAction("ExitUIPanel", throwIfNotFound: true);
         m_Gameplay_OpenCloseInventory = m_Gameplay.FindAction("OpenCloseInventory", throwIfNotFound: true);
         m_Gameplay_OpenCloseCompanions = m_Gameplay.FindAction("OpenCloseCompanions", throwIfNotFound: true);
         // UI
@@ -889,7 +889,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Gameplay;
     private List<IGameplayActions> m_GameplayActionsCallbackInterfaces = new List<IGameplayActions>();
     private readonly InputAction m_Gameplay_ContinueStory;
-    private readonly InputAction m_Gameplay_PrevUILayer;
+    private readonly InputAction m_Gameplay_ExitUIPanel;
     private readonly InputAction m_Gameplay_OpenCloseInventory;
     private readonly InputAction m_Gameplay_OpenCloseCompanions;
     /// <summary>
@@ -908,9 +908,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @ContinueStory => m_Wrapper.m_Gameplay_ContinueStory;
         /// <summary>
-        /// Provides access to the underlying input action "Gameplay/PrevUILayer".
+        /// Provides access to the underlying input action "Gameplay/ExitUIPanel".
         /// </summary>
-        public InputAction @PrevUILayer => m_Wrapper.m_Gameplay_PrevUILayer;
+        public InputAction @ExitUIPanel => m_Wrapper.m_Gameplay_ExitUIPanel;
         /// <summary>
         /// Provides access to the underlying input action "Gameplay/OpenCloseInventory".
         /// </summary>
@@ -948,9 +948,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ContinueStory.started += instance.OnContinueStory;
             @ContinueStory.performed += instance.OnContinueStory;
             @ContinueStory.canceled += instance.OnContinueStory;
-            @PrevUILayer.started += instance.OnPrevUILayer;
-            @PrevUILayer.performed += instance.OnPrevUILayer;
-            @PrevUILayer.canceled += instance.OnPrevUILayer;
+            @ExitUIPanel.started += instance.OnExitUIPanel;
+            @ExitUIPanel.performed += instance.OnExitUIPanel;
+            @ExitUIPanel.canceled += instance.OnExitUIPanel;
             @OpenCloseInventory.started += instance.OnOpenCloseInventory;
             @OpenCloseInventory.performed += instance.OnOpenCloseInventory;
             @OpenCloseInventory.canceled += instance.OnOpenCloseInventory;
@@ -971,9 +971,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @ContinueStory.started -= instance.OnContinueStory;
             @ContinueStory.performed -= instance.OnContinueStory;
             @ContinueStory.canceled -= instance.OnContinueStory;
-            @PrevUILayer.started -= instance.OnPrevUILayer;
-            @PrevUILayer.performed -= instance.OnPrevUILayer;
-            @PrevUILayer.canceled -= instance.OnPrevUILayer;
+            @ExitUIPanel.started -= instance.OnExitUIPanel;
+            @ExitUIPanel.performed -= instance.OnExitUIPanel;
+            @ExitUIPanel.canceled -= instance.OnExitUIPanel;
             @OpenCloseInventory.started -= instance.OnOpenCloseInventory;
             @OpenCloseInventory.performed -= instance.OnOpenCloseInventory;
             @OpenCloseInventory.canceled -= instance.OnOpenCloseInventory;
@@ -1288,12 +1288,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnContinueStory(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "PrevUILayer" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "ExitUIPanel" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnPrevUILayer(InputAction.CallbackContext context);
+        void OnExitUIPanel(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "OpenCloseInventory" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

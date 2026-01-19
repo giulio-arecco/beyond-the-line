@@ -4,6 +4,7 @@ using ParadoxNotion.Design;
 using Enums;
 using Narrative;
 using UnityEngine;
+using VHierarchy.Libs;
 
 namespace NodeCanvas.CustomTasks.Conditions {
 	[Category("Custom/Ink")]
@@ -11,11 +12,18 @@ namespace NodeCanvas.CustomTasks.Conditions {
 	public class CheckInkVariable<T> : ConditionTask where T : IComparable {
 		public BBParameter<string> VariableName;
 		public BBParameter<T> Value;
-		public ComparisonType ComparisonType;
+		public BBParameter<ComparisonType> ComparisonType;
+		
+		protected override string info {
+			get {
+				if (Value == null) return $"Ink Variable {VariableName.value} is {ComparisonType.value} to *MissingValue*";
+				return $"Ink Variable {VariableName.value} is {ComparisonType.value} to {Value.value}";
+			}
+		}
 
 		protected override bool OnCheck() {
 			if (StoryManager.TryGetInstance(out var storyManager)) {
-				return storyManager.EvaluateConditionOnStoryVariable(VariableName.value, Value.value, ComparisonType);
+				return storyManager.EvaluateConditionOnStoryVariable(VariableName.value, Value.value, ComparisonType.value);
 			}
 			
 			Debug.LogWarning("The StoryManager instance is null");

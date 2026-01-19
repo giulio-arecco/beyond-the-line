@@ -13,7 +13,7 @@ public interface IInputReader {
 [CreateAssetMenu(fileName = "InputReader", menuName = "Scriptable Objects/InputReader")]
 public class InputReaderSO : ScriptableObject, IInputReader, IGameplayActions, IUIActions {
     public event Action ContinueStory;
-    public event Action PrevUILayer;
+    public event Action ExitUIPanel;
     public event Action OpenCloseInventory;
     public event Action OpenCloseCompanions;
     
@@ -22,7 +22,7 @@ public class InputReaderSO : ScriptableObject, IInputReader, IGameplayActions, I
     public bool IsContinueStoryKeyPressed => inputActions.Gameplay.ContinueStory.IsPressed();
     public bool IsOpenCloseInventoryKeyPressed => inputActions.Gameplay.OpenCloseInventory.IsPressed();
     public bool IsOpenCloseCompanionsKeyPressed => inputActions.Gameplay.OpenCloseCompanions.IsPressed();
-    public bool IsPrevUILayerKeyPressed => inputActions.Gameplay.PrevUILayer.IsPressed();
+    public bool IsExitUIPanelKeyPressed => inputActions.Gameplay.ExitUIPanel.IsPressed();
 
     public void EnableInputActions() {
         if (inputActions == null) {
@@ -88,8 +88,8 @@ public class InputReaderSO : ScriptableObject, IInputReader, IGameplayActions, I
         if (context.phase == InputActionPhase.Canceled) OpenCloseCompanions?.Invoke();
     }
 
-    public void OnPrevUILayer(InputAction.CallbackContext context) {
-        if (context.phase == InputActionPhase.Canceled) PrevUILayer?.Invoke();
+    public void OnExitUIPanel(InputAction.CallbackContext context) {
+        if (context.phase == InputActionPhase.Canceled) ExitUIPanel?.Invoke();
     }
 
     // --- IUIActions ---
