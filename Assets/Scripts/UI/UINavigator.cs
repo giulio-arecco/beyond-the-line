@@ -95,8 +95,12 @@ public class UINavigator : Singleton<UINavigator> {
             firstLayer.RemoveAt(index);
         }
     }
+
+    public void PushUILayer(CanvasGroup uiElement, UILayerPushOptions options = UILayerPushOptions.None) {
+        PushUILayer(new[] { uiElement }, options);
+    }
     
-    public void PushUILayer(CanvasGroup[] uiElements, UILayerPushOptions removePreviousLayer = UILayerPushOptions.None) {
+    public void PushUILayer(CanvasGroup[] uiElements, UILayerPushOptions options = UILayerPushOptions.None) {
         if (uiElements.IsNullOrEmpty()) {
             Debug.LogWarning("UINavigator: tried to push an empty layer");
             return;
@@ -107,7 +111,7 @@ public class UINavigator : Singleton<UINavigator> {
         // Hide and remove layers 
         HideAllLayers();
         if (_layers.Count > 1) {
-            switch (removePreviousLayer) {
+            switch (options) {
                 case UILayerPushOptions.None:
                     break;
                 case UILayerPushOptions.RemovePreviousLayer:
@@ -117,7 +121,7 @@ public class UINavigator : Singleton<UINavigator> {
                     _layers.RemoveRange(1, _layers.Count - 1);
                     break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(removePreviousLayer));
+                    throw new ArgumentOutOfRangeException(nameof(options));
             }
         }
 
@@ -129,7 +133,11 @@ public class UINavigator : Singleton<UINavigator> {
         _layers.Add(newLayer);
     }
 
-    public void PopUILayer(CanvasGroup uiElementInLayer = null) {
+    public void PopUILayer() {
+        PopUILayer(null);
+    }
+
+    public void PopUILayer(CanvasGroup uiElementInLayer) {
         if (_layers.Count == 1) return;
         
         EventSystem.current.SetSelectedGameObject(null);

@@ -271,6 +271,10 @@ PrefabInstance:
         ferito dalla guerra. Nessuno verr\xE0 a prenderti. Da questo momento, ogni
         scelta \xE8 tua."
       objectReference: {fileID: 0}
+    - target: {fileID: 2446513502631416485, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2807665093275985219, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_Alpha
       value: 0
@@ -282,6 +286,18 @@ PrefabInstance:
     - target: {fileID: 2807665093275985219, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_BlocksRaycasts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 6859100129945771533}
+    - target: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._MemberName
+      value: PopUILayer
       objectReference: {fileID: 0}
     - target: {fileID: 6398572588432805858, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_text
@@ -307,6 +323,34 @@ PrefabInstance:
       propertyPath: m_text
       value: Premi Esc per continuare
       objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 68204859}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Invoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UltEvents.UltEventHolder, Kybernetik.UltEvents
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -322,6 +366,17 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 2807665093275985219, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
   m_PrefabInstance: {fileID: 68204856}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &68204859 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+  m_PrefabInstance: {fileID: 68204856}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289ff940279d54e4e92f632d7d3823dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Kybernetik.UltEvents::UltEvents.UltEventHolder
 --- !u!1 &77691872
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,6 +1365,10 @@ PrefabInstance:
         mappa. Qui potrai scegliere di accamparti per consumare le tue risorse, curare
         le tue ferite e riposare.\n\nBuon divertimento!"
       objectReference: {fileID: 0}
+    - target: {fileID: 2446513502631416485, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2807665093275985219, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_Alpha
       value: 0
@@ -1321,6 +1380,18 @@ PrefabInstance:
     - target: {fileID: 2807665093275985219, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_BlocksRaycasts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 6859100129945771533}
+    - target: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._MemberName
+      value: PopUILayer
       objectReference: {fileID: 0}
     - target: {fileID: 6398572588432805858, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_text
@@ -1346,6 +1417,34 @@ PrefabInstance:
       propertyPath: m_text
       value: Premi Esc per continuare
       objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 587493429}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Invoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UltEvents.UltEventHolder, Kybernetik.UltEvents
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051848723855553277, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1361,6 +1460,17 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 2807665093275985219, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
   m_PrefabInstance: {fileID: 587493426}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &587493429 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5502934631446348905, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
+  m_PrefabInstance: {fileID: 587493426}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289ff940279d54e4e92f632d7d3823dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Kybernetik.UltEvents::UltEvents.UltEventHolder
 --- !u!1 &598227620
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,6 +2521,7 @@ GameObject:
   - component: {fileID: 1015702371}
   - component: {fileID: 1015702373}
   - component: {fileID: 1015702370}
+  - component: {fileID: 1015702374}
   m_Layer: 5
   m_Name: CampEventTriggerVisual
   m_TagString: Untagged
@@ -2457,7 +2568,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 0.72955966, g: 0.1525181, b: 0, a: 1}
     m_HighlightedColor: {r: 0.8805031, g: 0.18363436, b: 0, a: 1}
@@ -2507,7 +2618,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.9, g: 0.2, b: 0.15, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2547,6 +2658,28 @@ MonoBehaviour:
   m_EffectColor: {r: 0, g: 0, b: 0, a: 1}
   m_EffectDistance: {x: 5, y: -5}
   m_UseGraphicAlpha: 1
+--- !u!95 &1015702374
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015702368}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2a89f94dbba6c11439901d079fae967d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1048884065
 GameObject:
   m_ObjectHideFlags: 0
@@ -3294,13 +3427,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: NodeCanvas::NodeCanvas.StateMachines.FSMOwner
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UnityEngine.CanvasGroup[]|Enums.UILayerPushOptions"},"parameters":[{"_type":"UnityEngine.CanvasGroup[]","_value":{"$content":[1],"$type":"UnityEngine.CanvasGroup[]"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UnityEngine.CanvasGroup[]|Enums.UILayerPushOptions"},"parameters":[{"_type":"UnityEngine.CanvasGroup[]","_value":{"$content":[3],"$type":"UnityEngine.CanvasGroup[]"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"},{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":4},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.9494836,"a":1.0},"_name":"Intro","_position":{"x":180.0976,"y":-126.5566},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Farmstead","_position":{"x":634.9014,"y":42.92749},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":true,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":4},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":5},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":6},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Wood","_position":{"x":1015.546,"y":209.9619},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":7},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":8},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Village","_position":{"x":1306.118,"y":362.3765},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":9},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":10},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":11},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Military Road & The Mountain Pass","_position":{"x":1761.876,"y":507.6292},"$type":"NodeCanvas.StateMachines.ActionState","$id":"4"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":12},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":13},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":14},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Border","_position":{"x":1307.871,"y":725.6188},"$type":"NodeCanvas.StateMachines.ActionState","$id":"5"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":9},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":10},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Military Road","_position":{"x":903.3932,"y":513.1312},"$type":"NodeCanvas.StateMachines.ActionState","$id":"6"}],"connections":[{"_condition":{"conditions":[{"_invert":true,"overrideAgent":{"_type":"UnityEngine.CanvasGroup","_value":1},"$type":"NodeCanvas.CustomTasks.Conditions.CheckCanvasGroupVisibleAndInteractable"},{"_invert":true,"overrideAgent":{"_type":"UnityEngine.CanvasGroup","_value":3},"$type":"NodeCanvas.CustomTasks.Conditions.CheckCanvasGroupVisibleAndInteractable"}],"$type":"NodeCanvas.Framework.ConditionList"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"VariableName":{"_value":"COMPLETED_FARMSTEAD"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
+  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UnityEngine.CanvasGroup[]|Enums.UILayerPushOptions"},"parameters":[{"_type":"UnityEngine.CanvasGroup[]","_value":{"$content":[1],"$type":"UnityEngine.CanvasGroup[]"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UnityEngine.CanvasGroup[]|Enums.UILayerPushOptions"},"parameters":[{"_type":"UnityEngine.CanvasGroup[]","_value":{"$content":[3],"$type":"UnityEngine.CanvasGroup[]"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.9494836,"a":1.0},"_name":"Intro","_position":{"x":180.0976,"y":-126.5566},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Farmstead","_position":{"x":634.9014,"y":42.92749},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":4},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":5},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Wood","_position":{"x":1015.546,"y":209.9619},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":6},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":7},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Village","_position":{"x":1306.118,"y":362.3765},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":8},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":9},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":10},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Military Road & The Mountain Pass","_position":{"x":1761.876,"y":507.6292},"$type":"NodeCanvas.StateMachines.ActionState","$id":"4"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":11},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":12},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":13},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Border","_position":{"x":1307.871,"y":725.6188},"$type":"NodeCanvas.StateMachines.ActionState","$id":"5"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UnityEngine.UI.Button|set_interactable|System.Void","_paramsInfo":"System.Boolean"},"parameter":{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}},"overrideAgent":{"_type":"UnityEngine.UI.Button","_value":8},"$type":"NodeCanvas.Tasks.Actions.SetProperty_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":9},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Military Road","_position":{"x":869.3932,"y":508.1312},"$type":"NodeCanvas.StateMachines.ActionState","$id":"6"}],"connections":[{"_condition":{"conditions":[{"_invert":true,"overrideAgent":{"_type":"UnityEngine.CanvasGroup","_value":1},"$type":"NodeCanvas.CustomTasks.Conditions.CheckCanvasGroupVisibleAndInteractable"},{"_invert":true,"overrideAgent":{"_type":"UnityEngine.CanvasGroup","_value":3},"$type":"NodeCanvas.CustomTasks.Conditions.CheckCanvasGroupVisibleAndInteractable"}],"$type":"NodeCanvas.Framework.ConditionList"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"VariableName":{"_value":"COMPLETED_FARMSTEAD"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"VariableName":{"_value":"COMPLETED_WOOD"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"conditions":[{"VariableName":{"_value":"COMPLETED_VILLAGE"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},{"VariableName":{"_value":"KNOWN_MOUNTAINPASS"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
@@ -3315,7 +3448,6 @@ MonoBehaviour:
   - {fileID: 68204858}
   - {fileID: 507833309}
   - {fileID: 587493428}
-  - {fileID: 1015702370}
   - {fileID: 1982879228}
   - {fileID: 77691873}
   - {fileID: 886639935}
@@ -3330,7 +3462,7 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: FSM that handles story progression
-    _translation: {x: 3.2036188, y: 274.64377}
+    _translation: {x: 13.849361, y: 128.76791}
     _zoomFactor: 1
   _firstActivation: 0
   _enableAction: 0
@@ -3484,6 +3616,34 @@ PrefabInstance:
       propertyPath: storage.underlyingValue
       value: 
       objectReference: {fileID: 1244242424}
+    - target: {fileID: 5716235965252422914, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716235965252422914, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716235965252422914, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1530635208}
+    - target: {fileID: 5716235965252422914, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716235965252422914, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Invoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716235965252422914, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UltEvents.UltEventHolder, Kybernetik.UltEvents
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716235965252422914, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5750956224425613416, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
       propertyPath: m_Alpha
       value: 0
@@ -3495,6 +3655,18 @@ PrefabInstance:
     - target: {fileID: 5750956224425613416, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
       propertyPath: m_BlocksRaycasts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535475639660872689, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7535475639660872689, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 6859100129945771533}
+    - target: {fileID: 7535475639660872689, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._MemberName
+      value: PopUILayer
       objectReference: {fileID: 0}
     - target: {fileID: 8210802976601022944, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3530,6 +3702,17 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 5750956224425613416, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
   m_PrefabInstance: {fileID: 1530635206}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1530635208 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7535475639660872689, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+  m_PrefabInstance: {fileID: 1530635206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289ff940279d54e4e92f632d7d3823dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Kybernetik.UltEvents::UltEvents.UltEventHolder
 --- !u!1 &1533405638
 GameObject:
   m_ObjectHideFlags: 0
@@ -4469,6 +4652,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28bc4b985362a1d48918e820250c44bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1616528297 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3391979771887550268, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+  m_PrefabInstance: {fileID: 1934219917}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 289ff940279d54e4e92f632d7d3823dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Kybernetik.UltEvents::UltEvents.UltEventHolder
 --- !u!1 &1690662084
 GameObject:
   m_ObjectHideFlags: 0
@@ -4724,6 +4918,34 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -200
       objectReference: {fileID: 0}
+    - target: {fileID: 706054922106995975, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706054922106995975, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 706054922106995975, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1616528297}
+    - target: {fileID: 706054922106995975, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 706054922106995975, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Invoke
+      objectReference: {fileID: 0}
+    - target: {fileID: 706054922106995975, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: UltEvents.UltEventHolder, Kybernetik.UltEvents
+      objectReference: {fileID: 0}
+    - target: {fileID: 706054922106995975, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1214276820208401246, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -4931,6 +5153,18 @@ PrefabInstance:
     - target: {fileID: 3382982027568878742, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391979771887550268, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3391979771887550268, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 6859100129945771533}
+    - target: {fileID: 3391979771887550268, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: _Event._PersistentCalls.Array.data[0]._MemberName
+      value: PopUILayer
       objectReference: {fileID: 0}
     - target: {fileID: 3467904940371153007, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
       propertyPath: m_AnchorMax.y
@@ -5725,6 +5959,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47ceebe5f70f91b41acc8f6f65272800, type: 3}
+--- !u!114 &6859100129945771533 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7459550646271096505, guid: 47ceebe5f70f91b41acc8f6f65272800, type: 3}
+  m_PrefabInstance: {fileID: 6859100129945771532}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86053b5dcbc60a3449da32c49c78b3ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7510819476600751551
 PrefabInstance:
   m_ObjectHideFlags: 0
