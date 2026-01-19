@@ -1,5 +1,7 @@
-public interface IUpdateObserver {
-    public int UpdatePriority { get; set; }
+namespace Architecture.Interfaces {
+    public interface IUpdateObserver {
+        public int UpdatePriority { get; set; }
 
-    public void ObservedUpdate();
+        public void ObservedUpdate();
+    }
 }

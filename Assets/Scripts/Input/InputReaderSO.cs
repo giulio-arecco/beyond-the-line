@@ -29,9 +29,8 @@ public class InputReaderSO : ScriptableObject, IInputReader, IGameplayActions, I
             inputActions = new InputSystem_Actions();
             inputActions.Gameplay.SetCallbacks(this);
             inputActions.UI.SetCallbacks(this);
+            inputActions.Enable();
         }
-        
-        inputActions.Enable();
         
         // Make the InputSystemUIInputModule (in the EventSystem) reference the same input actions asset we're using here
         var eventSystem = EventSystem.current;

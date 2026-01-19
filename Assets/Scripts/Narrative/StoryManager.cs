@@ -51,7 +51,6 @@ namespace Narrative {
         private void OnEnable() {
             // Subscribe to input events and enable input actions
             input.ContinueStory += Input_ContinueStory;
-            input.EnableInputActions();
         }
 
         private void OnDisable() {

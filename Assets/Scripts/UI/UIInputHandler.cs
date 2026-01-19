@@ -12,7 +12,6 @@ public class UIInputHandler : MonoBehaviour {
         input.OpenCloseInventory += Input_OpenCloseInventory;
         input.OpenCloseCompanions += Input_OpenCloseCompanions;
         input.PrevUILayer += Input_PrevUILayer;
-        input.EnableInputActions();
     }   
 
     private void OnDisable() {
