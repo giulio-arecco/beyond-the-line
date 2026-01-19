@@ -25,7 +25,9 @@ namespace Narrative.Camp {
         }
 
         private void OnDestroy() {
-            StoryManager.Instance.UnsubscribeFromVariableChange("CAN_SET_CAMP", StoryVariablesRegistry_OnValueChanged);
+            if (StoryManager.TryGetInstance(out var storyManager)) {
+                storyManager.UnsubscribeFromVariableChange("CAN_SET_CAMP", StoryVariablesRegistry_OnValueChanged);
+            }
         }
 
         public void StartCamp() {

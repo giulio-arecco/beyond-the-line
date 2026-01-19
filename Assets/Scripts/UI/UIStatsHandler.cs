@@ -63,7 +63,7 @@ namespace UI {
             UpdateStatDisplayedValueAndColor(healthValueText, health, GlobalStatsManager.Instance.GlobalStats.Health.MaxValue);
 
         private void GlobalStats_OnFatigueChanged(int fatigue) =>
-            UpdateStatDisplayedValueAndColor(fatigueValueText, fatigue, GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue);
+            UpdateStatDisplayedValueAndColor(fatigueValueText, fatigue, GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue, true);
 
         // private void GlobalStats_OnHungerChanged(int hunger) =>
         //     UpdateStatDisplayedValueAndColor(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
