@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e66c6366d904e98bc83428217d4fd7, type: 3}
+  m_Name: Button_PushUILayer_Template
+  m_EditorClassIdentifier: Unity.VisualScripting.Flow::Unity.VisualScripting.ScriptGraphAsset
+  _data:
+    _json: '{"graph":{"variables":{"Kind":"Flow","collection":{"$content":[],"$version":"A"},"$version":"A"},"controlInputDefinitions":[],"controlOutputDefinitions":[],"valueInputDefinitions":[],"valueOutputDefinitions":[],"title":"On
+      Button Click: Call UINavigator.PushUILayer","summary":"Calls the PushUILayer
+      method from UINavigator when the button is pressed. The method receives a reference
+      to the ControlsButton UI panel.","pan":{"x":82.0,"y":44.0},"zoom":1.0,"elements":[{"coroutine":false,"defaultValues":{"target":null},"position":{"x":-168.0,"y":-175.0},"guid":"f3e9fe89-09c6-4d63-bb8e-43b29047316b","$version":"A","$type":"Unity.VisualScripting.OnButtonClick","$id":"9"},{"chainable":false,"parameterNames":["uiElements","removePreviousLayer"],"member":{"name":"PushUILayer","parameterTypes":["UnityEngine.GameObject[]","Enums.UILayerPushOptions"],"targetType":"UINavigator","targetTypeName":"UINavigator","$version":"A"},"defaultValues":{"target":{"$content":0,"$type":"UnityEngine.Object"},"%removePreviousLayer":{"$content":"None","$type":"Enums.UILayerPushOptions"}},"position":{"x":185.0,"y":-19.0},"guid":"63a43f8f-9773-4d97-a8be-e16dd7c2ea72","$version":"A","$type":"Unity.VisualScripting.InvokeMember","$id":"11"},{"specifyFallback":false,"kind":"Object","defaultValues":{"name":{"$content":"UIElements","$type":"System.String"},"object":null},"position":{"x":-168.0,"y":65.0},"guid":"05dc38e7-cd2f-4591-91fd-44474fbf04da","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"15"},{"specifyFallback":false,"kind":"Object","defaultValues":{"name":{"$content":"UILayerPushOptions","$type":"System.String"},"object":null},"position":{"x":-169.0,"y":195.0},"guid":"2bba1cf1-6698-442d-adbd-9fb1f9725d91","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"17"},{"specifyFallback":false,"kind":"Object","defaultValues":{"name":{"$content":"UINavigator","$type":"System.String"},"object":null},"position":{"x":-170.0,"y":-69.0},"guid":"3c62954d-6009-470b-af93-2fc92bab7685","$version":"A","$type":"Unity.VisualScripting.GetVariable","$id":"19"},{"sourceUnit":{"$ref":"9"},"sourceKey":"trigger","destinationUnit":{"$ref":"11"},"destinationKey":"enter","guid":"0f603102-a8d0-48ed-aa8a-f2a01099a891","$type":"Unity.VisualScripting.ControlConnection"},{"sourceUnit":{"$ref":"15"},"sourceKey":"value","destinationUnit":{"$ref":"11"},"destinationKey":"%uiElements","guid":"ba4c7cde-8aac-4304-833c-d34af0839782","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"17"},"sourceKey":"value","destinationUnit":{"$ref":"11"},"destinationKey":"%removePreviousLayer","guid":"43a8c84b-ab03-48e0-9d8c-60b04d81caf8","$type":"Unity.VisualScripting.ValueConnection"},{"sourceUnit":{"$ref":"19"},"sourceKey":"value","destinationUnit":{"$ref":"11"},"destinationKey":"target","guid":"ebe89d66-bf29-4eb1-b972-c8e60fa89a97","$type":"Unity.VisualScripting.ValueConnection"}],"$version":"A"}}'
+    _objectReferences:
+    - {fileID: 0}

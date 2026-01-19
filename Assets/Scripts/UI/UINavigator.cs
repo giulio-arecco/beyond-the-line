@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Enums;
+using UnityEngine.EventSystems;
 
 public class UINavigator : Singleton<UINavigator> {
     [SerializeField] private GameObject[] defaultLayer;
@@ -85,6 +86,8 @@ public class UINavigator : Singleton<UINavigator> {
             return;
         }
         
+        EventSystem.current.SetSelectedGameObject(null);
+        
         // Hide and remove layers 
         HideAllLayers(uiElements);
         if (_uiLayers.Count > 1) {
@@ -121,6 +124,8 @@ public class UINavigator : Singleton<UINavigator> {
 
     public void PopUILayer(GameObject elementInLayer = null) {
         if (_uiLayers.Count == 1) return;
+        
+        EventSystem.current.SetSelectedGameObject(null);
         
         var layerToHide = _uiLayers.Last();
         

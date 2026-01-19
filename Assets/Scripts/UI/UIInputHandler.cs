@@ -3,21 +3,26 @@ using Enums;
 
 public class UIInputHandler : MonoBehaviour {
     [SerializeField] private InputReaderSO input;
+
+    [Header("Settings")] 
+    [SerializeField] private bool bindOpenCloseInventoryAction = true;
+    [SerializeField] private bool bindOpenCloseCompanionsAction = true;
+    [SerializeField] private bool bindPrevUILayerAction = true;
     
     [Header("Canvas Elements")]
     [SerializeField] private GameObject inventoryPanel;
     [SerializeField] private GameObject companionsPanel;
 
     private void OnEnable() {
-        input.OpenCloseInventory += Input_OpenCloseInventory;
-        input.OpenCloseCompanions += Input_OpenCloseCompanions;
-        input.PrevUILayer += Input_PrevUILayer;
+        if (bindOpenCloseInventoryAction) input.OpenCloseInventory += Input_OpenCloseInventory;
+        if (bindOpenCloseCompanionsAction) input.OpenCloseCompanions += Input_OpenCloseCompanions;
+        if (bindPrevUILayerAction) input.PrevUILayer += Input_PrevUILayer;
     }   
 
     private void OnDisable() {
-        input.OpenCloseInventory -= Input_OpenCloseInventory;
-        input.OpenCloseCompanions -= Input_OpenCloseCompanions;
-        input.PrevUILayer -= Input_PrevUILayer;
+        if (bindOpenCloseInventoryAction) input.OpenCloseInventory -= Input_OpenCloseInventory;
+        if (bindOpenCloseCompanionsAction) input.OpenCloseCompanions -= Input_OpenCloseCompanions;
+        if (bindPrevUILayerAction) input.PrevUILayer -= Input_PrevUILayer;
     }
 
     private void Input_OpenCloseInventory() {
