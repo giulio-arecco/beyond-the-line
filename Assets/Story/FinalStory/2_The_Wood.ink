@@ -531,4 +531,5 @@ Odore di legno bruciato e fuliggine.
 }
 
 ~ COMPLETED_WOOD = true
+~ CAN_SET_CAMP = true
 -> END

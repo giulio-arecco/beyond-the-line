@@ -223,8 +223,10 @@ Ti brontola lo stomaco. Faresti meglio a mangiare qualcosa prima di addormentart
 Con lo stomaco pieno, il corpo finalmente si rilassa. La stanchezza prende il sopravvento sulla paura. <nl>
 Chiudi gli occhi e sprofondi in un sonno senza sogni. Per qualche ora, la guerra non esiste.
 ~ DecreaseGlobalStat("Fatigue", 40)
+~ CAN_SET_CAMP = false
 -> END
 
 = sleep_badly
 Lo stomaco vuoto è un nodo doloroso. Cerchi di rannicchiarti per conservare calore, ma la fame ti tiene in uno stato di dormiveglia agitato. Ogni rumore ti fa scattare, impedendoti di scivolare nel sonno profondo di cui avresti bisogno. Il riposo è scarso e frammentato.
+~ CAN_SET_CAMP = false
 -> END

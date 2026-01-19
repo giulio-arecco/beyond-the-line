@@ -875,4 +875,5 @@ Un ultimo respiro gelido. Hai tutte le informazioni che potevi raccogliere.
 Ora conta solo il prossimo passo.
 
 ~ COMPLETED_VILLAGE = true
+~ CAN_SET_CAMP = true
 -> END

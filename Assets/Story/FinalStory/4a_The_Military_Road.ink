@@ -676,6 +676,7 @@ La strada è alle spalle e i soldati hanno persone le vostre tracce.
 Il confine è vicino.
 
 ~ COMPLETED_ROAD = true
+~ CAN_SET_CAMP = true
 -> END
 
 === diary_reading ===
@@ -708,4 +709,5 @@ La guerra scava via l'uomo e lascia il guscio. Guardando quel taccuino, senti ch
 
 ~ READ_NOTEBOOK = true
 ~ COMPLETED_ROAD = true
+~ CAN_SET_CAMP = true
 -> END

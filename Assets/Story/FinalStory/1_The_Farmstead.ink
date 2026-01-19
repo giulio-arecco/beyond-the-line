@@ -289,6 +289,7 @@ Il bosco è freddo, umido, indifferente alla guerra.
     Sei di nuovo solo con i tuoi fantasmi. Il silenzio è rotto solo dal tuo respiro affannoso.
     
     ~ COMPLETED_FARMSTEAD = true
+    ~ CAN_SET_CAMP = true
     -> END
 }
 
@@ -326,4 +327,5 @@ Siete due estranei, nemici per giuramento, uniti solo dalla volontà di non mori
 Vi incamminate nel buio, l'uno l'ombra dell'altro.
 
 ~ COMPLETED_FARMSTEAD = true
+~ CAN_SET_CAMP = true
 -> END

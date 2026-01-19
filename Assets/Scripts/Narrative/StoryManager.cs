@@ -213,32 +213,35 @@ namespace Narrative {
             return _storyVariablesRegistry.CompareVariableTo(variableName, value, comparisonType);
         }
 
-        public void SubscribeToVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged, object currentValue) {
-            var type = currentValue.GetType();
-            var inkValue = _storyVariablesRegistry.Variables[variableName].VariableValue;
-        
-            // Run some sanity checks before subscribing to the variable change action
-            // Extract the primitive value based on the real type of the Ink.Runtime.Object
-            object unboxedInkValue = inkValue switch {
-                IntValue intVal => intVal.value,
-                FloatValue floatVal => floatVal.value,
-                StringValue strVal => strVal.value,
-                BoolValue boolVal => boolVal.value,
-                _ => throw new InvalidOperationException($"Unhandled Ink type: {inkValue.GetType().Name}")
-            };
+        public void SubscribeToVariableChange(string variableName, Action<Ink.Runtime.Object> onValueChanged, object currentValue = null) {
+            if (currentValue != null) {
+                var inkValue = _storyVariablesRegistry.Variables[variableName].VariableValue;
+                
+                // Run some sanity checks before subscribing to the variable change action
+                // Extract the primitive value based on the real type of the Ink.Runtime.Object
+                object unboxedInkValue = inkValue switch {
+                    IntValue intVal => intVal.value,
+                    FloatValue floatVal => floatVal.value,
+                    StringValue strVal => strVal.value,
+                    BoolValue boolVal => boolVal.value,
+                    _ => throw new InvalidOperationException($"Unhandled Ink type: {inkValue.GetType().Name}")
+                };
 
-            // Check whether the passed in value and the unboxed ink value match
-            if (unboxedInkValue != null && unboxedInkValue.GetType() == type) {
-                if (!unboxedInkValue.Equals(currentValue)) {
-                    Debug.LogError($"The {variableName}'s global ink variable value ({unboxedInkValue}) is not equal to the provided variable" +
-                                   $" value ({currentValue})");
+                // Check whether the passed in value and the unboxed ink value match
+                if (unboxedInkValue != null && unboxedInkValue.GetType() == currentValue.GetType()) {
+                    if (!unboxedInkValue.Equals(currentValue)) {
+                        Debug.LogError(
+                            $"The {variableName}'s global ink variable value ({unboxedInkValue}) is not equal to the provided variable" +
+                            $" value ({currentValue})");
+                    }
+                }
+                else {
+                    Debug.LogError(
+                        $"The {variableName}'s global ink variable type ({unboxedInkValue?.GetType()}) is not equal to the provided variable" +
+                        $" value ({currentValue.GetType()})");
                 }
             }
-            else {
-                Debug.LogError($"The {variableName}'s global ink variable type ({unboxedInkValue?.GetType()}) is not equal to the provided variable" +
-                               $" value ({type})");
-            }
-        
+
             _storyVariablesRegistry.Variables[variableName].OnValueChanged += onValueChanged;
         }
 

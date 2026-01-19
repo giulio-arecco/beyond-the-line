@@ -711,4 +711,5 @@ Quando {HasCompanion("Elias") or HasCompanion("Lira"):decidete|decidi} di ripart
 Il fronte è a pochi chilometri.
 
 ~ COMPLETED_MOUNTAINPASS = true
+~ CAN_SET_CAMP = true
 -> END
