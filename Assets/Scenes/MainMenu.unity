@@ -478,6 +478,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7459550646271096505, guid: 47ceebe5f70f91b41acc8f6f65272800, type: 3}
+      propertyPath: protectedLayer.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7459550646271096505, guid: 47ceebe5f70f91b41acc8f6f65272800, type: 3}
       propertyPath: 'defaultLayer.Array.data[0]'
       value: 
       objectReference: {fileID: 1893349146}
@@ -485,6 +489,10 @@ PrefabInstance:
       propertyPath: 'defaultLayer.Array.data[1]'
       value: 
       objectReference: {fileID: 1893349146}
+    - target: {fileID: 7459550646271096505, guid: 47ceebe5f70f91b41acc8f6f65272800, type: 3}
+      propertyPath: 'protectedLayer.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1893349149}
     - target: {fileID: 9090395985455453066, guid: 47ceebe5f70f91b41acc8f6f65272800, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1058.9349
@@ -1442,13 +1450,13 @@ MonoBehaviour:
       _PersistentArguments:
       - _Type: 13
         _Int: 0
-        _String: UnityEngine.CanvasGroup, UnityEngine.UIModule, Version=0.0.0.0,
-          Culture=neutral, PublicKeyToken=null
+        _String: UI.UIPanelController, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
         _X: 0
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: 4481709166909479745}
+        _Object: {fileID: 4481709166909479746}
       - _Type: 4
         _Int: 2
         _String: Enums.UILayerPushOptions, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
@@ -2053,6 +2061,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1893349147}
   - component: {fileID: 1893349148}
+  - component: {fileID: 1893349149}
   m_Layer: 5
   m_Name: BaseLayer
   m_TagString: Untagged
@@ -2095,6 +2104,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &1893349149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1893349146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578dad66351148441bd31ee9939aaeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.UIPanelController
 --- !u!1 &2131892010
 GameObject:
   m_ObjectHideFlags: 0
@@ -2635,11 +2656,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
---- !u!225 &4481709166909479745 stripped
-CanvasGroup:
-  m_CorrespondingSourceObject: {fileID: 4371582834107009446, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+--- !u!114 &4481709166909479746 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6963917294428167612, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
   m_PrefabInstance: {fileID: 4481709166909479744}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578dad66351148441bd31ee9939aaeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.UIPanelController
 --- !u!1001 &5795925361055270414
 PrefabInstance:
   m_ObjectHideFlags: 0

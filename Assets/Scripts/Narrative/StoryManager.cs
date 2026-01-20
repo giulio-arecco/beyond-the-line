@@ -6,9 +6,9 @@ using Inventory.Interfaces;
 using Storage.StorableInfoDatabase;
 using Storage.Storables;
 using TMPro;
+using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Serialization;
 using Utils.SerializeInterface;
 
 namespace Narrative {
@@ -17,7 +17,7 @@ namespace Narrative {
         [SerializeField] private InputReaderSO input;
 
         [Header("Story UI")] 
-        [SerializeField] private CanvasGroup storyPanel;
+        [SerializeField] private UIPanelController storyPanel;
         [SerializeField] private TextMeshProUGUI storyText;
     
         [Header("Choice UI")]

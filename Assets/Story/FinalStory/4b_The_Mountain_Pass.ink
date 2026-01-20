@@ -5,7 +5,7 @@ INCLUDE Globals.ink
 // ============================================================
 
 VAR elias_fell = false
-VAR hermit_hostile = false
+VAR hermit_threatened = false
 VAR bridge_cable_fixed = false
 VAR bridge_analyzed = false
 LIST crossing_method = crawl, cable, run
@@ -609,7 +609,7 @@ Non {HasCompanion("Elias") or HasCompanion("Lira"):vi ha ancora visti|ti ha anco
 Devi decidere come procedere. Hai imparato che in questa guerra non tutti quelli che incontri vogliono ucciderti, ma l'errore si paga caro.
 
 * {HasItem("Pistol")} [Avanzi armi in pugno. Minacci l'uomo per prendere il rifugio.]
-    ~ hermit_hostile = true
+    ~ hermit_threatened = true
     Scatti in avanti, puntando l'arma. "Mani dove posso vederle!" urli.
     { HasCompanion("Lira"): Lira ti copre immediatamente, puntando alla testa dell'uomo. }
     
@@ -619,10 +619,7 @@ Devi decidere come procedere. Hai imparato che in questa guerra non tutti quelli
     {HasCompanion("Elias") or HasCompanion("Lira"):Vi|Ti} fa entrare. Si siede in un angolo, {HasCompanion("Elias") or HasCompanion("Lira"):guardandovi mentre vi sedete.|guardandoti mentre ti siedi.} 
     Non offre nulla spontaneamente. L'atmosfera è gelida quanto l'esterno.
     Inizi a riscaldarti davanti al fuoco, ma non riesci a riposare davvero con i suoi occhi addosso.
-    
-    ~ DecreaseGlobalStat("Fatigue", 10)
-    ~ AddItemToInventory("Ration")
-    -> leave_hermit
+    -> hermit_dialogue
 
 * [Ti avvicini a mani alzate. Chiedi ospitalità.]
     Fai cenno di abbassare le armi. Ti alzi in piedi, visibile, mostrando le mani vuote.
@@ -646,8 +643,8 @@ Devi decidere come procedere. Hai imparato che in questa guerra non tutti quelli
     -> hermit_dialogue
 
 === hermit_dialogue ===
-La zuppa è calda e per un momento il silenzio nella capanna è rotto solo dal crepitio del fuoco.
-L'eremita {HasCompanion("Elias") or HasCompanion("Lira"):vi|ti} osserva con occhi stanchi. Pulisce il percussore del suo fucile con movimenti lenti, meccanici, come se stesse riparando un orologio.
+Per un momento il silenzio nella capanna è rotto solo dal crepitio del fuoco.
+L'eremita {HasCompanion("Elias") or HasCompanion("Lira"):vi|ti} osserva con occhi stanchi. {not hermit_threatened: Pulisce il percussore del suo fucile con movimenti lenti, meccanici, come se stesse riparando un orologio.}
 
 "State scendendo" dice. La sua voce è piatta, raschiata dal fumo. Parla la tua lingua, ma la "r" è dura, gutturale: l'accento del nemico.
 
@@ -674,7 +671,7 @@ L'eremita {HasCompanion("Elias") or HasCompanion("Lira"):vi|ti} osserva con occh
 * ["Stiamo solo cercando di tornare a casa."]
     "Casa" mormora. "La guerra scava via l'uomo e lascia il guscio. Anche se tornerai a quella casa, l'uomo che l'ha lasciata sarà morto".
 
-- Posa il fucile assemblato. Il suono metallico risuona nella stanza.
+- {not hermit_threatened: Posa il fucile assemblato. Il suono metallico risuona nella stanza. | Scuote il capo e si inarca verso il fuoco, silenzioso.}
 
 { HasItem("Notebook") and not HasCompanion("Elias"):
     Un pensiero ti attraversa la mente. Frugando nello zaino, le tue dita sfiorano la copertina di cuoio logoro del taccuino di Elias.

@@ -161,8 +161,9 @@ GameObject:
   - component: {fileID: 1545384700620853712}
   - component: {fileID: 4921213204346159669}
   - component: {fileID: 5750956224425613416}
+  - component: {fileID: 413489940163916039}
   m_Layer: 5
-  m_Name: CompanionsCanvasGroup
+  m_Name: CompanionsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -212,6 +213,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &413489940163916039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840453840276740715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578dad66351148441bd31ee9939aaeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.UILayerController
 --- !u!1 &1889073892844529157
 GameObject:
   m_ObjectHideFlags: 0

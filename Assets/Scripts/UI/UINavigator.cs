@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Enums;
+using UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using Utils.Extensions;
 
 public class UINavigator : Singleton<UINavigator> {
-    [FormerlySerializedAs("baseLayer")] [SerializeField] private CanvasGroup[] protectedLayer;
+    [FormerlySerializedAs("baseLayer")] [SerializeField] private UIPanelController[] protectedLayer;
 
-    private List<List<CanvasGroup>> _layers;
+    private List<List<UIPanelController>> _layers;
 
     protected override void Awake() {
         base.Awake();
-        _layers = new List<List<CanvasGroup>>();
+        _layers = new List<List<UIPanelController>>();
     }
 
     private void Start() {
-        _layers.Add(new List<CanvasGroup>()); // protected layer, not to be popped
+        _layers.Add(new List<UIPanelController>()); // protected layer, not to be popped
         foreach (var uiElement in protectedLayer) {
             _layers.Last().Add(uiElement);
         }
@@ -34,7 +35,7 @@ public class UINavigator : Singleton<UINavigator> {
         for (var i = 0; i < _layers.Count; i++) HideLayer(i);
     }
 
-    public void AddUIElementOnTopLayer(CanvasGroup uiElementToAdd, bool removeElementsOnSameLayer = false) {
+    public void AddUIElementOnTopLayer(UIPanelController uiElementToAdd, bool removeElementsOnSameLayer = false) {
         if (_layers.Count == 0) return;
         
         var topLayer = _layers.Last();
@@ -64,7 +65,7 @@ public class UINavigator : Singleton<UINavigator> {
         uiElementToAdd.SetVisibleAndInteractable(true);
     }
     
-    public void RemoveUIElementFromTopLayer(CanvasGroup uiElement) {
+    public void RemoveUIElementFromTopLayer(UIPanelController uiElement) {
         if (_layers.Count == 0) return;
 
         var index = _layers.Last().IndexOf(uiElement);
@@ -74,7 +75,7 @@ public class UINavigator : Singleton<UINavigator> {
         }
     }
     
-    public void AddUIElementOnProtectedLayer(CanvasGroup uiElementToAdd) {
+    public void AddUIElementOnProtectedLayer(UIPanelController uiElementToAdd) {
         if (_layers.Count == 0) return;
         
         var firstLayer = _layers[0];
@@ -85,7 +86,7 @@ public class UINavigator : Singleton<UINavigator> {
         uiElementToAdd.SetVisibleAndInteractable(true);
     }
     
-    public void RemoveUIElementFromProtectedLayer(CanvasGroup uiElement) {
+    public void RemoveUIElementFromProtectedLayer(UIPanelController uiElement) {
         if (_layers.Count == 0) return;
         
         var firstLayer = _layers[0];
@@ -96,11 +97,11 @@ public class UINavigator : Singleton<UINavigator> {
         }
     }
 
-    public void PushUILayer(CanvasGroup uiElement, UILayerPushOptions options = UILayerPushOptions.None) {
+    public void PushUILayer(UIPanelController uiElement, UILayerPushOptions options = UILayerPushOptions.None) {
         PushUILayer(new[] { uiElement }, options);
     }
     
-    public void PushUILayer(CanvasGroup[] uiElements, UILayerPushOptions options = UILayerPushOptions.None) {
+    public void PushUILayer(UIPanelController[] uiElements, UILayerPushOptions options = UILayerPushOptions.None) {
         if (uiElements.IsNullOrEmpty()) {
             Debug.LogWarning("UINavigator: tried to push an empty layer");
             return;
@@ -125,7 +126,7 @@ public class UINavigator : Singleton<UINavigator> {
             }
         }
 
-        var newLayer = new List<CanvasGroup>();
+        var newLayer = new List<UIPanelController>();
         foreach (var uiElement in uiElements) {
             uiElement.SetVisibleAndInteractable(true);
             newLayer.Add(uiElement);
@@ -137,7 +138,7 @@ public class UINavigator : Singleton<UINavigator> {
         PopUILayer(null);
     }
 
-    public void PopUILayer(CanvasGroup uiElementInLayer) {
+    public void PopUILayer(UIPanelController uiElementInLayer) {
         if (_layers.Count == 1) return;
         
         EventSystem.current.SetSelectedGameObject(null);

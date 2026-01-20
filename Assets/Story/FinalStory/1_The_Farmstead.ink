@@ -239,7 +239,7 @@ Con l'altra mano indica una scolina coperta dai rovi, dietro il fienile. È un s
     ~ IncreaseGlobalStat("Fatigue", 5)
     -> end_section_one
 
-* [Sembra troppo stretto: se vi scoprono sarete bersagli facili. Corri verso il bosco aperto.]
+* [Sembra troppo stretto. Corri verso il bosco aperto.]
     Il dubbio è troppo forte. E se ti stesse guidando in una trappola?
     Scuoti la testa e scatti verso gli alberi, ignorando il suo consiglio. Elias è costretto a seguirti zoppicando, imprecando sottovoce.
     Il movimento attira l'attenzione di una guardia.

@@ -1,5 +1,6 @@
 using UnityEngine;
 using Enums;
+using UI;
 using Utils.Extensions;
 
 public class UIInputHandler : MonoBehaviour {
@@ -8,22 +9,22 @@ public class UIInputHandler : MonoBehaviour {
     [Header("Settings")] 
     [SerializeField] private bool bindOpenCloseInventoryAction = true;
     [SerializeField] private bool bindOpenCloseCompanionsAction = true;
-    [SerializeField] private bool bindPrevUILayerAction = true;
+    [SerializeField] private bool bindExitUIPanelAction = true;
     
     [Header("Canvas Elements")]
-    [SerializeField] private CanvasGroup inventoryPanel;
-    [SerializeField] private CanvasGroup companionsPanel;
+    [SerializeField] private UIPanelController inventoryPanel;
+    [SerializeField] private UIPanelController companionsPanel;
 
     private void OnEnable() {
         if (bindOpenCloseInventoryAction) input.OpenCloseInventory += Input_OpenCloseInventory;
         if (bindOpenCloseCompanionsAction) input.OpenCloseCompanions += Input_OpenCloseCompanions;
-        if (bindPrevUILayerAction) input.ExitUIPanel += Input_ExitUIPanel;
+        if (bindExitUIPanelAction) input.ExitUIPanel += Input_ExitUIPanel;
     }   
 
     private void OnDisable() {
         if (bindOpenCloseInventoryAction) input.OpenCloseInventory -= Input_OpenCloseInventory;
         if (bindOpenCloseCompanionsAction) input.OpenCloseCompanions -= Input_OpenCloseCompanions;
-        if (bindPrevUILayerAction) input.ExitUIPanel -= Input_ExitUIPanel;
+        if (bindExitUIPanelAction) input.ExitUIPanel -= Input_ExitUIPanel;
     }
 
     private void Input_OpenCloseInventory() {

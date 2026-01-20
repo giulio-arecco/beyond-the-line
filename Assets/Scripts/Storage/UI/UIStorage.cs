@@ -3,13 +3,14 @@ using Inventory.Interfaces;
 using Storage.Interfaces;
 using Storage.Storables;
 using Storage.UI;
+using UI.Interfaces;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using Utils.SerializeInterface;
 
 namespace Inventory.UI {
-    public class UIStorage : MonoBehaviour {
+    public class UIStorage : MonoBehaviour, IUIView {
         [SerializeField] private InterfaceReference<IStorage> storage;
         [SerializeField] private InterfaceReference<IStorableTextWriter> storageTextWriter;
         [SerializeField] private UIStorageSlot[] storageSlots;
@@ -17,19 +18,19 @@ namespace Inventory.UI {
     
         private int _nextAvailableSlot;
 
-        private void OnEnable() {
-            RefreshUI();
-            storage.Value.OnAdd += Storage_OnAdd;
-            storage.Value.OnRemove += Storage_OnRemove;
-        }
+        // private void OnEnable() {
+        //     RefreshUI();
+        //     storage.Value.OnAdd += Storage_OnAdd;
+        //     storage.Value.OnRemove += Storage_OnRemove;
+        // }
     
-        private void OnDisable() {
-            ClearUI();
-            storage.Value.OnAdd -= Storage_OnAdd;
-            storage.Value.OnRemove -= Storage_OnRemove;
-        }
+        // private void OnDisable() {
+        //     ClearUI();
+        //     storage.Value.OnAdd -= Storage_OnAdd;
+        //     storage.Value.OnRemove -= Storage_OnRemove;
+        // }
 
-        private void RefreshUI() {
+        public void OnViewShow() {
             if (_nextAvailableSlot > 0) {
                 Debug.LogError("Next available slot should be 0 when refreshing UI");
             }
@@ -42,7 +43,7 @@ namespace Inventory.UI {
             }
         }
 
-        private void ClearUI() {
+        public void OnViewHide() {
             if (EventSystem.current)
                 EventSystem.current.SetSelectedGameObject(null);
             else
@@ -107,30 +108,30 @@ namespace Inventory.UI {
             }
         }
 
-        private void Storage_OnAdd(Storable element) {
-            NewStorageElement(element);
-        }
-    
-        private void Storage_OnRemove(Storable element) {
-            var hasRemoved = false;
-            foreach (var slot in storageSlots) {
-                if (slot.ChildElement && slot.ChildElement.Storable.Info.id == element.Info.id) {
-                    hasRemoved = true;
-                    Destroy(slot.ChildElement.gameObject);
-                    slot.ChildElement = null;
-                    
-                    if (EventSystem.current.currentSelectedGameObject == slot.ChildButton.gameObject) 
-                        EventSystem.current.SetSelectedGameObject(null);
-                    
-                    storageTextWriter.Value?.ClearAllText();
-                    slot.ChildButton.onClick.RemoveAllListeners();
-                    slot.ChildButton.enabled = false;
-                }
-            }
-
-            if (hasRemoved) {
-                ShiftStorageElements();
-            }
-        }
+        // private void Storage_OnAdd(Storable element) {
+        //     NewStorageElement(element);
+        // }
+        
+        // private void Storage_OnRemove(Storable element) {
+        //     var hasRemoved = false;
+        //     foreach (var slot in storageSlots) {
+        //         if (slot.ChildElement && slot.ChildElement.Storable.Info.id == element.Info.id) {
+        //             hasRemoved = true;
+        //             Destroy(slot.ChildElement.gameObject);
+        //             slot.ChildElement = null;
+        //             
+        //             if (EventSystem.current.currentSelectedGameObject == slot.ChildButton.gameObject) 
+        //                 EventSystem.current.SetSelectedGameObject(null);
+        //             
+        //             storageTextWriter.Value?.ClearAllText();
+        //             slot.ChildButton.onClick.RemoveAllListeners();
+        //             slot.ChildButton.enabled = false;
+        //         }
+        //     }
+        //
+        //     if (hasRemoved) {
+        //         ShiftStorageElements();
+        //     }
+        // }
     }
 }
