@@ -1,10 +1,8 @@
-using System;
 using Storage.Storables;
-using Storage.UI;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Inventory.UI {
+namespace Storage.UI {
     public class UIStorageElement : MonoBehaviour {
         public Storable Storable { get; private set; }
         
@@ -22,6 +20,7 @@ namespace Inventory.UI {
             var sprite = Storable.Info.sprite;
             
             transform.SetParent(slot.transform);
+            transform.localPosition = slot.ElementSpriteAnchorDeltaPixels;
             transform.SetSiblingIndex(slot.ChildButton.transform.GetSiblingIndex());
         
             _image.sprite = sprite;

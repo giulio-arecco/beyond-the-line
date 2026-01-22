@@ -19,7 +19,7 @@ namespace Narrative.Camp {
         private void Start() {
             var canSetCampObj = StoryManager.Instance.GetRegistryVariable("CAN_SET_CAMP");
             var canSetCamp = ConvertTo<BoolValue>(canSetCampObj).value;
-            campButton.interactable = canSetCamp;
+            campButton.gameObject.SetActive(canSetCamp);
             
             StoryManager.Instance.SubscribeToVariableChange("CAN_SET_CAMP", StoryVariablesRegistry_OnValueChanged);
         }
@@ -39,7 +39,7 @@ namespace Narrative.Camp {
 
         private void StoryVariablesRegistry_OnValueChanged(Ink.Runtime.Object value) {
             var canSetCamp = ConvertTo<BoolValue>(value).value;
-            campButton.interactable = canSetCamp;
+            campButton.gameObject.SetActive(canSetCamp);
         }
     }
 }

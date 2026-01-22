@@ -60,9 +60,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   storage:
     underlyingValue: {fileID: 0}
-  storageText: {fileID: 0}
+  storageTextWriter:
+    underlyingValue: {fileID: 0}
   storageSlots:
   - {fileID: 2026042423319696047}
+  storageElementPrefab: {fileID: 0}
 --- !u!1 &3654260797300240489
 GameObject:
   m_ObjectHideFlags: 0
