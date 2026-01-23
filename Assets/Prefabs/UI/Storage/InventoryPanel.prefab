@@ -4247,6 +4247,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 240
       objectReference: {fileID: 0}
+    - target: {fileID: 3887440661607050453, guid: 6d856dfa170728d43b2a6f0ee1f0844a, type: 3}
+      propertyPath: _blackboard
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4335298135274779373, guid: 6d856dfa170728d43b2a6f0ee1f0844a, type: 3}
       propertyPath: m_SizeDelta.x
       value: 240
@@ -4363,7 +4367,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventorySlot
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3276936655555703830, guid: 6d856dfa170728d43b2a6f0ee1f0844a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

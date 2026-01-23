@@ -134,9 +134,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a463d538306e9b24d9540142b4d28a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementSpriteLocalScale: {x: 0.78333336, y: 0.8}
-  elementSpriteAnchorDeltaPixels: {x: 0, y: 3}
   <ChildButton>k__BackingField: {fileID: 5329456316738485955}
+  <ElementSpriteLocalScale>k__BackingField: {x: 0.9, y: 0.9}
+  <ElementSpriteAnchorDeltaPixels>k__BackingField: {x: 0, y: 3}
 --- !u!1 &8928923002546031283
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,6 +149,8 @@ GameObject:
   - component: {fileID: 379272270105098135}
   - component: {fileID: 2944509724427308101}
   - component: {fileID: 5329456316738485955}
+  - component: {fileID: 7696121365771086753}
+  - component: {fileID: 1502431909551578501}
   m_Layer: 5
   m_Name: SlotButton
   m_TagString: Untagged
@@ -232,12 +234,12 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 2
+  m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.5019608}
     m_PressedColor: {r: 1, g: 1, b: 1, a: 0}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 0}
+    m_SelectedColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0}
     m_DisabledColor: {r: 1, g: 1, b: 1, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -253,7 +255,61 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 4059036583820324136}
+  m_TargetGraphic: {fileID: 2944509724427308101}
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7696121365771086753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928923002546031283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7dbb6bbdf4ffb46ab7dd87ba8191e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: NodeCanvas::NodeCanvas.StateMachines.FSMOwner
+  _serializedExposedParameters: []
+  _boundGraphSerialization: 
+  _boundGraphObjectReferences: []
+  _boundGraphSource:
+    _version: 0
+    _category: 
+    _comments: 
+    _translation: {x: 0, y: 0}
+    _zoomFactor: 1
+  _firstActivation: 0
+  _enableAction: 0
+  _disableAction: 0
+  _lockBoundGraphPrefabOverrides: 1
+  _preInitializeSubGraphs: 0
+  _updateMode: 3
+  _graph: {fileID: 11400000, guid: 3abc85d0f27a1464684a4620ad9031f6, type: 2}
+  _blackboard: {fileID: 0}
+--- !u!114 &1502431909551578501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8928923002546031283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonNavigationEvents
+  fsmAssetGuid: 3abc85d0f27a1464684a4620ad9031f6
+  onHighlightTrue:
+    _PersistentCalls: []
+  onHighlightFalse:
+    _PersistentCalls: []
+  onPress:
+    _PersistentCalls: []
+  onRelease:
+    _PersistentCalls: []
+  onSelect:
+    _PersistentCalls: []
+  onDeselect:
+    _PersistentCalls: []
