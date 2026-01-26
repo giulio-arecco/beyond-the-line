@@ -55,12 +55,12 @@ namespace Inventory.UI {
 
             foreach (var slot in storageSlots) {
                 if (slot.ChildElement != null) {
-                    // slot.ChildButton.onClick.RemoveAllListeners();
-                    // if (slot.ChildButton.TryGetComponent<UIButtonNavigationEvents>(out var navigationEvents)) {
+                    // slot.ChildButtonController.onSubmit.RemoveAllListeners();
+                    // if (slot.ChildButtonController.TryGetComponent<UIButtonStateController>(out var navigationEvents)) {
                     //     navigationEvents.ClearAllEventListeners();
                     // }
                     Destroy(slot.ChildElement.gameObject);
-                    slot.ChildButton.interactable = false;
+                    slot.ChildButtonController.SetInteractable(false);
                     slot.ChildElement = null;
                 }
             }
@@ -75,20 +75,16 @@ namespace Inventory.UI {
             }
         
             var slot = storageSlots[_nextAvailableSlot++];
+            var buttonStateController = slot.ChildButtonController;
 
             var elementComponent = Instantiate(storageElementPrefab);
             elementComponent.InitAndAddToSlot(element, slot);
             
-            slot.ChildButton.interactable = true;
-            if (slot.ChildButton.TryGetComponent<UIButtonNavigationEvents>(out var navigationEvents)) {
-                if (storageTextWriter.Value != null) {
-                    navigationEvents.onSelectEnter.AddListener(() => storageTextWriter.Value.SetNameText(elementComponent.Storable));
-                    navigationEvents.onSelectEnter.AddListener(() => storageTextWriter.Value.SetDescriptionText(elementComponent.Storable));
-                    navigationEvents.onSelectEnter.AddListener(() => storageTextWriter.Value.SetOtherText(elementComponent.Storable));
-                }
-            }
-            else {
-                Debug.LogWarning($"[UIStorage - {gameObject.name}] Missing UI Button Navigation Events");
+            buttonStateController.SetInteractable(true);
+            if (storageTextWriter.Value != null) {
+                buttonStateController.onSelectEnter.AddListener(() => storageTextWriter.Value.SetNameText(elementComponent.Storable));
+                buttonStateController.onSelectEnter.AddListener(() => storageTextWriter.Value.SetDescriptionText(elementComponent.Storable));
+                buttonStateController.onSelectEnter.AddListener(() => storageTextWriter.Value.SetOtherText(elementComponent.Storable));
             }
         }
 
@@ -131,12 +127,12 @@ namespace Inventory.UI {
         //             Destroy(slot.ChildElement.gameObject);
         //             slot.ChildElement = null;
         //             
-        //             if (EventSystem.current.currentSelectedGameObject == slot.ChildButton.gameObject) 
+        //             if (EventSystem.current.currentSelectedGameObject == slot.ChildButtonController.gameObject) 
         //                 EventSystem.current.SetSelectedGameObject(null);
         //             
         //             storageTextWriter.Value?.ClearAllText();
-        //             slot.ChildButton.onClick.RemoveAllListeners();
-        //             slot.ChildButton.enabled = false;
+        //             slot.ChildButtonController.onSubmit.RemoveAllListeners();
+        //             slot.ChildButtonController.enabled = false;
         //         }
         //     }
         //

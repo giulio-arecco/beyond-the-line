@@ -316,7 +316,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonNavigationEvents
+  debugLogging: 0
   inputReader: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
+  targetSelectable: {fileID: 3140367593461311591}
+  fsmOwner: {fileID: 6667824236833504945}
+  onSubmit:
+    _PersistentCalls: []
   onNormalEnter:
     _PersistentCalls:
     - _Target: {fileID: 4962916255241281830}
@@ -399,6 +404,10 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+  onSelectStayEnter:
+    _PersistentCalls: []
+  onSelectStayExit:
+    _PersistentCalls: []
   onSelectExit:
     _PersistentCalls:
     - _Target: {fileID: 4962916255241281830}
@@ -412,6 +421,10 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+  onDisabledEnter:
+    _PersistentCalls: []
+  onDisabledExit:
+    _PersistentCalls: []
 --- !u!95 &4962916255241281830
 Animator:
   serializedVersion: 7

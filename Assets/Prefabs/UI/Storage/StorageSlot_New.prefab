@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a463d538306e9b24d9540142b4d28a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ChildButton>k__BackingField: {fileID: 5329456316738485955}
+  <ChildButtonController>k__BackingField: {fileID: 1502431909551578501}
   <ElementSpriteLocalScale>k__BackingField: {x: 0.79, y: 0.76}
   <ElementSpriteAnchorDeltaPixels>k__BackingField: {x: 0, y: 6}
 --- !u!1 &8928923002546031283
@@ -300,7 +300,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonNavigationEvents
+  debugLogging: 0
   inputReader: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
+  targetSelectable: {fileID: 5329456316738485955}
+  fsmOwner: {fileID: 7696121365771086753}
+  onSubmit:
+    _PersistentCalls: []
   onNormalEnter:
     _PersistentCalls: []
   onNormalExit:
@@ -315,5 +320,13 @@ MonoBehaviour:
     _PersistentCalls: []
   onSelectEnter:
     _PersistentCalls: []
+  onSelectStayEnter:
+    _PersistentCalls: []
+  onSelectStayExit:
+    _PersistentCalls: []
   onSelectExit:
+    _PersistentCalls: []
+  onDisabledEnter:
+    _PersistentCalls: []
+  onDisabledExit:
     _PersistentCalls: []

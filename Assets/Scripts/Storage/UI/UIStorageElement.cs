@@ -11,7 +11,7 @@ namespace Storage.UI {
         private Image _image;
         private AspectRatioFitter _fitter;
         private Outline _outline;
-        private UIButtonNavigationEvents _buttonNavigationEvents;
+        private UIButtonStateController _buttonStateController;
         
         private void Awake() {
             _image = GetComponent<Image>();
@@ -20,9 +20,9 @@ namespace Storage.UI {
         }
         
         private void OnDestroy() {
-            _buttonNavigationEvents?.onSelectEnter.RemoveListener(EnableOutline);
-            _buttonNavigationEvents?.onSelectExit.RemoveListener(DisableOutline);
-            _buttonNavigationEvents = null;
+            _buttonStateController?.onSelectEnter.RemoveListener(EnableOutline);
+            _buttonStateController?.onSelectExit.RemoveListener(DisableOutline);
+            _buttonStateController = null;
         }
         
         private void EnableOutline() => _outline.enabled = true;
@@ -35,19 +35,15 @@ namespace Storage.UI {
             
             transform.SetParent(slot.transform);
             transform.localPosition = slot.ElementSpriteAnchorDeltaPixels;
-            transform.SetSiblingIndex(slot.ChildButton.transform.GetSiblingIndex());
+            transform.SetSiblingIndex(slot.ChildButtonController.transform.GetSiblingIndex());
             
             _image.sprite = sprite;
             _image.rectTransform.localScale = slot.ElementSpriteLocalScale;
             
             _outline.enabled = false;
-            if (slot.ChildButton.TryGetComponent(out _buttonNavigationEvents)) {
-                _buttonNavigationEvents.onSelectEnter.AddListener(EnableOutline);
-                _buttonNavigationEvents.onSelectExit.AddListener(DisableOutline);
-            }
-            else {
-                Debug.LogError("[UIStorageElement] UIButtonNavigationEvents Component not found on the provided UIStorageSlot reference.");
-            }
+            _buttonStateController = slot.ChildButtonController;
+            _buttonStateController.onSelectEnter.AddListener(EnableOutline);
+            _buttonStateController.onSelectExit.AddListener(DisableOutline);
             
             // Fit the grid cell size and aspect ratio
             _fitter.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
