@@ -5774,6 +5774,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1855100945475505826, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_Name
+      value: SlotButton1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1855100945475505826, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2295629671148833904, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -6041,6 +6049,10 @@ PrefabInstance:
     - target: {fileID: 4901277123898723220, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5017174814930161959, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      propertyPath: m_Name
+      value: SlotButton2
       objectReference: {fileID: 0}
     - target: {fileID: 5133872534838395325, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
       propertyPath: m_AnchorMax.y

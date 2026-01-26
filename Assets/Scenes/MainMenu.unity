@@ -948,6 +948,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3140367593461311591, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140367593461311591, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -982,6 +986,10 @@ PrefabInstance:
     - target: {fileID: 5468113431007592690, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_Name
       value: ExitButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307967553440302081, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
+      propertyPath: debugLogging
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7307315464594148006, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_Pivot.x
@@ -1347,6 +1355,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3140367593461311591, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140367593461311591, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1423,6 +1435,10 @@ PrefabInstance:
       propertyPath: _Event._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[1]._String
       value: Enums.UILayerPushOptions, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
         PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307967553440302081, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
+      propertyPath: debugLogging
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7307315464594148006, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_Pivot.x
@@ -1549,6 +1565,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3140367593461311591, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
+      propertyPath: m_Navigation.m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3140367593461311591, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1587,6 +1607,10 @@ PrefabInstance:
     - target: {fileID: 5468113431007592690, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_Name
       value: PlayButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 6307967553440302081, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
+      propertyPath: debugLogging
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7307315464594148006, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: m_Pivot.x

@@ -3,7 +3,9 @@ using Inventory.Interfaces;
 using Storage.Interfaces;
 using Storage.Storables;
 using Storage.UI;
+using UI;
 using UI.Interfaces;
+using UltEvents;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
@@ -53,8 +55,12 @@ namespace Inventory.UI {
 
             foreach (var slot in storageSlots) {
                 if (slot.ChildElement != null) {
-                    slot.ChildButton.onClick.RemoveAllListeners();
+                    // slot.ChildButton.onClick.RemoveAllListeners();
+                    // if (slot.ChildButton.TryGetComponent<UIButtonNavigationEvents>(out var navigationEvents)) {
+                    //     navigationEvents.ClearAllEventListeners();
+                    // }
                     Destroy(slot.ChildElement.gameObject);
+                    slot.ChildButton.interactable = false;
                     slot.ChildElement = null;
                 }
             }
@@ -73,11 +79,16 @@ namespace Inventory.UI {
             var elementComponent = Instantiate(storageElementPrefab);
             elementComponent.InitAndAddToSlot(element, slot);
             
-            if (storageTextWriter.Value != null) {
-                slot.ChildButton.onClick.AddListener(() => storageTextWriter.Value.SetNameText(elementComponent.Storable));
-                slot.ChildButton.onClick.AddListener(() => storageTextWriter.Value.SetDescriptionText(elementComponent.Storable));
-                slot.ChildButton.onClick.AddListener(() => storageTextWriter.Value.SetOtherText(elementComponent.Storable));
-                slot.ChildButton.enabled = true;
+            slot.ChildButton.interactable = true;
+            if (slot.ChildButton.TryGetComponent<UIButtonNavigationEvents>(out var navigationEvents)) {
+                if (storageTextWriter.Value != null) {
+                    navigationEvents.onSelectEnter.AddListener(() => storageTextWriter.Value.SetNameText(elementComponent.Storable));
+                    navigationEvents.onSelectEnter.AddListener(() => storageTextWriter.Value.SetDescriptionText(elementComponent.Storable));
+                    navigationEvents.onSelectEnter.AddListener(() => storageTextWriter.Value.SetOtherText(elementComponent.Storable));
+                }
+            }
+            else {
+                Debug.LogWarning($"[UIStorage - {gameObject.name}] Missing UI Button Navigation Events");
             }
         }
 

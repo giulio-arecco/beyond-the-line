@@ -135,8 +135,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ChildButton>k__BackingField: {fileID: 5329456316738485955}
-  <ElementSpriteLocalScale>k__BackingField: {x: 0.9, y: 0.9}
-  <ElementSpriteAnchorDeltaPixels>k__BackingField: {x: 0, y: 3}
+  <ElementSpriteLocalScale>k__BackingField: {x: 0.79, y: 0.76}
+  <ElementSpriteAnchorDeltaPixels>k__BackingField: {x: 0, y: 6}
 --- !u!1 &8928923002546031283
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 2944509724427308101}
   m_OnClick:
     m_PersistentCalls:
@@ -300,16 +300,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonNavigationEvents
-  fsmAssetGuid: 3abc85d0f27a1464684a4620ad9031f6
-  onHighlightTrue:
+  inputReader: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
+  onNormalEnter:
     _PersistentCalls: []
-  onHighlightFalse:
+  onNormalExit:
     _PersistentCalls: []
-  onPress:
+  onHighlightEnter:
     _PersistentCalls: []
-  onRelease:
+  onHighlightExit:
     _PersistentCalls: []
-  onSelect:
+  onPressEnter:
     _PersistentCalls: []
-  onDeselect:
+  onPressExit:
+    _PersistentCalls: []
+  onSelectEnter:
+    _PersistentCalls: []
+  onSelectExit:
     _PersistentCalls: []

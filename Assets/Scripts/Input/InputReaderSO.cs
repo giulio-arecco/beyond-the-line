@@ -19,6 +19,8 @@ public class InputReaderSO : ScriptableObject, IInputReader, IGameplayActions, I
     
     public InputSystem_Actions inputActions;
 
+    public bool IsLmbPressed => Mouse.current != null && Mouse.current.leftButton.isPressed;
+
     public bool IsContinueStoryKeyPressed => inputActions.Gameplay.ContinueStory.IsPressed();
     public bool IsOpenCloseInventoryKeyPressed => inputActions.Gameplay.OpenCloseInventory.IsPressed();
     public bool IsOpenCloseCompanionsKeyPressed => inputActions.Gameplay.OpenCloseCompanions.IsPressed();

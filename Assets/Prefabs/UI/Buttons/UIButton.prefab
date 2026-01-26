@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonNavigationEvents
-  fsmAssetGuid: 3abc85d0f27a1464684a4620ad9031f6
+  inputReader: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
   onNormalEnter:
     _PersistentCalls:
     - _Target: {fileID: 4962916255241281830}
@@ -347,7 +347,7 @@ MonoBehaviour:
         _Object: {fileID: 0}
   onHighlightExit:
     _PersistentCalls: []
-  onPress:
+  onPressEnter:
     _PersistentCalls:
     - _Target: {fileID: 4962916255241281830}
       _MemberName: SetTriggerString
@@ -372,7 +372,7 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: -1231342527244319048, guid: 837f92a973a46b64db36193e28d9da2c, type: 3}
-  onRelease:
+  onPressExit:
     _PersistentCalls:
     - _Target: {fileID: 8812450977013417235}
       _MemberName: set_sprite
@@ -386,7 +386,7 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: -2826085010368485402, guid: 7f10ec41566809746b3db6ea90ef4100, type: 3}
-  onSelect:
+  onSelectEnter:
     _PersistentCalls:
     - _Target: {fileID: 4962916255241281830}
       _MemberName: SetTriggerString
@@ -399,7 +399,7 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
-  onDeselect:
+  onSelectExit:
     _PersistentCalls:
     - _Target: {fileID: 4962916255241281830}
       _MemberName: SetTriggerString
