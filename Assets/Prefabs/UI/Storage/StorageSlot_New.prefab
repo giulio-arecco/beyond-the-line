@@ -135,8 +135,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <ChildButtonController>k__BackingField: {fileID: 1502431909551578501}
+  <ElementBorderLocalScale>k__BackingField: {x: 0.895833, y: 0.85}
   <ElementSpriteLocalScale>k__BackingField: {x: 0.79, y: 0.76}
-  <ElementSpriteAnchorDeltaPixels>k__BackingField: {x: 0, y: 6}
+  <ElementAnchorOffsetPixels>k__BackingField: {x: 0, y: 6}
 --- !u!1 &8928923002546031283
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +235,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 0
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
     m_HighlightedColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 0.5019608}

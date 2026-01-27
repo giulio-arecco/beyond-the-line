@@ -56,7 +56,7 @@ namespace Storage.UI {
                 SetItemStatModifiersText(item);
             }
             else {
-                Debug.LogError("The Storable runtime type is not Companion");
+                Debug.LogError("The Storable runtime type is not Item");
             }
         }
         

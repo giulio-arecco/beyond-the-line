@@ -89,6 +89,8 @@ namespace UI {
 
 #if UNITY_EDITOR
         private void Reset() {
+            targetSelectable = GetComponent<Selectable>();
+            
             fsmOwner = GetComponent<FSMOwner>();
             fsmOwner.updateMode = Graph.UpdateMode.Manual;
         
@@ -172,7 +174,6 @@ namespace UI {
         public void ExitSelectedStayState() => onSelectStayExit?.Invoke();
         public void EnterDisabledState() => onDisabledEnter?.Invoke();
         public void ExitDisabledState() => onDisabledExit?.Invoke();
-
         
         public void OnPointerEnter(PointerEventData d) {
             if (debugLogging) Debug.Log($"[UIButtonStateController - {gameObject.name}] OnPointerEnter");
