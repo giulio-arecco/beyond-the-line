@@ -10,8 +10,11 @@ namespace Storage.StorableInfoDatabase {
 
         private void Init() {
             _lookup = new Dictionary<string, T>();
+            
             foreach (var item in infoList) {
-                _lookup[item.id] = item;
+                if (item != null) {
+                    _lookup.TryAdd(item.id, item);
+                }
             }
         }
 

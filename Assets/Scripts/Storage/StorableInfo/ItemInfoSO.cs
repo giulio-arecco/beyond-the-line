@@ -11,7 +11,7 @@ namespace Storage.StorableInfo {
         public int statValue;
     }
     
-    [CreateAssetMenu(fileName = "ItemInfo", menuName = "Scriptable Objects/ItemInfo")]
+    [CreateAssetMenu(fileName = "ItemInfo", menuName = "Scriptable Objects/Storage/StorableInfo/ItemInfo", order = 0)]
     public class ItemInfoSO : StorableInfoSO {
         [field: SerializeField] public IntStatModifier[] StatsModifiers { get; private set; }
         
