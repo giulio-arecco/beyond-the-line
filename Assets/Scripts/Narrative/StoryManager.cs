@@ -78,7 +78,7 @@ namespace Narrative {
         }
 
         private void HandleStoryFlow() {
-            if (_currentStory.canContinue) {
+            while (_currentStory.canContinue) {
                 var line = _currentStory.Continue();
         
                 // The current line contains visible text
