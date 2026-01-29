@@ -17,3 +17,5 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: fe8a89c48b0536f4f89d1e2a23562215, type: 3}
   - trackId: TheFarmstead
     clip: {fileID: 8300000, guid: 3fdb3aff99c074f4291a8ffb8d5a89b8, type: 3}
+  - trackId: TheFarmsteadPatrol
+    clip: {fileID: 8300000, guid: 0935828f60557474695a306c9fc6324b, type: 3}

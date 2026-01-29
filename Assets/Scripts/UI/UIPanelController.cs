@@ -1,3 +1,4 @@
+using System;
 using UI.Interfaces;
 using UnityEngine;
 using Utils.Extensions;
@@ -7,6 +8,8 @@ namespace UI {
     public class UIPanelController : MonoBehaviour {
         private CanvasGroup _canvasGroup;
         private IUIView[] _childViews;
+
+        public event Action OnCanvasGroupVisible;
 
         private void Awake() {
             _canvasGroup = GetComponent<CanvasGroup>();
@@ -22,6 +25,8 @@ namespace UI {
                     else view.OnViewHide();
                 }
             }
+            
+            OnCanvasGroupVisible?.Invoke();
         }
 
         public bool IsVisibleAndInteractable() {
