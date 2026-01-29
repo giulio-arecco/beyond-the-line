@@ -53,21 +53,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  globalsInkFile:
-    inkAsset: {fileID: 102900000, guid: c3cdb5e7dd54afa4fbe3c48bddd7c84c, type: 3}
-    jsonAssetDirectory: {fileID: 0}
-    jsonAsset: {fileID: 0}
-    unhandledCompileErrors: []
-    recursiveIncludeErrorPaths: []
-    errors: []
-    warnings: []
-    todos: []
-    masterInkAssets: []
-    localIncludePaths: []
-    includes: []
+  globalsInkJson: {fileID: 0}
   playerInventory:
     underlyingValue: {fileID: 0}
   playerCompanions:
     underlyingValue: {fileID: 0}
   itemInfoDatabase: {fileID: 11400000, guid: 9eac3fb19276f334ea1dcc5de391feb0, type: 2}
   companionInfoDatabase: {fileID: 11400000, guid: 80dbc6ff721cbf04e915b8257d60f614, type: 2}
+  musicLibrary: {fileID: 11400000, guid: 19e4575f277a90b4ba9392e52706cf4c, type: 2}

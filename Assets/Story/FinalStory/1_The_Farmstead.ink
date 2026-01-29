@@ -7,6 +7,8 @@ INCLUDE Globals.ink
 -> introduction
 
 === introduction ===
+~ PlayMusic("TheFarmstead", 2)
+
 Il dolore è la prima cosa che torna. Un pulsare sordo alla tempia, il sapore del sangue in bocca.
 Apri gli occhi. Polvere. Travi di legno spezzate che pendono dal soffitto come costole di una carcassa.
 Sei steso sul pavimento di quella che un tempo era una cucina.
@@ -211,6 +213,9 @@ Metti via il taccuino senza dire una parola ed esci.
 
 === patrol_arrival ===
 Il sole è calato, inghiottito da nubi nere.
+
+~ PlayMusic("TheFarmsteadPatrol", 3)
+
 Improvvisamente, un rombo sordo fa tremare la terra sotto i tuoi piedi.
 Fasci di luce bianca tagliano l'oscurità del cortile. Un camion si è fermato all'ingresso della fattoria.
 Una pattuglia.
@@ -275,6 +280,7 @@ Senti passi pesanti avvicinarsi al fienile. Tra pochi secondi saranno qui.
     -> end_section_one
 
 === end_section_one ===
+~ PlayMusic("TheFarmstead", 3)
 Passa almeno un'ora.
 Il sole è scomparso da tempo oltre l'orizzonte e il bagliore proveniente dalla fattoria è ormai un ricordo lontano, inghiottito dai tronchi neri degli alberi.
 Il bosco è freddo, umido, indifferente alla guerra.

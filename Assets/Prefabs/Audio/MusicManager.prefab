@@ -49,9 +49,12 @@ MonoBehaviour:
   autoUnparentOnAwake: 1
   sourceA: {fileID: 7151347963014407966}
   sourceB: {fileID: 4188315171350240494}
-  crossFadeDuration: 2
-  fadeOutInDuration: 1.5
-  fadeOutInSilenceGap: 0.5
+  maxVolume: 0.4
+  crossFadeDuration: 2.5
+  fadeOutInDuration: 1
+  fadeOutInSilenceGap: 0.25
+  fadeInDuration: 5
+  fadeOutDuration: 5
 --- !u!82 &7151347963014407966
 AudioSource:
   m_ObjectHideFlags: 0

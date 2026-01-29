@@ -67,15 +67,28 @@ Accendi un piccolo fuoco usando legna secca e corteccia. La fiamma è debole, ma
     -> action_sleep
 
 === action_eat ===
+~ temp hasAtLeastOneCompanion = HasCompanion("Elias") or HasCompanion("Lira")
+~ temp hasOnlyLira = not HasCompanion("Elias") and HasCompanion("Lira")
+~ temp hasOnlyElias = HasCompanion("Elias") and not HasCompanion("Lira")
+~ temp hasBothCompanions = HasCompanion("Elias") and HasCompanion("Lira")
+
+
 Apri la confezione della razione militare. Il contenuto è freddo, un impasto di carne e grasso che si incolla al palato.
-{ HasCompanion("Elias") || HasCompanion("Lira"):
-    Dividi il pasto con i tuoi compagni.
-    { HasCompanion("Elias"):
-        Elias mangia con voracità, quasi con disperazione.
+
+{ hasAtLeastOneCompanion:
+    {   
+        - hasOnlyLira:
+            Dividi il pasto con la tua compagna.
+            Lira mangia lentamente, lo sguardo perso nel vuoto.
+        - hasOnlyElias:
+            Dividi il pasto con il tuo compagno.
+            Elias mangia con voracità, quasi con disperazione.
+        - hasBothCompanions:
+            Dividi il pasto con i tuoi compagni.
+            Elias mangia con voracità, quasi con disperazione.
+            Lira mangia lentamente, lo sguardo perso nel vuoto.
     }
-    { HasCompanion("Lira"):
-        Lira mangia lentamente, lo sguardo perso nel vuoto.
-    }
+    
     In silenzio, consumate quel poco che avete. Non è un banchetto, ma senti lo stomaco smettere di brontolare e un po' di calore diffondersi nel corpo.
 - else:
     Mangi in silenzio, assaporando ogni boccone. Non è buono, ma è carburante. Senti lo stomaco smettere di brontolare e un po' di calore diffondersi nel corpo.

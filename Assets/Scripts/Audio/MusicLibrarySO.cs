@@ -11,7 +11,7 @@ namespace Audio {
         }
 
         [SerializeField]
-        private List<MusicTrack> tracks;
+        private List<MusicTrack> tracks = new();
 
         // Internal cache
         private Dictionary<string, AudioClip> trackDictionary;

@@ -2,7 +2,6 @@ using System;
 using DG.Tweening;
 using Enums;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Audio {
     public class MusicManager : PersistentSingleton<MusicManager> {
@@ -11,9 +10,11 @@ namespace Audio {
         [SerializeField] private AudioSource sourceB;
 
         [Header("Settings")] 
+        [SerializeField] private float maxVolume = 1.0f;
         [SerializeField] private float crossFadeDuration = 2.0f;
         [SerializeField] private float fadeOutInDuration = 1.5f;
         [SerializeField] private float fadeOutInSilenceGap = 0.5f;
+        [SerializeField] private float fadeInDuration = 1.0f;
         [SerializeField] private float fadeOutDuration = 1.0f;
 
         private Sequence _currentTransition;
@@ -27,24 +28,37 @@ namespace Audio {
         }
 
         public void PlayMusic(AudioClip newClip, AudioTransitionType transitionType) {
+            var activeSource = _isSourceAPlaying ? sourceA : sourceB;
+
+            if (activeSource.clip == newClip && activeSource.isPlaying) return;
+
             if (_currentTransition != null && _currentTransition.IsActive())
                 _currentTransition.Kill();
 
-            var activeSource = _isSourceAPlaying ? sourceA : sourceB;
             var newSource = _isSourceAPlaying ? sourceB : sourceA;
 
-            if (activeSource.clip == null) {
-                PlayFirstTrack(newSource, newClip);
-                _isSourceAPlaying = !_isSourceAPlaying;
-                return;
+            switch (transitionType) {
+                case AudioTransitionType.None:
+                    ImmediatelyChangeTrack(activeSource, newSource, newClip);
+                    _currentTransition = null; 
+                    break;
+                case AudioTransitionType.FadeIn:
+                    _currentTransition = CreateFadeInSequence(activeSource, newSource, newClip);
+                    break;
+                    
+                case AudioTransitionType.CrossFade:
+                    _currentTransition = CreateCrossFadeSequence(activeSource, newSource, newClip);
+                    break;
+                    
+                case AudioTransitionType.FadeOutIn:
+                    _currentTransition = CreateFadeOutInSequence(activeSource, newSource, newClip);
+                    break;
+                    
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(transitionType), transitionType, null);
             }
 
-            _currentTransition = transitionType switch {
-                AudioTransitionType.FadeOutIn => CreateFadeOutInSequence(activeSource, newSource, newClip),
-                AudioTransitionType.CrossFade => CreateCrossfadeSequence(activeSource, newSource, newClip),
-                _ => throw new ArgumentOutOfRangeException(nameof(transitionType))
-            };
-
+            _currentTransition?.Play();
             _isSourceAPlaying = !_isSourceAPlaying;
         }
         
@@ -67,17 +81,35 @@ namespace Audio {
                 CleanupSource(sourceA);
                 CleanupSource(sourceB);
             });
+            
+            _currentTransition.Play();
         }
 
-        private void PlayFirstTrack(AudioSource source, AudioClip clip) {
-            source.clip = clip;
-            source.loop = true;
-            source.volume = 0;
-            source.Play();
-            source.DOFade(1f, crossFadeDuration).SetEase(Ease.OutQuad);
+        private Sequence CreateFadeInSequence(AudioSource activeSource, AudioSource newSource, AudioClip clip) {
+            CleanupSource(activeSource);
+            CleanupSource(newSource);
+            
+            newSource.clip = clip;
+            newSource.loop = true;
+            newSource.volume = 0;
+            newSource.Play();
+            
+            var seq = DOTween.Sequence();
+            seq.Append(newSource.DOFade(maxVolume, fadeInDuration).SetEase(Ease.OutQuad));
+            
+            return seq;
+        }
+        
+        private void ImmediatelyChangeTrack(AudioSource active, AudioSource next, AudioClip clip) {
+            next.clip = clip;
+            next.loop = true;
+            next.volume = maxVolume;
+            next.Play();
+            
+            CleanupSource(active);
         }
 
-        private Sequence CreateCrossfadeSequence(AudioSource active, AudioSource next, AudioClip clip) {
+        private Sequence CreateCrossFadeSequence(AudioSource active, AudioSource next, AudioClip clip) {
             var seq = DOTween.Sequence();
 
             next.clip = clip;
@@ -86,7 +118,7 @@ namespace Audio {
             next.Play();
 
             seq.Join(active.DOFade(0, crossFadeDuration).SetEase(Ease.InOutQuad));
-            seq.Join(next.DOFade(1, crossFadeDuration).SetEase(Ease.InOutQuad));
+            seq.Join(next.DOFade(maxVolume, crossFadeDuration).SetEase(Ease.InOutQuad));
 
             seq.OnComplete(() => CleanupSource(active));
 
@@ -111,7 +143,7 @@ namespace Audio {
                 next.Play();
             });
 
-            seq.Append(next.DOFade(1, fadeOutInDuration).SetEase(Ease.OutQuad));
+            seq.Append(next.DOFade(maxVolume, fadeOutInDuration).SetEase(Ease.OutQuad));
 
             return seq;
         }
