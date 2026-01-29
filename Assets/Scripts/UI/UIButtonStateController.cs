@@ -66,7 +66,7 @@ namespace UI {
         private void Awake() {
             if (!targetSelectable) Debug.LogError($"[UIButtonStateController - {gameObject.name}] Missing Target Selectable");
             if (!inputReader) Debug.LogError($"[UIButtonStateController - {gameObject.name}] Missing InputReaderSO Reference");
-            if (!fsmOwner) fsmOwner = GetComponent<FSMOwner>();
+            if (!fsmOwner) Debug.LogError($"[UIButtonStateController - {gameObject.name}] Missing FSMOwner Reference");
         }
         
         private void OnEnable() {
