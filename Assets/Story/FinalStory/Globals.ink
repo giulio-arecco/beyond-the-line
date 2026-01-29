@@ -35,6 +35,8 @@ EXTERNAL RemoveCompanionFromParty(companionId)
 EXTERNAL GetGlobalStat(statName)
 EXTERNAL IncreaseGlobalStat(statName, statValue)
 EXTERNAL DecreaseGlobalStat(statName, statValue)
+EXTERNAL PlayMusic(trackId, transitionType)
+EXTERNAL StopMusic()
 
 // UTILITY FUNCTIONS
 === function came_from(-> x) 

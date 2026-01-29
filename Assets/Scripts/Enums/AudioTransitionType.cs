@@ -1,7 +1,7 @@
 namespace Enums {
     [System.Serializable]
     public enum AudioTransitionType {
-        FadeOutIn,
-        CrossFade
+        FadeOutIn = 0,
+        CrossFade = 1
     }
 }

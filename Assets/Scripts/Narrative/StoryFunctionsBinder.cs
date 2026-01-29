@@ -1,4 +1,6 @@
 using System;
+using Audio;
+using Enums;
 using Ink.Runtime;
 using Inventory.Interfaces;
 using Storage.StorableInfoDatabase;
@@ -12,12 +14,14 @@ namespace Narrative {
         private readonly IStorage<Companion>  _playerCompanions;
         private readonly ItemInfoDatabaseSO _itemInfoDatabase;
         private readonly CompanionInfoDatabaseSO _companionInfoDatabase;
+        private readonly MusicLibrarySO _musicLibrary;
 
-        public StoryFunctionsBinder(IStorage<Item> playerInventory, IStorage<Companion> playerCompanions, ItemInfoDatabaseSO itemInfoDatabase, CompanionInfoDatabaseSO companionInfoDatabase) {
+        public StoryFunctionsBinder(IStorage<Item> playerInventory, IStorage<Companion> playerCompanions, ItemInfoDatabaseSO itemInfoDatabase, CompanionInfoDatabaseSO companionInfoDatabase, MusicLibrarySO musicLibrary) {
             _playerInventory = playerInventory;
             _playerCompanions = playerCompanions;
             _itemInfoDatabase = itemInfoDatabase;
             _companionInfoDatabase = companionInfoDatabase;
+            _musicLibrary = musicLibrary;
         }
 
         public void BindGlobalFunctions(Story story) {
@@ -32,6 +36,8 @@ namespace Narrative {
             story.BindExternalFunction("GetGlobalStat", (string statName) => GetGlobalStat(statName));
             story.BindExternalFunction("IncreaseGlobalStat", (string statName, object statValue) => IncreaseGlobalStat(statName, statValue));
             story.BindExternalFunction("DecreaseGlobalStat", (string statName, object statValue) => DecreaseGlobalStat(statName, statValue));
+            story.BindExternalFunction("PlayMusic", (string trackId, int transitionType) => PlayMusic(trackId, (AudioTransitionType) transitionType));
+            story.BindExternalFunction("StopMusic", StopMusic);
             Debug.Log("Successfully bound external global functions to the Ink Story");
         }
 
@@ -47,6 +53,8 @@ namespace Narrative {
             story.UnbindExternalFunction("GetGlobalStat");
             story.UnbindExternalFunction("IncreaseGlobalStat");
             story.UnbindExternalFunction("DecreaseGlobalStat");
+            story.UnbindExternalFunction("PlayMusic");
+            story.UnbindExternalFunction("StopMusic");
             Debug.Log("Successfully unbound external global functions from the Ink Story");
         }
 
@@ -128,6 +136,13 @@ namespace Narrative {
         }
         
         // TODO: Write getter, increase and decrease methods for each global stat to avoid reflection boilerplate
+
+        private void PlayMusic(string trackId, AudioTransitionType transitionType) {
+            var track = _musicLibrary.GetClip(trackId);
+            MusicManager.Instance.PlayMusic(track, transitionType);
+        }
+
+        private void StopMusic() => MusicManager.Instance.StopMusic();
     }
 }
 

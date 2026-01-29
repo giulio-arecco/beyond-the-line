@@ -463,7 +463,7 @@ MonoBehaviour:
   endValueFloat: 0
   endValueV3: {x: 0, y: 0, z: 0}
   endValueV2: {x: 0, y: 0}
-  endValueColor: {r: 0.9019608, g: 0.8117647, b: 0.28627452, a: 1}
+  endValueColor: {r: 1, g: 0.92549026, b: 0.63529414, a: 1}
   endValueString: 
   endValueRect:
     serializedVersion: 2

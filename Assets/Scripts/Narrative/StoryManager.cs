@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Audio;
 using Enums;
 using Ink.Runtime;
 using Inventory.Interfaces;
@@ -31,6 +32,7 @@ namespace Narrative {
         [SerializeField] private InterfaceReference<IStorage<Companion>> playerCompanions;
         [SerializeField] private ItemInfoDatabaseSO itemInfoDatabase;
         [SerializeField] private CompanionInfoDatabaseSO companionInfoDatabase;
+        [SerializeField] private MusicLibrarySO musicLibrary;
     
         private TextMeshProUGUI[] _choicesText;
         private Story _currentStory;
@@ -44,7 +46,7 @@ namespace Narrative {
             base.Awake();
             _optionalStories = new Queue<OptionalStory>();
             _storyVariablesRegistry = new StoryVariablesRegistry(globalsInkJson);
-            _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory.Value, playerCompanions.Value, itemInfoDatabase, companionInfoDatabase);
+            _storyFunctionsBinder = new StoryFunctionsBinder(playerInventory.Value, playerCompanions.Value, itemInfoDatabase, companionInfoDatabase, musicLibrary);
         }
 
         private void OnEnable() {

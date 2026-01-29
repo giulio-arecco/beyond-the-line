@@ -14,6 +14,7 @@ namespace Audio {
         [SerializeField] private float crossFadeDuration = 2.0f;
         [SerializeField] private float fadeOutInDuration = 1.5f;
         [SerializeField] private float fadeOutInSilenceGap = 0.5f;
+        [SerializeField] private float fadeOutDuration = 1.0f;
 
         private Sequence _currentTransition;
         private bool _isSourceAPlaying;
@@ -45,6 +46,27 @@ namespace Audio {
             };
 
             _isSourceAPlaying = !_isSourceAPlaying;
+        }
+        
+        public void StopMusic() {
+            if (_currentTransition != null && _currentTransition.IsActive())
+                _currentTransition.Kill();
+
+            _currentTransition = DOTween.Sequence();
+
+            // Fade out of both active audio sources in case the music gets stopped during a cross-fade transition
+            if (sourceA.volume > 0 || sourceA.isPlaying) {
+                _currentTransition.Join(sourceA.DOFade(0, fadeOutDuration).SetEase(Ease.InQuad));
+            }
+
+            if (sourceB.volume > 0 || sourceB.isPlaying) {
+                _currentTransition.Join(sourceB.DOFade(0, fadeOutDuration).SetEase(Ease.InQuad));
+            }
+
+            _currentTransition.OnComplete(() => {
+                CleanupSource(sourceA);
+                CleanupSource(sourceB);
+            });
         }
 
         private void PlayFirstTrack(AudioSource source, AudioClip clip) {
