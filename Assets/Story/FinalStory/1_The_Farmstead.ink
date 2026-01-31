@@ -214,7 +214,7 @@ Metti via il taccuino senza dire una parola ed esci.
 === patrol_arrival ===
 Il sole è calato, inghiottito da nubi nere.
 
-~ PlayMusic("TheFarmsteadPatrol", 3)
+~ PlayMusicCustomTransition("TheFarmsteadPatrol", 3, 1.25)
 
 Improvvisamente, un rombo sordo fa tremare la terra sotto i tuoi piedi.
 Fasci di luce bianca tagliano l'oscurità del cortile. Un camion si è fermato all'ingresso della fattoria.
@@ -280,7 +280,8 @@ Senti passi pesanti avvicinarsi al fienile. Tra pochi secondi saranno qui.
     -> end_section_one
 
 === end_section_one ===
-~ PlayMusic("TheFarmstead", 3)
+~ PlayMusicCustomTransition("TheFarmstead", 3, 1.25)
+
 Passa almeno un'ora.
 Il sole è scomparso da tempo oltre l'orizzonte e il bagliore proveniente dalla fattoria è ormai un ricordo lontano, inghiottito dai tronchi neri degli alberi.
 Il bosco è freddo, umido, indifferente alla guerra.

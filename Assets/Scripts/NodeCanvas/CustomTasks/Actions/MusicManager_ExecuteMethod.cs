@@ -16,10 +16,15 @@ namespace NodeCanvas.CustomTasks.Actions {
 
         public MusicManagerMethodType ActionToPerform;
 
-        [ShowIf("ActionToPerform", (int) MusicManagerMethodType.PlayMusic)]
+        [ShowIf(nameof(ActionToPerform), (int) MusicManagerMethodType.PlayMusic)]
         public BBParameter<AudioClip> AudioClip;
-        [ShowIf("ActionToPerform", (int) MusicManagerMethodType.PlayMusic)]
+        [ShowIf(nameof(ActionToPerform), (int) MusicManagerMethodType.PlayMusic)]
         public BBParameter<AudioTransitionType> AudioTransitionType;
+        
+        public BBParameter<float> TransitionDuration = -1f;
+        
+        [ShowIf(nameof(ActionToPerform), (int) MusicManagerMethodType.PlayMusic)]
+        public BBParameter<float> Volume = -1f;
         
         protected override string info => $"Call <b>MusicManager</b> method '<b>{ActionToPerform}</b>'";
         
@@ -27,10 +32,10 @@ namespace NodeCanvas.CustomTasks.Actions {
             if (MusicManager.TryGetInstance(out var musicManager)) {
                 switch (ActionToPerform) {
                     case MusicManagerMethodType.PlayMusic:
-                        musicManager.PlayMusic(AudioClip.value, AudioTransitionType.value);
+                        musicManager.PlayMusic(AudioClip.value, AudioTransitionType.value, TransitionDuration.value, Volume.value);
                         break;
                     case MusicManagerMethodType.StopMusic:
-                        musicManager.StopMusic();
+                        musicManager.StopMusic(TransitionDuration.value);
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(ActionToPerform), ActionToPerform, null);

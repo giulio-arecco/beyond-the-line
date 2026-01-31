@@ -36,8 +36,8 @@ namespace Narrative {
             story.BindExternalFunction("GetGlobalStat", (string statName) => GetGlobalStat(statName));
             story.BindExternalFunction("IncreaseGlobalStat", (string statName, object statValue) => IncreaseGlobalStat(statName, statValue));
             story.BindExternalFunction("DecreaseGlobalStat", (string statName, object statValue) => DecreaseGlobalStat(statName, statValue));
-            story.BindExternalFunction("PlayMusic", (string trackId, int transitionType) => PlayMusic(trackId, (AudioTransitionType) transitionType));
-            story.BindExternalFunction("StopMusic", StopMusic);
+            story.BindExternalFunction("PlayMusic_Internal", (string trackId, int transitionType, float transitionDuration, float volume) => PlayMusic(trackId, (AudioTransitionType) transitionType, transitionDuration, volume));
+            story.BindExternalFunction("StopMusic_Internal", (float transitionDuration) => StopMusic(transitionDuration));
             Debug.Log("Successfully bound external global functions to the Ink Story");
         }
 
@@ -137,12 +137,12 @@ namespace Narrative {
         
         // TODO: Write getter, increase and decrease methods for each global stat to avoid reflection boilerplate
 
-        private void PlayMusic(string trackId, AudioTransitionType transitionType) {
+        private void PlayMusic(string trackId, AudioTransitionType transitionType, float transitionDuration, float volume) {
             var track = _musicLibrary.GetClip(trackId);
-            MusicManager.Instance.PlayMusic(track, transitionType);
+            MusicManager.Instance.PlayMusic(track, transitionType, transitionDuration, volume);
         }
 
-        private void StopMusic() => MusicManager.Instance.StopMusic();
+        private void StopMusic(float transitionDuration) => MusicManager.Instance.StopMusic(transitionDuration);
     }
 }
 

@@ -8,7 +8,7 @@ namespace Audio {
         [SerializeField] private AudioClip mapScreenClip;
     
         private void Start() {
-            MusicManager.Instance.PlayMusic(mapScreenClip, AudioTransitionType.FadeOutIn);
+            MusicManager.Instance.PlayMusic(mapScreenClip, AudioTransitionType.FadeOutIn, -1f, 0.25f);
             StoryManager.Instance.OnStoryExit += StoryManager_OnStoryExit;
         }
     
@@ -19,7 +19,7 @@ namespace Audio {
         }
 
         private void StoryManager_OnStoryExit() {
-            MusicManager.Instance.PlayMusic(mapScreenClip, AudioTransitionType.FadeOutIn);
+            MusicManager.Instance.PlayMusic(mapScreenClip, AudioTransitionType.FadeOutIn, -1f, 0.25f);
         }
     }
 }

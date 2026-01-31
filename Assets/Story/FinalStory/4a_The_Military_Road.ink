@@ -483,7 +483,7 @@ Devi decidere come gestire la situazione.
     -> escape_sequence
 
 === escape_sequence_collapse_intro
-~ PlayMusic("TheMilitaryRoadEscape", 3)
+~ PlayMusicCustomTransition("TheMilitaryRoadEscape", 3, 1.25)
 
 { HasCompanion("Lira") || HasCompanion("Elias"):
     Uscite dalla grata come animali braccati, spinti solo dall'adrenalina che brucia le ultime riserve di energia.
@@ -500,7 +500,7 @@ Devi decidere come gestire la situazione.
 -> escape_run_logic
 
 === escape_sequence ===
-~ PlayMusic("TheMilitaryRoadEscape", 3)
+~ PlayMusicCustomTransition("TheMilitaryRoadEscape", 3, 1.25)
 
 { HasCompanion("Lira") || HasCompanion("Elias"):
     Superate l'ultima barriera di asfalto e vi lanciate verso il ciglio della strada.
@@ -671,7 +671,7 @@ Sentite il fiato dei cani alle spalle, i loro latrati si avvicinano rapidamente.
     "Verso gli alberi!" ordina, la voce roca per lo sforzo.
 }
 
-~ StopMusic()
+~ StopMusicCustomDuration(2.5)
 
 Corri finché i polmoni non bruciano come se avessi ingoiato vetro.
 

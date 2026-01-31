@@ -272,7 +272,7 @@ Il ponte oscilla. Hai un solo istante per reagire.
 -> tunnel_entrance
 
 === tunnel_entrance ===
-~ PlayMusic("TheMountainPassTunnels", 3)
+~ PlayMusicCustomTransition("TheMountainPassTunnels", 3, 1.25)
 
 {HasCompanion("Elias") or HasCompanion("Lira"):Siete|Sei} dall'altra parte della gola. Davanti a {HasCompanion("Elias") or HasCompanion("Lira"):voi|te} si apre la bocca nera del tunnel.
 L'ingresso è segnato da un arco di pietra annerita. Appena {HasCompanion("Elias") or HasCompanion("Lira"):vi avvicinate|ti avvicini}, un odore denso e dolciastro {HasCompanion("Elias") or HasCompanion("Lira"):vi investe|ti investe}. Mandorle amare e zolfo.
@@ -556,7 +556,7 @@ Quello è il soffitto o il pavimento...?
 -> convergence
 
 === convergence ===
-~ StopMusic()
+~ StopMusicCustomDuration(2.5)
 
 All'uscita del tunnel, il terreno sale bruscamente. L'aria torna respirabile, gelida e pura.
 

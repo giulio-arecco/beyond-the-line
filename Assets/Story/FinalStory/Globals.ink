@@ -35,8 +35,28 @@ EXTERNAL RemoveCompanionFromParty(companionId)
 EXTERNAL GetGlobalStat(statName)
 EXTERNAL IncreaseGlobalStat(statName, statValue)
 EXTERNAL DecreaseGlobalStat(statName, statValue)
-EXTERNAL PlayMusic(trackId, transitionType)
-EXTERNAL StopMusic()
+EXTERNAL PlayMusic_Internal(trackId, transitionType, transitionDuration, volume)
+EXTERNAL StopMusic_Internal(transitionDuration)
+
+// Play and Stop Music Functions Wrappers
+=== function PlayMusic(trackId, transitionType) ===
+    ~ PlayMusic_Internal(trackId, transitionType, -1.0, -1.0)
+
+=== function PlayMusicCustomTransition(trackId, transitionType, customDuration) ===
+    ~ PlayMusic_Internal(trackId, transitionType, customDuration, -1.0)
+    
+=== function PlayMusicCustomVolume(trackId, transitionType, customVolume) ===
+    ~ PlayMusic_Internal(trackId, transitionType, -1.0, customVolume)
+    
+=== function PlayMusicCustom(trackId, transitionType, customDuration, customVolume) ===
+    ~ PlayMusic_Internal(trackId, transitionType, customDuration, customVolume)
+    
+=== function StopMusic() ===
+    ~ StopMusic_Internal(-1.0)
+
+=== function StopMusicCustomDuration(customDuration) ===
+    ~ StopMusic_Internal(customDuration)
+    
 
 // UTILITY FUNCTIONS
 === function came_from(-> x) 
