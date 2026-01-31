@@ -1,14 +1,17 @@
-using TMPro;
 using UnityEngine;
 
-namespace UI {
+namespace UI.GlobalStats {
     public class UIStatsHandler : MonoBehaviour {
-        [SerializeField] private TextMeshProUGUI healthValueText;
-        [SerializeField] private TextMeshProUGUI fatigueValueText;
-        [SerializeField] private TextMeshProUGUI hungerValueText;
-        [SerializeField] private TextMeshProUGUI groupCohesionValueText;
-        [SerializeField] private TextMeshProUGUI notorietyValueText;
-        [SerializeField] private TextMeshProUGUI intimidationValueText;
+        [Header("Stats Text")]
+        [SerializeField] private UIStat healthEntry;
+        [SerializeField] private UIStat fatigueEntry;
+        // [SerializeField] private TextMeshProUGUI hungerValueText;
+        // [SerializeField] private TextMeshProUGUI groupCohesionValueText;
+        // [SerializeField] private TextMeshProUGUI notorietyValueText;
+        // [SerializeField] private TextMeshProUGUI intimidationValueText;
+
+        [Header("Settings")] 
+        [SerializeField] private bool animateStatChange = true;
         [SerializeField] private Gradient statColorGradient;
         
         private void Start() {
@@ -21,9 +24,9 @@ namespace UI {
             // globalStats.Notoriety.OnValueChanged += GlobalStats_OnNotorietyChanged;
             // globalStats.Intimidation.OnValueChanged += GlobalStats_OnIntimidationChanged;
 
-            UpdateStatDisplayedValueAndColor(healthValueText, globalStats.Health.Value, globalStats.Health.MaxValue);
-            UpdateStatDisplayedValueAndColor(fatigueValueText, globalStats.Fatigue.Value, globalStats.Fatigue.MaxValue, invertLerp: true);
-            // UpdateStatDisplayedValueAndColor(hungerValueText, globalStats.Hunger.Value, globalStats.Hunger.MaxValue, invertLerp: true);
+            InitStat(healthEntry, globalStats.Health.Value, globalStats.Health.MaxValue);
+            InitStat(fatigueEntry, globalStats.Fatigue.Value, globalStats.Fatigue.MaxValue, invertLerp: true);
+            // UpdateStatUI(hungerValueText, globalStats.Hunger.Value, globalStats.Hunger.MaxValue, invertLerp: true);
             // SetStatText(groupCohesionValueText, "-");
             // UpdateStatDisplayedValue(notorietyValueText, globalStats.Notoriety.Value, globalStats.Notoriety.MaxValue);
             // UpdateStatDisplayedValue(intimidationValueText, globalStats.Intimidation.Value, globalStats.Intimidation.MaxValue);
@@ -41,35 +44,39 @@ namespace UI {
                 // globalStats.Intimidation.OnValueChanged -= GlobalStats_OnIntimidationChanged;
             }
         }
-
-        private void SetStatText(TextMeshProUGUI textField, string text) {
-            textField.text = text;
-        }
         
-        private void UpdateStatDisplayedValue(TextMeshProUGUI textField, float value, float maxValue) {
-            textField.text = $"{value} / {maxValue}";
-        }
-
-        private void UpdateStatDisplayedValueAndColor(TextMeshProUGUI textField, float value, float maxValue, bool invertLerp = false) {
-            textField.text = $"{value} / {maxValue}";
-            
+        private Color GetGradientColor(float value, float maxValue, bool invertLerp) {
             var gradientValue = Mathf.Clamp01(value / maxValue);
             if (invertLerp) gradientValue = 1 - gradientValue;
-            
-            textField.color = statColorGradient.Evaluate(gradientValue);
+            return statColorGradient.Evaluate(gradientValue);
         }
 
-        private void GlobalStats_OnHealthChanged(int health) =>
-            UpdateStatDisplayedValueAndColor(healthValueText, health, GlobalStatsManager.Instance.GlobalStats.Health.MaxValue);
+        private void InitStat(UIStat entry, int val, int max, bool invertLerp = false) {
+            var color = GetGradientColor(val, max, invertLerp);
+            entry.UpdateText(val, max, color);
+        }
 
-        private void GlobalStats_OnFatigueChanged(int fatigue) =>
-            UpdateStatDisplayedValueAndColor(fatigueValueText, fatigue, GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue, true);
+        private void GlobalStats_OnHealthChanged(int oldHealth, int newHealth) {
+            var max = GlobalStatsManager.Instance.GlobalStats.Health.MaxValue;
+            var targetColor = GetGradientColor(newHealth, max, false); 
+            
+            if (animateStatChange) healthEntry.UpdateTextAnimated(oldHealth, newHealth, max, newHealth > oldHealth);
+            else fatigueEntry.UpdateText(newHealth, max, targetColor);
+        }
+        
+        private void GlobalStats_OnFatigueChanged(int oldFatigue, int newFatigue) {
+            var max = GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue;
+            var targetColor = GetGradientColor(newFatigue, max, true);
+            
+            if (animateStatChange) fatigueEntry.UpdateTextAnimated(oldFatigue, newFatigue, max, newFatigue < oldFatigue);
+            else fatigueEntry.UpdateText(newFatigue, max, targetColor);
+        }
 
         // private void GlobalStats_OnHungerChanged(int hunger) =>
-        //     UpdateStatDisplayedValueAndColor(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
+        //     UpdateStatUI(hungerValueText, hunger, GlobalStatsManager.Instance.GlobalStats.Hunger.MaxValue);
         //
         // private void GlobalStats_OnGroupCohesionChanged(int groupCohesion) =>
-        //     UpdateStatDisplayedValueAndColor(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.Cohesion.MaxValue);
+        //     UpdateStatUI(groupCohesionValueText, groupCohesion, GlobalStatsManager.Instance.GlobalStats.Cohesion.MaxValue);
         //
         // private void GlobalStats_OnNotorietyChanged(int notoriety) =>
         //     UpdateStatDisplayedValue(notorietyValueText, notoriety, GlobalStatsManager.Instance.GlobalStats.Notoriety.MaxValue);

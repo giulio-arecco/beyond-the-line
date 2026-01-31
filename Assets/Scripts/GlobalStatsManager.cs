@@ -14,10 +14,12 @@ public class IntStat {
         get => _value;
         set {
             var newValue = Mathf.Clamp(value, MinValue, MaxValue);
+            var oldValue = _value;
             
             if (_value == newValue) return;
             _value = newValue;
-            OnValueChanged?.Invoke(_value);
+            
+            OnValueChanged?.Invoke(oldValue, _value);
         }
     }
 
@@ -31,7 +33,7 @@ public class IntStat {
         this.MaxValue = maxValue;
     }
     
-    public event Action<int> OnValueChanged;
+    public event Action<int, int> OnValueChanged;
 }
 
 public class GlobalStats {
@@ -115,15 +117,15 @@ public class GlobalStatsManager: Singleton<GlobalStatsManager> {
     protected override void Awake() {
         base.Awake();
         GlobalStats = new GlobalStats();
+        
+        GlobalStats.Health.Value = initialHealth;
+        GlobalStats.Fatigue.Value = initialFatigue;
+        GlobalStats.Cohesion.Value = initialCohesion;
     }
 
     private void Start() {
         inventory.Value.OnAdd += Storage_OnAdd;
         inventory.Value.OnRemove += Storage_OnRemove;
-        
-        GlobalStats.Health.Value = initialHealth;
-        GlobalStats.Fatigue.Value = initialFatigue;
-        GlobalStats.Cohesion.Value = initialCohesion;
     }
 
     private void OnDestroy() {

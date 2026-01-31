@@ -50,8 +50,8 @@ MonoBehaviour:
   sourceA: {fileID: 7151347963014407966}
   sourceB: {fileID: 4188315171350240494}
   defaultVolume: 0.25
-  defaultCrossFadeDuration: 2.5
-  defaultFadeOutInDuration: 1.5
+  defaultCrossFadeDuration: 2
+  defaultFadeOutInDuration: 1.25
   defaultFadeOutInSilenceGap: 0.25
   defaultFadeInDuration: 5
   defaultFadeOutDuration: 5
