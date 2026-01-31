@@ -2133,6 +2133,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a463d538306e9b24d9540142b4d28a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1374650158
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1374650159}
+  - component: {fileID: 1374650160}
+  m_Layer: 0
+  m_Name: MapScreenMusicPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1374650159
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374650158}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1938464480}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1374650160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1374650158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ed67991aebfdd459810d20546ca507, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Audio.MapScreenMusicPlayer
+  mapScreenClip: {fileID: 8300000, guid: fe8a89c48b0536f4f89d1e2a23562215, type: 3}
 --- !u!224 &1387763692 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7307315464594148006, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
@@ -2193,12 +2238,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: NodeCanvas::NodeCanvas.StateMachines.FSMOwner
   _serializedExposedParameters: []
-  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UI.UIPanelController|Enums.UILayerPushOptions"},"parameters":[{"_type":"UI.UIPanelController","_value":{"$content":1,"$type":"UI.UIPanelController"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UI.UIPanelController|Enums.UILayerPushOptions"},"parameters":[{"_type":"UI.UIPanelController","_value":{"$content":3,"$type":"UI.UIPanelController"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"},{"AudioClip":{"_value":4},"AudioTransitionType":{"_value":1},"$type":"NodeCanvas.CustomTasks.Actions.MusicManager_ExecuteMethod"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.9494836,"a":1.0},"_name":"Intro","_position":{"x":180.0976,"y":-126.5566},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Farmstead","_position":{"x":634.9014,"y":42.92749},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":5},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":6},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"AudioClip":{"_value":4},"AudioTransitionType":{"_value":2},"$type":"NodeCanvas.CustomTasks.Actions.MusicManager_ExecuteMethod"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Wood","_position":{"x":1009.546,"y":200.9619},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":7},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":8},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"AudioClip":{"_value":4},"AudioTransitionType":{"_value":2},"$type":"NodeCanvas.CustomTasks.Actions.MusicManager_ExecuteMethod"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Village","_position":{"x":1306.118,"y":362.3765},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":9},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":10},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":11},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"AudioClip":{"_value":4},"AudioTransitionType":{"_value":2},"$type":"NodeCanvas.CustomTasks.Actions.MusicManager_ExecuteMethod"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Military Road & The Mountain Pass","_position":{"x":1761.876,"y":507.6292},"$type":"NodeCanvas.StateMachines.ActionState","$id":"4"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":12},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":13},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":14},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"AudioClip":{"_value":4},"AudioTransitionType":{"_value":2},"$type":"NodeCanvas.CustomTasks.Actions.MusicManager_ExecuteMethod"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
-    Border","_position":{"x":1307.871,"y":725.6188},"$type":"NodeCanvas.StateMachines.ActionState","$id":"5"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":15},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"AudioClip":{"_value":4},"AudioTransitionType":{"_value":2},"$type":"NodeCanvas.CustomTasks.Actions.MusicManager_ExecuteMethod"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"End","_position":{"x":1794.0,"y":925.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"6"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":9},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":10},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"AudioClip":{"_value":4},"AudioTransitionType":{"_value":2},"$type":"NodeCanvas.CustomTasks.Actions.MusicManager_ExecuteMethod"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+  _boundGraphSerialization: '{"type":"NodeCanvas.StateMachines.FSM","nodes":[{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UI.UIPanelController|Enums.UILayerPushOptions"},"parameters":[{"_type":"UI.UIPanelController","_value":{"$content":1,"$type":"UI.UIPanelController"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"method":{"_baseInfo":"UINavigator|PushUILayer|System.Void","_paramsInfo":"UI.UIPanelController|Enums.UILayerPushOptions"},"parameters":[{"_type":"UI.UIPanelController","_value":{"$content":3,"$type":"UI.UIPanelController"}},{"_type":"Enums.UILayerPushOptions","_value":{"$content":0,"$type":"Enums.UILayerPushOptions"}}],"returnValue":{},"overrideAgent":{"_type":"UINavigator","_value":2},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_DisableInputAction"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.9494836,"a":1.0},"_name":"Intro","_position":{"x":180.0976,"y":-127.8901},"$type":"NodeCanvas.StateMachines.ActionState","$id":"0"},{"_actionList":{"executionMode":1,"actions":[{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseInventory"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"},{"inputReader":{"_name":"InputReader","_targetVariableID":"c0382ff9-f758-435a-9e50-f234f2a6825b"},"ActionMapName":{"_value":"Gameplay"},"ActionName":{"_value":"OpenCloseCompanions"},"$type":"NodeCanvas.CustomTasks.Actions.InputReaderSO_EnableInputAction"}]},"_transitionEvaluation":1,"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Farmstead","_position":{"x":634.9014,"y":42.92749},"$type":"NodeCanvas.StateMachines.ActionState","$id":"1"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":4},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":5},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Wood","_position":{"x":1009.546,"y":200.9619},"$type":"NodeCanvas.StateMachines.ActionState","$id":"2"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":6},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":7},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Village","_position":{"x":1306.118,"y":362.3765},"$type":"NodeCanvas.StateMachines.ActionState","$id":"3"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":8},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":9},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":10},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Military Road & The Mountain Pass","_position":{"x":1761.876,"y":507.6292},"$type":"NodeCanvas.StateMachines.ActionState","$id":"4"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":11},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":12},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":13},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
+    Border","_position":{"x":1307.871,"y":725.6188},"$type":"NodeCanvas.StateMachines.ActionState","$id":"5"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":14},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"End","_position":{"x":1794.0,"y":925.0},"$type":"NodeCanvas.StateMachines.ActionState","$id":"6"},{"_actionList":{"executionMode":1,"actions":[{"method":{"_baseInfo":"UI.UIButtonStateController|SetInteractable|System.Void","_paramsInfo":"System.Boolean"},"parameters":[{"_type":"System.Boolean","_value":{"$content":false,"$type":"System.Boolean"}}],"returnValue":{},"overrideAgent":{"_type":"UI.UIButtonStateController","_value":8},"$type":"NodeCanvas.Tasks.Actions.ExecuteFunction_Multiplatform"},{"setTo":1,"overrideAgent":{"_type":"UnityEngine.Transform","_value":9},"$type":"NodeCanvas.Tasks.Actions.SetObjectActive"}]},"_color":{"r":1.0,"g":0.42,"b":0.32,"a":1.0},"_name":"The
     Military Road","_position":{"x":870.3932,"y":508.1312},"$type":"NodeCanvas.StateMachines.ActionState","$id":"7"}],"connections":[{"_condition":{"conditions":[{"_invert":true,"overrideAgent":{"_type":"UI.UIPanelController","_value":1},"$type":"NodeCanvas.CustomTasks.Conditions.CheckUIPanelControllerVisibleAndInteractable"},{"_invert":true,"overrideAgent":{"_type":"UI.UIPanelController","_value":3},"$type":"NodeCanvas.CustomTasks.Conditions.CheckUIPanelControllerVisibleAndInteractable"}],"$type":"NodeCanvas.Framework.ConditionList"},"_sourceNode":{"$ref":"0"},"_targetNode":{"$ref":"1"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"VariableName":{"_value":"COMPLETED_FARMSTEAD"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"_sourceNode":{"$ref":"1"},"_targetNode":{"$ref":"2"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"VariableName":{"_value":"COMPLETED_WOOD"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
     mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]"},"_sourceNode":{"$ref":"2"},"_targetNode":{"$ref":"3"},"$type":"NodeCanvas.StateMachines.FSMConnection"},{"_condition":{"conditions":[{"VariableName":{"_value":"COMPLETED_VILLAGE"},"Value":{"_value":true},"ComparisonType":{},"$type":"NodeCanvas.CustomTasks.Conditions.CheckInkVariable`1[[System.Boolean,
@@ -2215,7 +2260,6 @@ MonoBehaviour:
   - {fileID: 794021852}
   - {fileID: 507833309}
   - {fileID: 779744729}
-  - {fileID: 8300000, guid: fe8a89c48b0536f4f89d1e2a23562215, type: 3}
   - {fileID: 1982879224}
   - {fileID: 77691873}
   - {fileID: 382420294}
@@ -2231,7 +2275,7 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: FSM that handles story progression
-    _translation: {x: 61, y: 198}
+    _translation: {x: -67, y: 134}
     _zoomFactor: 0.7499313
   _firstActivation: 0
   _enableAction: 0
@@ -3837,11 +3881,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8152654094909304864, guid: 6977b06548ddb8140b0a659c9e6d628a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1048.6444
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8152654094909304864, guid: 6977b06548ddb8140b0a659c9e6d628a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 812.0843
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8152654094909304864, guid: 6977b06548ddb8140b0a659c9e6d628a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -7127,6 +7171,7 @@ Transform:
   - {fileID: 1244242425}
   - {fileID: 1486788156}
   - {fileID: 598227621}
+  - {fileID: 1374650159}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1957136336 stripped

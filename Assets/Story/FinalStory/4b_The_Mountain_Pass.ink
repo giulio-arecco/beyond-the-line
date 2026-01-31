@@ -14,6 +14,8 @@ VAR mask_broken = false
 -> mountain_approach
 
 === mountain_approach ===
+~ PlayMusic("TheMountainPassWind", 2)
+
 Il vento è una lama di ghiaccio che cerca di trovare uno spiraglio nei vestiti, intorpidendo la pelle fino a farla sembrare cartapesta.
 Il sentiero si inerpica verso la gola, fiancheggiato da vecchi piloni della teleferica che emergono dalla nebbia come croci di ferro arrugginito.
 
@@ -270,6 +272,8 @@ Il ponte oscilla. Hai un solo istante per reagire.
 -> tunnel_entrance
 
 === tunnel_entrance ===
+~ PlayMusic("TheMountainPassTunnels", 3)
+
 {HasCompanion("Elias") or HasCompanion("Lira"):Siete|Sei} dall'altra parte della gola. Davanti a {HasCompanion("Elias") or HasCompanion("Lira"):voi|te} si apre la bocca nera del tunnel.
 L'ingresso è segnato da un arco di pietra annerita. Appena {HasCompanion("Elias") or HasCompanion("Lira"):vi avvicinate|ti avvicini}, un odore denso e dolciastro {HasCompanion("Elias") or HasCompanion("Lira"):vi investe|ti investe}. Mandorle amare e zolfo.
 
@@ -552,6 +556,8 @@ Quello è il soffitto o il pavimento...?
 -> convergence
 
 === convergence ===
+~ StopMusic()
+
 All'uscita del tunnel, il terreno sale bruscamente. L'aria torna respirabile, gelida e pura.
 
 { crossing_method == run:
@@ -591,6 +597,8 @@ Un filo di fumo azzurrognolo esce da un buco nel tetto.
 -> the_hermit_hut
 
 === the_hermit_hut ===
+~PlayMusic("TheMountainPassHermit", 1)
+
 Fumo significa fuoco. Fuoco significa calore, ma significa anche presenza umana, e conosci bene il rischio che questo comporta.
 
 { HasCompanion("Lira"):
@@ -702,6 +710,8 @@ L'eremita {HasCompanion("Elias") or HasCompanion("Lira"):vi|ti} osserva con occh
 -> leave_hermit
 
 === leave_hermit ===
+~ StopMusic()
+
 Quando {HasCompanion("Elias") or HasCompanion("Lira"):decidete|decidi} di ripartire, il vecchio è fuori che guarda la valle. Non si volta per {HasCompanion("Elias") or HasCompanion("Lira"):salutarvi|salutarti}.
 
 {HasCompanion("Elias") or HasCompanion("Lira"):Vi rimettete|Ti rimetti} in marcia. Il riposo {HasCompanion("Elias") or HasCompanion("Lira"):vi ha ridato|ti ha ridato} una parvenza di forze, ma la destinazione finale {HasCompanion("Elias") or HasCompanion("Lira"):vi attende|ti attende}.

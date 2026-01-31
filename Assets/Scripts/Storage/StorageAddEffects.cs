@@ -8,7 +8,7 @@ using UnityEngine;
 using Utils.SerializeInterface;
 
 namespace Storage {
-    public class StorageChangeEffects : MonoBehaviour {
+    public class StorageAddEffects : MonoBehaviour {
         [SerializeField] private UIPanelController uiPanelController;
         [SerializeField] private InterfaceReference<IStorage> storage;
         
@@ -20,13 +20,12 @@ namespace Storage {
             var storageValue = storage.Value;
 
             uiPanelController.OnCanvasGroupVisible += UIPanelController_OnCanvasGroupVisible;
-            storageValue.OnAdd += IStorage_OnChange;
-            storageValue.OnRemove += IStorage_OnChange;
+            storageValue.OnAdd += IStorage_OnAdd;
 
             if (tweener.tween == null) tweener.CreateTween();
 
             if (tweener.tween == null) {
-                Debug.LogError($"[StorageChangeEffects] The DOTweenAnimation component on  '{tweener.gameObject.name}' was not configured properly.");
+                Debug.LogError($"[StorageAddEffects] The DOTweenAnimation component on  '{tweener.gameObject.name}' was not configured properly.");
                 return;
             }
 
@@ -37,8 +36,8 @@ namespace Storage {
             var storageValue = storage.Value;
 
             uiPanelController.OnCanvasGroupVisible -= UIPanelController_OnCanvasGroupVisible;
-            storageValue.OnAdd -= IStorage_OnChange;
-            storageValue.OnRemove -= IStorage_OnChange;
+            storageValue.OnAdd -= IStorage_OnAdd;
+            storageValue.OnRemove -= IStorage_OnAdd;
         }
 
         private void UIPanelController_OnCanvasGroupVisible() {
@@ -47,7 +46,7 @@ namespace Storage {
             }
         }
 
-        private void IStorage_OnChange(Storable _) {
+        private void IStorage_OnAdd(Storable _) {
             if (!uiPanelController.IsVisibleAndInteractable() && !tweener.tween.IsPlaying()) {
                 SyncAndPlay();
             }

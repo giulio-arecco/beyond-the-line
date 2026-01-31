@@ -7,6 +7,8 @@ INCLUDE Globals.ink
 -> border_arrival
 
 === border_arrival ===
+~ PlayMusic("TheBorder", 2)
+
 Il confine è una ferita aperta nel paesaggio.
 Davanti a te, la terra di nessuno si estende come un mare di fango, costellato di crateri pieni d'acqua stagnante e reticolati di filo spinato che emergono come rovi d'acciaio.
 

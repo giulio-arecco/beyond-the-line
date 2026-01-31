@@ -42,6 +42,9 @@ namespace Narrative {
     
         public bool StoryIsProgressing { get; private set; }
 
+        public event Action OnStoryEnter;
+        public event Action OnStoryExit;
+
         protected override void Awake() {
             base.Awake();
             _optionalStories = new Queue<OptionalStory>();
@@ -75,6 +78,8 @@ namespace Narrative {
             _storyFunctionsBinder.UnbindGlobalFunctions(_currentStory);
             
             Debug.Log("Exiting story");
+            
+            OnStoryExit?.Invoke();
         }
 
         private void HandleStoryFlow() {
@@ -188,6 +193,8 @@ namespace Narrative {
         
             _storyVariablesRegistry.StartListening(_currentStory);
             _storyFunctionsBinder.BindGlobalFunctions(_currentStory);
+            
+            OnStoryEnter?.Invoke();
         
             HandleStoryFlow();
         }

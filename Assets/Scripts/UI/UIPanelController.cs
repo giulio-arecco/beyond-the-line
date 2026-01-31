@@ -10,6 +10,7 @@ namespace UI {
         private IUIView[] _childViews;
 
         public event Action OnCanvasGroupVisible;
+        public event Action OnCanvasGroupHidden;
 
         private void Awake() {
             _canvasGroup = GetComponent<CanvasGroup>();
@@ -26,7 +27,8 @@ namespace UI {
                 }
             }
             
-            OnCanvasGroupVisible?.Invoke();
+            if (visible) OnCanvasGroupVisible?.Invoke();
+            else OnCanvasGroupHidden?.Invoke();
         }
 
         public bool IsVisibleAndInteractable() {

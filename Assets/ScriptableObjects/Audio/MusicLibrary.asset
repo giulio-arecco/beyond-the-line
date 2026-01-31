@@ -13,9 +13,27 @@ MonoBehaviour:
   m_Name: MusicLibrary
   m_EditorClassIdentifier: Assembly-CSharp::Audio.MusicLibrarySO
   tracks:
+  - trackId: MainMenu
+    clip: {fileID: 8300000, guid: 1c5b2d29d3a55cd4a89e1b058c5f9389, type: 3}
   - trackId: MainTrack
     clip: {fileID: 8300000, guid: fe8a89c48b0536f4f89d1e2a23562215, type: 3}
   - trackId: TheFarmstead
     clip: {fileID: 8300000, guid: 3fdb3aff99c074f4291a8ffb8d5a89b8, type: 3}
   - trackId: TheFarmsteadPatrol
     clip: {fileID: 8300000, guid: 0935828f60557474695a306c9fc6324b, type: 3}
+  - trackId: TheWood
+    clip: {fileID: 8300000, guid: 18cd49491728a2b47847aecdb2e8e92d, type: 3}
+  - trackId: TheVillage
+    clip: {fileID: 8300000, guid: fe26d5e986c6d21439efb8244eefbfed, type: 3}
+  - trackId: TheMilitaryRoad
+    clip: {fileID: 8300000, guid: 09d79bf69fe9b264a8e5f063e19943ab, type: 3}
+  - trackId: TheMilitaryRoadEscape
+    clip: {fileID: 8300000, guid: a40669c3effb95f458c34cae0b20a688, type: 3}
+  - trackId: TheMountainPassWind
+    clip: {fileID: 8300000, guid: 3a7a43a5ca8238444852a7163c51aa21, type: 3}
+  - trackId: TheMountainPassTunnels
+    clip: {fileID: 8300000, guid: cbbe73d9cfe37d74aaadfeff8843f963, type: 3}
+  - trackId: TheMountainPassHermit
+    clip: {fileID: 8300000, guid: 39508ffa69531a9418db53d12149f4be, type: 3}
+  - trackId: TheBorder
+    clip: {fileID: 8300000, guid: a015694c75353b44780a1d566ca8964a, type: 3}

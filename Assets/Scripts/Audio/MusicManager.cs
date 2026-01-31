@@ -20,11 +20,11 @@ namespace Audio {
         private Sequence _currentTransition;
         private bool _isSourceAPlaying;
 
-        protected override void Awake() {
-            base.Awake();
-
-            if (sourceA) sourceA.volume = 0;
-            if (sourceB) sourceB.volume = 0;
+        private void Start() {
+            if (sourceA.isPlaying) _isSourceAPlaying = true;
+            else sourceA.volume = 0;
+            
+            sourceB.volume = 0;
         }
 
         public void PlayMusic(AudioClip newClip, AudioTransitionType transitionType) {

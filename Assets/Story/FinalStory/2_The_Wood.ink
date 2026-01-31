@@ -20,6 +20,8 @@ VAR clue_watch = false
 -> forest_entry
 
 === forest_entry ===
+~ PlayMusic("TheWood", 2)
+
 Gli alberi sono spettri alti e contorti, le cui fronde nascondono quel poco di luce lunare che riesce a bucare le nuvole.
 Il terreno è infido. Radici sporgenti e buche scavate dalle piogge rendono ogni passo una scommessa.
 
@@ -516,6 +518,8 @@ In un attimo è sparita, lasciandoti vivo e con il tuo zaino<>
 -> end_section_two
 
 === end_section_two ===
+~ StopMusic()
+
 La tensione cala, lasciando il posto a una stanchezza profonda.
 Davanti a te, il bosco inizia a diradarsi.
 Il cielo a est si tinge di un grigio perla sporco. L'alba sta arrivando.

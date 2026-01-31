@@ -11,6 +11,8 @@ VAR truck_alerted = false
 -> road_entry
 
 === road_entry ===
+~ PlayMusic("TheMilitaryRoad", 2)
+
 La valle si apre sotto di voi come una ferita scura nella terra.
 L'aria vibra. Non è il vento, ma il rombo costante, sordo, di decine di motori diesel.
 La strada militare. L'arteria principale che alimenta il fronte.
@@ -481,6 +483,8 @@ Devi decidere come gestire la situazione.
     -> escape_sequence
 
 === escape_sequence_collapse_intro
+~ PlayMusic("TheMilitaryRoadEscape", 3)
+
 { HasCompanion("Lira") || HasCompanion("Elias"):
     Uscite dalla grata come animali braccati, spinti solo dall'adrenalina che brucia le ultime riserve di energia.
     Le grida esplodono sopra di voi. Non siete riusciti a sgattaiolare via in silenzio: il vostro trambusto vi ha tradito.
@@ -496,6 +500,8 @@ Devi decidere come gestire la situazione.
 -> escape_run_logic
 
 === escape_sequence ===
+~ PlayMusic("TheMilitaryRoadEscape", 3)
+
 { HasCompanion("Lira") || HasCompanion("Elias"):
     Superate l'ultima barriera di asfalto e vi lanciate verso il ciglio della strada.
     Davanti a voi, il bosco nero promette salvezza.
@@ -664,6 +670,8 @@ Sentite il fiato dei cani alle spalle, i loro latrati si avvicinano rapidamente.
     Lira ti copre la fuga con una professionalità glaciale, anche se ha il respiro corto. Spara colpi singoli, mirati, costringendo gli inseguitori a tenere la testa bassa.
     "Verso gli alberi!" ordina, la voce roca per lo sforzo.
 }
+
+~ StopMusic()
 
 Corri finché i polmoni non bruciano come se avessi ingoiato vetro.
 

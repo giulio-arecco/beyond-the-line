@@ -19,6 +19,8 @@ VAR threat_power = 0
 -> village_entry
 
 === village_entry ===
+~ PlayMusic("TheVillage", 2)
+
 Le prime luci dell'alba filtrano tra i rami come lame grigie, dissolvendo le ombre del bosco.
 Cammini da ore. La stanchezza ti morde i polpacci, ma è la vista dell'orizzonte a farti fermare.
 Là dove gli alberi finiscono, la valle si apre su una macchia scura, immobile sotto il cielo pallido.
