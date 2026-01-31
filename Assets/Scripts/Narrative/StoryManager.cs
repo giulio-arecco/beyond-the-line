@@ -11,6 +11,7 @@ using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Utils.SerializeInterface;
+using DG.Tweening;
 
 namespace Narrative {
     public class StoryManager : Singleton<StoryManager> {
@@ -26,6 +27,9 @@ namespace Narrative {
     
         [Header("Story Global Variables")]
         [SerializeField] private TextAsset globalsInkJson;
+
+        [Header("TypeWriter Effect Settings")] 
+        [SerializeField] private float speed = 30f;
     
         [Header("External Dependencies")] 
         [SerializeField] private InterfaceReference<IStorage<Item>> playerInventory;
@@ -39,6 +43,7 @@ namespace Narrative {
         private Queue<OptionalStory> _optionalStories;
         private StoryVariablesRegistry _storyVariablesRegistry; 
         private StoryFunctionsBinder _storyFunctionsBinder;
+        private Tween _typewriterTween;
     
         public bool StoryIsProgressing { get; private set; }
 
@@ -67,6 +72,8 @@ namespace Narrative {
             for (var i = 0; i < choices.Length; i++) {
                 _choicesText[i] = choices[i].GetComponentInChildren<TextMeshProUGUI>();
             }
+            
+            HideChoices();
         }
 
         private void ExitStory() {
@@ -82,6 +89,43 @@ namespace Narrative {
             OnStoryExit?.Invoke();
         }
 
+        private void ShowLine(string textToType) {
+            _typewriterTween?.Kill();
+
+            // Setup
+            storyText.text = textToType;
+            storyText.maxVisibleCharacters = 0;
+
+            // Compute the animation duration based on the length of the text to display to achieve constant speed
+            var duration = textToType.Length / speed;
+
+            _typewriterTween = DOTween.To(
+                    () => storyText.maxVisibleCharacters, 
+                    x => storyText.maxVisibleCharacters = x, textToType.Length, duration
+                    )
+                .SetEase(Ease.Linear)
+                .OnComplete(() => {
+                    _typewriterTween = null;
+                    DisplayChoices();
+                });
+
+            _typewriterTween.Play();
+        }
+
+        private void SkipTypingAnimation() {
+            if (_typewriterTween != null && _typewriterTween.IsActive()) {
+                _typewriterTween.Complete(); 
+                _typewriterTween = null;
+            }
+        }
+        
+        private string ParseCustomMarkers(string line) {
+            string parsedLine;
+            parsedLine = line.Replace("<nl>", "\n");
+            
+            return parsedLine;
+        }
+
         private void HandleStoryFlow() {
             while (_currentStory.canContinue) {
                 var line = _currentStory.Continue();
@@ -89,9 +133,7 @@ namespace Narrative {
                 // The current line contains visible text
                 if (!string.IsNullOrWhiteSpace(line)) {
                     line = ParseCustomMarkers(line);
-                    storyText.text = line;
-            
-                    DisplayChoices();
+                    ShowLine(line);
                     return;
                 }
             }
@@ -111,13 +153,6 @@ namespace Narrative {
             else {
                 ExitStory();
             }
-        }
-
-        private string ParseCustomMarkers(string line) {
-            string parsedLine;
-            parsedLine = line.Replace("<nl>", "\n");
-            
-            return parsedLine;
         }
     
         private OptionalStory FindPlayableOptionalStory() {
@@ -149,6 +184,12 @@ namespace Narrative {
             HandleStoryFlow();
         }
 
+        private void HideChoices() {
+            foreach(var choice in choices) {
+                choice.SetActive(false);
+            }
+        }
+
         private void DisplayChoices() {
             EventSystem.current.SetSelectedGameObject(null);
             
@@ -167,9 +208,9 @@ namespace Narrative {
             }
         
             // go through the remaining choices the UI supports and make sure they're hidden
-            for (; i < choices.Length; i++) {
-                choices[i].gameObject.SetActive(false);
-            }
+            // for (; i < choices.Length; i++) {
+            //     choices[i].gameObject.SetActive(false);
+            // }
         
             // automatically select the first choice button
             // if (choices[0].TryGetComponent<Button>(out var choiceButton)) {
@@ -178,7 +219,10 @@ namespace Narrative {
         }
     
         private void Input_ContinueStory() {
-            if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
+            if (_typewriterTween != null && _typewriterTween.IsActive()) {
+                SkipTypingAnimation();
+            }
+            else if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
                 HandleStoryFlow();
             }
         }
@@ -205,7 +249,10 @@ namespace Narrative {
 
         public void MakeChoice(int choiceIndex) {
             Debug.Log("Chosen choice with index: " + choiceIndex);
+            
             _currentStory.ChooseChoiceIndex(choiceIndex);
+            HideChoices();
+            
             HandleStoryFlow();
         }
 
