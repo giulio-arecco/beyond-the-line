@@ -43,6 +43,8 @@ namespace UI {
         public UltEvent onNormalExit;
         public UltEvent onHighlightEnter;
         public UltEvent onHighlightExit;
+        public UltEvent onHighlightStayEnter;
+        public UltEvent onHighlightStayExit;
         public UltEvent onPressEnter;
         public UltEvent onPressExit;
         public UltEvent onSelectEnter;
@@ -104,6 +106,8 @@ namespace UI {
             onNormalExit.RemoveAllListeners();
             onHighlightEnter.RemoveAllListeners();
             onHighlightExit.RemoveAllListeners();
+            onHighlightStayEnter.RemoveAllListeners();
+            onHighlightStayExit.RemoveAllListeners();
             onPressEnter.RemoveAllListeners();
             onPressExit.RemoveAllListeners();
             onSelectEnter.RemoveAllListeners();
@@ -208,6 +212,8 @@ namespace UI {
         public void ExitNormalState() => onNormalExit?.Invoke();
         public void EnterHighlightedState() => onHighlightEnter?.Invoke();
         public void ExitHighlightedState()  => onHighlightExit?.Invoke();
+        public void EnterHighlightedStayState() => onHighlightStayEnter?.Invoke();
+        public void ExitHighlightedStayState() => onHighlightStayExit?.Invoke();
         public void EnterPressedState() => onPressEnter?.Invoke();
         public void ExitPressedState() => onPressExit?.Invoke();
         public void EnterSelectedState() => onSelectEnter?.Invoke();
