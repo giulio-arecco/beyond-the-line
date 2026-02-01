@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using Audio;
+using Enums;
 using NodeCanvas.Framework;
 using NodeCanvas.StateMachines;
 using UltEvents;
@@ -17,9 +19,17 @@ namespace UI {
         IPointerClickHandler, ISubmitHandler
     {
         private const string FSM_ASSET_GUID = "3abc85d0f27a1464684a4620ad9031f6";
-
-        [SerializeField] private bool debugLogging;
+        
         [SerializeField] private InputReaderSO inputReader;
+
+        [Header("Settings")] 
+        [SerializeField] private bool playButtonSound = true;
+        [SerializeField] private bool debugLogging;
+        
+        [Header("Audio Configuration")] 
+        [SerializeField] private UISoundType pressSoundType = UISoundType.None;
+        [SerializeField] private UISoundType releaseSoundType = UISoundType.None;
+        [SerializeField] private UISoundType submitSoundType = UISoundType.Submit;
         
         [Header("Internal References")]
         [SerializeField] private Selectable targetSelectable;
@@ -80,11 +90,29 @@ namespace UI {
             
             if (!fsmOwner.isRunning) fsmOwner.StartBehaviour(); 
             else fsmOwner.UpdateBehaviour();
+
+            BindAudioEvents();
         }
 
         private void OnDisable() {
             ResetInternalState();
             UpdateState(ref _isDisabled, true);
+        }
+
+        private void OnDestroy() {
+            onNormalEnter.RemoveAllListeners();
+            onNormalExit.RemoveAllListeners();
+            onHighlightEnter.RemoveAllListeners();
+            onHighlightExit.RemoveAllListeners();
+            onPressEnter.RemoveAllListeners();
+            onPressExit.RemoveAllListeners();
+            onSelectEnter.RemoveAllListeners();
+            onSelectExit.RemoveAllListeners();
+            onSelectStayEnter.RemoveAllListeners();
+            onSelectStayExit.RemoveAllListeners();
+            onDisabledEnter.RemoveAllListeners();
+            onDisabledExit.RemoveAllListeners();
+            onSubmit.RemoveAllListeners();
         }
 
 #if UNITY_EDITOR
@@ -119,6 +147,20 @@ namespace UI {
             }
         }
 #endif
+
+        private void BindAudioEvents() {
+            if (submitSoundType != UISoundType.None) {
+                onSubmit.AddListener(() => AudioManager.Instance.PlayUISound(submitSoundType));
+            }
+
+            if (pressSoundType != UISoundType.None) {
+                onPressEnter.AddListener(() => AudioManager.Instance.PlayUISound(pressSoundType));
+            }
+            
+            if (releaseSoundType != UISoundType.None) {
+                onPressEnter.AddListener(() => AudioManager.Instance.PlayUISound(releaseSoundType));
+            }
+        }
         
         private void ResetInternalState() {
             _isHighlighted = false;

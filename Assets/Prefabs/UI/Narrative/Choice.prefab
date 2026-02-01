@@ -311,7 +311,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 10, y: 815}
-  m_SizeDelta: {x: 2300, y: 75}
+  m_SizeDelta: {x: 0, y: 75}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7108223156787844635
 CanvasRenderer:
@@ -436,8 +436,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonStateController
-  debugLogging: 0
   inputReader: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
+  playButtonSound: 1
+  debugLogging: 0
+  pressSoundType: 0
+  releaseSoundType: 0
+  submitSoundType: 4
   targetSelectable: {fileID: 8861550144635139821}
   fsmOwner: {fileID: 4053396518662477263}
   onSubmit:
