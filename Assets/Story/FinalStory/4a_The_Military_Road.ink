@@ -678,7 +678,10 @@ Corri finché i polmoni non bruciano come se avessi ingoiato vetro.
 Finché le luci non sono solo puntini lontani e confusi nella valle sottostante.
 Finché il rumore dei motori e degli spari non viene sostituito, finalmente, dal silenzio assoluto del vento tra gli alberi e le rocce.
 
-{ !HasCompanion("Elias") and HasItem("Notebook") and HasItem("Dictionary"): -> diary_reading}
+{ 
+    - not HasCompanion("Elias") and HasItem("Notebook") and HasItem("Dictionary"): 
+    -> diary_reading
+}
 
 La strada è alle spalle e i soldati hanno persone le vostre tracce.
 Il confine è vicino.

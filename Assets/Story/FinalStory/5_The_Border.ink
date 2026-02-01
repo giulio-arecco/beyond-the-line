@@ -103,7 +103,7 @@ Attraversi gli ultimi metri di terra di nessuno. Il confine è superato. Sei sal
     Hai riportato a casa la pelle, ma hai lasciato indietro tutto il resto. Sei diventato parte del paesaggio desolato che ti lasci alle spalle: una corpo vivo con un'anima spenta.
 }
 
-~ COMPLETED_ENDING = true
+~ COMPLETED_BORDER = true
 -> END
 
 === help_the_boy ===
@@ -155,7 +155,7 @@ Hai attraversato l'inferno per tornare a casa, ma ti rendi conto che la tua più
 Ce l'avete fatta. Siete sopravvissuti.
 
 ~ IncreaseGlobalStat("Cohesion", 20)
-~ COMPLETED_ENDING = true
+~ COMPLETED_BORDER = true
 -> END
 
 // ============================================================
@@ -212,5 +212,5 @@ C'è solo un'immensa, sterminata distesa di vittime.
 Guardi l'orizzonte: non vedi altro che desolazione in ogni direzione. <nl>
 Ti rimetti in cammino, verso una casa che accoglierà un uomo profondamente diverso da quello che l'ha lasciata.
 
-~ COMPLETED_ENDING = true
+~ COMPLETED_BORDER = true
 -> END

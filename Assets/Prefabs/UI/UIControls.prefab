@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Chiudi Pannello UI
+  m_text: Chiudi pannello UI
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a9655470c9b057f4eb27ce3b166747df, type: 2}
   m_sharedMaterial: {fileID: -6222873151825084008, guid: a9655470c9b057f4eb27ce3b166747df, type: 2}
@@ -130,7 +130,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.4310303, y: 9.708862, z: -43.770752, w: 7.838684}
+  m_margin: {x: 1.4310303, y: 9.708862, z: -387.7378, w: 7.838684}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1899,7 +1899,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -0.6158447, y: 9.708862, z: -96.76892, w: 7.838684}
+  m_margin: {x: -0.6158447, y: 9.708862, z: -291.60352, w: 7.838684}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

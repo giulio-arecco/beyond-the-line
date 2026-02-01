@@ -53,8 +53,8 @@ namespace Narrative {
             story.UnbindExternalFunction("GetGlobalStat");
             story.UnbindExternalFunction("IncreaseGlobalStat");
             story.UnbindExternalFunction("DecreaseGlobalStat");
-            story.UnbindExternalFunction("PlayMusic");
-            story.UnbindExternalFunction("StopMusic");
+            story.UnbindExternalFunction("PlayMusic_Internal");
+            story.UnbindExternalFunction("StopMusic_Internal");
             Debug.Log("Successfully unbound external global functions from the Ink Story");
         }
 

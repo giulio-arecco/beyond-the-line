@@ -20,7 +20,7 @@ VAR clue_watch = false
 -> forest_entry
 
 === forest_entry ===
-~ PlayMusic("TheWood", 2)
+~ StopMusicCustomDuration(3.0)
 
 Gli alberi sono spettri alti e contorti, le cui fronde nascondono quel poco di luce lunare che riesce a bucare le nuvole.
 Il terreno è infido. Radici sporgenti e buche scavate dalle piogge rendono ogni passo una scommessa.
@@ -38,6 +38,9 @@ Continui a marciare per ore, guidato solo dalla bussola mentale che punta verso 
 ~ IncreaseGlobalStat("Fatigue", 10)
 
 Improvvisamente, il silenzio del bosco viene violato.
+
+~ PlayMusicCustomTransition("TheWood", 1, 2.0)
+
 Un *clic* metallico. Secco.
 Viene da sotto il tuo stivale destro.
 Il mondo si ferma. Il cuore salta un battito, poi riprende a martellare furioso contro le costole, rimbombando nelle orecchie come un tamburo.
