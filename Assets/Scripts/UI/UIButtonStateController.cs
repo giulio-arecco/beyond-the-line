@@ -70,11 +70,9 @@ namespace UI {
         
         // Memory to handle the ghost selection bug
         private int _selectionFrame = -1;
-        private bool _wasSelectedBeforeClick;
-        
-        // FIX: Variabile per ignorare la selezione automatica al "risveglio"
         private int _enableFrame = -1;
-        
+        private bool _wasSelectedBeforeClick;
+
         private void Awake() {
             if (!targetSelectable) Debug.LogError($"[UIButtonStateController - {gameObject.name}] Missing Target Selectable");
             if (!inputReader) Debug.LogError($"[UIButtonStateController - {gameObject.name}] Missing InputReaderSO Reference");
@@ -187,7 +185,7 @@ namespace UI {
             // IsInteractable() checks both .interactable and parent CanvasGroups
             var isInteractable = targetSelectable.IsInteractable();
             
-            // Se lo stato cambia da False a True (diventiamo attivi), segniamo il frame corrente.
+            // If we become interactable, store the current frame number
             if (isInteractable && _isDisabled) {
                 _enableFrame = Time.frameCount;
             }
@@ -199,7 +197,7 @@ namespace UI {
         public void SetInteractable(bool isInteractable) {
             targetSelectable.interactable = isInteractable;
             
-            // Se stiamo abilitando il bottone, segniamo il frame per ignorare selezioni "ghost" immediate
+            // If we are enabling the button, store the current frame to ignore immediate "ghost" selections
             if (isInteractable) {
                 _enableFrame = Time.frameCount;
             }
@@ -287,8 +285,7 @@ namespace UI {
 
             _selectionFrame = Time.frameCount;
             
-            // FIX: Se questo evento OnSelect avviene nello stesso frame in cui
-            // siamo stati riabilitati (SetInteractable true), è un residuo di Unity. Ignoralo.
+            // If OnSelect is called in the same frame SetInteractable(true) was called, ignore it
             if (_enableFrame == Time.frameCount) {
                 if (debugLogging) Debug.Log($"[UIButtonStateController - {gameObject.name}] Ignoring Auto-Select on Enable");
                 return;

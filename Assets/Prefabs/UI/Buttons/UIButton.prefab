@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 2100000, guid: a1e9950c6b478e640a1e1f51c3aeea9e, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -366,7 +366,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2826085010368485402, guid: 7f10ec41566809746b3db6ea90ef4100, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7f10ec41566809746b3db6ea90ef4100, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -461,8 +461,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonNavigationEvents
-  debugLogging: 0
   inputReader: {fileID: 11400000, guid: 52a637b5fad70f440bd54c9504d28c3c, type: 2}
+  playButtonSound: 1
+  debugLogging: 0
+  pressSoundType: 0
+  releaseSoundType: 0
+  submitSoundType: 3
   targetSelectable: {fileID: 3140367593461311591}
   fsmOwner: {fileID: 6667824236833504945}
   onSubmit:
@@ -481,6 +485,10 @@ MonoBehaviour:
     - _Target: {fileID: 799385948166050210}
       _MemberName: DOPlayBackwards
       _PersistentArguments: []
+  onHighlightStayEnter:
+    _PersistentCalls: []
+  onHighlightStayExit:
+    _PersistentCalls: []
   onPressEnter:
     _PersistentCalls:
     - _Target: {fileID: 8812450977013417235}
@@ -494,7 +502,7 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: -1231342527244319048, guid: 837f92a973a46b64db36193e28d9da2c, type: 3}
+        _Object: {fileID: 21300000, guid: 837f92a973a46b64db36193e28d9da2c, type: 3}
   onPressExit:
     _PersistentCalls:
     - _Target: {fileID: 8812450977013417235}
@@ -508,7 +516,7 @@ MonoBehaviour:
         _Y: 0
         _Z: 0
         _W: 0
-        _Object: {fileID: -2826085010368485402, guid: 7f10ec41566809746b3db6ea90ef4100, type: 3}
+        _Object: {fileID: 21300000, guid: 7f10ec41566809746b3db6ea90ef4100, type: 3}
   onSelectEnter:
     _PersistentCalls: []
   onSelectStayEnter:
@@ -518,6 +526,30 @@ MonoBehaviour:
   onSelectExit:
     _PersistentCalls: []
   onDisabledEnter:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 8812450977013417235}
+      _MemberName: set_sprite
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 21300000, guid: 912623e56c33f2644b1e897924aa0faa, type: 3}
   onDisabledExit:
-    _PersistentCalls: []
+    _PersistentCalls:
+    - _Target: {fileID: 8812450977013417235}
+      _MemberName: set_sprite
+      _PersistentArguments:
+      - _Type: 13
+        _Int: 0
+        _String: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
+          PublicKeyToken=null
+        _X: 0
+        _Y: 0
+        _Z: 0
+        _W: 0
+        _Object: {fileID: 21300000, guid: 7f10ec41566809746b3db6ea90ef4100, type: 3}

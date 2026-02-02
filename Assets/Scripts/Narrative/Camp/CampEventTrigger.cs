@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using Ink.Runtime;
 using Inventory.Interfaces;
 using Storage.Storables;
+using UI;
 using UnityEngine;
 using UnityEngine.UI;
 using Utils.SerializeInterface;
@@ -11,7 +12,8 @@ namespace Narrative.Camp {
     public class CampEventTrigger : MonoBehaviour {
         [Header("Button and Inventory handling")] 
         [SerializeField] private InterfaceReference<IStorage<Item>> playerInventory;
-        [SerializeField] private Button campButton;
+        [SerializeField] private UIButtonStateController triggerButton;
+        
         [Header("Stories")]
         [SerializeField] private TextAsset inkJsonCampBase;
         [SerializeField] private List<OptionalStory> optionalInkJsons;
@@ -19,7 +21,7 @@ namespace Narrative.Camp {
         private void Start() {
             var canSetCampObj = StoryManager.Instance.GetRegistryVariable("CAN_SET_CAMP");
             var canSetCamp = ConvertTo<BoolValue>(canSetCampObj).value;
-            campButton.gameObject.SetActive(canSetCamp);
+            triggerButton.SetInteractable(canSetCamp);
             
             StoryManager.Instance.SubscribeToVariableChange("CAN_SET_CAMP", StoryVariablesRegistry_OnValueChanged);
         }
@@ -39,7 +41,7 @@ namespace Narrative.Camp {
 
         private void StoryVariablesRegistry_OnValueChanged(Ink.Runtime.Object value) {
             var canSetCamp = ConvertTo<BoolValue>(value).value;
-            campButton.gameObject.SetActive(canSetCamp);
+            triggerButton.SetInteractable(canSetCamp);
         }
     }
 }

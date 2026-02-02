@@ -198,6 +198,7 @@ MonoBehaviour:
   storage:
     underlyingValue: {fileID: 0}
   tweener: {fileID: 7589155131101641007}
+  syncGroup: []
 --- !u!1 &5782623816809026853
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,7 +466,7 @@ PrefabInstance:
     - target: {fileID: 6307967553440302081, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: onPressEnter._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._Object
       value: 
-      objectReference: {fileID: -1231342527244319048, guid: 837f92a973a46b64db36193e28d9da2c, type: 3}
+      objectReference: {fileID: 21300000, guid: 837f92a973a46b64db36193e28d9da2c, type: 3}
     - target: {fileID: 6307967553440302081, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
       propertyPath: onPressEnter._PersistentCalls.Array.data[0]._PersistentArguments.Array.data[0]._String
       value: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral,
