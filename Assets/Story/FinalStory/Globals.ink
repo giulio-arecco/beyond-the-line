@@ -37,6 +37,9 @@ EXTERNAL IncreaseGlobalStat(statName, statValue)
 EXTERNAL DecreaseGlobalStat(statName, statValue)
 EXTERNAL PlayMusic_Internal(trackId, transitionType, transitionDuration, volume)
 EXTERNAL StopMusic_Internal(transitionDuration)
+EXTERNAL Log(message)
+EXTERNAL LogWarning(message)
+EXTERNAL LogError(message)
 
 // Play and Stop Music Functions Wrappers
 === function PlayMusic(trackId, transitionType) ===

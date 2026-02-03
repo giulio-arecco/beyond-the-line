@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &35406720 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5468113431007592690, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-  m_PrefabInstance: {fileID: 540110978}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &47818669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,38 +1015,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8812450977013417235, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-      propertyPath: m_Color.a
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812450977013417235, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812450977013417235, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812450977013417235, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8812450977013417235, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: a1e9950c6b478e640a1e1f51c3aeea9e, type: 2}
-    - target: {fileID: 8812450977013417235, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 168209640157057474, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5468113431007592690, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
-      insertIndex: 3
-      addedObject: {fileID: 1015702373}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
 --- !u!1001 &571521349
 PrefabInstance:
@@ -2217,20 +2185,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7307315464594148006, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
   m_PrefabInstance: {fileID: 540110978}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1015702373
+--- !u!114 &1015702370 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6307967553440302081, guid: 4b7080fd7415ef64db1d7a852f1f66df, type: 3}
+  m_PrefabInstance: {fileID: 540110978}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 35406720}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71a32bae68cd6204b935c2defa7d4fce, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b3a94124216d4944b4f86c9594940aa, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UI.UIGrayscaleController
-  texturePropertyName: _MainTex
-  amountPropertyName: _GrayscaleAmount
+  m_EditorClassIdentifier: Assembly-CSharp::UI.UIButtonNavigationEvents
 --- !u!1 &1036226280 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5104621604595221253, guid: d081297e265e70d42853041d2dfeb208, type: 3}
@@ -3266,7 +3231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Narrative.Camp.CampEventTrigger
   playerInventory:
     underlyingValue: {fileID: 1140280377}
-  buttonGrayscaleController: {fileID: 1015702373}
+  triggerButton: {fileID: 1015702370}
   inkJsonCampBase: {fileID: 4900000, guid: c2259be1dafc36b48bb3296916dc6105, type: 3}
   optionalInkJsons: []
 --- !u!1 &1541088317 stripped

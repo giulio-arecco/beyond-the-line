@@ -38,6 +38,9 @@ namespace Narrative {
             story.BindExternalFunction("DecreaseGlobalStat", (string statName, object statValue) => DecreaseGlobalStat(statName, statValue));
             story.BindExternalFunction("PlayMusic_Internal", (string trackId, int transitionType, float transitionDuration, float volume) => PlayMusic(trackId, (AudioTransitionType) transitionType, transitionDuration, volume));
             story.BindExternalFunction("StopMusic_Internal", (float transitionDuration) => StopMusic(transitionDuration));
+            story.BindExternalFunction("Log", (string message) => Debug.Log(message));
+            story.BindExternalFunction("LogWarning", (string message) => Debug.LogWarning(message));
+            story.BindExternalFunction("LogError", (string message) => Debug.LogError(message));
             Debug.Log("Successfully bound external global functions to the Ink Story");
         }
 
@@ -55,6 +58,9 @@ namespace Narrative {
             story.UnbindExternalFunction("DecreaseGlobalStat");
             story.UnbindExternalFunction("PlayMusic_Internal");
             story.UnbindExternalFunction("StopMusic_Internal");
+            story.UnbindExternalFunction("Log");
+            story.UnbindExternalFunction("LogWarning");
+            story.UnbindExternalFunction("LogError");
             Debug.Log("Successfully unbound external global functions from the Ink Story");
         }
 
