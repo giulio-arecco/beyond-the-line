@@ -49,7 +49,7 @@ Il crollo è instabile. Un masso in bilico minaccia di tirare giù il resto del 
 + {HasItem("Crowbar")} [Usi il piede di porco per fare leva sulle travi.]
     Incasti il piede di porco tra due blocchi di cemento e spingi. Il metallo stride, ma la leva moltiplica la tua forza.
     Con uno sforzo controllato, riesci a creare un varco sufficientemente grande da passare senza rischiare che tutto ti crolli addosso.
-    ~ IncreaseGlobalStat("Fatigue", 5)
+    ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
     -> loot_mask
 
 + {HasCompanion("Elias") or HasCompanion("Lira")} [Chiedi aiuto per spostare le macerie.]
@@ -63,14 +63,14 @@ Il crollo è instabile. Un masso in bilico minaccia di tirare giù il resto del 
         Insieme sollevate il blocco di cemento quel tanto che basta per farlo scivolare via.
     }
     Dividere il peso ha risparmiato le tue energie, ma lo sforzo a questa altitudine si fa sentire per tutti.
-    ~ IncreaseGlobalStat("Fatigue", 5)
+    ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
     ~ IncreaseGlobalStat("Cohesion", 5)
     -> loot_mask
 
 + [Sposti le macerie a mani nude. Non c'è altra scelta.]
     Afferri la prima trave. È pesante e scheggiata. <nl>
     Tiri con tutto il peso del corpo, sentendo i tendini protestare e il respiro farsi corto. La polvere ti riempie la gola, facendoti tossire. Sposti le pietre una ad una, scorticandoti le mani. Quando finalmente apri un varco, sei madido di sudore che comincia a gelare sulla pelle.
-    ~ IncreaseGlobalStat("Fatigue", 10)
+    ~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
     -> loot_mask
 
 === loot_mask ===
@@ -129,13 +129,12 @@ Non ci sono altre vie. Le pareti della gola sono verticali e friabili. {HasCompa
 {HasCompanion("Elias") or HasCompanion("Lira"):Dovete|Devi} raggiungere l'imbocco del tunnel sull'altro lato. Devi valutare come affrontare la traversata.
 
 + [Ti fermi per analizzare la struttura.]
-    ~ IncreaseGlobalStat("Fatigue", 2)
     Ti accucci, ignorando il vento che ti frusta il viso, e studi il ponte. <nl>
     Confermi che l'impalcato di legno è una trappola mortale, ma le due travi portanti laterali in ferro sono continue.Inoltre, vedi un vecchio cavo d'acciaio che corre lungo il passamano di sinistra. È incrostato di ghiaccio spesso, inutilizzabile così com'è per tenersi, ma il metallo sotto sembra integro e ancorato alla roccia.
     
     ++ {HasItem("Crowbar")} [Usi il piede di porco per rompere il ghiaccio sul cavo.]
         Colpisci il ghiaccio con precisione. Le schegge saltano via come vetro. Dopo pochi minuti di lavoro frenetico, hai liberato una sezione sufficiente del cavo per usarla come corrimano sicuro.
-        ~ IncreaseGlobalStat("Fatigue", 3)
+        ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
         ~ bridge_cable_fixed = true
         "Ora {HasCompanion("Elias") or HasCompanion("Lira"):abbiamo|ho} un appiglio," dici. "{HasCompanion("Elias") or HasCompanion("Lira"):Possiamo|Posso} passare camminando sulle travi ma {HasCompanion("Elias") or HasCompanion("Lira"):tenendoci|tenendomi} al cavo."
         -> bridge_crossing_choices
@@ -153,7 +152,7 @@ Non ci sono altre vie. Le pareti della gola sono verticali e friabili. {HasCompa
     ~ crossing_method = crawl
     È un processo lento, estenuante, ma è l'unico modo per evitare le assi marce e distribuire il peso direttamente sul metallo.
     Ti sdrai. Il ferro è gelido attraverso i vestiti, succhia via il calore dal tuo corpo. Ogni raffica di vento fa oscillare l'intera struttura, facendoti chiudere gli occhi per la vertigine.
-    ~ IncreaseGlobalStat("Fatigue", 15)
+    ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
     
     { HasCompanion("Elias"): 
         -> elias_accident 
@@ -167,7 +166,7 @@ Non ci sono altre vie. Le pareti della gola sono verticali e friabili. {HasCompa
     ~ crossing_method = cable
     {HasCompanion("Elias") or HasCompanion("Lira"):"Tenetevi al cavo!" ordini.|Afferri il cavo con forza.}
     {HasCompanion("Elias") or HasCompanion("Lira"):Avanzate|Avanzi} in piedi sulle travi laterali, ma assicurati. Il cavo d'acciaio regge il peso laterale. Potete muovervi più velocemente che strisciando, scaricando parte del peso sulle braccia invece che sulle gambe tremanti.
-    ~ IncreaseGlobalStat("Fatigue", 5)
+    ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
     
     { HasCompanion("Elias"): 
         -> elias_accident 
@@ -242,12 +241,12 @@ Il ponte oscilla. Hai un solo istante per reagire.
             Digrigni i denti, urlando per lo sforzo disumano. Rischi di lussarti la spalla, ma contrasti l'inerzia e lo tiri su di peso morto.
             Il recupero ti lascia distrutto.
             ~ DecreaseGlobalStat("Health", 20)
-            ~ IncreaseGlobalStat("Fatigue", 15)
+            ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
         - else:
             Sfrutti la tua posizione stabile e fai leva. Con uno strattone violento, lo riporti sulla trave.
             Vi accasciate sul metallo, tremanti ma salvi.
             ~ DecreaseGlobalStat("Health", 10)
-            ~ IncreaseGlobalStat("Fatigue", 10)
+            ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
         }
         
         Lui rotola sul ponte, pallido come un cadavere. "Vok..." sussurra, "Vok."
@@ -300,8 +299,8 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
     "Na... na velk," mormora, indicando la sua gamba. Non ce la farebbe mai ad arrampicarsi e camminare su quella grata sospesa. Per lui, c'è solo il tunnel principale.
 }
 
-+ {HasItem("GasMask") && HasItem("Crowbar") && (HasCompanion("Elias") or HasCompanion("Lira"))} [Divisione Strategica: Squadre separate.]
-    "Ci dividiamo," ordini.
++ {HasItem("GasMask") && HasItem("Crowbar") && (HasCompanion("Elias") or HasCompanion("Lira"))} [Procedete a squadre separate.]
+    "Ci dividiamo" ordini.
     
     { HasCompanion("Elias") and not elias_fell:
         Consegni la maschera a Elias. "Tu stai giù. È l'unica via per la tua gamba."
@@ -309,7 +308,7 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         "Io passo di sopra. Vai."
         
         Ti aiuti con il piede di porco per raggiungere la passerella arrugginita{HasCompanion("Lira"): seguito da Lira}.
-         ~ IncreaseGlobalStat("Fatigue", 10)
+         ~ IncreaseGlobalStat("Fatigue", 20)
          
         { GetGlobalStat("Fatigue") >= 100: 
             Non appena ti rimetti in piedi sulla passerella, ti si offusca la vista. Ti cedono le gambe e crolli sul freddo metallo arrugginito. 
@@ -342,7 +341,7 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         ++ [Cerchi freneticamente tastando la parete.]
             Le dita scorrono sulla roccia viscida. Ti tagli le mani su ferri sporgenti, ma trovi la leva fredda e unta. La tiri con tutto il peso del corpo.
             Il cancello in alto si apre con uno schianto.
-            ~ IncreaseGlobalStat("Fatigue", 10)
+            ~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
             ~ IncreaseGlobalStat("Cohesion", 10)
             -> convergence
     }
@@ -366,7 +365,7 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         
         ~ mask_broken = true
         ~ DecreaseGlobalStat("Health", 5)
-        ~ IncreaseGlobalStat("Fatigue", 10)
+        ~ IncreaseGlobalStat("Fatigue", 15)
         
         { GetGlobalStat("Fatigue") >= 100:
             Non appena ti rialzi, ti si offusca la vista. Ti cedono le gambe e crolli sul binario arrugginito. 
@@ -409,7 +408,7 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         Afferri una mano nel buio. La tiri con tutta la tua forza.
         Senti un corpo trascinarsi contro il tuo. Vi sostenete a vicenda, barcollando verso l'uscita.
         ~ DecreaseGlobalStat("Health", 30)
-        ~ IncreaseGlobalStat("Fatigue", 20)
+        ~ IncreaseGlobalStat("Fatigue", 25)
         ~ IncreaseGlobalStat("Cohesion", 15)
         
         { GetGlobalStat("Fatigue") >= 100:
@@ -427,6 +426,7 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         Non puoi rischiare la tua stessa vita.
         ~ DecreaseGlobalStat("Health", 20)
         ~ DecreaseGlobalStat("Cohesion", 15)
+        ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
         -> convergence
 
 + {not HasCompanion("Elias") and not HasCompanion("Lira") and HasItem("GasMask")} [Avanzi nel tunnel con la maschera.]
@@ -445,7 +445,7 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         Senti i muscoli della schiena che minacciano di strapparsi. La ruggine ti taglia le mani.
         La ruota cede con uno stridio acuto. La paratia si alza di mezzo metro.
         Ti butti sotto, strisciando nel fango.
-        ~ IncreaseGlobalStat("Fatigue", 25)
+        ~ IncreaseGlobalStat("Fatigue", 30)
         { GetGlobalStat("Fatigue") >= 100:
             Non appena ti rialzi, ti si offusca la vista, ti cedono le gambe e crolli a terra. 
             Sei sfinito. Lo sforzo fisico degli ultimi giorni è stato insopportabile e ora il tuo corpo non ce la fa più. 

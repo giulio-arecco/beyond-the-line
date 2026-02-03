@@ -49,7 +49,7 @@ Passare lì in mezzo sembra un suicidio.
     Alle 04:00 in punto, la strada è deserta. Solo i lampioni di guardia ai checkpoint rimangono accesi, ma il fiume di metallo si è fermato.
     Avete una finestra di opportunità. Dieci minuti, forse meno, prima che il turno successivo riprenda il ritmo.
     
-    ~ IncreaseGlobalStat("Fatigue", 5) 
+    ~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP) 
 - else:
     Non sai nulla dei loro orari. Vedi solo un flusso continuo di mezzi militari.
     Aspettare al freddo senza un piano sembra inutile e rischioso. Bisogna muoversi ora, sperando di trovare un intervallo tra un convoglio e l'altro.
@@ -115,7 +115,7 @@ A destra, più in basso, c'è l'imbocco di un canale di scolo che passa sotto la
 - else:
     Ti muovi da un riparo all'altro.
 }
-~ IncreaseGlobalStat("Fatigue", 5)
+~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
 
 Noti un container diverso dagli altri. Ha il portellone socchiuso, bloccato da una catena.
 Sull'esterno è stampigliato un simbolo bianco.
@@ -132,6 +132,9 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
 * {HasItem("Crowbar")} [Usi il piede di porco per forzare silenziosamente la catena.]
     Incastri il piede di porco tra le maglie. Fai leva progressiva, attento a non far stridere il metallo.
     Uno scatto secco. La catena cede.
+    
+    ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
+    
     { HasCompanion("Lira") || HasCompanion("Elias"):
         Entrate, richiudendo il portellone alle vostre spalle.
     - else:
@@ -160,7 +163,6 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
         Esci senza aver attirato l'attenzione, scivolando via come un fantasma.
     }
     
-    ~ IncreaseGlobalStat("Fatigue", 5)
     ~ alert_level = alert_level + 10 
     -> truck_encounter_active
 
@@ -213,7 +215,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     La guardia non ha dato l'allarme, ma ora sanno che c'è qualcosa che non va.
     
     ~ alert_level = alert_level + 35
-    ~ IncreaseGlobalStat("Fatigue", 10)
+    ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
     -> truck_encounter_active
 
 * [Ignori il container. Troppo rischioso.]
@@ -240,7 +242,7 @@ L'odore è atroce. Ammoniaca e marciume che riempiono la gola.
     Lira avanza trattenendo i conati, la pistola alta sopra la testa per non bagnarla. "Se usciamo vivi da qui," sibila, "mi dovete un bagno caldo."
 }
 
-~ IncreaseGlobalStat("Fatigue", 5)
+~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
 
 { HasCompanion("Lira") || HasCompanion("Elias"):
     Avanzate nel buio del tunnel di cemento.
@@ -272,7 +274,7 @@ Recuperarli significa arrampicarsi sulla catasta di detriti e cadaveri. Senza ca
         ~ AddItemToInventory("Dictionary")
     }
     
-    ~ IncreaseGlobalStat("Fatigue", 25)
+    ~ IncreaseGlobalStat("Fatigue", 30)
 
     // --- CHECK FOR FATIGUE COLLAPSE IN SEWER START ---
     { GetGlobalStat("Fatigue") >= 100:
@@ -396,11 +398,11 @@ Valuti la situazione. La distanza dal cancello è di circa venti metri. I tre so
         Sei stato visto.
         ~ alert_level = 100
         ~ truck_alerted = true
-        ~ IncreaseGlobalStat("Fatigue", 5)
+        ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
     - else:
         Ti muovi come un'ombra. Ogni movimento è fluido. Passi a pochi metri da loro, coperto dall'oscurità e dalla loro distrazione.
         Raggiungi il cancello senza che nessuno alzi la testa.
-        ~ IncreaseGlobalStat("Fatigue", 5)
+        ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
         // alert_level remains unchanged
     }
     -> escape_sequence
@@ -417,7 +419,7 @@ Valuti la situazione. La distanza dal cancello è di circa venti metri. I tre so
     Ti muovi in quell'esatto secondo. Ti fermi. Altro scoppio. Altro movimento.
     È lento, massacrante per i nervi, ma efficace.
     Superi il blocco senza essere notato, ma lo stress ti ha prosciugato.
-    ~ IncreaseGlobalStat("Fatigue", 10)
+    ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
     -> escape_sequence
 
 === truck_encounter_passive ===
@@ -457,7 +459,7 @@ Devi decidere come gestire la situazione.
         Rimani immobile, una statua di ghiaccio nel buio. Senti le vibrazioni dei loro passi sopra di te, ma non ti muovi.
         Quando riemergi, minuti dopo, il camion sta ripartendo.
         Sei congelato, ma invisibile.
-        ~ IncreaseGlobalStat("Fatigue", 10)
+        ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
     }
     -> escape_sequence
 
@@ -470,7 +472,7 @@ Devi decidere come gestire la situazione.
     
     Riesci a creare un varco appena sufficiente per sgusciare fuori alle spalle del camion, rotolando nell'erba alta del fossato proprio mentre il veicolo riparte.
     È stato rischioso, ma ha funzionato.
-    ~ IncreaseGlobalStat("Fatigue", 15)
+    ~ IncreaseGlobalStatCapped("Fatigue", 20, FATIGUE_CAP)
     -> escape_sequence
 
 * [Aspetti immobile che se ne vadano]
@@ -479,7 +481,7 @@ Devi decidere come gestire la situazione.
     
     Dopo un'eternità, il camion riparte.
     Sei salvo, ma distrutto dall'ipotermia.
-    ~ IncreaseGlobalStat("Fatigue", 20)
+    ~ IncreaseGlobalStatCapped("Fatigue", 25, FATIGUE_CAP)
     -> escape_sequence
 
 === escape_sequence_collapse_intro
@@ -595,7 +597,7 @@ I proiettili schioccano contro i tronchi, facendo esplodere schegge di corteccia
 Il terreno è scivoloso. Ogni passo è una lotta contro la gravità e la morte.
 Sentite il fiato dei cani alle spalle, i loro latrati si avvicinano rapidamente.
 
-~ IncreaseGlobalStat("Fatigue", 20) 
+~ IncreaseGlobalStat("Fatigue", 30) 
 
 // --- CHECK FOR FATIGUE COLLAPSE DURING ESCAPE ---
 { GetGlobalStat("Fatigue") >= 100:

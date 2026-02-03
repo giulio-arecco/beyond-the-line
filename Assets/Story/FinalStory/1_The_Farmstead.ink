@@ -19,7 +19,7 @@ La fattoria è silenziosa. Fuori, oltre le finestre senza vetri, il cielo è una
 Devi muoverti. Devi trovare provviste e capire dove sei.
 
 + [Ti alzi a fatica ed esci dalla cucina.]
-    ~ IncreaseGlobalStat("Fatigue", 5)
+    ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
     -> house_hub
     
 === house_hub ===
@@ -27,7 +27,6 @@ Devi muoverti. Devi trovare provviste e capire dove sei.
     Ti trovi nel corridoio principale della casa colonica. L'aria è ferma, pesante di un odore stantio di abbandono e calce.
     
     Alla tua sinistra, l'arco di una porta conduce a quella che sembra una dispensa; il soffitto lì dentro è parzialmente crollato, rivelando travi spezzate e macerie che ingombrano il passaggio.
-    Sulla destra, la porta della camera da letto è socchiusa, lasciando intravedere l'interno in disordine e i resti di una vita quotidiana interrotta bruscamente.
     In fondo al corridoio, la luce grigia del giorno filtra attraverso le assi sconnesse della porta d'ingresso, che dà sul cortile e sulla sagoma scura del fienile poco distante.
 }
 
@@ -76,7 +75,7 @@ Alle tue spalle, la dispensa crolla in una nuvola di polvere.
 ~ AddItemToInventory("Crowbar")
 ~ AddItemToInventory("Ration")
 ~ DecreaseGlobalStat("Health", 20)
-~ IncreaseGlobalStat("Fatigue", 10)
+~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
 
 Stringi il bottino al petto mentre ti rialzi, ansimando. I lividi si faranno sentire, ma hai un po' di cibo e un piede di porco.
 -> house_hub
@@ -91,6 +90,7 @@ Afferri la razione e ti butti fuori un istante prima che l'architrave ceda.
 // No Crowbar obtained, but Health preserved.
 
 Il cuore ti martella nel petto. Hai del cibo, ma l'attrezzo che avevi intravisto è andato.
+~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
 -> house_hub
 
 === bedroom_exploration ===
@@ -241,7 +241,7 @@ Con l'altra mano indica una scolina coperta dai rovi, dietro il fienile. È un s
     Deglutisci il sospetto e decidi di seguire l'istinto. Lui conosce questo posto.
     Vi muovete bassi, nel fango, strisciando come vermi. I soldati entrano nel cortile urlando ordini che ti fanno accapponare la pelle, ma voi siete già oltre la linea visiva, inghiottiti dalle ombre della vegetazione.
     Arrivate al limitare del bosco illesi. Il frastuono della pattuglia si fa ovattato, distante.
-    ~ IncreaseGlobalStat("Fatigue", 5)
+    ~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
     -> end_section_one
 
 * [Sembra troppo stretto. Corri verso il bosco aperto.]
@@ -251,7 +251,7 @@ Con l'altra mano indica una scolina coperta dai rovi, dietro il fienile. È un s
     Scoppia un proiettile alle vostre spalle, che scheggia la corteccia di un albero a un metro da te.
     Vi buttate nel sottobosco, graffiandovi viso e mani, correndo finché il fiato non manca e i polmoni bruciano.
     Dopo diversi minuti di corsa disperata il vociare alle vostre spalle si fa sempre più indistinto, fino a placarsi del tutto. Pare che la pattuglia abbia perso le vostre tracce.
-    ~ IncreaseGlobalStat("Fatigue", 15)
+    ~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
     ~ DecreaseGlobalStat("Health", 5)
     -> end_section_one
 
@@ -267,7 +267,7 @@ Senti passi pesanti avvicinarsi al fienile. Tra pochi secondi saranno qui.
     Uno ti colpisce di striscio al fianco mentre ti tuffi tra gli alberi.
     Dopo diversi minuti di corsa disperata il vociare alle tue spalle si fa sempre più indistinto, fino a placarsi del tutto. Pare che la pattuglia abbia perso le tue tracce.
     ~ DecreaseGlobalStat("Health", 10)
-    ~ IncreaseGlobalStat("Fatigue", 20)
+    ~ IncreaseGlobalStatCapped("Fatigue", 20, FATIGUE_CAP)
     -> end_section_one
 
 * [Corri subito verso il retro, sfruttando il momento di confusione.]
@@ -276,7 +276,7 @@ Senti passi pesanti avvicinarsi al fienile. Tra pochi secondi saranno qui.
     Ti rialzi e ti butti nella macchia scura degli alberi prima che possano vederti.
     Dopo esserti accertato che non ti abbiano visto, inizi a farti strada nel sottobosco. Non sei sicuro di dove tu stia andando; per ora ti basta sapere che ti stai allontanando da quegli uomini.
     ~ DecreaseGlobalStat("Health", 10)
-    ~ IncreaseGlobalStat("Fatigue", 15)
+    ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
     -> end_section_one
 
 === end_section_one ===

@@ -654,7 +654,7 @@ Ti togli le cuffie nel silenzio improvviso.
 Non c'è modo di ripararla. L'informazione è persa per sempre.
 
 ~ radio_broken = true
-~ IncreaseGlobalStat("Fatigue", 10)
+~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
 -> village_hub
 
 === radio_success ===
@@ -781,6 +781,8 @@ Ti allontani dalla radio ed esci dalla casa di comando.
 -> village_hub
 
 === final_planning ===
+~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
+
 { HasCompanion("Lira") or  HasCompanion("Elias"):
     Vi ritrovate <>
 - else:

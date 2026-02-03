@@ -23,7 +23,10 @@ VAR KNOWN_MILITARY_ROAD_STATUS = false // Info from radio for the Military Road
 VAR KNOWN_MOUNTAINPASS_STATUS = false // Info from radio for the Mountain Pass
 VAR READ_NOTEBOOK = false
 
-// --- EXTERNAL FUNCTIONS (UNITY API) ---
+// --- SUPPORT VARS ---
+VAR FATIGUE_CAP = 95
+
+// ========= EXTERNAL FUNCTIONS (UNITY API) =========
 // These functions must be mapped to a C# implementation in Unity. Use these functions to interface with the global stats, the inventory and the companions.
 
 EXTERNAL HasItem(itemId)
@@ -40,6 +43,16 @@ EXTERNAL StopMusic_Internal(transitionDuration)
 EXTERNAL Log(message)
 EXTERNAL LogWarning(message)
 EXTERNAL LogError(message)
+
+// ========= FUNCTION WRAPPERS =========
+=== function IncreaseGlobalStatCapped(statName, amountToAdd, maxValue) ===
+    ~ temp currentValue = GetGlobalStat(statName)
+    { currentValue + amountToAdd >= maxValue:
+        ~ IncreaseGlobalStat(statName, maxValue - currentValue)
+        ~ LogWarning("[Ink Story] Stat Clamped: {statName} - Added: {amountToAdd}, Value: {currentValue}, Clamped to: {maxValue}")
+    - else:
+        ~ IncreaseGlobalStat(statName, amountToAdd)
+    }
 
 // Play and Stop Music Functions Wrappers
 === function PlayMusic(trackId, transitionType) ===
@@ -61,11 +74,11 @@ EXTERNAL LogError(message)
     ~ StopMusic_Internal(customDuration)
     
 
-// UTILITY FUNCTIONS
+// ========= UTILITY FUNCTIONS =========
 === function came_from(-> x) 
     ~ return TURNS_SINCE(x) == 0
 
-// --- FALLBACK FUNCTIONS FOR TESTING USING INKY ---
+// ========= FALLBACK FUNCTIONS FOR TESTING USING INKY =========
 === function HasItem(itemId)
     ~ return true // Default per test
     

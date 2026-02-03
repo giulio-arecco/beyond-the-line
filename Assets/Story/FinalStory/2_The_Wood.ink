@@ -35,7 +35,7 @@ Il terreno è infido. Radici sporgenti e buche scavate dalle piogge rendono ogni
 
 Continui a marciare per ore, guidato solo dalla bussola mentale che punta verso ovest, verso casa. La fatica inizia ad appannarti la vista e a rendere le gambe pesanti come tronchi.
 
-~ IncreaseGlobalStat("Fatigue", 10)
+~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
 
 Improvvisamente, il silenzio del bosco viene violato.
 
@@ -62,7 +62,7 @@ Sposti il peso sulla gamba sinistra, i muscoli tesi allo spasmo, pronto a lancia
 }
 Hai sprecato energie preziose lasciandoti dominare dalla paura. Il respiro è corto, irregolare.
 
-~ IncreaseGlobalStat("Fatigue", 15)
+~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
 -> mine_analysis_logic
 
 === mine_assessment ===
@@ -71,7 +71,7 @@ Abbassi lo sguardo, millimetro dopo millimetro.
 Sotto la suola, parzialmente coperto dal muschio e dalle foglie marce, c'è un disco di metallo arrugginito.
 Il percussore è premuto. Se lo rilasci, la molla scatterà.
 
-~ IncreaseGlobalStat("Fatigue", 5)
+~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
 -> mine_analysis_logic
 
 === mine_analysis_logic ===
@@ -510,8 +510,6 @@ Esegui. Lei si avvicina alla borsa con circospezione, tenendo l'arma alta, e ini
     "Consideralo un regalo. La prossima volta non sarò così generosa."
 }
 
-~ IncreaseGlobalStat("Fatigue", 5) 
-
 "Buona fortuna," dice, indietreggiando nel buio fino a diventare un'ombra. "Ne avrete bisogno."
 In un attimo è sparita, lasciandoti vivo e con il tuo zaino<>
 { lira_took_something:
@@ -522,6 +520,7 @@ In un attimo è sparita, lasciandoti vivo e con il tuo zaino<>
 
 === end_section_two ===
 ~ StopMusic()
+~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
 
 La tensione cala, lasciando il posto a una stanchezza profonda.
 Davanti a te, il bosco inizia a diradarsi.
