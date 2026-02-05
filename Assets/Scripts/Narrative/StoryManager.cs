@@ -58,8 +58,6 @@ namespace Narrative {
         }
 
         private void OnEnable() {
-            StatsExporter.SaveGameStats(_storyVariablesRegistry.GetCurrentValues(StatsExporter.StatsToSave));
-            
             // Subscribe to input events and enable input actions
             input.ContinueStory += Input_ContinueStory;
         }
