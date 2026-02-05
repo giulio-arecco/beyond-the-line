@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Enums;
 using Ink.Runtime;
 using UnityEngine;
+using static Utils.TypeUtils;
 
 namespace Narrative {
     public class StoryVariablesRegistry {
@@ -39,6 +39,45 @@ namespace Narrative {
     
         public void StopListening(Story story) {
             story.variablesState.variableChangedEvent -= OnVariableChanged;
+        }
+
+        public Dictionary<string, object> GetCurrentValues() {
+            var valuesSnapshot = new Dictionary<string, object>();
+            
+            if (Variables == null || Variables.Count == 0) return valuesSnapshot;
+            
+            foreach (var kvp in Variables) {
+                if (kvp.Value.VariableValue is Ink.Runtime.Value inkValue) {
+                    valuesSnapshot[kvp.Key] = inkValue.valueObject;
+                }
+                else {
+                    Debug.LogWarning($"[StoryVariablesRegistry] Variable '{kvp.Key}' is not of type Ink.Runtime.Value. It will be ignored.");
+                }
+            }
+            
+            return valuesSnapshot;
+        }
+        
+        public Dictionary<string, object> GetCurrentValues(string[] keysToFilter) {
+            var valuesSnapshot = new Dictionary<string, object>();
+
+            if (Variables == null || keysToFilter == null || keysToFilter.Length == 0) return valuesSnapshot;
+
+            foreach (var key in keysToFilter) {
+                if (Variables.TryGetValue(key, out var regVar)) {
+                    if (regVar.VariableValue is Ink.Runtime.Value inkValue) {
+                        valuesSnapshot[key] = inkValue.valueObject;
+                    }
+                    else {
+                        Debug.LogWarning($"[StoryVariablesRegistry] Variable '{key}' exists but it is not of type Ink.Runtime.Value. It will be ignored.");
+                    }
+                }
+                else {
+                    Debug.LogWarning($"[StoryVariablesRegistry] Key '{key}' not found in the registry.");
+                }
+            }
+
+            return valuesSnapshot;
         }
 
         public bool CompareVariableTo<T>(string variableName, T value, ComparisonType comparisonType) where T : IComparable { 

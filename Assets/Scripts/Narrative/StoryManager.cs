@@ -58,6 +58,8 @@ namespace Narrative {
         }
 
         private void OnEnable() {
+            StatsExporter.SaveGameStats(_storyVariablesRegistry.GetCurrentValues(StatsExporter.StatsToSave));
+            
             // Subscribe to input events and enable input actions
             input.ContinueStory += Input_ContinueStory;
         }
@@ -219,10 +221,12 @@ namespace Narrative {
         }
     
         private void Input_ContinueStory() {
+            if (!StoryIsProgressing) return;
+            
             if (_typewriterTween != null && _typewriterTween.IsActive()) {
                 SkipTypingAnimation();
             }
-            else if (StoryIsProgressing && _currentStory.currentChoices.Count == 0) {
+            else if (_currentStory.currentChoices.Count == 0) {
                 HandleStoryFlow();
             }
         }
@@ -258,10 +262,26 @@ namespace Narrative {
 
         public Ink.Runtime.Object GetRegistryVariable(string variableName) {
             _storyVariablesRegistry.Variables.TryGetValue(variableName, out var registryVariable);
-            if (registryVariable.VariableValue == null) {
-                Debug.LogWarning("Ink Variable was found to be null: " + variableName);
+            
+            if (registryVariable == null) {
+                Debug.LogWarning($"Ink Variable '{variableName}' does not exist.");
+                return null;
             }
+            
+            if (registryVariable.VariableValue == null) {
+                Debug.LogWarning($"Ink Variable '{variableName}' is null");
+                return null;
+            }
+            
             return registryVariable.VariableValue;
+        }
+
+        public Dictionary<string, object> GetRegistryVariables() {
+            return _storyVariablesRegistry.GetCurrentValues();
+        }
+        
+        public Dictionary<string, object> GetRegistryVariables(string[] variablesToFilter) {
+            return _storyVariablesRegistry.GetCurrentValues(variablesToFilter);
         }
     
         public bool EvaluateConditionOnStoryVariable<T>(string variableName, T value, ComparisonType comparisonType) where T : IComparable {

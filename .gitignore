@@ -77,6 +77,9 @@ Assets/UI SFX Free Pack/Content_for_Demo_Scene/Read_Me.txt
 # Rider related files
 /.idea/*
 
+# Game session stats
+/[Ss]essionStats
+
 ## Odin Inspector
 # Ignore the auto-generated AOT compatibility dll.
 /Assets/Plugins/Sirenix/Assemblies/AOT/*
