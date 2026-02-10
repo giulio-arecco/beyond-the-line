@@ -418,7 +418,7 @@ MonoBehaviour:
     _zoomFactor: 1
   _firstActivation: 0
   _enableAction: 0
-  _disableAction: 0
+  _disableAction: 1
   _lockBoundGraphPrefabOverrides: 1
   _preInitializeSubGraphs: 0
   _updateMode: 3
@@ -476,6 +476,10 @@ MonoBehaviour:
         _Z: 0
         _W: 0
         _Object: {fileID: 0}
+  onHighlightStayEnter:
+    _PersistentCalls: []
+  onHighlightStayExit:
+    _PersistentCalls: []
   onPressEnter:
     _PersistentCalls: []
   onPressExit:

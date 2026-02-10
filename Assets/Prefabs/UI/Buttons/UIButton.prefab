@@ -443,7 +443,7 @@ MonoBehaviour:
     _zoomFactor: 1
   _firstActivation: 0
   _enableAction: 0
-  _disableAction: 0
+  _disableAction: 1
   _lockBoundGraphPrefabOverrides: 1
   _preInitializeSubGraphs: 0
   _updateMode: 3

@@ -2299,6 +2299,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2958928399986555001, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+      propertyPath: onSubmit._PersistentCalls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2958928399986555001, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+      propertyPath: onSubmit._PersistentCalls.Array.data[0]._Target
+      value: 
+      objectReference: {fileID: 548684887}
+    - target: {fileID: 2958928399986555001, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
+      propertyPath: onSubmit._PersistentCalls.Array.data[0]._MemberName
+      value: PopUILayer
+      objectReference: {fileID: 0}
     - target: {fileID: 3028534838762806785, guid: 2acb56464f405f84b883faf94e92cfeb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
