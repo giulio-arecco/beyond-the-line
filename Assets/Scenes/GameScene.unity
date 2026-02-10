@@ -1350,16 +1350,18 @@ PrefabInstance:
         a te interpretare le descrizioni fornite dal gioco per capire come procedere.\nTra
         uno scenario narrativo e il successivo verrai riportato alla mappa. Qui potrai
         scegliere di accamparti per interagire con i compagni, consumare le tue risorse,
-        curare le tue ferite e riposare.\nPuoi consultare i men\xF9 \"Compagni\"
-        e \"Inventario\" per vedere rispettivamente i compagni presenti nel tuo gruppo
-        e gli oggetti attualmente a tua disposizione. Clicca sulle immagini per mostrarne
-        una breve didascalia.\nPer iniziare a giocare, clicca su \"La Fattoria\".
-        I successivi passaggi narrativi verranno mostrati man mano che prosegui nell'esperienza.\n\nBuon
-        divertimento!"
+        curare le tue ferite e riposare. \nMangiare e dormire all'accampamento ti
+        permetter\xE0 di rimetterti in sesto e di affrontare al meglio le sfide successive.
+        Pertanto, cerca di ottimizzare al meglio le tue risorse.\nPuoi consultare
+        i men\xF9 \"Compagni\" e \"Inventario\" per vedere rispettivamente i compagni
+        presenti nel tuo gruppo e gli oggetti attualmente a tua disposizione. Clicca
+        sulle immagini per mostrarne una breve didascalia.\nPer iniziare a giocare,
+        clicca su \"La Fattoria\". I successivi passaggi narrativi verranno mostrati
+        man mano che prosegui nell'esperienza.\n\nBuon divertimento!"
       objectReference: {fileID: 0}
     - target: {fileID: 2158181407423239172, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_fontSize
-      value: 63.5
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2158181407423239172, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_margin.w
@@ -1371,7 +1373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2158181407423239172, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_fontSizeBase
-      value: 63.5
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2446513502631416485, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_IsActive
