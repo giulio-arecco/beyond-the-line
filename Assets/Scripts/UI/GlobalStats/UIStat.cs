@@ -22,7 +22,7 @@ namespace UI.GlobalStats {
             valueText.color = newColor;
         }
         
-        public void UpdateTextAnimated(int oldVal, int newVal, int maxVal, bool isPositiveEvent) {
+        public void UpdateTextAnimated(int oldVal, int newVal, int maxVal, Color newTextColor, bool isPositiveEvent) {
             if (oldVal == newVal) return;
 
             var flashColor = isPositiveEvent ? goodFlashColor : badFlashColor;
@@ -41,8 +41,11 @@ namespace UI.GlobalStats {
             // Rolling Number
             seq.Join(DOTween.To(() => oldVal, x => { valueText.text = $"{x} / {maxVal}"; }, newVal, animDuration));
 
-            // Color Flash
+            // Label Color Flash
             seq.Join(labelText.DOColor(flashColor, 0.1f)); 
+            
+            // Value Color Change
+            seq.Join(DOTween.To(() => valueText.color, x => valueText.color = x, newTextColor, animDuration));
             
             // Back to original color
             seq.Append(labelText.DOColor(labelColor, animDuration - 0.1f));

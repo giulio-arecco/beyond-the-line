@@ -60,7 +60,7 @@ namespace UI.GlobalStats {
             var max = GlobalStatsManager.Instance.GlobalStats.Health.MaxValue;
             var targetColor = GetGradientColor(newHealth, max, false); 
             
-            if (animateStatChange) healthEntry.UpdateTextAnimated(oldHealth, newHealth, max, newHealth > oldHealth);
+            if (animateStatChange) healthEntry.UpdateTextAnimated(oldHealth, newHealth, max, targetColor, newHealth > oldHealth);
             else fatigueEntry.UpdateText(newHealth, max, targetColor);
         }
         
@@ -68,7 +68,7 @@ namespace UI.GlobalStats {
             var max = GlobalStatsManager.Instance.GlobalStats.Fatigue.MaxValue;
             var targetColor = GetGradientColor(newFatigue, max, true);
             
-            if (animateStatChange) fatigueEntry.UpdateTextAnimated(oldFatigue, newFatigue, max, newFatigue < oldFatigue);
+            if (animateStatChange) fatigueEntry.UpdateTextAnimated(oldFatigue, newFatigue, max, targetColor, newFatigue < oldFatigue);
             else fatigueEntry.UpdateText(newFatigue, max, targetColor);
         }
 
