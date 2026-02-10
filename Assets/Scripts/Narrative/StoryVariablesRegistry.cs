@@ -58,6 +58,26 @@ namespace Narrative {
             return valuesSnapshot;
         }
         
+        public Dictionary<string, object> GetCurrentValues(string prefix) {
+            var valuesSnapshot = new Dictionary<string, object>();
+            
+            if (Variables == null || Variables.Count == 0) return valuesSnapshot;
+            
+            foreach (var kvp in Variables) {
+                if (!kvp.Key.StartsWith(prefix)) continue;
+                
+                if (kvp.Value.VariableValue is Ink.Runtime.Value inkValue) {
+                    valuesSnapshot[kvp.Key] = inkValue.valueObject;
+                }
+                else {
+                    Debug.LogWarning(
+                        $"[StoryVariablesRegistry] Variable '{kvp.Key}' is not of type Ink.Runtime.Value. It will be ignored.");
+                }
+            }
+            
+            return valuesSnapshot;
+        }
+        
         public Dictionary<string, object> GetCurrentValues(string[] keysToFilter) {
             var valuesSnapshot = new Dictionary<string, object>();
 

@@ -278,6 +278,10 @@ namespace Narrative {
             return _storyVariablesRegistry.GetCurrentValues();
         }
         
+        public Dictionary<string, object> GetRegistryVariables(string prefix) {
+            return _storyVariablesRegistry.GetCurrentValues(prefix);
+        }
+        
         public Dictionary<string, object> GetRegistryVariables(string[] variablesToFilter) {
             return _storyVariablesRegistry.GetCurrentValues(variablesToFilter);
         }

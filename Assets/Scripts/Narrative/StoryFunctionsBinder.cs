@@ -34,8 +34,8 @@ namespace Narrative {
             story.BindExternalFunction("SetCompanionStat", (string companionId, string statName, object statValue) => SetCompanionStat(companionId, statName, statValue));
             story.BindExternalFunction("GetCompanionStat", (string companionId, string statName) => GetCompanionStat(companionId, statName));
             story.BindExternalFunction("GetGlobalStat", (string statName) => GetGlobalStat(statName));
-            story.BindExternalFunction("IncreaseGlobalStat", (string statName, object statValue) => IncreaseGlobalStat(statName, statValue));
-            story.BindExternalFunction("DecreaseGlobalStat", (string statName, object statValue) => DecreaseGlobalStat(statName, statValue));
+            story.BindExternalFunction("IncreaseGlobalStat_Internal", (string statName, object statValue) => IncreaseGlobalStat(statName, statValue));
+            story.BindExternalFunction("DecreaseGlobalStat_Internal", (string statName, object statValue) => DecreaseGlobalStat(statName, statValue));
             story.BindExternalFunction("PlayMusic_Internal", (string trackId, int transitionType, float transitionDuration, float volume) => PlayMusic(trackId, (AudioTransitionType) transitionType, transitionDuration, volume));
             story.BindExternalFunction("StopMusic_Internal", (float transitionDuration) => StopMusic(transitionDuration));
             story.BindExternalFunction("Log", (string message) => Debug.Log(message));
@@ -54,8 +54,8 @@ namespace Narrative {
             story.UnbindExternalFunction("SetCompanionStat");
             story.UnbindExternalFunction("GetCompanionStat");
             story.UnbindExternalFunction("GetGlobalStat");
-            story.UnbindExternalFunction("IncreaseGlobalStat");
-            story.UnbindExternalFunction("DecreaseGlobalStat");
+            story.UnbindExternalFunction("IncreaseGlobalStat_Internal");
+            story.UnbindExternalFunction("DecreaseGlobalStat_Internal");
             story.UnbindExternalFunction("PlayMusic_Internal");
             story.UnbindExternalFunction("StopMusic_Internal");
             story.UnbindExternalFunction("Log");

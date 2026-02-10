@@ -8,6 +8,9 @@ namespace Architecture {
     public class EndOfGameHandler : MonoBehaviour {
         [SerializeField] private UIPanelController endOfGamePanel;
 
+        private const string END_OF_STORY_VAR_NAME = "END_OF_STORY";
+        private const string STATS_PREFIX = "CPS";
+
         private void Start() {
             StoryManager.Instance.OnStoryExit += StoryManager_OnStoryExit;
         }
@@ -21,12 +24,12 @@ namespace Architecture {
         private void StoryManager_OnStoryExit() {
             var storyManager = StoryManager.Instance;
             
-            var hasStoryEnded = ConvertTo<BoolValue>(storyManager.GetRegistryVariable("END_OF_STORY")).value;
+            var hasStoryEnded = ConvertTo<BoolValue>(storyManager.GetRegistryVariable(END_OF_STORY_VAR_NAME)).value;
             if (!hasStoryEnded) return;
             
             endOfGamePanel.SetVisibleAndInteractable(true);
 
-            var stats = storyManager.GetRegistryVariables(StatsExporter.StatsToSave); 
+            var stats = storyManager.GetRegistryVariables(STATS_PREFIX); 
             StatsExporter.SaveGameStats(stats);
         }
     }

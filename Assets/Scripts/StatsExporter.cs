@@ -4,22 +4,6 @@ using UnityEngine;
 using Newtonsoft.Json; 
 
 public static class StatsExporter {
-    public static readonly string[] StatsToSave = {
-        "LISTENED_TO_RADIO",
-        "KNOWN_MILITARY_ROAD_STATUS",
-        "KNOWN_MOUNTAINPASS_STATUS",
-        
-        "KNOWN_MOUNTAINPASS",
-        "COMPLETED_MOUNTAINPASS",
-        "COMPLETED_BORDER",
-        
-        "SET_CAMP_COUNT",
-        "ELIAS_OPTIONAL_DIALOGUE_DONE",
-        "LIRA_OPTIONAL_DIALOGUE_DONE",
-        
-        "READ_NOTEBOOK"
-    };
-    
     public static void SaveGameStats(Dictionary<string, object> inkStats) {
         var baseDirectory = GetBaseDirectory();
         var targetFolder = Path.Combine(baseDirectory, "SessionStats");

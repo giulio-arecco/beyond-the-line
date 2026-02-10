@@ -1,4 +1,4 @@
-INCLUDE ../globals.ink
+INCLUDE ../FinalStory/Globals.ink
 
 -> start
 

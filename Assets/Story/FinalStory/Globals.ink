@@ -12,6 +12,7 @@ VAR COMPLETED_VILLAGE = false
 VAR COMPLETED_ROAD = false
 VAR COMPLETED_MOUNTAINPASS = false
 VAR COMPLETED_BORDER = false
+VAR END_OF_STORY = false
 VAR CAN_SET_CAMP = false
 
 VAR SET_CAMP_COUNT = 0
@@ -26,6 +27,126 @@ VAR READ_NOTEBOOK = false
 // --- SUPPORT VARS ---
 VAR FATIGUE_CAP = 95
 
+// ========= CPS ANALYTICS TRACKERS ========= 
+
+// --- INFORMATION MANAGEMENT & EXPLORATION ---
+// Radio Puzzle: Resolution Method
+VAR CPS_Radio_Tried_Blind = false
+VAR CPS_Radio_Solved_Systematic = false  // True if solved using Frequency + Manual
+VAR CPS_Radio_Solved_NoManual = false
+VAR CPS_Radio_Broken = false             // True if the radio was broken during attempts
+
+// Lira Interrogation: Deduction Quality
+VAR CPS_Lira_Respect = 0
+VAR CPS_Lira_Patience = -1
+VAR CPS_Lira_Clues_Found_Count = 0
+VAR CPS_Lira_Accusation_Strength = 0.0
+VAR CPS_Lira_Unmasked_Success = false
+VAR CPS_Lira_Traded = false 
+
+// Accumulators (Numeric values for stats/averages)
+VAR CPS_Info_Points_Gathered = 0         // Counter: how many optional info pieces were found
+
+// --- STRATEGIC PLANNING & RISK ASSESSMENT ---
+// Route Choice
+VAR CPS_Route_Chosen_Road = false
+VAR CPS_Route_Chosen_Mountain = false
+
+// Route Preparedness
+VAR CPS_Route_Was_Prepared = false       // True if player had the Key Item for the chosen route
+
+// Village choices and consequences
+VAR CPS_Village_Entered_Shelter = false
+VAR CPS_Village_Entered_Barn = false
+VAR CPS_Village_Scavenger_Traded = false         // Used resources to get the manual
+VAR CPS_Village_Scavenger_Threatened = false     // Used force/intimidation
+VAR CPS_Village_Scavenger_Failed = false         // Failed negotiation 
+
+// Military Road choices and consequences
+VAR CPS_MilitaryRoad_Route_Sewer = false
+VAR CPS_MilitaryRoad_Route_Warehouses = false
+VAR CPS_MilitaryRoad_TruckActive_Chose_Smoke = false
+VAR CPS_MilitaryRoad_TruckActive_Chose_Stealth = false
+VAR CPS_MilitaryRoad_TruckActive_Chose_Wait = false
+VAR CPS_MilitaryRoad_TruckPassive_Chose_Dive = false
+VAR CPS_MilitaryRoad_TruckPassive_Chose_Noise = false
+VAR CPS_MilitaryRoad_TruckPassive_Chose_Wait = false
+VAR CPS_MilitaryRoad_Escape_Chose_Smoke = false
+VAR CPS_MilitaryRoad_Escape_Chose_Pistol = false
+VAR CPS_MilitaryRoad_Escape_Chose_Run = false
+VAR CPS_MilitaryRoad_Alerted = false
+
+// Mountain Pass choices and consequences
+VAR CPS_MountainPass_Bridge_Crossing_Crawl = false
+VAR CPS_MountainPass_Bridge_Crossing_Cable = false
+VAR CPS_MountainPass_Bridge_Crossing_Run = false
+VAR CPS_MountainPass_Tunnel_Split_Teams = false
+VAR CPS_MountainPass_Tunnel_Share_Mask = false
+VAR CPS_MountainPass_Tunnel_Group_Run = false
+VAR CPS_MountainPass_Tunnel_Solo_Mask = false
+VAR CPS_MountainPass_Tunnel_Solo_Run = false
+
+// Border choices and consequences
+VAR CPS_Border_Help_Boy = false
+VAR CPS_Border_Ignore_Boy = false
+
+// Final Ending 
+VAR CPS_Reached_Ending_1 = false         // Group Ending
+VAR CPS_Reached_Ending_2 = false         // Solo Ending
+
+// Camp management
+VAR CPS_Set_Camp_Count = 0
+VAR CPS_First_Camp_Location = ""
+VAR CPS_Second_Camp_Location = ""
+
+// --- RESOURCE MANAGEMENT & OPTIMIZATION ---
+// Resources used in camp
+VAR CPS_Camp_Used_Rations = 0
+VAR CPS_Camp_Used_Bandages = 0
+VAR CPS_Camp_Used_Medikits = 0
+ 
+// Optional resources found
+VAR CPS_Found_Crowbar = false
+VAR CPS_Found_FrequencyNote = false
+VAR CPS_Found_DecryptionManual = false
+VAR CPS_Found_Medikit = false
+VAR CPS_Found_GasMask = false
+VAR CPS_Found_SmokeGrenade = false
+
+// Accumulators
+VAR CPS_Min_Health_Value = 100           // Absolute minimum Health reached 
+VAR CPS_Max_Fatigue_Value = 0            // Absolute maximum Fatigue reached
+
+// Fatigue stat tracking
+VAR CPS_Fatigue_Farmstead_Entry = -1
+VAR CPS_Fatigue_Wood_Entry = -1
+VAR CPS_Fatigue_Village_Entry = -1
+VAR CPS_Fatigue_MilitaryRoad_Entry = -1
+VAR CPS_Fatigue_MountainPass_Entry = -1
+VAR CPS_Fatigue_Border_Entry = -1
+
+// Collapse chances
+VAR CPS_Collapse_Village_Shelter = false
+VAR CPS_Collapse_MilitaryRoad_SewerClimb = false
+VAR CPS_Collapse_MilitaryRoad_Escape = false
+VAR CPS_Collapse_MountainPass_TunnelPhysical = false
+VAR CPS_Collapse_MountainPass_TunnelHypoxia = false
+
+// --- SOCIAL DYNAMICS & OUTCOMES ---
+// Elias
+VAR CPS_Elias_Recruited = false          // Reached the end alive in the party
+VAR CPS_Elias_Died_Sacrifice = false     // Died fighting to cover player's escape
+VAR CPS_Elias_Died_Separation = false    // Died/Lost after getting separated during escape
+VAR CPS_Elias_Bridge_Fall = false
+VAR CPS_Elias_Camp_Dialogue_Done = false
+
+// Lira
+VAR CPS_Lira_Recruited = false           // True if Lira joined the party
+VAR CPS_Lira_Camp_Dialogue_Done = false
+
+// Ethical Tracking
+// VAR CPS_Humanity_Score_Final = 0         // Numeric score tracking empathy vs ruthlessness throughout the game
+
 // ========= EXTERNAL FUNCTIONS (UNITY API) =========
 // These functions must be mapped to a C# implementation in Unity. Use these functions to interface with the global stats, the inventory and the companions.
 
@@ -36,8 +157,8 @@ EXTERNAL RemoveItemFromInventory(itemId, count)
 EXTERNAL AddCompanionToParty(companionId)
 EXTERNAL RemoveCompanionFromParty(companionId)
 EXTERNAL GetGlobalStat(statName)
-EXTERNAL IncreaseGlobalStat(statName, statValue)
-EXTERNAL DecreaseGlobalStat(statName, statValue)
+EXTERNAL IncreaseGlobalStat_Internal(statName, statValue)
+EXTERNAL DecreaseGlobalStat_Internal(statName, statValue)
 EXTERNAL PlayMusic_Internal(trackId, transitionType, transitionDuration, volume)
 EXTERNAL StopMusic_Internal(transitionDuration)
 EXTERNAL Log(message)
@@ -45,8 +166,26 @@ EXTERNAL LogWarning(message)
 EXTERNAL LogError(message)
 
 // ========= FUNCTION WRAPPERS =========
-=== function IncreaseGlobalStatCapped(statName, amountToAdd, maxValue) ===
+=== function IncreaseGlobalStat(statName, statValue)
+    ~ IncreaseGlobalStat_Internal(statName, statValue)
+    
     ~ temp currentValue = GetGlobalStat(statName)
+    ~ UpdateReachedStatBounds(statName, currentValue)
+    
+=== function DecreaseGlobalStat(statName, statValue)
+    ~ DecreaseGlobalStat_Internal(statName, statValue)
+    
+    ~ temp currentValue = GetGlobalStat(statName)
+    ~ UpdateReachedStatBounds(statName, currentValue)
+
+=== function IncreaseGlobalStatCapped(statName, amountToAdd, maxValue)
+    ~ temp currentValue = GetGlobalStat(statName)
+    
+    { currentValue >= maxValue:
+        ~ LogWarning("[Ink Story] Stat Clamped: {statName} - Added: {amountToAdd}, Value: {currentValue}, Clamped to: {maxValue}")
+        ~ return
+    }
+    
     { currentValue + amountToAdd >= maxValue:
         ~ IncreaseGlobalStat(statName, maxValue - currentValue)
         ~ LogWarning("[Ink Story] Stat Clamped: {statName} - Added: {amountToAdd}, Value: {currentValue}, Clamped to: {maxValue}")
@@ -55,28 +194,36 @@ EXTERNAL LogError(message)
     }
 
 // Play and Stop Music Functions Wrappers
-=== function PlayMusic(trackId, transitionType) ===
+=== function PlayMusic(trackId, transitionType)
     ~ PlayMusic_Internal(trackId, transitionType, -1.0, -1.0)
 
-=== function PlayMusicCustomTransition(trackId, transitionType, customDuration) ===
+=== function PlayMusicCustomTransition(trackId, transitionType, customDuration)
     ~ PlayMusic_Internal(trackId, transitionType, customDuration, -1.0)
     
-=== function PlayMusicCustomVolume(trackId, transitionType, customVolume) ===
+=== function PlayMusicCustomVolume(trackId, transitionType, customVolume)
     ~ PlayMusic_Internal(trackId, transitionType, -1.0, customVolume)
     
-=== function PlayMusicCustom(trackId, transitionType, customDuration, customVolume) ===
+=== function PlayMusicCustom(trackId, transitionType, customDuration, customVolume)
     ~ PlayMusic_Internal(trackId, transitionType, customDuration, customVolume)
     
 === function StopMusic() ===
     ~ StopMusic_Internal(-1.0)
 
-=== function StopMusicCustomDuration(customDuration) ===
+=== function StopMusicCustomDuration(customDuration)
     ~ StopMusic_Internal(customDuration)
     
 
 // ========= UTILITY FUNCTIONS =========
 === function came_from(-> x) 
     ~ return TURNS_SINCE(x) == 0
+    
+=== function UpdateReachedStatBounds(statName, currentValue)
+    { statName == "Health" and currentValue < CPS_Min_Health_Value: 
+        ~ CPS_Min_Health_Value = currentValue 
+    }
+    { statName == "Fatigue" and currentValue > CPS_Max_Fatigue_Value: 
+        ~ CPS_Max_Fatigue_Value = currentValue
+    }
 
 // ========= FALLBACK FUNCTIONS FOR TESTING USING INKY =========
 === function HasItem(itemId)
@@ -111,34 +258,34 @@ EXTERNAL LogError(message)
             ~ return 0
     }
     
-=== function IncreaseGlobalStat(statName, statValue)
-    {
-        - statName == "Health": 
-            ~ Health += statValue
-            >> Increased Health. Current value: {Health}
-        - statName == "Fatigue": 
-            ~ Fatigue += statValue
-            >> Increased Fatigue. Current value: {Fatigue}
-        - statName == "Cohesion": 
-            ~ Cohesion += statValue
-            >> Increased Cohesion. Current value: {Cohesion}
-        - else:
-            >> Undefined statName "{statName}" passed to IncreaseGlobalStat.
-            ~ return 0
-    }
+// === function IncreaseGlobalStat(statName, statValue)
+//     {
+//         - statName == "Health": 
+//             ~ Health += statValue
+//             >> Increased Health. Current value: {Health}
+//         - statName == "Fatigue": 
+//             ~ Fatigue += statValue
+//             >> Increased Fatigue. Current value: {Fatigue}
+//         - statName == "Cohesion": 
+//             ~ Cohesion += statValue
+//             >> Increased Cohesion. Current value: {Cohesion}
+//         - else:
+//             >> Undefined statName "{statName}" passed to IncreaseGlobalStat.
+//             ~ return 0
+//     }
     
-=== function DecreaseGlobalStat(statName, statValue)
-    {
-        - statName == "Health": 
-            ~ Health -= statValue
-            >> Decreased Health. Current value: {Health}
-        - statName == "Fatigue": 
-            ~ Fatigue -= statValue
-            >> Decreased Fatigue. Current value: {Fatigue}
-        - statName == "Cohesion": 
-            ~ Cohesion -= statValue
-            >> Decreased Cohesion. Current value: {Cohesion}
-        - else:
-            >> Undefined statName "{statName}" passed to DecreaseGlobalStat.
-            ~ return 0
-    }
+// === function DecreaseGlobalStat(statName, statValue)
+//     {
+//         - statName == "Health": 
+//             ~ Health -= statValue
+//             >> Decreased Health. Current value: {Health}
+//         - statName == "Fatigue": 
+//             ~ Fatigue -= statValue
+//             >> Decreased Fatigue. Current value: {Fatigue}
+//         - statName == "Cohesion": 
+//             ~ Cohesion -= statValue
+//             >> Decreased Cohesion. Current value: {Cohesion}
+//         - else:
+//             >> Undefined statName "{statName}" passed to DecreaseGlobalStat.
+//             ~ return 0
+//     }
