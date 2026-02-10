@@ -1342,19 +1342,24 @@ PrefabInstance:
       propertyPath: m_text
       value: "Questa esperienza \xE8 progettata per mettere alla prova la tua capacit\xE0
         di adattamento e risoluzione di problemi in uno scenario ad alto rischio
-        e incertezza. \n\nIl gioco non ti dir\xE0 esplicitamente \"La stanza \xE8
+        ed incertezza. \nIl gioco non ti dir\xE0 esplicitamente \"La stanza \xE8
         pericolosa\" o \"Il nemico sta mentendo\". Dovrai dedurlo tu. Leggi attentamente
         ogni descrizione. Un dettaglio apparentemente insignificante pu\xF2 costituire
-        un'informazione vitale per comprendere la situazione.\n\nIl sistema tiene
-        traccia di variabili complesse e molte di queste non sono visibili a schermo.
-        Star\xE0 a te interpretare le descrizioni fornite dal gioco per capire come
-        procedere.\n\nTra uno scenario narrativo e l'altro verrai riportato alla
-        mappa. Qui potrai scegliere di accamparti per interagire con i compagni,
-        consumare le tue risorse, curare le tue ferite e riposare.\n\nBuon divertimento!"
+        un'informazione vitale per comprendere la situazione.\nIl sistema tiene traccia
+        di variabili complesse e molte di queste non sono visibili a schermo. Star\xE0
+        a te interpretare le descrizioni fornite dal gioco per capire come procedere.\nTra
+        uno scenario narrativo e il successivo verrai riportato alla mappa. Qui potrai
+        scegliere di accamparti per interagire con i compagni, consumare le tue risorse,
+        curare le tue ferite e riposare.\nPuoi consultare i men\xF9 \"Compagni\"
+        e \"Inventario\" per vedere rispettivamente i compagni presenti nel tuo gruppo
+        e gli oggetti attualmente a tua disposizione. Clicca sulle immagini per mostrarne
+        una breve didascalia.\nPer iniziare a giocare, clicca su \"La Fattoria\".
+        I successivi passaggi narrativi verranno mostrati man mano che prosegui nell'esperienza.\n\nBuon
+        divertimento!"
       objectReference: {fileID: 0}
     - target: {fileID: 2158181407423239172, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_fontSize
-      value: 64
+      value: 63.5
       objectReference: {fileID: 0}
     - target: {fileID: 2158181407423239172, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_margin.w
@@ -1362,11 +1367,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2158181407423239172, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_margin.y
-      value: -359.41333
+      value: -382.76086
       objectReference: {fileID: 0}
     - target: {fileID: 2158181407423239172, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_fontSizeBase
-      value: 64
+      value: 63.5
       objectReference: {fileID: 0}
     - target: {fileID: 2446513502631416485, guid: 10ee57f88da531246a248c60e9b41162, type: 3}
       propertyPath: m_IsActive
