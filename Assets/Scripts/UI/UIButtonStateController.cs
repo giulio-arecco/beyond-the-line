@@ -67,6 +67,7 @@ namespace UI {
         
         private IBlackboard _blackboard;
         private Coroutine _deselectRoutine;
+        private bool _fsmInitialized;
         
         // Memory to handle the ghost selection bug
         private int _selectionFrame = -1;
@@ -80,17 +81,20 @@ namespace UI {
         }
         
         private void OnEnable() {
-            CheckInteractableState();
-            if (fsmOwner.isRunning) fsmOwner.UpdateBehaviour(); 
+            if (_fsmInitialized) {
+                CheckAndUpdateInteractableState();
+                
+                /* Restart the FSM: this allows us to set the OnDisable behaviour on the FSMComponent to 'Pause Behaviour' instead of 'Disable Behaviour',
+                 * preventing null ref exceptions when calling OnExit Actions on Super Action Nodes that require external references to
+                 * game objects that may have already been destroyed. */
+                fsmOwner.StopBehaviour();
+                fsmOwner.StartBehaviour();
+            }
         }
         
         private void Start() {
-            _blackboard = fsmOwner.graph.blackboard;
-            _blackboard.SetVariableValue(EventsComponentVar, this);
-            
-            if (!fsmOwner.isRunning) fsmOwner.StartBehaviour(); 
-            else fsmOwner.UpdateBehaviour();
-
+            if (!_fsmInitialized) InitFsm();
+            CheckAndUpdateInteractableState();
             BindAudioEvents();
         }
 
@@ -149,8 +153,10 @@ namespace UI {
             }
         }
 #endif
-
+        
         private void BindAudioEvents() {
+            if (!playButtonSound) return;
+            
             if (submitSoundType != UISoundType.None) {
                 onSubmit.AddListener(() => AudioManager.Instance.PlayUISound(submitSoundType));
             }
@@ -162,6 +168,21 @@ namespace UI {
             if (releaseSoundType != UISoundType.None) {
                 onPressEnter.AddListener(() => AudioManager.Instance.PlayUISound(releaseSoundType));
             }
+        }
+
+        private void InitFsm() {
+            if (fsmOwner == null) {
+                Debug.LogError("[UIButtonStateController] FSM Owner is NULL");
+                return;
+            }
+            
+            _blackboard = fsmOwner.graph.blackboard;
+            _blackboard.SetVariableValue(EventsComponentVar, this);
+            
+            if (!fsmOwner.isRunning) fsmOwner.StartBehaviour(); 
+            else fsmOwner.UpdateBehaviour();
+            
+            _fsmInitialized = true;
         }
         
         private void ResetInternalState() {
@@ -176,10 +197,10 @@ namespace UI {
         
         private void OnCanvasGroupChanged() {
             if (debugLogging) Debug.Log($"[UIButtonStateController - {gameObject.name}] OnCanvasGroupChanged");
-            CheckInteractableState();
+            CheckAndUpdateInteractableState();
         }
         
-        private void CheckInteractableState() {
+        private void CheckAndUpdateInteractableState() {
             if (targetSelectable == null) return;
             
             // IsInteractable() checks both .interactable and parent CanvasGroups
@@ -373,7 +394,9 @@ namespace UI {
 
         private void UpdateState(ref bool stateVar, bool value) {
             stateVar = value;
-            if (fsmOwner.isRunning) fsmOwner.UpdateBehaviour(); 
+
+            if (!_fsmInitialized) InitFsm();
+            else if (fsmOwner.isRunning) fsmOwner.UpdateBehaviour(); 
         }
     }
 }
