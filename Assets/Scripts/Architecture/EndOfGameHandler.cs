@@ -1,3 +1,4 @@
+using Enums;
 using Ink.Runtime;
 using Narrative;
 using UI;
@@ -6,6 +7,7 @@ using static Utils.TypeUtils;
 
 namespace Architecture {
     public class EndOfGameHandler : MonoBehaviour {
+        [SerializeField] private InputReaderSO inputReader;
         [SerializeField] private UIPanelController endOfGamePanel;
 
         private const string END_OF_STORY_VAR_NAME = "END_OF_STORY";
@@ -24,10 +26,12 @@ namespace Architecture {
         private void StoryManager_OnStoryExit() {
             var storyManager = StoryManager.Instance;
             
+            inputReader.DisableInputActionMap("Gameplay");
+            
             var hasStoryEnded = ConvertTo<BoolValue>(storyManager.GetRegistryVariable(END_OF_STORY_VAR_NAME)).value;
             if (!hasStoryEnded) return;
             
-            endOfGamePanel.SetVisibleAndInteractable(true);
+            UINavigator.Instance.PushUILayer(endOfGamePanel, UILayerPushOptions.RemoveAllPreviousLayers);
 
             var stats = storyManager.GetRegistryVariables(STATS_PREFIX); 
             StatsExporter.SaveGameStats(stats);
