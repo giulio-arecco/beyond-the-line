@@ -13,7 +13,14 @@ public static class StatsExporter {
             Debug.Log($"[StatsExporter] Created directory: {targetFolder}");
         }
 
-        var jsonOutput = JsonConvert.SerializeObject(inkStats, Formatting.Indented);
+        var runtimeStats = RuntimeStats.GetAllStatsAsDictionary();
+
+        var combinedData = new {
+            StoryStats = inkStats,
+            GameplayStats = runtimeStats
+        };
+        
+        var jsonOutput = JsonConvert.SerializeObject(combinedData, Formatting.Indented);
 
         var filePath = GetUniqueFilePath(targetFolder, "session_stats", "json");
 
