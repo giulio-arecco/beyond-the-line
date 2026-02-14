@@ -32,6 +32,7 @@ VAR FATIGUE_CAP = 95
 // --- INFORMATION MANAGEMENT & EXPLORATION ---
 // Radio Puzzle: Resolution Method
 VAR CPS_Radio_Tried_Blind = false
+VAR CPS_Radio_Tried_No_Manual = false
 VAR CPS_Radio_Solved_Systematic = false  // True if solved using Frequency + Manual
 VAR CPS_Radio_Solved_NoManual = false
 VAR CPS_Radio_Broken = false             // True if the radio was broken during attempts
@@ -139,6 +140,7 @@ VAR CPS_Elias_Died_Sacrifice = false     // Died fighting to cover player's esca
 VAR CPS_Elias_Died_Separation = false    // Died/Lost after getting separated during escape
 VAR CPS_Elias_Bridge_Fall = false
 VAR CPS_Elias_Camp_Dialogue_Done = false
+VAR CPS_Elias_Notebook_Translated = false
 
 // Lira
 VAR CPS_Lira_Recruited = false           // True if Lira joined the party

@@ -181,12 +181,12 @@ Elias ti aiuta a sederti. Non dice nulla, ma il suo sguardo è grave. {not HasCo
 Il varco è aperto, ma la fiducia <>
 {
     - HasCompanion("Elias") && HasCompanion("Lira"):
-        del gruppo
+        del gruppo <>
     - HasCompanion("Elias"):
-        del tuo compagno
+        del tuo compagno <>
     - HasCompanion("Lira"):
-        della tua compagna
-} <>
+        della tua compagna <>
+}
 nelle tue capacità è incrinata.
 
 ~ DecreaseGlobalStat("Cohesion", 20)
@@ -621,22 +621,33 @@ La voce è sepolta lì sotto.
 Hai davanti a te tre selettori principali contrassegnati da simboli grafici astratti. Devi andare a intuito per pulire il segnale.
 
 * [Giri il selettore verso il simbolo di una linea spessa.]
+    ~ CPS_Radio_Tried_No_Manual = true
+    
     Speri che indichi la stabilità del segnale. <nl><>
     Il fischio acuto sparisce, ma il ronzio basso diventa un boato che copre tutto. Le voci diventano un mugugno incomprensibile, come se parlassero sott'acqua. <nl><>
     Hai isolato solo il rumore di fondo.
     -> radio_failure_blind
 
 * [Giri il selettore verso il simbolo di una linea sottile.]
+    ~ CPS_Radio_Tried_No_Manual = true
+    
     Punti a sintonizzarti sulle frequenze più alte. <nl><>
     Il ronzio basso svanisce istantaneamente. Rimane il fischio acuto e... una voce metallica, gracchiante, che assomiglia al verso di una papera. <nl><>
     Hai isolato la voce, anche se è ancora distorta.
     -> radio_no_manual_step_2
 
 * [Posizioni il selettore sull'indicatore barrato al centro.]
+    ~ CPS_Radio_Tried_No_Manual = true
+    
     Provi a tagliare la frequenza mediana. <nl><>
     Il segnale collassa su se stesso. Crei un buco di silenzio proprio dove doveva esserci la voce. <nl><>
     Il ricevitore fischia per il feedback.
     -> radio_failure_blind
+    
+* [Lasci perdere e torni alla piazza]
+    Ti rendi conto che provare alla cieca rischierebbe di danneggiare la radio. <nl><>
+    Ti alzi e lasci la casa di comando.
+    -> village_hub
 
 === radio_no_manual_step_2 ===
 Hai isolato la trasmissione, ma la voce è ancora incomprensibile. È veloce, acuta e distorta. Sembra una trasmissione criptata o modulata in modo strano. <nl><>
@@ -661,6 +672,10 @@ Hai una sola possibilità di renderla comprensibile prima di perdere l'aggancio.
     Il volume esplode nelle cuffie. L'ago del segnale sbatte contro il fondo scala. <nl><>
     Un suono breve e secco proviene dal retro della radio.
     -> radio_failure_blind
+* [Lasci perdere e torni alla piazza]
+    Ti rendi conto che provare alla cieca rischierebbe di danneggiare la radio. <nl><>
+    Riporti il selettore a com'era prima che lo girassi e lasci la casa di comando.
+    -> village_hub
 
 === radio_failure_blind ===
 Un fumo acre, grigiastro, inizia a uscire dalle feritoie della radio. Puzza di bachelite e rame fuso. La luce ambra sfarfalla, poi muore con un ultimo gemito elettrico. Hai bruciato le valvole finali. <nl><>

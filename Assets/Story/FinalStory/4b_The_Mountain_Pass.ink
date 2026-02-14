@@ -358,8 +358,17 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         ++ [Cerchi freneticamente tastando la parete.]
             Le dita scorrono sulla roccia viscida. Ti tagli le mani su ferri sporgenti, ma trovi la leva fredda e unta. La tiri con tutto il peso del corpo. <nl><>
             Il cancello in alto si apre con uno schianto.
-            ~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
+            
+            ~ IncreaseGlobalStat("Fatigue", 10)
             ~ IncreaseGlobalStat("Cohesion", 10)
+            
+            { GetGlobalStat("Fatigue") >= 100: 
+                Non appena rilassi i muscoli e smetti di stringere la leva, ti si offusca la vista, ti cedono le gambe e crolli a terra. <nl><>
+                Sei sfinito. Lo sforzo fisico degli ultimi giorni è stato insopportabile e ora il tuo corpo non ce la fa più. 
+                -> collapse_physical 
+                
+            }
+            
             -> convergence
     }
 
@@ -401,7 +410,16 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         {HasCompanion("Elias"):"Fermo!"|"Ferma!"} ordini, bloccando le sue mani che annaspano. <nl><>
         Costringi le tue dita a muoversi con precisione chirurgica mentre il gas ti brucia gli occhi facendoli lacrimare copiosamente. Ci vogliono cinque secondi. Cinque secondi eterni in cui il tuo compagno inala veleno, sussultando. <nl><>
         Riesci a recuperare la maschera, ma hai la gola e gli occhi in fiamme.
+        
         ~ DecreaseGlobalStat("Health", 15)
+        ~ IncreaseGlobalStat("Fatigue", 5)
+        
+        { GetGlobalStat("Fatigue") >= 100:
+            Non appena ti rialzi, ti si offusca la vista. Ti cedono le gambe e crolli sul binario arrugginito. <nl><>
+            Sei sfinito. Lo sforzo fisico degli ultimi giorni è stato insopportabile e ora il tuo corpo non ce la fa più. 
+            -> collapse_physical
+        }
+        
         -> convergence
 
 + {not HasItem("GasMask") and not HasItem("Crowbar") and (HasCompanion("Elias") or HasCompanion("Lira"))} [Correte attraverso il gas.]
@@ -430,7 +448,7 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         Senti un corpo trascinarsi contro il tuo. Vi sostenete a vicenda, barcollando verso l'uscita.
         ~ DecreaseGlobalStat("Health", 30)
         ~ IncreaseGlobalStat("Fatigue", 25)
-        ~ IncreaseGlobalStat("Cohesion", 15)
+        ~ IncreaseGlobalStat("Cohesion", 20)
         
         { GetGlobalStat("Fatigue") >= 100:
             Mentre vi avvicinate alla luce, la tua vista inizia ad offuscarsi, prima ai lati, poi completamente. I suoni iniziano a rimbobarti come scoppi nelle orecchie, accompagnati dal ritmo del battito cardiaco. <nl><>
@@ -442,11 +460,19 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
 
     ++ [Segui la rotaia e urli di seguirti.]
         Non puoi fermarti o morirete tutti. Ti butti a terra, seguendo il metallo freddo della rotaia. <nl><>
-        "Seguite la mia voce!" gridi, sputando saliva e cararro. <nl><>
-        Procedi carponi, veloce come un animale in trappola. Senti dei passi trascinati dietro di te, ma non ti volti. Non puoi rischiare la tua stessa vita.
+        "Seguite la mia voce!" gridi, sputando saliva e cararro.
+        
         ~ DecreaseGlobalStat("Health", 20)
         ~ DecreaseGlobalStat("Cohesion", 15)
-        ~ IncreaseGlobalStatCapped("Fatigue", 15, FATIGUE_CAP)
+        ~ IncreaseGlobalStat("Fatigue", 15)
+        
+        { GetGlobalStat("Fatigue") >= 100:
+            Mentre ti avvicini alla luce, la vista inizia ad offuscarsi, prima ai lati, poi completamente. I suoni iniziano a rimbobarti come scoppi nelle orecchie, accompagnati dal ritmo del battito cardiaco. <nl><>
+            Il gas inalato, la carenza di ossigeno e la fatica devastante degli ultimi giorni stanno colpendo nel momento peggiore. Inciampi nelle tue stesse gambe, crollando al suolo.
+            -> collapse_hypoxia
+        }
+        
+        Procedi carponi, veloce come un animale in trappola. Senti dei passi trascinati dietro di te, ma non ti volti. Non puoi rischiare la tua stessa vita.
         -> convergence
 
 + {not HasCompanion("Elias") and not HasCompanion("Lira") and HasItem("GasMask")} [Avanzi nel tunnel con la maschera.]
@@ -722,6 +748,7 @@ L'eremita {HasCompanion("Elias") or HasCompanion("Lira"):vi|ti} osserva con occh
         Guardi il taccuino. Ricordi vagamente l'uomo che l'ha scritto e i suoi occhi che incrociavano i tuoi mentre lasciavi la fattoria. <nl><>
         Hai disumanizzato un uomo che voleva solo sentire il profumo di casa. Forse il vecchio ha ragione: la guerra scava via l'uomo e lascia il guscio, e qualcosa in te è già morto.
         ~ READ_NOTEBOOK = true
+        ~ CPS_Elias_Notebook_Translated = true
         -> leave_hermit
 }
 

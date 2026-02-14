@@ -751,6 +751,7 @@ Hai disumanizzato un uomo che voleva solo sentire il profumo di casa. Per te era
 La guerra scava via l'uomo e lascia il guscio. Guardando quel taccuino, senti che qualcosa in te, stasera, è morto per sempre.
 
 ~ READ_NOTEBOOK = true
+~ CPS_Elias_Notebook_Translated = true
 // ~ CPS_Humanity_Score_Final++
 ~ COMPLETED_ROAD = true
 ~ CAN_SET_CAMP = true
