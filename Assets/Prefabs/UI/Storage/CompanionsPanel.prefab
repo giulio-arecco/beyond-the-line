@@ -1923,6 +1923,10 @@ PrefabInstance:
       propertyPath: storageTextWriter.underlyingValue
       value: 
       objectReference: {fileID: 1365239534307551449}
+    - target: {fileID: 4161885514051596558, guid: 5fb47da8f26afca43bbf65c2e69ff9a6, type: 3}
+      propertyPath: storableTextWriter.underlyingValue
+      value: 
+      objectReference: {fileID: 1365239534307551449}
     - target: {fileID: 6105540277213026871, guid: 5fb47da8f26afca43bbf65c2e69ff9a6, type: 3}
       propertyPath: m_Enabled
       value: 0

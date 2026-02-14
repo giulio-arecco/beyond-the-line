@@ -25,16 +25,16 @@ namespace Architecture {
 
         private void StoryManager_OnStoryExit() {
             var storyManager = StoryManager.Instance;
-            
-            inputReader.DisableInputActionMap("Gameplay");
-            
             var hasStoryEnded = ConvertTo<BoolValue>(storyManager.GetRegistryVariable(END_OF_STORY_VAR_NAME)).value;
-            if (!hasStoryEnded) return;
             
-            UINavigator.Instance.PushUILayer(endOfGamePanel, UILayerPushOptions.RemoveAllPreviousLayers);
+            if (hasStoryEnded) {
+                inputReader.DisableInputActionMap("Gameplay");
 
-            var stats = storyManager.GetRegistryVariables(STATS_PREFIX); 
-            StatsExporter.SaveGameStats(stats);
+                UINavigator.Instance.PushUILayer(endOfGamePanel, UILayerPushOptions.RemoveAllPreviousLayers);
+
+                var stats = storyManager.GetRegistryVariables(STATS_PREFIX);
+                StatsExporter.SaveGameStats(stats);
+            }
         }
     }
 }
