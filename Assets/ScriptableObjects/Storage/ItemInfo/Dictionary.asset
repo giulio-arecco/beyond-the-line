@@ -15,7 +15,7 @@ MonoBehaviour:
   sprite: {fileID: -805655406541946461, guid: 035292ed04fbbf34d90a024a3bd20bbc, type: 3}
   id: Dictionary
   entityName: Dizionario bilingue
-  description: "Un ponte di carta logoro essenziale per decifrare ordini e segnali
-    tattici, trasformando l'ignoto in un vantaggio per la tua sopravvivenza, o le
-    lettere addosso ai caduti in testimonianze della loro umanit\xE0."
+  description: "Un ponte di carta logoro essenziale per trasformare l'ignoto in un
+    vantaggio per la tua sopravvivenza, o le lettere addosso ai caduti in testimonianze
+    della loro umanit\xE0."
   <StatsModifiers>k__BackingField: []

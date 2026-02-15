@@ -21,11 +21,11 @@ VAR truck_alerted = false
 
 ~ PlayMusic("TheMilitaryRoad", 2)
 
-La valle si apre sotto di voi come una ferita scura nella terra. L'aria vibra. Non è il vento, ma il rombo costante, sordo, di decine di motori diesel. <nl><>
+La valle si apre sotto di {HasCompanion("Lira") or HasCompanion("Elias"):voi|te} come una ferita scura nella terra. L'aria vibra. Non è il vento, ma il rombo costante, sordo, di decine di motori diesel. <nl><>
 La strada militare. L'arteria principale che alimenta il fronte. <nl><>
 Camion pesanti, blindati leggeri e trasporti truppe scorrono su un nastro di asfalto bagnato, illuminati da coni di luce giallastra che tagliano la pioggia.
 
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Vi appiattite contro il terreno fangoso del costone, osservando il movimento. <nl><>
 - else:
     Ti appiattisci contro il terreno fangoso del costone, osservando il movimento. <nl><>
@@ -103,7 +103,7 @@ A destra, più in basso, c'è l'imbocco di un canale di scolo che passa sotto la
 * [Scegliete la via del canale.]
     ~ CPS_MilitaryRoad_Route_Sewer = true
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Scivolate verso l'acqua scura, trattenendo il respiro.
     - else:
         Scivoli verso l'acqua scura, trattenendo il respiro.
@@ -111,7 +111,7 @@ A destra, più in basso, c'è l'imbocco di un canale di scolo che passa sotto la
     -> sewer_start
 
 === warehouses_start ===
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Superate la recinzione attraverso un taglio nella rete. <nl><>
     Siete nel settore logistico. Pile di container arrugginiti formano un labirinto di vicoli stretti.
 - else:
@@ -125,7 +125,7 @@ A destra, più in basso, c'è l'imbocco di un canale di scolo che passa sotto la
     Il rumore dei camion copre i passi, ma le luci dei fari che spazzano i vicoli costringono a una danza continua per restare nell'ombra. <nl><>
 }
 
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Vi muovete da un riparo all'altro.
 - else:
     Ti muovi da un riparo all'altro.
@@ -152,7 +152,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     
     ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Entrate, richiudendo il portellone alle vostre spalle.
     - else:
         Entri, richiudendo il portellone alle tue spalle.
@@ -174,7 +174,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
         <>"Se le cose si mettono male, quella ci potrebbe salvare la vita" commenta Lira.
     }
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Uscite senza aver attirato l'attenzione, scivolando via come fantasmi.
     - else:
         Esci senza aver attirato l'attenzione, scivolando via come un fantasma.
@@ -193,7 +193,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     Una voce abbaia qualcosa da lontano. Un fascio di luce spazza l'area, fermandosi a pochi metri da te. <nl><>
     "Vruk nar?" urla una guardia.
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Vi buttate dentro il container giusto in tempo, schiacciandovi contro la parete metallica.
     - else:
         Ti butti dentro il container giusto in tempo, schiacciandoti contro la parete metallica.
@@ -207,7 +207,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     "Sektor Vork... Krurt... Negat... Vorken". <nl><>
     L'uomo sbuffa, dà un calcio alla porta per frustrazione e si allontana, rispondendo alla chiamata. "Za, za. Vorken".
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Aspettate che i passi si allontanino. Siete madidi di sudore freddo.
     - else:
         Aspetti che i passi si allontanino. Sei madido di sudore freddo.
@@ -225,7 +225,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     ~ AddItemToInventory("SmokeGrenade")
     ~ CPS_Found_SmokeGrenade++
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Siete stati quasi scoperti. <nl><>
     - else:
         Sei stato quasi scoperto. <nl><>
@@ -239,7 +239,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
 * [Ignori il container. Troppo rischioso.]
     ~ CPS_MilitaryRoad_Warehouse_NotOpened = true
     Passi oltre. La curiosità non vale una pallottola. <nl><>
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Mantenete un basso profilo. <nl>
         { HasCompanion("Lira"):
             <>Lira ti lancia un'occhiata veloce, disapprovando l'occasione persa, ma continua a coprirti.
@@ -250,7 +250,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     -> truck_encounter_active
 
 === sewer_start ===
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Entrate nell'acqua gelida fino alle ginocchia. Il fondo è melmoso, instabile. Ogni passo richiede uno sforzo cosciente per estrarre lo scarpone dal fango che sembra volerlo inghiottire. <>
 - else:
     Entri nell'acqua gelida fino alle ginocchia. Il fondo è melmoso, instabile. Ogni passo richiede uno sforzo cosciente per estrarre lo scarpone dal fango che sembra volerlo inghiottire. <>
@@ -263,7 +263,7 @@ L'odore è atroce. Ammoniaca e marciume che riempiono la gola. <nl>
 
 ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
 
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Avanzate nel buio del tunnel di cemento.
 - else:
     Avanzi nel buio del tunnel di cemento.
@@ -338,7 +338,7 @@ Recuperarli significa arrampicarsi sulla catasta di detriti e cadaveri. Senza ca
 
 * [Prosegui senza fermarti. Non vuoi toccare quei corpi.]
     L'istinto di conservazione vince sull'avidità. <nl><>
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Vi allontanate il più possibile dai cadaveri e dai veleni, ignorando le risorse. <nl><>
     - else:
         Ti allontani il più possibile dai cadaveri e dai veleni, ignorando le risorse. <nl><>
@@ -348,7 +348,7 @@ Recuperarli significa arrampicarsi sulla catasta di detriti e cadaveri. Senza ca
     -> truck_encounter_passive
 
 === truck_encounter_active ===
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Siete quasi alla fine del settore magazzini. L'uscita verso il bosco è vicina, intravedete gli alberi oltre l'ultimo cancello. <nl><>
 - else:
     Sei quasi alla fine del settore magazzini. L'uscita verso il bosco è vicina, intravedi gli alberi oltre l'ultimo cancello. <nl><>
@@ -356,7 +356,7 @@ Recuperarli significa arrampicarsi sulla catasta di detriti e cadaveri. Senza ca
 
 Dapprima è solo una vibrazione sotto i piedi. Poi il rombo si fa distinto, in avvicinamento rapido. Un camion da trasporto truppe svolta l'angolo a velocità sostenuta, i fari che tagliano il buio.
 
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Vi schiacciate contro i container appena in tempo.
 - else:
     Ti schiacci contro i container appena in tempo
@@ -373,7 +373,7 @@ Altri due soldati saltano giù dal retro, iniziando a litigare con l'autista. Ha
     Il traffico sulla strada è incessante. Il rumore copre le voci dei soldati, ma rende anche impossibile sentire se arrivano rinforzi o altri veicoli. <nl><>
 }
 
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Siete in trappola.
 - else:
     Sei in trappola.
@@ -450,7 +450,7 @@ Valuti la situazione. La distanza dal cancello è di circa venti metri. I tre so
     -> escape_sequence
 
 === truck_encounter_passive ===
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Siete sotto la strada. Sopra le vostre teste c'è una grata pesante che dà sul ciglio della carreggiata. È l'unica uscita. <nl><>
     Sentite un rombo in avvicinamento. Il terreno trema.
 - else:
@@ -518,7 +518,7 @@ Devi decidere come gestire la situazione. <nl><>
 === escape_sequence_collapse_intro
 ~ PlayMusicCustomTransition("TheMilitaryRoadEscape", 3, 1.25)
 
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Uscite dalla grata come animali braccati, spinti solo dall'adrenalina che brucia le ultime riserve di energia. Le grida esplodono sopra di voi. Non siete riusciti a sgattaiolare via in silenzio: il vostro trambusto vi ha tradito. <nl><>
     Il camion, che era fermo sopra di voi, non è partito. I soldati sono lì, armi in pugno. Siete esposti. <nl><>
 - else:
@@ -533,8 +533,8 @@ Devi decidere come gestire la situazione. <nl><>
 === escape_sequence ===
 ~ PlayMusicCustomTransition("TheMilitaryRoadEscape", 3, 1.25)
 
-{ alert_level < 100 && !truck_alerted:
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+{ alert_level < 100 and not truck_alerted:
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Superate l'ultima barriera di asfalto e vi lanciate verso il ciglio della strada. Davanti a voi, il bosco nero promette salvezza.
     - else:
         Superi l'ultima barriera di asfalto e ti lanci verso il ciglio della strada. Davanti a te, il bosco nero promette salvezza.
@@ -548,7 +548,7 @@ Devi decidere come gestire la situazione. <nl><>
     Il suono secco di un interruttore ad alta tensione spezza l'illusione. <nl><>
     Dalla torretta di guardia più vicina, un faro alogeno si accende con un ronzio elettrico, tagliando il buio come una lama incandescente.
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Il fascio di luce vi colpisce in pieno, cancellando le ombre. <nl><>
         "Hark kor! Vrast!" <nl><>
         L'urlo della sentinella non è una domanda, è una constatazione. Vi hanno trovato.
@@ -559,7 +559,7 @@ Devi decidere come gestire la situazione. <nl><>
     }
     
 - else:
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Non c'è tregua. Alle vostre spalle, il caos che avete scatenato si espande come un'onda d'urto. <nl><>
     - else:
         Non c'è tregua. Alle tue spalle, il caos che hai scatenato si espande come un'onda d'urto. <nl><>
@@ -569,7 +569,7 @@ Devi decidere come gestire la situazione. <nl><>
     
     Le urla dei soldati si mescolano al latrato dei cani da guerra appena liberati. Una sirena inizia a ululare dalla caserma centrale, un suono meccanico e lugubre che rimbalza contro le pareti della valle, svegliando ogni unità nel raggio di chilometri.
     
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Non dovete più nascondervi: dovete solo essere più veloci dei proiettili. Le prime raffiche di traccianti iniziano a fischiare sopra le vostre teste, disegnando linee di fuoco giallo nell'aria umida.
     - else:
         Non devi più nascondervi: devi solo essere più veloce dei proiettili. Le prime raffiche di traccianti iniziano a fischiare sopra la tua testa, disegnando linee di fuoco giallo nell'aria umida.
@@ -583,7 +583,7 @@ Bisogna correre. Non c'è strategia, non c'è piano. Solo puro terrore che pompa
 
 * {HasItem("SmokeGrenade")} [Lanci il fumogeno per coprirti la fuga.]
      ~ CPS_MilitaryRoad_Escape_Chose_Smoke = true
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Strappi la spoletta con i denti e lasci cadere la granata alle vostre spalle. Una coltre densa, grigia, esplode coprendo la ritirata. <nl><>
     - else:
         Strappi la spoletta con i denti e lasci cadere la granata alle tue spalle. Una coltre densa, grigia, esplode coprendo la ritirata. <nl><>
@@ -593,7 +593,7 @@ Bisogna correre. Non c'è strategia, non c'è piano. Solo puro terrore che pompa
     ~ RemoveItemFromInventory("SmokeGrenade", 1)
     -> escape_run_continue
     
-* {HasItem("Pistol") && HasItem("Ammo")} [Usi la pistola per coprirti la ritirata.]
+* {HasItem("Pistol") and HasItem("Ammo")} [Usi la pistola per coprirti la ritirata.]
     ~ CPS_MilitaryRoad_Escape_Chose_Pistol = true
     Ti giri di scatto, punti l'arma verso i bagliori delle torce e premi il grilletto. <nl><>
     Due, tre colpi secchi. Vedi le sagome degli inseguitori tuffarsi a terra. <nl><>
@@ -604,7 +604,7 @@ Bisogna correre. Non c'è strategia, non c'è piano. Solo puro terrore che pompa
 
 * [Corri disperatamente verso gli alberi.]
     ~ CPS_MilitaryRoad_Escape_Chose_Run = true
-    { HasCompanion("Lira") || HasCompanion("Elias"):
+    { HasCompanion("Lira") or HasCompanion("Elias"):
         Vi gettate in avanti senza guardarvi indietro. <nl><>
     - else:
         Ti getti in avanti senza guardarti indietro. <nl><>
@@ -616,7 +616,7 @@ Bisogna correre. Non c'è strategia, non c'è piano. Solo puro terrore che pompa
 
 - (escape_run_continue)
 
-{ HasCompanion("Lira") || HasCompanion("Elias"):
+{ HasCompanion("Lira") or HasCompanion("Elias"):
     Vi lanciate verso il buio fitto degli alberi.
 - else:
     Ti lanci verso il buio fitto degli alberi.
@@ -702,7 +702,7 @@ Il terreno è scivoloso. Ogni passo è una lotta contro la gravità e la morte. 
     ~ RemoveCompanionFromParty("Elias")
 }
 
-{ HasCompanion("Lira") && !HasCompanion("Elias"):
+{ HasCompanion("Lira") and not HasCompanion("Elias"):
     Lira ti copre la fuga con una professionalità glaciale, anche se ha il respiro corto. Spara colpi singoli, mirati, costringendo gli inseguitori a tenere la testa bassa. <nl><> 
     "Verso gli alberi!" ordina, la voce roca per lo sforzo.
 }

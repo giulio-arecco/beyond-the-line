@@ -164,7 +164,7 @@ Indossa la divisa del nemico, ma ti sta guardando come un bandito guarda una car
     -> lira_threat
 
 === lira_plea ===
-Cerchi di appellarti alla sua pietà, mostrando i palmi vuoti. "Non siamo una minaccia. Siamo feriti, esausti... vogliamo solo tornare a casa".
+Cerchi di appellarti alla sua pietà, mostrando i palmi vuoti. "Non {HasCompanion("Elias"):siamo|sono} una minaccia. {HasCompanion("Elias"):Siamo feriti, esausti...|Sono ferito, esausto...} voglio solo tornare a casa".
 
 Lei ti osserva, un angolo della bocca che si piega in una smorfia di stanchezza, non di disprezzo. <nl><>
 "Casa..." ripete, scuotendo leggermente la testa. "Siamo tutti lontani da casa. E chiedere per favore non accorcia la strada".
@@ -180,8 +180,7 @@ Ignori la pistola. Vai dritto al punto: "Se volevi un cadavere, ti bastava aspet
 La fissi negli occhi, sostenendo il suo sguardo. <nl><>
 "Parla".
 
-Lei abbassa leggermente la pistola. Un angolo della sua bocca si solleva in un mezzo sorriso. <nl><>
-"Vedo che ci capiamo. In tutti i sensi". Annuisce verso la mina sotto il tuo piede. <nl><>
+Lei abbassa leggermente la pistola. Un angolo della sua bocca si solleva in un mezzo sorriso stanco. Annuisce verso la mina sotto il tuo piede. <nl><>
 "Posso farti scendere intero da lì. Ma la mia competenza tecnica non è gratis".
 
 ~ lira_respect = 1
@@ -357,7 +356,7 @@ Elenchi tutto ciò che hai notato, sperando che basti a rompere la sua facciata.
     "L'orologio. Lo porti all'interno del polso, come insegnano ai nostri incursori. E quel modello con altimetro non lo distribuiscono ai coscritti".
 }
 { clue_necklace:
-    "Quella catenina d'argento. È artigianato del nord, delle nostre valli... anche se ammetto che potresti averla rubata".
+    "Quella catenina d'argento. È artigianato del nord, delle nostre valli".
 }
 { clue_hands:
     "E le tue mani. Non hanno i segni di chi ha scavato trincee per mesi... per quanto il fango cerchi di nasconderlo".
@@ -408,7 +407,7 @@ Ti guarda con attenzione, ora che la minaccia immediata è passata. <nl><>
 "Caporale. Terza Divisione Fanteria" rispondi, raddrizzando la schiena nonostante la fatica. "O quello che ne rimane. Ho perso la mia unità durante il bombardamento alla valle". Indichi i tuoi abiti logori, privi di mostrine. "Ho dovuto liberarmi della giacca per non essere un bersaglio mobile".
 
 Lira sgrana leggermente gli occhi. Un'ombra di imbarazzo attraversa il suo viso sporco di fango. <nl><>
-"Dannazione. Credevo fossi un disertore o uno sciacallo locale". Sospira, passando una mano tra i capelli corti. <nl><>
+"Dannazione. Credevo fossi un disertore o uno sciacallo". Sospira, passando una mano tra i capelli corti. <nl><>
 "Scusa per... l'accoglienza. La mina, la pistola. Non si è mai troppo prudenti qui fuori. Non immaginavo di avere di fronte uno dei nostri".
 
 { HasCompanion("Elias"):
@@ -427,7 +426,7 @@ Lira sgrana leggermente gli occhi. Un'ombra di imbarazzo attraversa il suo viso 
 "Andiamo, so come uscire dal bosco".
 
 ~ AddCompanionToParty("Lira")
-~ IncreaseGlobalStat("Cohesion", 20)
+~ IncreaseGlobalStat("Cohesion", 25)
 
 ~ CPS_Lira_Recruited = true
 
@@ -523,11 +522,9 @@ Esegui. Lei si avvicina alla borsa con circospezione, tenendo l'arma alta, e ini
     "Consideralo un regalo. La prossima volta non sarò così generosa".
 }
 
-"Buona fortuna" dice, indietreggiando nel buio fino a diventare un'ombra. "Ne avrete bisogno". <nl><>
-In un attimo è sparita, lasciandoti vivo e con il tuo zaino<>
-{ lira_took_something:
-    , seppur più leggero.
-}
+Si rialza e, {HasCompanion("Elias"):tenendovi|tenendoti} d'occhio, si allontana verso il bosco. <nl><>
+Prima di scomparire tra le ombre, rallenta leggermente il passo e ti guarda negli occhi. Per un attimo, la freddezza nel suo sguardo sembra incrinarsi. <nl><>
+"Buona fortuna. Ne {HasCompanion("Elias"):avrete|avrai} bisogno".
 
 -> end_section_two
 

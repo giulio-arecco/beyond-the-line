@@ -65,22 +65,26 @@ A nord, su una piccola altura, la casa di comando in pietra incombe sul villaggi
 === village_hub ===
 Ti trovi al centro della piazza devastata. L'aria è ferma, fredda.
 
-// --- PHASE 1: Must visit Command House first ---
 { command_house_entry_first == 0:
-    * [Sali verso la casa di comando.]
-        -> command_house_entry_first
-    
+// --- PHASE 1: Must visit Command House first ---
+    -> first_entry
 - else: 
 // --- PHASE 2: Exploration unlocked ---
+    -> not_first_entry
+}
+
+= first_entry
+    * [Sali verso la casa di comando.]
+        -> command_house_entry_first
+        
+= not_first_entry
     { command_house_entry_first == 1 and command_house_entry_again == 0 and shelter_entry_first == 0 and barn_entry == 0 and not radio_broken and not radio_fixed:
-        La radio alla casa di comando è la chiave, ma ti mancano i pezzi del puzzle: una frequenza da ascoltare e un qualche codice di decrittazione. <nl><>
+        La radio alla casa di comando potrebbe essere la chiave per ottenere informazioni vitali, ma ti mancano i pezzi del puzzle: una frequenza da ascoltare e un qualche codice di decrittazione. <nl><>
         L'unica speranza è trovarli tra le rovine rimaste nella piazza.
     }
+    
     {radio_fixed or radio_broken:
-        Hai fatto ciò che potevi con la radio. Ora non resta che decidere come procedere.
-
-        * [Raduni le idee e pianifichi la prossima mossa.]
-            -> final_planning
+        -> radio_puzzle_completed
     }
 
     + {command_house_entry_first > 0 and not radio_fixed and not radio_broken} [Torni alla casa di comando.]
@@ -93,9 +97,13 @@ Ti trovi al centro della piazza devastata. L'aria è ferma, fredda.
         -> barn_entry
     + {barn_entry > 0 and not has_manual and not failed_negotiation} [Torni al granaio]
         -> barn_entry     
-}
+        
+= radio_puzzle_completed
+    Hai fatto ciò che potevi con la radio. Ora non resta che decidere come procedere.
 
-
+    * [Raduni le idee e pianifichi la prossima mossa.]
+        -> final_planning
+    
 
 === shelter_entry_first ===
 Ti avvicini alla croce medica dipinta su una lamiera. Questo doveva essere il punto di raccolta civili. <nl><>
@@ -373,7 +381,7 @@ All'interno, tra bende secche e flaconi rotti, trovi un kit medico d'emergenza a
     }
     
     L'uomo non si fa intimidire. <nl><>
-    "Tutto ha un prezzo. Voglio provviste fresche. O medicine. O forse quell'arma che avete".
+    "Tutto ha un prezzo. Voglio provviste fresche. O medicine. O forse quell'arma".
 - else:
     L'uomo è ancora lì. Sentendoti avvicinare si volta di scatto, imbracciando pistola e accendino. <nl><>
     "Allora, hai trovato qualcosa da offrirmi?"
@@ -514,8 +522,7 @@ Qualcuno ha già saccheggiato il posto, portando via tutto ciò che aveva valore
 
 Al centro della sala operativa, imbullonata a un tavolo di metallo, c'è una radio militare da campo. È accesa: la spia di alimentazione lampeggia debolmente, e dagli altoparlanti esce un fruscio statico costante.
 
-Ti avvicini alla radio. Sembra funzionante, ma le manopole di sintonizzazione sono bloccate su un canale morto. Inoltre, non hai idea di quale sia la frequenza tattica attuale. <nl><>
-Senza queste informazioni, questa macchina è inutile.
+Ti avvicini alla radio. Sembra funzionante, ma le manopole di sintonizzazione sono bloccate su un canale morto. Inoltre, non hai idea di quale sia la frequenza tattica attuale.
 
 In un angolo, sotto una scrivania rovesciata, noti il cadavere di un ufficiale. La fondina è aperta, ma la pistola è scivolata sotto il corpo. <nl><>
 La recuperi. È una Kruger P-4 di servizio, con un caricatore mezzo pieno.
@@ -898,8 +905,8 @@ Dalla valle a sud sale il rumore lontano dei motori. La strada militare. È larg
 }
 { not HasCompanion("Lira") && not HasCompanion("Elias"):
     Sei solo. Nessuno coprirà le tue spalle sulla strada, nessuno ti tirerà su se scivoli nel burrone. <nl><>
-    Controlli i lacci degli scarponi e la Kruger nella fondina. <nl><>
-    Una via richiede velocità e nervi saldi, l'altra resistenza e adattamento.
+    Controlli i lacci degli scarponi e la Kruger nella fondina. <nl>
+    {KNOWN_MOUNTAINPASS:<>Una via richiede velocità e nervi saldi, l'altra resistenza e adattamento.}
 }
 
 Un ultimo respiro gelido. Hai tutte le informazioni che potevi raccogliere. <nl><>

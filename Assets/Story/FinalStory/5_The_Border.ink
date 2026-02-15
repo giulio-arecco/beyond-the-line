@@ -60,7 +60,7 @@ Vi avvicinate. C'è un soldato incastrato lì sotto. Indossa l'uniforme del nemi
         Lira esita. La sua certezza vacilla davanti al corpo del disertore che protegge il nemico. <nl><>
         Elias si volta verso di te. I suoi occhi ti inchiodano. Non ti chiede nulla, aspetta solo di vedere chi sei diventato.
     - else:
-        Il soldato a terra ti guarda: nei suoi occhi non c'è odio, ma solo il terrore di un animale in trappola. Ti ricorda lo sguardo di Elias nel fienile. <nl><>
+        Il soldato a terra ti guarda: nei suoi occhi non c'è odio, ma solo il terrore di un animale in trappola. Ti ricorda lo sguardo di {not HasItem("Notebook"):Elias|quel soldato} nel fienile. <nl><>
         Lira ti lancia un'occhiata rapida. "Caporale, non possiamo lasciare testimoni".
     }
 - else:
@@ -134,7 +134,7 @@ Gli poggi una mano sulla spalla e gli stringi l'uniforme mentre singhiozza. <nl>
 "Torna a casa" gli sussurri, prima di alzarti e rimetterti in marcia.
 
 Raggiungete il fiume che segna il confine vero e proprio. Ti guardi indietro: le rovine si confondono con il cielo grigio. <nl><>
-Hai attraversato l'inferno per tornare a casa, ma ti rendi conto che la tua più grande conquista non è solo poter calpestare di nuovo il terreno della tua patria. È poterlo fare senza aver rinunciato alla tua umanità.
+Hai attraversato l'inferno per tornare a casa.
 
 { COMPLETED_MOUNTAINPASS:
     Il pensiero vola per un istante alla baita fumosa nel valico e alle parole ciniche dell'eremita. Lui sosteneva che la guerra lascia solo gusci vuoti, che siamo solo variabili in un'equazione che dà sempre zero. <nl><>

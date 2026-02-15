@@ -152,7 +152,7 @@ Non ci sono altre vie. Le pareti della gola sono verticali e friabili. {HasCompa
         ~ bridge_cable_fixed = true
         -> bridge_crossing_choices
         
-    ++ [Non hai modo di liberare il cavo. Bisogna scegliere un'altra via.]
+    ++ {not HasItem("Crowbar")} [Non hai modo di liberare il cavo. Bisogna scegliere un'altra via.]
         Il ghiaccio è troppo duro per romperlo a mani nude {HasItem("Pistol"):o col calcio della pistola}. Ti rialzi, frustrato.
         -> bridge_crossing_choices
 
@@ -255,7 +255,7 @@ Il ponte oscilla. Hai un solo istante per reagire.
         Elias cade nel buio.
         
         ~ RemoveCompanionFromParty("Elias")
-        ~ DecreaseGlobalStat("Cohesion", 20)
+        ~ DecreaseGlobalStat("Cohesion", 10)
         ~ CPS_Elias_Bridge_Fall = true
         ~ elias_fell = true
     - else:
@@ -273,6 +273,7 @@ Il ponte oscilla. Hai un solo istante per reagire.
         
         Lui rotola sul ponte, pallido come un cadavere. "Vok..." sussurra, "Vok". <nl><>
         Vi trascinate fino alla fine del ponte.
+        ~ IncreaseGlobalStat("Cohesion", 15)
     }
 
 + [È troppo pericoloso. Resti indietro.]
@@ -320,65 +321,17 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
     "Na... na velk" mormora, indicando la sua gamba. Non ce la farebbe mai ad arrampicarsi e camminare su quella grata sospesa. Per lui, c'è solo il tunnel principale.
 }
 
-+ {HasItem("GasMask") && HasItem("Crowbar") && (HasCompanion("Elias") or HasCompanion("Lira"))} [Procedete a squadre separate.]
++ {HasItem("GasMask") and HasItem("Crowbar") && (HasCompanion("Elias") or HasCompanion("Lira"))} [Procedete a squadre separate.]
     ~ CPS_MountainPass_Tunnel_Split_Teams = true
-    
     "Ci dividiamo" ordini.
     
     { HasCompanion("Elias") and not elias_fell:
-        Consegni la maschera a Elias. "Tu stai giù. È l'unica via per la tua gamba". <nl><>
-        Lui la guarda, stupito. "Gah?" <nl><>
-        "Io passo di sopra. Vai".
-        
-        Ti aiuti con il piede di porco per raggiungere la passerella arrugginita{HasCompanion("Lira"): seguito da Lira}.
-         ~ IncreaseGlobalStat("Fatigue", 20)
-         
-        { GetGlobalStat("Fatigue") >= 100: 
-            Non appena ti rimetti in piedi sulla passerella, ti si offusca la vista. Ti cedono le gambe e crolli sul freddo metallo arrugginito. <nl><>
-            Sei sfinito. Lo sforzo fisico degli ultimi giorni è stato insopportabile e ora il tuo corpo non ce la fa più. 
-            -> collapse_physical 
-        }
-         
-        L'aria lassù è respirabile, ma satura di umidità ferrosa. Sotto di voi, Elias cammina nella nebbia tossica.
-        
-        Avanzate paralleli. Improvvisamente, la passerella è sbarrata da una paratia di sicurezza in ferro, saldata dalla ruggine. Non c'è modo di aprirla da lì. <nl><>
-        "Il meccanismo è giù!" urli a Elias attraverso il frastuono del sangue nelle orecchie e il ronzio delle lampade rotte.
-        
-        Elias non vede nulla. La maschera è appannata, il gas è denso e avvolgente. <nl><>
-        "Vex?" grida, la voce ovattata e metallica. <nl><>
-        Devi guidarlo a voce.
-        
-        ++ ["A sinistra! Dietro i detriti!"]
-            Elias annaspa, sposta macerie alla cieca. Senti la passerella scricchiolare pericolosamente sotto il tuo peso mentre il metallo stride. <nl><>
-            "Drov! Hek!" <nl><>
-            Tira una leva arrugginita. Con un gemito metallico che riverbera nel tunnel, la paratia si apre.
-            ~ IncreaseGlobalStat("Cohesion", 10)
-            -> convergence
+        -> split_team_elias_path
     - else:
-        "Tieni il piede di porco, meglio se sali tu" dici a Lira. Tu indossi la maschera.
-        
-        Sei immerso nel gas. È come camminare dentro un liquido sporco. La visibilità è zero, il mondo è ridotto a ombre giallastre. <nl><>
-        "Sono bloccata!" urla Lira dall'alto, la voce distante. "Cerca una leva sulla parete destra! Muoviti!"
-        
-        Annaspi tra i detriti. Il sapore di mandorle amare filtra leggermente, depositandosi sulla lingua come polvere.
-        ++ [Cerchi freneticamente tastando la parete.]
-            Le dita scorrono sulla roccia viscida. Ti tagli le mani su ferri sporgenti, ma trovi la leva fredda e unta. La tiri con tutto il peso del corpo. <nl><>
-            Il cancello in alto si apre con uno schianto.
-            
-            ~ IncreaseGlobalStat("Fatigue", 10)
-            ~ IncreaseGlobalStat("Cohesion", 10)
-            
-            { GetGlobalStat("Fatigue") >= 100: 
-                Non appena rilassi i muscoli e smetti di stringere la leva, ti si offusca la vista, ti cedono le gambe e crolli a terra. <nl><>
-                Sei sfinito. Lo sforzo fisico degli ultimi giorni è stato insopportabile e ora il tuo corpo non ce la fa più. 
-                -> collapse_physical 
-                
-            }
-            
-            -> convergence
+        -> split_team_lira_path
     }
-
-+ {HasItem("GasMask") && (HasCompanion("Elias") or HasCompanion("Lira"))} [Condividete la maschera sui binari.]
+    
++ {HasItem("GasMask") and (HasCompanion("Elias") or HasCompanion("Lira"))} [Condividete la maschera sui binari.]
     ~ CPS_MountainPass_Tunnel_Share_Mask = true
     
     Non potete raggiungere la passerella. Dovete attraversare la sacca di gas sui binari, passandovi l'unica maschera.
@@ -568,6 +521,59 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         Ma la rotaia ti porta fuori.
         -> convergence
 
+= split_team_elias_path
+    Consegni la maschera a Elias. "Tu stai giù. È l'unica via per la tua gamba". <nl><>
+    Lui la guarda, stupito. "Gah?" <nl><>
+    "Io passo di sopra. Vai".
+    
+    Ti aiuti con il piede di porco per raggiungere la passerella arrugginita{HasCompanion("Lira"): seguito da Lira}.
+    ~ IncreaseGlobalStat("Fatigue", 20)
+    
+    { GetGlobalStat("Fatigue") >= 100: 
+        Non appena ti rimetti in piedi sulla passerella, ti si offusca la vista. Ti cedono le gambe e crolli sul freddo metallo arrugginito. <nl><>
+        Sei sfinito. Lo sforzo fisico degli ultimi giorni è stato insopportabile e ora il tuo corpo non ce la fa più. 
+        -> collapse_physical 
+    }
+     
+    L'aria lassù è respirabile, ma satura di umidità ferrosa. Sotto di voi, Elias cammina nella nebbia tossica.
+    
+    Avanzate paralleli. Improvvisamente, la passerella è sbarrata da una paratia di sicurezza in ferro, saldata dalla ruggine. Non c'è modo di aprirla da lì. <nl><>
+    "Il meccanismo è giù!" urli a Elias attraverso il frastuono del sangue nelle orecchie e il ronzio delle lampade rotte.
+    
+    Elias non vede nulla. La maschera è appannata, il gas è denso e avvolgente. <nl><>
+    "Vex?" grida, la voce ovattata e metallica. <nl><>
+    Devi guidarlo a voce.
+    
+    * ["A sinistra! Dietro i detriti!"]
+        Elias annaspa, sposta macerie alla cieca. Senti la passerella scricchiolare pericolosamente sotto il tuo peso mentre il metallo stride. <nl><>
+        "Drov! Hek!" <nl><>
+        Tira una leva arrugginita. Con un gemito metallico che riverbera nel tunnel, la paratia si apre.
+        ~ IncreaseGlobalStat("Cohesion", 10)
+        -> convergence
+
+= split_team_lira_path
+    "Tieni il piede di porco, meglio se sali tu" dici a Lira. Tu indossi la maschera.
+    
+    Sei immerso nel gas. È come camminare dentro un liquido sporco. La visibilità è zero, il mondo è ridotto a ombre giallastre. <nl><>
+    "Sono bloccata!" urla Lira dall'alto, la voce distante. "Cerca una leva sulla parete destra! Muoviti!"
+    
+    Annaspi tra i detriti. Il sapore di mandorle amare filtra leggermente, depositandosi sulla lingua come polvere.
+
+    * [Cerchi freneticamente tastando la parete.]
+        Le dita scorrono sulla roccia viscida. Ti tagli le mani su ferri sporgenti, ma trovi la leva fredda e unta. La tiri con tutto il peso del corpo. <nl><>
+        Il cancello in alto si apre con uno schianto.
+        
+        ~ IncreaseGlobalStat("Fatigue", 10)
+        ~ IncreaseGlobalStat("Cohesion", 10)
+        
+        { GetGlobalStat("Fatigue") >= 100: 
+            Non appena rilassi i muscoli e smetti di stringere la leva, ti si offusca la vista, ti cedono le gambe e crolli a terra. <nl><>
+            Sei sfinito. Lo sforzo fisico degli ultimi giorni è stato insopportabile e ora il tuo corpo non ce la fa più. 
+            -> collapse_physical 
+        }
+        
+        -> convergence
+
 === collapse_physical ===
 ~ CPS_Collapse_MountainPass_TunnelPhysical = true
 
@@ -742,9 +748,15 @@ L'eremita {HasCompanion("Elias") or HasCompanion("Lira"):vi|ti} osserva con occh
 - {not hermit_threatened: <>Posa il fucile assemblato. Il suono metallico risuona nella stanza. | Scuote il capo e si inarca verso il fuoco, silenzioso.}
 
 { HasItem("Notebook") and not HasCompanion("Elias"):
-    Un pensiero ti attraversa la mente. Frugando nello zaino, le tue dita sfiorano la copertina di cuoio logoro del taccuino di Elias. <nl><>
+    -> elias_notebook_scene
+- else:
+    -> leave_hermit
+}
+
+= elias_notebook_scene
+    Un pensiero ti attraversa la mente. Frugando nello zaino, le tue dita sfiorano la copertina di cuoio logoro del taccuino del soldato che hai abbandonato alla fattoria. <nl><>
     Ricordi di non averci dato peso quando lo hai preso. Ma ora... le parole del vecchio ti risuonano dentro: "siete delle variabili...".
-    
+
     * [Gli chiedi se sa tradurre il taccuino]
         Lo tiri fuori. La pelle è fredda al tatto. <nl><>
         "Sai leggere questo?" chiedi, porgendogli il taccuino. "Credo sia scritto nella tua lingua".
@@ -761,12 +773,10 @@ L'eremita {HasCompanion("Elias") or HasCompanion("Lira"):vi|ti} osserva con occh
         
         Guardi il taccuino. Ricordi vagamente l'uomo che l'ha scritto e i suoi occhi che incrociavano i tuoi mentre lasciavi la fattoria. <nl><>
         Hai disumanizzato un uomo che voleva solo sentire il profumo di casa. Forse il vecchio ha ragione: la guerra scava via l'uomo e lascia il guscio, e qualcosa in te è già morto.
+        
         ~ READ_NOTEBOOK = true
         ~ CPS_Elias_Notebook_Translated = true
         -> leave_hermit
-}
-
--> leave_hermit
 
 === leave_hermit ===
 ~ StopMusic()

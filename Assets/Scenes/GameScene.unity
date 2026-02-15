@@ -2661,8 +2661,8 @@ MonoBehaviour:
     _version: 3.33
     _category: 
     _comments: FSM that handles story progression
-    _translation: {x: -83, y: 161}
-    _zoomFactor: 0.7580787
+    _translation: {x: -738, y: -239}
+    _zoomFactor: 1
   _firstActivation: 0
   _enableAction: 0
   _disableAction: 1
@@ -8144,6 +8144,14 @@ PrefabInstance:
     - target: {fileID: 248638669537893620, guid: 3f0dfb9c399dfc04e9ea72c5835cbcb8, type: 3}
       propertyPath: onSubmit._PersistentCalls.Array.data[0]._MemberName
       value: PopUILayer
+      objectReference: {fileID: 0}
+    - target: {fileID: 1549369736206359949, guid: 3f0dfb9c399dfc04e9ea72c5835cbcb8, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2241548711849400327, guid: 3f0dfb9c399dfc04e9ea72c5835cbcb8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2739574115621726494, guid: 3f0dfb9c399dfc04e9ea72c5835cbcb8, type: 3}
       propertyPath: m_Pivot.x

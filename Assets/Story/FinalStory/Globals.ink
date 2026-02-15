@@ -318,3 +318,31 @@ EXTERNAL LogError(message)
 //             >> Undefined statName "{statName}" passed to DecreaseGlobalStat.
 //             ~ return 0
 //     }
+    
+// === function IncreaseGlobalStatCapped(statName, amountToAdd, maxValue)
+//     {
+//     - statName == "Health": 
+//             {Health + amountToAdd >= maxValue: 
+//                 >> Health clamped to {Health}.
+//             - else:
+//                 ~ Health += amountToAdd
+//                 >> Increased Health. Current value: {Health}
+//             }
+//         - statName == "Fatigue": 
+//             {Fatigue + amountToAdd >= maxValue: 
+//                 >> Fatigue clamped to {Fatigue}.
+//             - else:
+//                 ~ Fatigue += amountToAdd
+//                 >> Increased Fatigue. Current value: {Fatigue}
+//             }
+//         - statName == "Cohesion": 
+//             {Cohesion + amountToAdd >= maxValue: 
+//                 >> Cohesion clamped to {Cohesion}.
+//             - else:
+//                 ~ Cohesion += amountToAdd
+//                 >> Increased Cohesion. Current value: {Cohesion}
+//             }
+//         - else:
+//             >> Undefined statName "{statName}" passed to IncreaseGlobalStatCapped.
+//             ~ return 0
+//     }
