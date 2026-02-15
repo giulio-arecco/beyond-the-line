@@ -323,6 +323,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6079026638731756242, guid: c4ffa53f6bfd3de41856b8761f1250a5, type: 3}
   m_PrefabInstance: {fileID: 1705052763}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &94076845 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1840453840276740715, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+  m_PrefabInstance: {fileID: 1934219917}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &97797667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,6 +2283,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 578dad66351148441bd31ee9939aaeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UIPanelController
+--- !u!1 &780697872 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1840453840276740715, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+  m_PrefabInstance: {fileID: 1530635206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &791444852 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1545384700620853712, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
@@ -3320,19 +3330,36 @@ PrefabInstance:
     - {fileID: 5743248655339742533, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
     - {fileID: 2087048744306864239, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1840453840276740715, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1530635212}
   m_SourcePrefab: {fileID: 100100000, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
 --- !u!114 &1530635209 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 413489940163916039, guid: 3a130e61adcbba74590d830ef1cac404, type: 3}
   m_PrefabInstance: {fileID: 1530635206}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 780697872}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 578dad66351148441bd31ee9939aaeb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UI.UILayerController
+--- !u!114 &1530635212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780697872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a841f520600f0034f8e75f39b6106ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Metrics.UIPanelControllerShowedTracker
+  uiPanelController: {fileID: 1530635209}
+  statToTrack: 1
 --- !u!1 &1533405638
 GameObject:
   m_ObjectHideFlags: 0
@@ -7677,7 +7704,10 @@ PrefabInstance:
     m_RemovedGameObjects:
     - {fileID: 1893826907116188936, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1840453840276740715, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1934219926}
   m_SourcePrefab: {fileID: 100100000, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
 --- !u!224 &1934219918 stripped
 RectTransform:
@@ -7700,7 +7730,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5073719936690065192, guid: b0adae55d36b64f43b157727f9012ee5, type: 3}
   m_PrefabInstance: {fileID: 1934219917}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 94076845}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 578dad66351148441bd31ee9939aaeb2, type: 3}
@@ -7739,6 +7769,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a463d538306e9b24d9540142b4d28a5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1934219926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94076845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a841f520600f0034f8e75f39b6106ab4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Metrics.UIPanelControllerShowedTracker
+  uiPanelController: {fileID: 1934219920}
+  statToTrack: 0
 --- !u!1 &1938464479
 GameObject:
   m_ObjectHideFlags: 0

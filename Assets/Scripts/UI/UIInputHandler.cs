@@ -1,5 +1,6 @@
 using UnityEngine;
 using Enums;
+using Metrics;
 using UI;
 using Utils.Extensions;
 
@@ -33,7 +34,6 @@ public class UIInputHandler : MonoBehaviour {
         }
         else {
             UINavigator.Instance.PushUILayer(new[] {inventoryPanel}, UILayerPushOptions.RemoveAllPreviousLayers);
-            RuntimeStats.IncreaseStat(IntRuntimeStat.CPS_Opened_Inventory_Count, 1);
         }
     }
     
@@ -43,7 +43,6 @@ public class UIInputHandler : MonoBehaviour {
         }
         else {
             UINavigator.Instance.PushUILayer(new[] {companionsPanel}, UILayerPushOptions.RemoveAllPreviousLayers);
-            RuntimeStats.IncreaseStat(IntRuntimeStat.CPS_Opened_Companions_Count, 1);
         }
     }
     
