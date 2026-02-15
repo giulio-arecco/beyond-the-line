@@ -11,7 +11,7 @@ VAR ate_food = false
 
 === camp_entry ===
 ~ SET_CAMP_COUNT++
-~ CPS_Set_Camp_Count++
+~ CPS_Camp_Set_Count++
 
 ~ temp current_location_name = ""
 {
@@ -35,9 +35,9 @@ VAR ate_food = false
 
 { 
     - SET_CAMP_COUNT == 1: 
-        ~ CPS_First_Camp_Location = current_location_name
+        ~ CPS_Camp_First_Location = current_location_name
     - else:
-        ~ CPS_Second_Camp_Location = current_location_name
+        ~ CPS_Camp_Second_Location = current_location_name
 }
 
 Trovi un anfratto riparato dal vento, nascosto da occhi indiscreti. 

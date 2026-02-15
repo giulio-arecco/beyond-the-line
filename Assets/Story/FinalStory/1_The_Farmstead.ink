@@ -62,8 +62,10 @@ Il telaio della porta emette un gemito sinistro. L'architrave di legno è spezza
 La struttura è un castello di carte. Un movimento brusco, e quel soffitto verrà giù.
 
 * [Corri dentro e afferri tutto quello che puoi.]
+    ~ CPS_Farmstead_Pantry_Explored_Fast = true
     -> pantry_fast_risk
 * [Provi a muoverti molto lentamente per prendere solo il cibo.]
+    ~ CPS_Farmstead_Pantry_Explored_Slow = true
     -> pantry_slow_risk
 * [Non ne vale la pena. Troppo instabile.]
     Indietreggi lentamente. Meglio affamati che schiacciati.
@@ -211,6 +213,7 @@ Ti volti e ti allontani.
 ~ AddItemToInventory("Notebook")
 
 //  ~ CPS_Humanity_Score_Final--
+~ CPS_Elias_Abandoned_Aggressive = true
 -> patrol_arrival
 
 === choice_avoidant ===
@@ -229,6 +232,7 @@ Metti via il taccuino senza dire una parola ed esci.
 ~ AddItemToInventory("Notebook")
 
 //  ~ CPS_Humanity_Score_Final--
+~ CPS_Elias_Abandoned_Avoidant = true
 -> patrol_arrival
 
 === patrol_arrival ===
@@ -262,6 +266,8 @@ Invece, ti fa segno di tacere, portandosi un dito alle labbra sporche di sangue.
 Con l'altra mano indica una scolina coperta dai rovi, dietro il fienile. È un sentiero per bestiame, invisibile dalla strada principale.
 
 * [Ti fidi di lui e lo segui nella scolina.]
+    ~ CPS_Farmstead_Patrol_Trusted_Elias = true
+    
     Deglutisci il sospetto e decidi di seguire l'istinto. Lui conosce questo posto.
     
     Vi muovete bassi, nel fango, strisciando come vermi. I soldati entrano nel cortile urlando ordini che ti fanno accapponare la pelle, ma voi siete già oltre la linea visiva, inghiottiti dalle ombre della vegetazione. <nl><>
@@ -346,6 +352,7 @@ Siete due sopravvissuti, ma l'uniforme che indossa è ancora quella del nemico.
 Non riesci a toglierti dalla testa quello che è successo. Quegli uomini erano la sua gente. Eppure, ti ha coperto le spalle. Ha scelto la fuga con uno sconosciuto nemico invece della salvezza con i suoi.
 
 * [Cerchi di chiedergli perché.]
+    ~ CPS_Elias_Confrontation_Asked = true
     Ti avvicini di un passo, indicando col pollice la direzione da cui siete venuti, dove i motori della pattuglia si sono spenti.
     
     "Perché?" chiedi, la voce roca. "Erano i tuoi".
@@ -359,6 +366,7 @@ Non riesci a toglierti dalla testa quello che è successo. Quegli uomini erano l
     -> final_reflection
 
 * [Lo osservi in silenzio, diffidente.]
+    ~ CPS_Elias_Confrontation_Silence = true
     Resti a distanza, studiando ogni suo movimento. Non sai se ringraziarlo o aspettarti una coltellata alla schiena.
     
     Lui intercetta il tuo sguardo sospettoso. Non si difende. Non sorride. Si limita a indicare il sentiero che si inoltra nel bosco, poi fa un gesto secco con la mano: avanti. <nl><>
@@ -366,6 +374,7 @@ Non riesci a toglierti dalla testa quello che è successo. Quegli uomini erano l
     -> final_reflection
 
 * [Gli fai un cenno secco di ringraziamento.]
+    ~ CPS_Elias_Confrontation_Thanked = true
     Annuisci, un gesto breve, militare. Riconosci l'aiuto tattico, niente di più. <nl><>
     Lui ricambia con un cenno altrettanto impercettibile. <nl><>
     Non servono parole. Avete entrambi scelto di vivere.

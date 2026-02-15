@@ -56,6 +56,7 @@ Il crollo è instabile. Un masso in bilico minaccia di tirare giù il resto del 
 + {HasItem("Crowbar")} [Usi il piede di porco per fare leva sulle travi.]
     Incasti il piede di porco tra due blocchi di cemento e spingi. Il metallo stride, ma la leva moltiplica la tua forza. Con uno sforzo controllato, riesci a creare un varco sufficientemente grande da passare senza rischiare che tutto ti crolli addosso.
     ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
+    ~ CPS_MountainPass_Outpost_Opened_Crowbar = true
     -> loot_mask
 
 + {HasCompanion("Elias") or HasCompanion("Lira")} [Chiedi aiuto per spostare le macerie.]
@@ -73,11 +74,13 @@ Il crollo è instabile. Un masso in bilico minaccia di tirare giù il resto del 
     
     ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
     ~ IncreaseGlobalStat("Cohesion", 5)
+    ~ CPS_MountainPass_Outpost_Opened_Together = true
     -> loot_mask
 
 + [Sposti le macerie a mani nude. Non c'è altra scelta.]
     Afferri la prima trave. È pesante e scheggiata. Tiri con tutto il peso del corpo, sentendo i tendini protestare e il respiro farsi corto. La polvere ti riempie la gola, facendoti tossire. Sposti le pietre una ad una, scorticandoti le mani. Quando finalmente apri un varco, sei madido di sudore che comincia a gelare sulla pelle.
     ~ IncreaseGlobalStatCapped("Fatigue", 10, FATIGUE_CAP)
+    ~ CPS_MountainPass_Outpost_Opened_Hands = true
     -> loot_mask
 
 === loot_mask ===
@@ -145,6 +148,7 @@ Non ci sono altre vie. Le pareti della gola sono verticali e friabili. {HasCompa
         
         ~ IncreaseGlobalStatCapped("Fatigue", 5, FATIGUE_CAP)
         ~ CPS_Info_Points_Gathered++
+        ~ CPS_MountainPass_Bridge_Cable_Fixed = true
         ~ bridge_cable_fixed = true
         -> bridge_crossing_choices
         
@@ -225,6 +229,8 @@ Non ci sono altre vie. Le pareti della gola sono verticali e friabili. {HasCompa
 Il ponte oscilla. Hai un solo istante per reagire.
 
 + [Ti lanci per afferrarlo]
+    ~ CPS_Elias_Bridge_Tried_Saving = true
+
     ~temp fatigue_threshold = 50
     
     { crossing_method == run: 
@@ -441,6 +447,8 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
     Senti un tonfo sordo, poi un colpo di tosse violento. Qualcuno è caduto o è rimasto indietro. Il panico ti assale.
     
     ++ [Ti volti e torni indietro alla cieca.]
+        ~ CPS_MountainPass_Tunnel_Group_Run_Went_Back = true
+        
         Non puoi lasciarli. Ti giri nel fumo, annaspando con le braccia. <nl><>
         "Dove siete?!" urli, inalando una boccata letale di gas che ti incendia la trachea.
         
@@ -488,6 +496,8 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
     Il filtro della maschera inizia a sibilare. Stai consumando aria troppo in fretta per lo sforzo.
     
     ++ [Usi la forza bruta per sbloccare la ruota.]
+        ~ CPS_MountainPass_Tunnel_Solo_Mask_Wheel_Hands = true
+    
         Punti i piedi nel fango tossico. Afferri la ruota con entrambe le mani e tiri, urlando nella maschera. Senti i muscoli della schiena che minacciano di strapparsi. La ruggine ti taglia le mani. 
         
         La ruota cede con uno stridio acuto. La paratia si alza di mezzo metro.
@@ -501,6 +511,8 @@ In alto, lungo la parete sinistra, corre una vecchia passerella metallica di ser
         -> convergence
         
     ++ {HasItem("Crowbar")} [Usi il piede di porco come leva.]
+        ~ CPS_MountainPass_Tunnel_Solo_Mask_Wheel_Crowbar = true
+        
         Inserisci il piede di porco tra i raggi della ruota. Fai leva con tutto il peso del corpo. Il metallo si piega, ma la ruota gira. La paratia si alza quel tanto che basta. <nl><>
         Ti getti oltre con il cuore che batte all'impazzata.
         ~ IncreaseGlobalStat("Fatigue", 10)
@@ -664,7 +676,9 @@ Non {HasCompanion("Elias") or HasCompanion("Lira"):vi ha ancora visti|ti ha anco
 Devi decidere come procedere. Hai imparato che in questa guerra non tutti quelli che incontri vogliono ucciderti, ma l'errore si paga caro.
 
 * {HasItem("Pistol")} [Avanzi armi in pugno. Minacci l'uomo per prendere il rifugio.]
+    ~ CPS_MountainPass_Hermit_Threatened = true
     ~ hermit_threatened = true
+    
     Scatti in avanti, puntando l'arma. "Mani dove posso vederle!" urli. <nl>
     { HasCompanion("Lira"): <>Lira ti copre immediatamente, puntando alla testa dell'uomo. }
     

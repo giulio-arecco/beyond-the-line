@@ -109,6 +109,8 @@ Senti un odore dolciastro, nauseante, filtrare dalle fessure.
 Il crollo è massiccio. Spostare quei detriti richiederà uno sforzo immane.
 
 * {HasItem("Crowbar")} [Usi il piede di porco come leva.]
+    ~ CPS_Village_Shelter_Used_Crowbar = true
+
     Incastri il piede di porco sotto la trave portante che blocca la botola. Il metallo stride nel silenzio, si flette, ma la fisica è dalla tua parte. <nl><>
     Con uno scricchiolio secco, la trave si sposta quel tanto che basta per far scivolare via i mattoni. Non hai sprecato energie preziose.
     ~ IncreaseGlobalStat("Fatigue", 5)
@@ -116,6 +118,7 @@ Il crollo è massiccio. Spostare quei detriti richiederà uno sforzo immane.
     -> shelter_interior
 
 * [Provi a spostare le macerie a mani nude.]
+    ~ CPS_Village_Shelter_Used_Hands = true
     ~ IncreaseGlobalStat("Fatigue", 25)
     { GetGlobalStat("Fatigue") >= 100:
         -> shelter_collapse_scenario
@@ -131,12 +134,14 @@ Devi solo stringere i denti un'ultima volta.
 * {HasItem("Crowbar")} [Usi il piede di porco per finire il lavoro.]
     Non hai intenzione di rischiare di nuovo. Usi la leva d'acciaio per spostare gli ultimi detriti.
     ~ IncreaseGlobalStat("Fatigue", 5)
+     ~ CPS_Village_Shelter_Used_Crowbar = true
     ~ shelter_open = true
     -> shelter_interior
 
 * [Sposti gli ultimi detriti a mani nude.]
     Ti pieghi sulle ginocchia doloranti. Afferri le pietre rimaste con rabbia sorda. Uno dopo l'altro, i mattoni volano via.
     ~ IncreaseGlobalStat("Fatigue", 10) // Reduced cost for retry/completion
+    ~ CPS_Village_Shelter_Used_Hands = true
     ~ shelter_open = true
     -> shelter_interior
 
@@ -260,8 +265,6 @@ Non ti serve conoscere la loro grammatica per capire che è una frequenza priori
 ~ has_frequency = true
 ~ AddItemToInventory("FrequencyNote")
 ~ CPS_Found_FrequencyNote++
-
-~ CPS_Info_Points_Gathered++
 -> shelter_choices
 
 === examine_deserter ===
@@ -281,7 +284,7 @@ Il soldato indossa la tua divisa, ma è privo di gradi. È morto abbracciato a u
     
     ~ KNOWN_MOUNTAINPASS = true
     ~ AddItemToInventory("MountainMap")
-    
+    ~ CPS_Route_Discovered_Mountain = true
     ~ CPS_Info_Points_Gathered++
 - else:
     Lo perquisisci. Trovi solo una foto rovinata e una lettera mai spedita. Nessuna informazione utile, solo un'altra tragedia anonima che la guerra inghiottirà.
@@ -471,7 +474,7 @@ L'uomo stringe la presa sulla sua pistola, i muscoli del collo tesi. Cerca di ca
     ~ has_manual = true
     ~ AddItemToInventory("DecryptionManual")
     ~ CPS_Found_DecryptionManual++
-    ~ CPS_Village_Scavenger_Threatened = true
+    ~ CPS_Village_Scavenger_Threat_Success = true
     -> village_hub
 - else:
     { HasItem("Pistol"):
@@ -496,7 +499,7 @@ L'uomo stringe la presa sulla sua pistola, i muscoli del collo tesi. Cerca di ca
     La minaccia è reale. Devi ritirarti.
     
     ~ failed_negotiation = true
-    ~ CPS_Village_Scavenger_Failed = true
+    ~ CPS_Village_Scavenger_Threat_Fail = true
     -> village_hub
 }
 

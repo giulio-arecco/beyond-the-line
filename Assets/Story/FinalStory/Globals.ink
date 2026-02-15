@@ -50,22 +50,35 @@ VAR CPS_Info_Points_Gathered = 0         // Counter: how many optional info piec
 
 // --- STRATEGIC PLANNING & RISK ASSESSMENT ---
 // Route Choice
+VAR CPS_Route_Discovered_Mountain = false
 VAR CPS_Route_Chosen_Road = false
 VAR CPS_Route_Chosen_Mountain = false
 
 // Route Preparedness
 VAR CPS_Route_Was_Prepared = false       // True if player had the Key Item for the chosen route
 
+// Farmstead choices and consequences
+VAR CPS_Farmstead_Pantry_Explored_Fast = false
+VAR CPS_Farmstead_Pantry_Explored_Slow = false
+VAR CPS_Farmstead_Patrol_Trusted_Elias = false
+
 // Village choices and consequences
 VAR CPS_Village_Entered_Shelter = false
 VAR CPS_Village_Entered_Barn = false
-VAR CPS_Village_Scavenger_Traded = false         // Used resources to get the manual
-VAR CPS_Village_Scavenger_Threatened = false     // Used force/intimidation
-VAR CPS_Village_Scavenger_Failed = false         // Failed negotiation 
+VAR CPS_Village_Shelter_Used_Crowbar = false
+VAR CPS_Village_Shelter_Used_Hands = false
+VAR CPS_Village_Scavenger_Traded = false 
+VAR CPS_Village_Scavenger_Threat_Success = false
+VAR CPS_Village_Scavenger_Threat_Fail = false
+VAR CPS_Village_Scavenger_Failed = false 
 
 // Military Road choices and consequences
 VAR CPS_MilitaryRoad_Route_Sewer = false
 VAR CPS_MilitaryRoad_Route_Warehouses = false
+VAR CPS_MilitaryRoad_Warehouse_Opened_Crowbar = false
+VAR CPS_MilitaryRoad_Warehouse_Opened_Hands = false
+VAR CPS_MilitaryRoad_Warehouse_NotOpened = false
+VAR CPS_MilitaryRoad_Sewer_Corpses_Climbed = false
 VAR CPS_MilitaryRoad_TruckActive_Chose_Smoke = false
 VAR CPS_MilitaryRoad_TruckActive_Chose_Stealth = false
 VAR CPS_MilitaryRoad_TruckActive_Chose_Wait = false
@@ -78,14 +91,22 @@ VAR CPS_MilitaryRoad_Escape_Chose_Run = false
 VAR CPS_MilitaryRoad_Alerted = false
 
 // Mountain Pass choices and consequences
+VAR CPS_MountainPass_Outpost_Opened_Crowbar = false
+VAR CPS_MountainPass_Outpost_Opened_Together = false
+VAR CPS_MountainPass_Outpost_Opened_Hands = false
+VAR CPS_MountainPass_Bridge_Cable_Fixed = false
 VAR CPS_MountainPass_Bridge_Crossing_Crawl = false
 VAR CPS_MountainPass_Bridge_Crossing_Cable = false
 VAR CPS_MountainPass_Bridge_Crossing_Run = false
 VAR CPS_MountainPass_Tunnel_Split_Teams = false
 VAR CPS_MountainPass_Tunnel_Share_Mask = false
 VAR CPS_MountainPass_Tunnel_Group_Run = false
+VAR CPS_MountainPass_Tunnel_Group_Run_Went_Back = false
 VAR CPS_MountainPass_Tunnel_Solo_Mask = false
+VAR CPS_MountainPass_Tunnel_Solo_Mask_Wheel_Hands = false
+VAR CPS_MountainPass_Tunnel_Solo_Mask_Wheel_Crowbar = false
 VAR CPS_MountainPass_Tunnel_Solo_Run = false
+VAR CPS_MountainPass_Hermit_Threatened = false
 
 // Border choices and consequences
 VAR CPS_Border_Help_Boy = false
@@ -96,9 +117,9 @@ VAR CPS_Reached_Ending_1 = false         // Group Ending
 VAR CPS_Reached_Ending_2 = false         // Solo Ending
 
 // Camp management
-VAR CPS_Set_Camp_Count = 0
-VAR CPS_First_Camp_Location = ""
-VAR CPS_Second_Camp_Location = ""
+VAR CPS_Camp_Set_Count = 0
+VAR CPS_Camp_First_Location = ""
+VAR CPS_Camp_Second_Location = ""
 
 // --- RESOURCE MANAGEMENT & OPTIMIZATION ---
 // Resources used in camp
@@ -136,8 +157,14 @@ VAR CPS_Collapse_MountainPass_TunnelHypoxia = false
 // --- SOCIAL DYNAMICS & OUTCOMES ---
 // Elias
 VAR CPS_Elias_Recruited = false          // Reached the end alive in the party
+VAR CPS_Elias_Abandoned_Aggressive = false
+VAR CPS_Elias_Abandoned_Avoidant = false
+VAR CPS_Elias_Confrontation_Asked = false
+VAR CPS_Elias_Confrontation_Silence = false
+VAR CPS_Elias_Confrontation_Thanked = false
 VAR CPS_Elias_Died_Sacrifice = false     // Died fighting to cover player's escape
 VAR CPS_Elias_Died_Separation = false    // Died/Lost after getting separated during escape
+VAR CPS_Elias_Bridge_Tried_Saving = false
 VAR CPS_Elias_Bridge_Fall = false
 VAR CPS_Elias_Camp_Dialogue_Done = false
 VAR CPS_Elias_Notebook_Translated = false

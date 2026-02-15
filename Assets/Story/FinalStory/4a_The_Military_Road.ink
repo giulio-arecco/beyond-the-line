@@ -145,6 +145,8 @@ Noti un container diverso dagli altri. Ha il portellone socchiuso, bloccato da u
 Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una garitta non lontano, con la luce accesa.
 
 * {HasItem("Crowbar")} [Usi il piede di porco per forzare silenziosamente la catena.]
+    ~ CPS_MilitaryRoad_Warehouse_Opened_Crowbar = true
+    
     Incastri il piede di porco tra le maglie. Fai leva progressiva, attento a non far stridere il metallo. <nl><>
     Uno scatto secco. La catena cede.
     
@@ -182,6 +184,8 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     -> truck_encounter_active
 
 * [Provi ad aprirlo a mani nude, rischiando il rumore.]
+    ~ CPS_MilitaryRoad_Warehouse_Opened_Hands = true
+    
     Afferri la catena con entrambe le mani. È fredda, pesante. Tiri. <nl><>
     Il metallo sbatte contro la parete vuota del container. Un suono metallico, netto, simile a una campana nel silenzio notturno.
     
@@ -233,6 +237,7 @@ Potrebbe contenere risorse utili, ma la catena fa rumore se mossa. E c'è una ga
     -> truck_encounter_active
 
 * [Ignori il container. Troppo rischioso.]
+    ~ CPS_MilitaryRoad_Warehouse_NotOpened = true
     Passi oltre. La curiosità non vale una pallottola. <nl><>
     { HasCompanion("Lira") || HasCompanion("Elias"):
         Mantenete un basso profilo. <nl>
@@ -275,6 +280,8 @@ Tra i rifiuti, vedi la tracolla di una borsa medica impigliata in un tondino di 
 Recuperarli significa arrampicarsi sulla catasta di detriti e cadaveri. Senza calcolare ogni singolo movimento, si rischia di scivolare nella poltiglia tossica o, peggio, di allertare i soldati in strada.
 
 * [Ti arrampichi per recuperare tutto il possibile.]
+    ~ CPS_MilitaryRoad_Sewer_Corpses_Climbed = true
+    
     Ti fai forza e sali sui detriti. Senti le ossa dei morti cedere sotto i tuoi stivali. È una sensazione oscena. <nl><>
     Afferri la borsa medica. È intatta.
     
@@ -329,7 +336,7 @@ Recuperarli significa arrampicarsi sulla catasta di detriti e cadaveri. Senza ca
     ~ DecreaseGlobalStat("Health", 15)
     -> truck_encounter_passive
 
-* [Prosegui senza fermarti. Non vuoi toccare quei morti.]
+* [Prosegui senza fermarti. Non vuoi toccare quei corpi.]
     L'istinto di conservazione vince sull'avidità. <nl><>
     { HasCompanion("Lira") || HasCompanion("Elias"):
         Vi allontanate il più possibile dai cadaveri e dai veleni, ignorando le risorse. <nl><>
