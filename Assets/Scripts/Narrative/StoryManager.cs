@@ -44,6 +44,7 @@ namespace Narrative {
         private StoryVariablesRegistry _storyVariablesRegistry; 
         private StoryFunctionsBinder _storyFunctionsBinder;
         private Tween _typewriterTween;
+        private string _bufferedLine;
     
         public bool StoryIsProgressing { get; private set; }
 
@@ -80,6 +81,7 @@ namespace Narrative {
             StoryIsProgressing = false;
             UINavigator.Instance.RemoveUIElementFromProtectedLayer(storyPanel);
             storyText.text = "";
+            _bufferedLine = null;
         
             _storyVariablesRegistry.StopListening(_currentStory);
             _storyFunctionsBinder.UnbindGlobalFunctions(_currentStory);
@@ -104,12 +106,45 @@ namespace Narrative {
                     x => storyText.maxVisibleCharacters = x, textToType.Length, duration
                     )
                 .SetEase(Ease.Linear)
-                .OnComplete(() => {
-                    _typewriterTween = null;
-                    DisplayChoices();
-                });
+                .OnComplete(OnLineTypingFinished);
 
             _typewriterTween.Play();
+        }
+
+        private void OnLineTypingFinished() {
+            _typewriterTween = null;
+
+            // Display choices if available
+            if (_currentStory.currentChoices.Count > 0) {
+                DisplayChoices();
+                return;
+            }
+
+            // Otherwise, check if the choices are guarded by any logic (we need to continue through the ink story to find out)
+            if (_currentStory.canContinue) {
+                LookAheadForLogicOrText();
+            }
+        }
+        
+        private void LookAheadForLogicOrText() {
+            // Continue until we find text or choices
+            while (_currentStory.canContinue && _currentStory.currentChoices.Count == 0) {
+                var text = _currentStory.Continue();
+                
+                if (!string.IsNullOrWhiteSpace(text)) {
+                    // We found narrative text
+                    _bufferedLine = text;
+                    return; 
+                }
+                
+                // Otherwise the line was empty (ink logic): keep looping
+            }
+
+            
+            if (_currentStory.currentChoices.Count > 0) {
+                // The loop ended because it found choices to display (they were guarded by some logic)
+                DisplayChoices();
+            }
         }
 
         private void SkipTypingAnimation() {
@@ -127,6 +162,17 @@ namespace Narrative {
         }
 
         private void HandleStoryFlow() {
+            // Check if there is a buffered line from the previous lookahead
+            if (!string.IsNullOrEmpty(_bufferedLine)) {
+                var line = _bufferedLine;
+                _bufferedLine = null;
+                
+                line = ParseCustomMarkers(line);
+                ShowLine(line);
+                return;
+            }
+            
+            // If there is no buffered line, proceed normally
             while (_currentStory.canContinue) {
                 var line = _currentStory.Continue();
         
@@ -220,16 +266,18 @@ namespace Narrative {
     
         private void Input_ContinueStory() {
             if (!StoryIsProgressing) return;
-            
+    
             if (_typewriterTween != null && _typewriterTween.IsActive()) {
                 SkipTypingAnimation();
             }
-            else if (_currentStory.currentChoices.Count == 0) {
+            else if (_currentStory.currentChoices.Count == 0 || !string.IsNullOrEmpty(_bufferedLine)) {
+                // Proceed if there are no available choices or if there is a buffered line to be displayed
                 HandleStoryFlow();
             }
         }
     
         public void EnterStory(TextAsset inkJson) {
+            _bufferedLine = null;
             _currentStory = new Story(inkJson.text);
             StoryIsProgressing = true;
         
