@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c939a601be60754a84c057e1a73524a, type: 3}
+  m_Name: Dictionary
+  m_EditorClassIdentifier: Assembly-CSharp::Storage.StorableInfo.ItemInfoSO
+  sprite: {fileID: -805655406541946461, guid: 035292ed04fbbf34d90a024a3bd20bbc, type: 3}
+  id: Dictionary
+  entityName: Dizionario bilingue
+  description: "Un ponte di carta logoro essenziale per decifrare ordini e segnali
+    tattici, trasformando l'ignoto in un vantaggio per la tua sopravvivenza, o le
+    lettere addosso ai caduti in testimonianze della loro umanit\xE0."
+  <StatsModifiers>k__BackingField: []
