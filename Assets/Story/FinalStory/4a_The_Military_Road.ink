@@ -720,7 +720,7 @@ Finché il rumore dei motori e degli spari non viene sostituito, finalmente, dal
     -> diary_reading
 }
 
-La strada è alle spalle e i soldati hanno persone le vostre tracce. <nl><> 
+La strada è alle spalle e i soldati hanno perso le vostre tracce. <nl><> 
 Il confine è vicino.
 
 ~ COMPLETED_ROAD = true

@@ -36,6 +36,8 @@ Oltre quella desolazione c'è la tua terra, ma guardando la distesa di macerie, 
 // ENDING I
 // ============================================================
 === ending_one ===
+~ CPS_Reached_Ending_1 = true
+
 { HasCompanion("Elias"):
     Elias cammina al tuo fianco. Non guarda l'orizzonte, ma il terreno, come se chiedesse perdono a ogni cadavere che calpesta.
 }
@@ -156,7 +158,6 @@ Ce l'avete fatta. Siete sopravvissuti.
 
 ~ IncreaseGlobalStat("Cohesion", 20)
 ~ COMPLETED_BORDER = true
-~ CPS_Reached_Ending_1 = true
 ~ END_OF_STORY = true
 -> END
 
@@ -164,6 +165,8 @@ Ce l'avete fatta. Siete sopravvissuti.
 // ENDING II
 // ============================================================
 === ending_two ===
+~ CPS_Reached_Ending_2 = true
+
 Sei solo.
 
 Il vento fischia attraverso i reticolati, portando con sé l'odore della putrefazione. Ti trascini verso le prime trincee della frontiera. <nl><>
@@ -216,6 +219,5 @@ Guardi l'orizzonte: non vedi altro che desolazione in ogni direzione.
 Ti rimetti in cammino, verso una casa che accoglierà un uomo profondamente diverso da quello che l'ha lasciata.
 
 ~ COMPLETED_BORDER = true
-~ CPS_Reached_Ending_2 = true
 ~ END_OF_STORY = true
 -> END
