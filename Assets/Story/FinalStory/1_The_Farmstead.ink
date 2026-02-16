@@ -329,7 +329,7 @@ Passa almeno un'ora. <nl><>
 Il sole è scomparso da tempo oltre l'orizzonte e il bagliore proveniente dalla fattoria è ormai un ricordo lontano, inghiottito dai tronchi neri degli alberi. <nl><>
 Il bosco è freddo, umido, indifferente alla guerra.
 
-{ HasItem("NoteBook"): 
+{ HasItem("Notebook"): 
     Il taccuino pesa nella tasca come un mattone, il suo contenuto un mistero indecifrabile.
 }
 
