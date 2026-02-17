@@ -118,8 +118,8 @@ VAR CPS_Reached_Ending_2 = false         // Solo Ending
 
 // Camp management
 VAR CPS_Camp_Set_Count = 0
-VAR CPS_Camp_First_Location = ""
-VAR CPS_Camp_Second_Location = ""
+VAR CPS_Camp_First_Ration_Used_Location = ""
+VAR CPS_Camp_Second_Ration_Used_Location = ""
 
 // --- RESOURCE MANAGEMENT & OPTIMIZATION ---
 // Resources used in camp

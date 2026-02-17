@@ -13,6 +13,63 @@ VAR ate_food = false
 ~ SET_CAMP_COUNT++
 ~ CPS_Camp_Set_Count++
 
+Trovi un anfratto riparato dal vento, nascosto da occhi indiscreti. 
+
+Accendi un piccolo fuoco usando legna secca e corteccia. La fiamma è debole, ma il calore che emana è un lusso che quasi avevi dimenticato.
+
+{ HasCompanion("Elias") and HasCompanion("Lira"):
+    Elias si siede vicino al fuoco, massaggiandosi la gamba ferita. Lira resta in piedi per un po', controllando il perimetro con l'arma in pugno, prima di accasciarsi a sua volta, esausta.
+- else:
+    { HasCompanion("Elias"):
+        Elias si lascia cadere a terra con un sospiro pesante. La sua uniforme è ormai coperta dello stesso fango che ricopre la tua. Ti guarda e accenna un ringraziamento silenzioso per la sosta.
+    }
+    { HasCompanion("Lira"):
+        Lira si siede a gambe incrociate, smontando e pulendo la sua arma con gesti meccanici. I vostri sguardi non si incrociano.
+    }
+    { not HasCompanion("Elias") and not HasCompanion("Lira"):
+        Sei solo. Il crepitio del fuoco è l'unica voce amica in questo deserto di ombre. Controlli il tuo equipaggiamento, cercando conforto nella routine.
+    }
+}
+
+È il momento di recuperare le forze, se speri di tornare a casa vivo.
+
+-> camp_hub
+
+=== camp_hub ===
+{ camp_hub == 1: 
+    { GetGlobalStat("Health") < 30:
+        Ti senti debole. Le ferite pulsano a ritmo col tuo cuore e il freddo ti entra nelle ossa troppo facilmente. Hai bisogno di cure.
+    }
+    { GetGlobalStat("Fatigue") > 70:
+        Le palpebre sono pesanti come piombo. Ogni movimento richiede uno sforzo di volontà. Devi riposare.
+    }
+}
+
+// --- CHOICE HUB ---
+* {HasItem("Ration") and not ate_food} [Mangi una razione.]
+    -> action_eat -> camp_hub
+* {HasItem("Bandages") and GetGlobalStat("Health") < 100} [Usi delle bende per medicare le ferite.]
+    -> action_heal_bandages
+* {HasItem("Medikit") and GetGlobalStat("Health") < 100} [Usi il medikit per cure approfondite.]
+    -> action_heal_medikit
+* {HasCompanion("Elias")} [Controlli Elias.]
+    {COMPLETED_FARMSTEAD and not ELIAS_OPTIONAL_DIALOGUE_DONE:
+        -> elias_optional_dialogue
+    - else:
+        Elias siede accanto al fuoco, perso nei suoi pensieri.
+        -> camp_hub
+    } 
+* {HasCompanion("Lira")} [Controlli Lira.]
+    {COMPLETED_VILLAGE and not LIRA_OPTIONAL_DIALOGUE_DONE:
+        -> lira_optional_dialogue
+    - else:
+        Lira si scalda davanti al fuoco, pulendo la sua arma da fianco.
+        -> camp_hub
+    }
+* [Cerchi di dormire.]
+    -> action_sleep
+
+=== action_eat ===
 ~ temp current_location_name = ""
 {
     - COMPLETED_FARMSTEAD and not COMPLETED_WOOD: 
@@ -35,68 +92,12 @@ VAR ate_food = false
 
 { 
     - SET_CAMP_COUNT == 1: 
-        ~ CPS_Camp_First_Location = current_location_name
+        ~ CPS_Camp_First_Ration_Used_Location = current_location_name
     - else:
-        ~ CPS_Camp_Second_Location = current_location_name
+        ~ CPS_Camp_Second_Ration_Used_Location = current_location_name
 }
 
-Trovi un anfratto riparato dal vento, nascosto da occhi indiscreti. 
 
-Accendi un piccolo fuoco usando legna secca e corteccia. La fiamma è debole, ma il calore che emana è un lusso che quasi avevi dimenticato.
-
-{ HasCompanion("Elias") && HasCompanion("Lira"):
-    Elias si siede vicino al fuoco, massaggiandosi la gamba ferita. Lira resta in piedi per un po', controllando il perimetro con l'arma in pugno, prima di accasciarsi a sua volta, esausta.
-- else:
-    { HasCompanion("Elias"):
-        Elias si lascia cadere a terra con un sospiro pesante. La sua uniforme è ormai coperta dello stesso fango che ricopre la tua. Ti guarda e accenna un ringraziamento silenzioso per la sosta.
-    }
-    { HasCompanion("Lira"):
-        Lira si siede a gambe incrociate, smontando e pulendo la sua arma con gesti meccanici. I vostri sguardi non si incrociano.
-    }
-    { not HasCompanion("Elias") && not HasCompanion("Lira"):
-        Sei solo. Il crepitio del fuoco è l'unica voce amica in questo deserto di ombre. Controlli il tuo equipaggiamento, cercando conforto nella routine.
-    }
-}
-
-È il momento di recuperare le forze, se speri di tornare a casa vivo.
-
--> camp_hub
-
-=== camp_hub ===
-{ camp_hub == 1: 
-    { GetGlobalStat("Health") < 30:
-        Ti senti debole. Le ferite pulsano a ritmo col tuo cuore e il freddo ti entra nelle ossa troppo facilmente. Hai bisogno di cure.
-    }
-    { GetGlobalStat("Fatigue") > 70:
-        Le palpebre sono pesanti come piombo. Ogni movimento richiede uno sforzo di volontà. Devi riposare.
-    }
-}
-
-// --- CHOICE HUB ---
-* {HasItem("Ration") && not ate_food} [Mangi una razione.]
-    -> action_eat -> camp_hub
-* {HasItem("Bandages") && GetGlobalStat("Health") < 100} [Usi delle bende per medicare le ferite.]
-    -> action_heal_bandages
-* {HasItem("Medikit") && GetGlobalStat("Health") < 100} [Usi il medikit per cure approfondite.]
-    -> action_heal_medikit
-* {HasCompanion("Elias")} [Controlli Elias.]
-    {COMPLETED_FARMSTEAD and not ELIAS_OPTIONAL_DIALOGUE_DONE:
-        -> elias_optional_dialogue
-    - else:
-        Elias siede accanto al fuoco, perso nei suoi pensieri.
-        -> camp_hub
-    } 
-* {HasCompanion("Lira")} [Controlli Lira.]
-    {COMPLETED_VILLAGE and not LIRA_OPTIONAL_DIALOGUE_DONE:
-        -> lira_optional_dialogue
-    - else:
-        Lira si scalda davanti al fuoco, pulendo la sua arma da fianco.
-        -> camp_hub
-    }
-* [Cerchi di dormire.]
-    -> action_sleep
-
-=== action_eat ===
 ~ temp hasAtLeastOneCompanion = HasCompanion("Elias") or HasCompanion("Lira")
 ~ temp hasOnlyLira = not HasCompanion("Elias") and HasCompanion("Lira")
 ~ temp hasOnlyElias = HasCompanion("Elias") and not HasCompanion("Lira")
@@ -205,6 +206,7 @@ Te lo porge, indicando le figure con un dito tremante.
 === lira_optional_dialogue ===
 ~ LIRA_OPTIONAL_DIALOGUE_DONE = true
 ~ CPS_Lira_Camp_Dialogue_Done =  true
+
 Ti avvicini a Lira. Ha appoggiato la pistola sulle ginocchia e per la prima volta da quando l'hai incontrata, non sembra sull'attenti. Sta semplicemente guardando le braci morire. <nl><>
 Il riflesso arancione ammorbidisce i tratti spigolosi del suo viso, togliendo per un istante quella maschera di freddezza professionale che indossa come una seconda pelle.
 
@@ -260,7 +262,7 @@ Lira ripone l'arma nella fondina. Il movimento è fluido, ma meno aggressivo del
 
 Ti brontola lo stomaco. Faresti meglio a mangiare qualcosa prima di addormentarti.
 
-* [Mangi una razione prima di dormire.]
+* {not ate_food and HasItem("Ration")} [Mangi una razione prima di dormire.]
     -> action_eat ->
     -> sleep_well  
 
