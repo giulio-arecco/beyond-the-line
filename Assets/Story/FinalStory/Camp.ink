@@ -90,10 +90,10 @@ Accendi un piccolo fuoco usando legna secca e corteccia. La fiamma è debole, ma
         ~ current_location_name = "Unknown Location"
 }
 
-{ 
-    - SET_CAMP_COUNT == 1: 
+{ CPS_Camp_First_Ration_Used_Location == "":
         ~ CPS_Camp_First_Ration_Used_Location = current_location_name
-    - else:
+}
+{ not CPS_Camp_First_Ration_Used_Location == "" and CPS_Camp_Second_Ration_Used_Location == "":
         ~ CPS_Camp_Second_Ration_Used_Location = current_location_name
 }
 

@@ -713,7 +713,6 @@ Devi decidere come procedere. Hai imparato che in questa guerra non tutti quelli
     
     ~ DecreaseGlobalStat("Fatigue", 20)
     ~ IncreaseGlobalStat("Health", 10)
-    ~ AddItemToInventory("Ration")
     -> hermit_dialogue
 
 === hermit_dialogue ===
