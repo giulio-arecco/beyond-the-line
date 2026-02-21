@@ -13,7 +13,8 @@ VAR radio_fixed = false
 VAR radio_broken = false
 VAR failed_negotiation = false
 
-VAR radio_attempts = 0
+VAR radio_blind_attempts = 0
+VAR radio_freq_only_resume_phase = 0
 VAR threat_power = 0
 
 -> village_entry
@@ -39,7 +40,7 @@ Un villaggio. O quello che ne resta. Da questa distanza sembra un giocattolo rot
     "È sulla nostra rotta. Se c'è rimasto qualcosa di utile, una radio o una mappa, è lì che lo troveremo. Meglio rischiare tra le rovine che morire di fame nel bosco".
 }
 
-{ not HasCompanion("Lira") && not HasCompanion("Elias"):
+{ not HasCompanion("Lira") and not HasCompanion("Elias"):
     Sei solo. Guardi quella distesa di rovine e calcoli le tue opzioni. Aggirarlo ti costerebbe ore preziose e energie che non hai. Attraversarlo è un rischio, ma anche l'unica possibilità di trovare provviste o informazioni per il confine. La strada passa di lì.
 }
 
@@ -56,7 +57,7 @@ A nord, su una piccola altura, la casa di comando in pietra incombe sul villaggi
 { HasCompanion("Elias"):
     Elias fissa l'edificio sulla collina. Sa che da lì venivano impartiti molti degli ordini che era abituato a ricevere. Annuisce verso l'altura.
 }
-{ not HasCompanion("Lira") && not HasCompanion("Elias"):
+{ not HasCompanion("Lira") and not HasCompanion("Elias"):
     Quell'antenna è la tua migliore speranza. Prima di rischiare di farti seppellire dalle macerie degli altri edifici, devi capire se c'è un modo per contattare qualcuno o intercettare informazioni.
 }
 
@@ -91,7 +92,7 @@ Ti trovi al centro della piazza devastata. L'aria è ferma, fredda.
         -> command_house_entry_again
     * {shelter_entry_first == 0} [Vai verso l'ingresso del rifugio sotterraneo.]
         -> shelter_entry_first
-    + {shelter_entry_first > 0 && not shelter_open} [Torni all'ingresso del rifugio sotterraneo.]
+    + {shelter_entry_first > 0 and not shelter_open} [Torni all'ingresso del rifugio sotterraneo.]
         -> shelter_entry_again
     * {barn_entry == 0} [Controlli il granaio.]
         -> barn_entry
@@ -193,7 +194,7 @@ Elias ti aiuta a sederti. Non dice nulla, ma il suo sguardo è grave. {not HasCo
 
 Il varco è aperto, ma la fiducia <>
 {
-    - HasCompanion("Elias") && HasCompanion("Lira"):
+    - HasCompanion("Elias") and HasCompanion("Lira"):
         del gruppo <>
     - HasCompanion("Elias"):
         del tuo compagno <>
@@ -361,7 +362,7 @@ All'interno, tra bende secche e flaconi rotti, trovi un kit medico d'emergenza a
     { HasCompanion("Elias"):
         Elias osserva il manuale con un misto di familiarità e repulsione. Conosce quei simboli. Erano la lingua della sua vita precedente.
     }
-    { not HasCompanion("Lira") && not HasCompanion("Elias"):
+    { not HasCompanion("Lira") and not HasCompanion("Elias"):
         Senza conoscere la lingua, è un labirinto di segni. Ma noti che le tabelle associano termini fonetici a pittogrammi chiari. Se riesci a capire come leggerlo, potrebbe essere il tuo dizionario.
     }
     
@@ -553,7 +554,7 @@ Entri nuovamente nella sala operativa della casa di comando. Il ronzio statico d
     }
 }
 
-* {has_frequency && has_manual} [Hai tutto il necessario. Procedi alla calibrazione.]
+* {has_frequency and has_manual} [Hai tutto il necessario. Procedi alla calibrazione.]
     Dispieghi la nota trovata nel rifugio e apri il manuale.
     
     Imposti la frequenza: 44.0 MHz. <nl><>
@@ -567,7 +568,7 @@ Entri nuovamente nella sala operativa della casa di comando. Il ronzio statico d
     ~ CPS_Radio_Solved_Systematic = true
     -> radio_success
 
-* {has_frequency && not has_manual} [Hai la frequenza, ma manca il manuale. Provi a orecchio.]
+* {has_frequency and not has_manual and radio_freq_only_resume_phase <= 0} [Hai la frequenza, ma manca il manuale. Provi a orecchio.]
     Imposti i 44.0 MHz. Il segnale c'è, ma è sporco. Un muro di statico e fischi distorti. <nl><>
     Senza i codici del manuale, non sai come pulirlo. 
     
@@ -582,12 +583,20 @@ Entri nuovamente nella sala operativa della casa di comando. Il ronzio statico d
     La probabilità di indovinare è bassissima. Ma è l'unica chance che hai.
     
     -> radio_no_manual_attempt
+    
++ {has_frequency and not has_manual and radio_freq_only_resume_phase > 0 } [Ritenti la calibrazione con la sola frequenza]
+    { radio_freq_only_resume_phase:
+        - 1:
+            -> radio_no_manual_attempt
+        - 2:
+            -> radio_no_manual_step_2
+    }
 
-* {not has_frequency and radio_attempts <= 0} [Giri le manopole cercando un segnale.]
+* {not has_frequency and radio_blind_attempts <= 0} [Giri le manopole cercando un segnale.]
     ~ CPS_Radio_Tried_Blind = true
     -> radio_blind_attempt
     
-+ {not has_frequency and radio_attempts > 0} [Riprovi a sintonizzare la radio.]
++ {not has_frequency and radio_blind_attempts > 0} [Riprovi a sintonizzare la radio.]
     -> radio_blind_attempt
 
 + [Lasci perdere per ora.]
@@ -595,9 +604,9 @@ Entri nuovamente nella sala operativa della casa di comando. Il ronzio statico d
     -> village_hub
 
 === radio_blind_attempt ===
-~ radio_attempts++
+~ radio_blind_attempts++
     
-{ radio_attempts:
+{ radio_blind_attempts:
 - 1:
     Giri la manopola della sintonizzazione lentamente. Il fruscio sale e scende come una marea elettrica. <nl><>
     Per un attimo ti sembra di sentire una voce, ma svanisce subito nel rumore bianco. Senza una frequenza precisa, è come cercare un ago nel buio.
@@ -623,14 +632,18 @@ Entri nuovamente nella sala operativa della casa di comando. Il ronzio statico d
 }
 
 === radio_no_manual_attempt ===
-Fai un respiro profondo. Chiudi gli occhi e ti concentri solo sull'udito.
-
-Attraverso le cuffie, il segnale è un caos: senti un ronzio basso e profondo, costante, come un motore elettrico, sovrapposto a un fischio acuto e penetrante. <nl><>
-La voce è sepolta lì sotto.
+{radio_no_manual_attempt == 1:
+    Fai un respiro profondo. Chiudi gli occhi e ti concentri solo sull'udito.
+    
+    Attraverso le cuffie, il segnale è un caos: senti un ronzio basso e profondo, costante, come un motore elettrico, sovrapposto a un fischio acuto e penetrante. <nl><>
+    La voce è sepolta lì sotto.
+- else:
+    Continui a sentire il ronzio di sottofondo. <nl><>
+}
 
 Hai davanti a te tre selettori principali contrassegnati da simboli grafici astratti. Devi andare a intuito per pulire il segnale.
 
-* [Giri il selettore verso il simbolo di una linea spessa.]
++ [Giri il selettore verso il simbolo di una linea spessa.]
     ~ CPS_Radio_Tried_No_Manual = true
     
     Speri che indichi la stabilità del segnale. <nl><>
@@ -638,7 +651,7 @@ Hai davanti a te tre selettori principali contrassegnati da simboli grafici astr
     Hai isolato solo il rumore di fondo.
     -> radio_failure_blind
 
-* [Giri il selettore verso il simbolo di una linea sottile.]
++ [Giri il selettore verso il simbolo di una linea sottile.]
     ~ CPS_Radio_Tried_No_Manual = true
     
     Punti a sintonizzarti sulle frequenze più alte. <nl><>
@@ -646,7 +659,7 @@ Hai davanti a te tre selettori principali contrassegnati da simboli grafici astr
     Hai isolato la voce, anche se è ancora distorta.
     -> radio_no_manual_step_2
 
-* [Posizioni il selettore sull'indicatore barrato al centro.]
++ [Posizioni il selettore sull'indicatore barrato al centro.]
     ~ CPS_Radio_Tried_No_Manual = true
     
     Provi a tagliare la frequenza mediana. <nl><>
@@ -654,16 +667,21 @@ Hai davanti a te tre selettori principali contrassegnati da simboli grafici astr
     Il ricevitore fischia per il feedback.
     -> radio_failure_blind
     
-* [Lasci perdere e torni alla piazza]
++ [Lasci perdere e torni alla piazza]
+    ~ radio_freq_only_resume_phase = 1
     Ti rendi conto che provare alla cieca rischierebbe di danneggiare la radio. <nl><>
     Ti alzi e lasci la casa di comando.
     -> village_hub
 
 === radio_no_manual_step_2 ===
-Hai isolato la trasmissione, ma la voce è ancora incomprensibile. È veloce, acuta e distorta. Sembra una trasmissione criptata o modulata in modo strano. <nl><>
-Hai una sola possibilità di renderla comprensibile prima di perdere l'aggancio.
+{radio_no_manual_step_2 == 1:
+    Hai isolato la trasmissione, ma la voce è ancora incomprensibile. È veloce, acuta e distorta. Sembra una trasmissione criptata o modulata in modo strano. <nl><>
+    Hai una sola possibilità di renderla comprensibile prima di perdere l'aggancio.
+- else:
+    Giri nuovamente il selettore verso la linea sottile: devi decidere la tua prossima mossa.
+}
 
-* [Regoli la piccola manopola laterale del tono.]
++ [Regoli la piccola manopola laterale del tono.]
     Ti ricordi dell'addestramento base: se la voce è acuta, prova a variare il tono. <nl><>
     Giri la manopola lentamente. Il timbro della voce scende. Diventa umana. Le parole prendono forma e chiarezza. <nl><>
     Hai agganciato il segnale.
@@ -671,19 +689,21 @@ Hai una sola possibilità di renderla comprensibile prima di perdere l'aggancio.
     ~ CPS_Radio_Solved_NoManual = true
     -> radio_success
 
-* [Premi l'interruttore con le due onde incrociate.]
++ [Premi l'interruttore con le due onde incrociate.]
     Pensi che serva a invertire il segnale per pulirlo. <nl><>
     Il suono cambia, diventa ancora più aspro e metallico. Un rumore alieno che ti perfora i timpani. <nl><>
     Hai perso l'aggancio.
     -> radio_failure_blind
 
-* [Aumenti la manopola contrassegnata con il "+" al massimo.]
++ [Aumenti la manopola contrassegnata con il "+" al massimo.]
     Provi semplicemente ad amplificare il segnale distorto sperando di capire qualcosa. <nl><>
     Il volume esplode nelle cuffie. L'ago del segnale sbatte contro il fondo scala. <nl><>
     Un suono breve e secco proviene dal retro della radio.
     -> radio_failure_blind
-* [Lasci perdere e torni alla piazza]
-    Ti rendi conto che provare alla cieca rischierebbe di danneggiare la radio. <nl><>
+    
++ [Lasci perdere e torni alla piazza]
+    ~ radio_freq_only_resume_phase = 2
+    Ti rendi conto che provare alla cieca rischierebbe di danneggiare la radio.
     Riporti il selettore a com'era prima che lo girassi e lasci la casa di comando.
     -> village_hub
 
@@ -794,7 +814,7 @@ La trasmissione è un bollettino ciclico in lingua nemica. Non capisci le frasi,
 
 Spegni l'audio. Il silenzio torna a riempire la stanza.
 
-{ HasCompanion("Lira") && HasCompanion("Elias"):
+{ HasCompanion("Lira") and HasCompanion("Elias"):
     Lira guarda Elias, che fissa ancora i cerchi disegnati sul metallo freddo. <nl><>
     "Il ponte è andato. Se cadiamo di sotto, la guerra finisce in fretta". <nl><>
     Elias annuisce lentamente, cancellando il disegno con il pollice.
@@ -805,7 +825,7 @@ Spegni l'audio. Il silenzio torna a riempire la stanza.
     { HasCompanion("Elias"):
         Elias espira lentamente, lasciando cadere la matita. Ti guarda con gratitudine: sapere prima di agire è un lusso.
     }
-    { not HasCompanion("Lira") && not HasCompanion("Elias"):
+    { not HasCompanion("Lira") and not HasCompanion("Elias"):
         Resti immobile per un istante. <nl><>
         Sei solo, ma almeno ora non sei cieco. Hai costruito una mappa mentale dei pericoli decifrando i suoni del nemico. È l'unica compagnia che puoi permetterti.
     }
@@ -841,7 +861,7 @@ Dalla valle a sud sale il rumore lontano dei motori. La strada militare. È larg
     }
 }
 
-{ HasCompanion("Lira") && HasCompanion("Elias"):
+{ HasCompanion("Lira") and HasCompanion("Elias"):
     Lira osserva la valle con occhio critico. <nl><>
     { KNOWN_MILITARY_ROAD_STATUS:
         "Quattro del mattino" mormora, controllando il suo orologio. "Abbiamo una finestra stretta. Se abbiamo ragione sui codici, la strada sarà deserta per dieci minuti. È un rischio, ma forse lo possiamo gestire". <nl><>
@@ -869,7 +889,7 @@ Dalla valle a sud sale il rumore lontano dei motori. La strada militare. È larg
     }   
 }
 
-{ HasCompanion("Lira") && not HasCompanion("Elias"):
+{ HasCompanion("Lira") and not HasCompanion("Elias"):
     { KNOWN_MILITARY_ROAD_STATUS:
         Lira: "La nostra unica finestra è il cambio della guardia alle quattro. Dobbiamo essere chirurgici sulla strada. Se sbagliamo i tempi, siamo morti. Ma se li azzecchiamo, raggiungeremo il confine per l'alba". 
     - else:
@@ -886,7 +906,7 @@ Dalla valle a sud sale il rumore lontano dei motori. La strada militare. È larg
     }
 }
 
-{ not HasCompanion("Lira") && HasCompanion("Elias"):
+{ not HasCompanion("Lira") and HasCompanion("Elias"):
     Elias ascolta il rombo dalla valle. <nl><>
     { KNOWN_MILITARY_ROAD_STATUS:
         Indichi il tuo orologio e alzi quattro dita. Lui ti guarda, calcola mentalmente, poi fa un cenno di assenso lento. Capisce che c'è un buco nella rete. Indica la strada, poi mima un movimento rapido. È pericoloso, ma veloce.
@@ -903,7 +923,7 @@ Dalla valle a sud sale il rumore lontano dei motori. La strada militare. È larg
         }
     }
 }
-{ not HasCompanion("Lira") && not HasCompanion("Elias"):
+{ not HasCompanion("Lira") and not HasCompanion("Elias"):
     Sei solo. Nessuno coprirà le tue spalle sulla strada, nessuno ti tirerà su se scivoli nel burrone. <nl><>
     Controlli i lacci degli scarponi e la Kruger nella fondina. <nl>
     {KNOWN_MOUNTAINPASS:<>Una via richiede velocità e nervi saldi, l'altra resistenza e adattamento.}
