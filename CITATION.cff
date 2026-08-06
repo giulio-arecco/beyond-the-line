@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use this software or its narrative framework, please cite it as below."
+title: "Beyond The Line"
+type: software
+authors:
+  - given-names: "Giulio"
+    family-names: "Arecco"
+    affiliation: "Politecnico di Torino"
+repository-code: "https://github.com/giulio-arecco/beyond-the-line"
+url: "https://github.com/giulio-arecco/beyond-the-line"
+keywords:
+  - serious-game
+  - interactive-fiction
+  - ink
+  - unity
+  - csharp
+  - master-thesis
+  - politecnico-di-torino
+  - complex-problems
+  - complex-problem-solving
+  - game-development
+license: ["MIT", "CC-BY-NC-4.0"]
+version: "1.0.0"
+date-released: "2026-02-21"
