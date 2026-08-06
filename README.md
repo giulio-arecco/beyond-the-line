@@ -1,5 +1,8 @@
 # Beyond The Line
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
 Welcome to the source code repository for "Beyond The Line", a text-based serious game developed in Unity, C#, and Ink.
 
 The official Master's thesis document is available in the repository releases.
