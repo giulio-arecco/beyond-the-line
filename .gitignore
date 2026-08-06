@@ -80,6 +80,23 @@ Assets/UI SFX Free Pack/Content_for_Demo_Scene/Read_Me.txt
 # Game session stats
 /[Ss]essionStats
 
+# Third Party Assets
+/[Aa]ssets/Art/
+/[Aa]ssets/Art.meta
+/[Aa]ssets/ParadoxNotion/
+/[Aa]ssets/ParadoxNotion.meta
+/[Aa]ssets/Plugins/
+/[Aa]ssets/Plugins.meta
+/[Aa]ssets/Resources/
+/[Aa]ssets/Resources.meta
+/[Aa]ssets/SceneAttribute/
+/[Aa]ssets/SceneAttribute.meta
+/[Aa]ssets/vHierarchy/
+/[Aa]ssets/vHierarchy.meta
+/[Aa]ssets/Free UI Click Sound Effects Pack/
+/[Aa]ssets/Free UI Click Sound Effects Pack.meta
+/[Pp]ackages/com.kybernetik.ultevents/
+
 ## Odin Inspector
 # Ignore the auto-generated AOT compatibility dll.
 /Assets/Plugins/Sirenix/Assemblies/AOT/*
