@@ -1,5 +1,8 @@
 # Beyond The Line
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC_BY--NC_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
 *Beyond The Line* is a text-based interactive survival drama developed in Unity, C#, and Ink. The project was conceived and engineered as a serious game for a Master's Thesis to evaluate whether interactive narrative systems and targeted information management mechanics can foster Complex Problem Solving (CPS) cognitive abilities under systemic uncertainty and resource scarcity.
 
 Theoretical foundations, experimental protocols, psychometric evaluation methodologies based on the CPS-GFC framework, and empirical findings are documented in the Master's Thesis.
