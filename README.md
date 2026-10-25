@@ -505,5 +505,6 @@ This project uses a dual-license structure to separate the software infrastructu
 
 * **Source Code:** All C# scripts, engine configurations, and source code are licensed under the [MIT License](LICENSE).
 * **Narrative Assets:** The story, characters, dialogues, and Ink script files are licensed under the [Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)](Assets/Story/LICENSE-NARRATIVE).
+* **Builds and Binaries**: Compiled executables and releases are distributed for personal, non-commercial use only. Commercial redistribution, bundling, or sale of the compiled game is strictly prohibited.
 
 You are free to use, modify, and build upon the source code for any purpose, provided you include the original copyright notice. However, the narrative content of *Beyond The Line* cannot be used for commercial purposes without explicit permission.
